@@ -9,17 +9,18 @@ import {
   Get,
   UseGuards,
   Request,
+  Patch,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { JwtPayload } from './jwt.strategy'; // 1. Importe JwtPayload
+// import { JwtPayload } from './jwt.strategy'; // << REMOVA ESTA SE NÃO FOR USADA E JÁ TIVER AuthenticatedUser
+import { UpdateProfileDto } from './dto/update-profile.dto';
+import { UserEntity } from '../entities/user.entity';
+import { AuthenticatedUser } from './jwt.strategy'; // Esta é a que queremos para req.user
 
-// Opcional: Crie uma interface para tipar o objeto Request com a propriedade user
-// Isso ajuda o TypeScript e o ESLint a entenderem req.user
 interface AuthenticatedRequest extends globalThis.Request {
-  // Ou apenas Request do Express se tiver os tipos do Express
-  user: JwtPayload; // Ou o tipo que você retorna do validate da JwtStrategy
+  user: AuthenticatedUser;
 }
 
 @Controller('auth')
@@ -45,10 +46,25 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard('jwt'))
-  // 2. Modifique a tipagem do parâmetro 'req'
-  getProfile(@Request() req: AuthenticatedRequest): JwtPayload {
-    // Ou o tipo que você retorna do validate
-    // Agora req.user é tipado como JwtPayload
+  getProfile(@Request() req: AuthenticatedRequest): AuthenticatedUser {
     return req.user;
+  }
+
+  @Patch('profile')
+  @UseGuards(AuthGuard('jwt'))
+  @UsePipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      skipMissingProperties: true,
+    }),
+  )
+  async updateProfile(
+    @Request() req: AuthenticatedRequest,
+    @Body() updateProfileDto: UpdateProfileDto,
+  ): Promise<Omit<UserEntity, 'senhaHash'>> {
+    const userId = req.user.idUsuario; // Correto, pois AuthenticatedUser tem idUsuario
+    return this.authService.updateProfile(userId, updateProfileDto);
   }
 }

@@ -32,7 +32,9 @@ async function hashPassword(password) {
 }
 
 // --- MODIFIQUE AQUI A SENHA QUE VOCÊ QUER HASHEAR ---
-const senhaParaHashear = ''; // Ex: 'senha123' ou 'buddy@seguro' ou 'gestor#forte'
+const senhaParaHashear = ''; // Ex: 'senha123' ou 'buddy@seguro' ou 'gestor#forte' node generate-hash.js
+//node generate-hash.js
+//npm run start:dev
 // ----------------------------------------------------
 
 // Executa a função

@@ -11,9 +11,9 @@ export enum UserProfileType {
   GESTOR = 'GESTOR',
 }
 
-@Entity({ name: 'VE_USUARIOS' })
+@Entity({ name: 'VE_USUARIOS' }) // Nome da tabela
 export class UserEntity {
-  @PrimaryGeneratedColumn({ name: 'ID_USUARIO', type: 'number' })
+  @PrimaryGeneratedColumn({ name: 'ID_USUARIO', type: 'number' }) // Corresponde à coluna e usa a sequência via default no BD
   idUsuario: number;
 
   @Column({
@@ -51,12 +51,7 @@ export class UserEntity {
   })
   tipoPerfil: UserProfileType;
 
-  @CreateDateColumn({
-    name: 'DATA_CADASTRO',
-    type: 'date',
-    default: () => 'SYSDATE',
-    nullable: false,
-  })
+  @CreateDateColumn({ name: 'DATA_CADASTRO', type: 'date', nullable: false }) // Default SYSDATE será do BD
   dataCadastro: Date;
 
   @Column({
@@ -65,6 +60,29 @@ export class UserEntity {
     width: 1,
     default: 1,
     nullable: false,
-  })
+  }) // NUMBER(1)
   statusAtivo: number;
+
+  @Column({ name: 'TELEFONE', type: 'varchar2', length: 20, nullable: true })
+  telefone: string | null;
+
+  @Column({ name: 'DESCRICAO', type: 'varchar2', length: 500, nullable: true })
+  descricao: string | null;
+
+  @Column({
+    name: 'DIAS_OFENSIVA',
+    type: 'number',
+    default: 0,
+    nullable: false,
+  })
+  diasOfensiva: number;
+
+  @Column({ name: 'VIVO_COINS', type: 'number', default: 0, nullable: false })
+  vivoCoins: number;
+
+  @Column({ name: 'ID_GESTOR', type: 'number', nullable: true })
+  idGestor: number | null;
+
+  @Column({ name: 'ID_BUDDY', type: 'number', nullable: true })
+  idBuddy: number | null;
 }

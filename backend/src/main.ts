@@ -2,27 +2,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
-import { ValidationPipe } from '@nestjs/common'; // Importe ValidationPipe se ainda não fez
+import { ValidationPipe } from '@nestjs/common'; // Certifique-se que está importado
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Habilitar CORS
-  // Opção A: Permitir todas as origens (mais simples para desenvolvimento)
-  app.enableCors();
-
-  // Opção B: Configuração mais específica (melhor para produção, mas mais complexa para 'null' origin)
-  /*
   app.enableCors({
-    origin: true, // Pode ser um array de origens permitidas, ex: ['http://localhost:5500', 'http://127.0.0.1:5500']
-                  // Para 'null' origin (arquivos locais), 'true' pode funcionar ou pode precisar de '*' (cuidado com '*')
+    origin: true, // Permite a origem da requisição (incluindo 'null' em alguns casos)
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Accept, Authorization', // Adicione Authorization se for usar
     credentials: true,
-  });
-  */
+  }); // <<<< ESTA LINHA É CRUCIAL E DEVE ESTAR ATIVA
 
-  // Habilitar ValidationPipe globalmente (se você não fez isso em outro lugar)
-  // Isso garante que seus DTOs sejam validados em todos os controllers.
+  // Habilitar ValidationPipe globalmente (recomendado)
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

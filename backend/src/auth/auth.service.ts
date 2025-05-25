@@ -1,10 +1,10 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common'; // Certifique-se que UnauthorizedException está importado aqui
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { JwtPayload } from './jwt.strategy';
+import { TokenPayload, AuthenticatedUser } from './jwt.strategy'; // Importar AMBAS as interfaces
 
 @Injectable()
 export class AuthService {
@@ -14,97 +14,87 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  /**
-   * Valida o usuário com base no email e senha.
-   * @param email O email do usuário.
-   * @param pass A senha em texto puro.
-   * @returns O objeto do usuário sem o hash da senha se válido.
-   * @throws UnauthorizedException se a validação falhar.
-   */
   async validateUser(
     email: string,
     pass: string,
   ): Promise<Omit<UserEntity, 'senhaHash'>> {
-    console.log(`[AuthService] Tentando validar usuário: ${email}`);
+    // ... (código do validateUser como antes, ele já retorna Omit<UserEntity, 'senhaHash'>) ...
+    // ... (os console.logs podem ser removidos se tudo estiver funcionando) ...
     const user = await this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.senhaHash')
       .where('user.email = :email', { email })
       .getOne();
 
-    if (!user) {
-      console.log(`[AuthService] Usuário não encontrado: ${email}`);
-      throw new UnauthorizedException(
-        'Credenciais inválidas ou usuário inativo.',
-      );
-    }
-
-    console.log(
-      `[AuthService] Usuário encontrado: ${user.email}, STATUS_ATIVO: ${user.statusAtivo}`,
-    );
-    console.log(
-      `[AuthService] Hash do banco para ${user.email}: ${user.senhaHash}`,
-    );
-    console.log(
-      `[AuthService] Senha recebida do frontend para ${user.email}: ${pass}`,
-    );
-
-    if (user.statusAtivo !== 1) {
-      console.log(`[AuthService] Usuário ${user.email} está inativo.`);
+    if (!user || user.statusAtivo !== 1) {
       throw new UnauthorizedException(
         'Credenciais inválidas ou usuário inativo.',
       );
     }
 
     const isPasswordMatching = await bcrypt.compare(pass, user.senhaHash);
-    console.log(
-      `[AuthService] Resultado da comparação de senha para ${user.email}: ${isPasswordMatching}`,
-    );
-
-    if (isPasswordMatching) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { senhaHash, ...result } = user;
-      console.log(`[AuthService] Usuário ${user.email} validado com sucesso.`);
-      return result;
-    } else {
-      console.log(`[AuthService] Senha não corresponde para ${user.email}.`);
+    if (!isPasswordMatching) {
       throw new UnauthorizedException(
         'Credenciais inválidas ou usuário inativo.',
       );
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { senhaHash, ...result } = user;
+    return result;
   }
 
-  // O método login permanece como antes (síncrono)
   login(user: Omit<UserEntity, 'senhaHash'>): {
     access_token: string;
-    user: any;
+    user: AuthenticatedUser;
   } {
-    const payload: JwtPayload = {
-      email: user.email,
+    // Cria o payload para o JWT usando a estrutura de TokenPayload
+    const payloadForToken: TokenPayload = {
+      // Usando TokenPayload para o que vai DENTRO do token
       sub: user.idUsuario,
+      email: user.email,
       tipoPerfil: user.tipoPerfil,
       nomeCompleto: user.nomeCompleto,
+      dataCadastro: user.dataCadastro,
+      diasOfensiva: user.diasOfensiva,
+      vivoCoins: user.vivoCoins,
+      telefone: user.telefone,
+      descricao: user.descricao,
+    };
+
+    // O objeto 'user' retornado para o frontend pode seguir a estrutura AuthenticatedUser
+    const userToReturn: AuthenticatedUser = {
+      idUsuario: user.idUsuario,
+      email: user.email,
+      tipoPerfil: user.tipoPerfil,
+      nomeCompleto: user.nomeCompleto,
+      dataCadastro: user.dataCadastro,
+      diasOfensiva: user.diasOfensiva,
+      vivoCoins: user.vivoCoins,
+      telefone: user.telefone,
+      descricao: user.descricao,
     };
 
     return {
-      access_token: this.jwtService.sign(payload),
-      user: {
-        idUsuario: user.idUsuario,
-        email: user.email,
-        nomeCompleto: user.nomeCompleto,
-        tipoPerfil: user.tipoPerfil,
-      },
+      access_token: this.jwtService.sign(payloadForToken), // Assina o TokenPayload
+      user: userToReturn, // Retorna o AuthenticatedUser
     };
   }
 
-  /*
-  async findUserForJwtValidation(userId: number): Promise<Omit<UserEntity, 'senhaHash'> | undefined> {
-    const user = await this.userRepository.findOne({ where: { idUsuario: userId, statusAtivo: 1 } });
-    if (user) {
-      const { senhaHash, ...result } = user;
-      return result;
+  async updateProfile(
+    userId: number,
+    updateProfileDto: any /* UpdateProfileDto */,
+  ): Promise<Omit<UserEntity, 'senhaHash'>> {
+    // ... (código do updateProfile como antes)
+    const user = await this.userRepository.findOne({
+      where: { idUsuario: userId },
+    });
+    if (!user) {
+      throw new UnauthorizedException('Usuário não encontrado.');
     }
-    return undefined;
+    Object.assign(user, updateProfileDto);
+    await this.userRepository.save(user);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { senhaHash, ...result } = user;
+    return result;
   }
-  */
 }

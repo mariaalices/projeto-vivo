@@ -1,0 +1,28 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar for a more modern look (optional) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1b4b; /* indigo-950, correspondente a slate-900 ou similar para o fundo da scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4f46e5; /* indigo-600, uma cor de destaque da sua paleta */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1; /* indigo-500, uma variação para o hover */
+}
+
+/* Style for placeholder text color if needed */
+::placeholder {
+    color: #9ca3af; /* gray-400, conforme o placeholder-slate-400 do Tailwind */
+}
+
+/* Você pode adicionar outros estilos globais ou específicos aqui se necessário */

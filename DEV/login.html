@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIVO ESSENTIAL - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      /* Adicione aqui os estilos de .sidebar-link.active e .sidebar-link:not(.active):hover para modo claro se necessário,
+           embora esta página não tenha sidebar. Mantendo por consistência se style.css for compartilhado. */
+      html:not(.dark) .sidebar-link.active {
+        background-color: #4f46e5;
+        color: white;
+      }
+      html:not(.dark) .sidebar-link:not(.active):hover {
+        background-color: #6366f1;
+      }
+      html.dark .sidebar-link.active {
+        background-color: #6d28d9;
+        color: white;
+      }
+      html.dark .sidebar-link:not(.active):hover {
+        background-color: #5b21b6;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col p-4 selection:bg-purple-400 dark:selection:bg-purple-500 selection:text-white dark:selection:text-white transition-colors duration-300"
+  >
+    <main class="flex-grow flex items-center justify-center w-full">
+      <div
+        class="relative w-full max-w-md bg-white dark:bg-slate-800 dark:bg-opacity-70 dark:backdrop-blur-md rounded-xl shadow-2xl p-6 sm:p-8 md:p-12 transform transition-all duration-500 hover:scale-[1.01] transition-colors duration-300"
+      >
+        <div class="absolute top-4 right-4">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+        </div>
+
+        <div class="text-center mb-6 sm:mb-8">
+          <img src="imagens/logo-vivo.svg" alt="Logo VIVO" class="w-32 md:w-36 h-auto mx-auto" />
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-purple-700 dark:text-purple-300 tracking-tight mt-2 mb-1 sm:mb-2"
+          >
+            ESSENTIAL
+          </h1>
+          <p class="mt-1 text-base sm:text-lg text-purple-600 dark:text-purple-300">
+            Todo aprendizado em um só lugar
+          </p>
+        </div>
+
+        <form id="loginForm" action="#" method="POST" class="space-y-5 sm:space-y-6">
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-purple-700 dark:text-purple-200"
+              >Email ou Usuário</label
+            >
+            <div class="mt-1">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="form-input appearance-none block w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-sm bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 placeholder-gray-400 dark:placeholder-slate-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 focus:border-purple-500 dark:focus:border-purple-600 text-sm sm:text-base transition duration-300"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-purple-700 dark:text-purple-200"
+              >Senha</label
+            >
+            <div class="mt-1">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                class="form-input appearance-none block w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-sm bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 placeholder-gray-400 dark:placeholder-slate-400 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 focus:border-purple-500 dark:focus:border-purple-600 text-sm sm:text-base transition duration-300"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-slate-500 rounded bg-gray-50 dark:bg-slate-700 transition duration-300"
+              />
+              <label
+                for="remember-me"
+                class="ml-2 block text-xs sm:text-sm text-gray-600 dark:text-purple-200"
+              >
+                Lembrar-me
+              </label>
+            </div>
+
+            <div class="text-xs sm:text-sm">
+              <a
+                href="#"
+                class="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 transition duration-300"
+              >
+                Esqueceu sua senha?
+              </a>
+            </div>
+          </div>
+
+          <div id="errorMessage" class="hidden text-center mb-4 p-2 rounded-md"></div>
+
+          <div>
+            <button
+              type="submit"
+              class="w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent rounded-lg shadow-lg text-sm sm:text-base font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-slate-800 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-6 sm:mt-8 text-center">
+          <p class="text-xs sm:text-sm text-gray-500 dark:text-slate-400">
+            Não tem uma conta?
+            <a
+              href="#"
+              class="font-medium text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 transition duration-300"
+            >
+              Crie uma agora
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="w-full text-center text-xs text-gray-500 dark:text-slate-500 py-4 px-4">
+      &copy; <span id="currentYear"></span> VIVO ESSENTIAL. Todos os direitos reservados.
+    </footer>
+
+    <script src="js/scriptlogin.js"></script>
+    <script src="js/theme-switcher.js"></script>
+  </body>
+</html>

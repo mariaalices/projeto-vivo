@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,157 +12,370 @@
     <link rel="stylesheet" href="css/style.css" />
     <style>
       body {
-        font-family: "Inter", sans-serif;
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
-      /* Você pode adicionar estilos específicos para esta página aqui ou no style.css */
+      /* Estilos para o link ativo da sidebar */
+      html:not(.dark) .sidebar-link.active {
+        background-color: #4f46e5;
+        color: white;
+      }
+      html:not(.dark) .sidebar-link:not(.active):hover {
+        background-color: #6366f1;
+      }
+      html.dark .sidebar-link.active {
+        background-color: #6d28d9;
+        color: white;
+      }
+      html.dark .sidebar-link:not(.active):hover {
+        background-color: #5b21b6;
+      }
+
       .profile-specific-content {
-        border: 1px dashed #6366f1; /* Apenas para visualização inicial */
-        padding: 1rem;
-        margin-top: 1rem;
-        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        border-radius: 0.75rem;
+        min-height: 200px;
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+      }
+      html:not(.dark) .profile-specific-content {
+        border: 1px dashed #a78bfa;
+        background-color: #f9fafb;
+        color: #1f2937;
+      }
+      html.dark .profile-specific-content {
+        border: 1px dashed #8b5cf6;
+        background-color: rgba(55, 65, 81, 0.5);
+        color: #d1d5db;
       }
     </style>
   </head>
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-800 to-indigo-900 min-h-screen flex flex-col items-center justify-start p-4 text-white selection:bg-purple-500 selection:text-white"
+    class="bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-200 selection:bg-purple-400 dark:selection:bg-purple-500 selection:text-white transition-colors duration-300"
   >
-    <header
-      class="w-full max-w-6xl mx-auto py-4 px-2 sm:px-6 lg:px-8 flex justify-between items-center"
-    >
-      <div>
-        <img
-          src="./imagens/logo-vivo.svg"
-          alt="Logo VIVO"
-          class="w-24 h-auto"
-        />
-        <span class="text-xl font-semibold text-purple-300">ESSENTIAL</span>
-      </div>
-      <button
-        id="logoutButton"
-        class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
+    <div class="flex h-screen overflow-hidden">
+      <aside
+        class="w-64 bg-white dark:bg-slate-800 p-6 flex flex-col justify-between shadow-xl flex-shrink-0 transition-colors duration-300"
       >
-        Sair
-      </button>
-    </header>
-
-    <main
-      class="flex-grow flex flex-col items-center justify-center w-full max-w-6xl mx-auto py-8"
-    >
-      <div
-        class="text-center bg-slate-800 bg-opacity-70 backdrop-blur-md rounded-xl shadow-2xl p-8 md:p-12 w-full"
-      >
-        <h1
-          id="welcomeTitle"
-          class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-purple-400 mb-4"
-        >
-          Carregando...
-        </h1>
-        <div id="userInfo" class="text-lg text-slate-200 mb-6"></div>
-
-        <div id="profileSpecificContent" class="profile-specific-content">
-          <p>Conteúdo específico do perfil aparecerá aqui...</p>
+        <div>
+          <div class="mb-10 text-center">
+            <img src="imagens/logo-vivo.svg" alt="Logo VIVO" class="w-28 h-auto mx-auto mb-1" />
+            <span class="text-2xl font-bold text-purple-700 dark:text-purple-400">ESSENTIAL</span>
+          </div>
+          <nav>
+            <ul>
+              <li class="mb-3">
+                <a
+                  href="telainicial.html"
+                  id="homeLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">🏠</span> Home
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="perfil.html"
+                  id="perfilLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">👤</span> Meu Perfil
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="calendario.html"
+                  id="calendarioLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">📅</span> Calendário
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="vivinhoLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">💬</span> Q Vivinho IA
+                  <span class="ml-auto text-xs text-purple-700 dark:text-purple-400">✨</span>
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="cursosLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">📚</span> Meus Cursos
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="gamificacaoLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">🏆</span> Gamificação Vivo
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="desempenhoLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">📊</span> Desempenho
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </div>
-    </main>
+        <div class="text-center text-xs text-gray-500 dark:text-slate-500">
+          &copy; <span id="currentYearSidebar"></span> VIVO ESSENTIAL
+        </div>
+      </aside>
 
-    <footer class="w-full text-center text-xs text-slate-400 py-4 px-4 mt-auto">
-      &copy; <span id="currentYearDashboard">2024</span> VIVO ESSENTIAL. Todos
-      os direitos reservados.
-    </footer>
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <header
+          class="bg-white dark:bg-slate-800 shadow-md p-4 flex justify-between items-center flex-shrink-0 transition-colors duration-300"
+        >
+          <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200" id="pageTitle">
+            Painel Principal
+          </h2>
+          <div class="flex items-center space-x-3">
+            <button
+              id="themeToggleButton"
+              title="Alternar tema"
+              class="p-2 rounded-full text-gray-600 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+            >
+              <span id="themeIcon" class="text-xl"></span>
+            </button>
+            <button
+              title="Notificações"
+              class="p-2 rounded-full text-gray-600 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+            </button>
+            <div class="relative">
+              <button
+                class="flex items-center text-gray-900 dark:text-slate-200 p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+              >
+                <img
+                  class="h-8 w-8 rounded-full object-cover mr-2 border-2 border-transparent"
+                  src="imagens/logo-vivo.svg"
+                  alt="Avatar do Usuário"
+                  id="userAvatarHeader"
+                />
+                <span id="userNameHeader" class="font-medium">Carregando...</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 ml-1 text-gray-500 dark:text-slate-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              id="logoutButtonHeader"
+              class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 rounded-lg text-sm transition duration-300 ease-in-out"
+            >
+              Sair
+            </button>
+          </div>
+        </header>
+
+        <main
+          class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900 dark:to-indigo-950 p-6 md:p-8 transition-colors duration-300"
+        >
+          <div
+            class="bg-white dark:bg-slate-800 dark:bg-opacity-70 dark:backdrop-blur-sm rounded-xl shadow-xl p-8 md:p-12 w-full max-w-4xl mx-auto text-center"
+          >
+            <h1
+              id="welcomeTitle"
+              class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-purple-600 dark:text-purple-300 mb-3"
+            >
+              Carregando...
+            </h1>
+            <div id="userInfo" class="text-md text-gray-700 dark:text-slate-300 mb-5"></div>
+            <div id="profileSpecificContent" class="profile-specific-content text-left">
+              <p>Verificando seu perfil para carregar o conteúdo apropriado...</p>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <button
+      title="Ajuda"
+      class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 focus:ring-offset-gray-100 transition-transform duration-200 hover:scale-110"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.755 4 3.92C16 12.897 14.703 14 12.75 14c-.897 0-1.7-.398-2.25-.996A2.032 2.032 0 018.228 9z"
+        />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 18a6 6 0 100-12 6 6 0 000 12z"
+        />
+      </svg>
+    </button>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const welcomeTitleElement = document.getElementById("welcomeTitle");
-        const userInfoElement = document.getElementById("userInfo");
-        const profileSpecificContentElement = document.getElementById(
-          "profileSpecificContent"
-        );
-        const logoutButton = document.getElementById("logoutButton");
-        const currentYearDashboardElement = document.getElementById(
-          "currentYearDashboard"
-        );
+      document.addEventListener('DOMContentLoaded', async function () {
+        const welcomeTitleElement = document.getElementById('welcomeTitle');
+        const userInfoElement = document.getElementById('userInfo');
+        const profileSpecificContentElement = document.getElementById('profileSpecificContent');
+        const logoutButtonHeader = document.getElementById('logoutButtonHeader');
+        const currentYearSidebarElement = document.getElementById('currentYearSidebar');
+        const userNameHeaderElement = document.getElementById('userNameHeader');
+        const pageTitleElement = document.getElementById('pageTitle');
+        // const userAvatarHeaderElement = document.getElementById('userAvatarHeader'); // Já declarado
 
-        if (currentYearDashboardElement) {
-          currentYearDashboardElement.textContent = new Date().getFullYear();
+        // Marcar link ativo na sidebar e definir título da página
+        const allSidebarLinks = document.querySelectorAll('.sidebar-link');
+        allSidebarLinks.forEach((link) => link.classList.remove('active')); // Limpa todos primeiro
+
+        const currentPage = window.location.pathname.split('/').pop();
+        let activeLinkId = 'homeLink'; // Default para home
+        let title = 'Painel Principal';
+
+        if (currentPage === 'telainicial.html' || currentPage === '') {
+          // Já é o default
+        } else if (currentPage === 'perfil.html') {
+          activeLinkId = 'perfilLink';
+          title = 'Meu Perfil';
+        } else if (currentPage === 'calendario.html') {
+          activeLinkId = 'calendarioLink';
+          title = 'Meu Calendário';
+        }
+        // Adicionar 'else if' para outras páginas conforme elas forem criadas
+
+        const activeElement = document.getElementById(activeLinkId);
+        if (activeElement) {
+          activeElement.classList.add('active');
+        }
+        if (pageTitleElement) {
+          pageTitleElement.textContent = title;
         }
 
-        const accessToken = localStorage.getItem("accessToken");
-        const userDataString = localStorage.getItem("userData");
+        if (currentYearSidebarElement) {
+          currentYearSidebarElement.textContent = new Date().getFullYear();
+        }
 
-        if (!accessToken || !userDataString) {
-          // Se não houver token ou dados do usuário, redireciona de volta para o login
-          if (welcomeTitleElement)
-            welcomeTitleElement.textContent = "Acesso negado.";
-          if (userInfoElement)
-            userInfoElement.innerHTML =
-              '<p class="text-red-400">Você não está autenticado. Redirecionando para login em 3 segundos...</p>';
+        const accessToken = localStorage.getItem('accessToken');
 
-          setTimeout(() => {
-            window.location.href = "index.html"; // Certifique-se que este é o nome da sua tela de login
-          }, 3000);
-        } else {
-          try {
-            const userData = JSON.parse(userDataString); // Converte a string JSON de volta para objeto
+        function redirectToLogin(message) {
+          alert(message + ' Redirecionando para login...');
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userData');
+          window.location.href = 'login.html'; // Usa login.html
+        }
+
+        if (!accessToken) {
+          redirectToLogin('Acesso negado. Token não encontrado.');
+          return;
+        }
+
+        try {
+          const profileResponse = await fetch('http://localhost:3000/auth/profile', {
+            method: 'GET',
+            headers: { Authorization: `Bearer ${accessToken}` },
+          });
+
+          if (profileResponse.ok) {
+            const userProfileData = await profileResponse.json();
+            localStorage.setItem('userData', JSON.stringify(userProfileData));
 
             if (welcomeTitleElement) {
-              welcomeTitleElement.textContent = `Bem-vindo(a), ${userData.nomeCompleto}!`;
+              welcomeTitleElement.textContent = `Olá, ${userProfileData.nomeCompleto}!`;
             }
-
+            if (userNameHeaderElement) {
+              userNameHeaderElement.textContent = userProfileData.nomeCompleto;
+            }
             if (userInfoElement) {
+              const dataCadastroFormatada = userProfileData.dataCadastro
+                ? new Date(userProfileData.dataCadastro).toLocaleDateString('pt-BR')
+                : 'N/A';
+              const diasOfensiva = userProfileData.diasOfensiva || 0;
+              const vivoCoins = userProfileData.vivoCoins || 0;
+
               userInfoElement.innerHTML = `
-                            <p><strong>Email:</strong> ${userData.email}</p>
-                            <p><strong>Seu Perfil:</strong> <span class="font-semibold text-purple-300">${userData.tipoPerfil}</span></p>
+                            <p><strong class="text-gray-700 dark:text-slate-100">Email:</strong> ${userProfileData.email}</p>
+                            <p><strong class="text-gray-700 dark:text-slate-100">Perfil:</strong> <span class="font-semibold text-purple-600 dark:text-purple-300">${userProfileData.tipoPerfil}</span></p>
+                            <p><strong class="text-gray-700 dark:text-slate-100">Membro desde:</strong> ${dataCadastroFormatada}</p>
+                            <p><strong class="text-gray-700 dark:text-slate-100">Dias de Ofensiva:</strong> <span class="font-semibold text-yellow-500 dark:text-yellow-400">${diasOfensiva} 🔥</span></p>
+                            <p><strong class="text-gray-700 dark:text-slate-100">Vivo Coins:</strong> <span class="font-semibold text-green-500 dark:text-green-400">${vivoCoins} 💰</span></p>
                         `;
             }
 
-            // Lógica para exibir conteúdo específico do perfil
             if (profileSpecificContentElement) {
-              if (userData.tipoPerfil === "GESTOR") {
-                profileSpecificContentElement.innerHTML =
-                  '<h2 class="text-2xl font-semibold mb-2 text-purple-300">Painel do Gestor</h2><p>Aqui você pode ver o progresso da sua equipe, gerar relatórios, etc.</p>';
-                // Adicionar mais HTML específico do gestor aqui
-              } else if (userData.tipoPerfil === "BUDDY") {
-                profileSpecificContentElement.innerHTML =
-                  '<h2 class="text-2xl font-semibold mb-2 text-purple-300">Área do Buddy</h2><p>Acompanhe seus apadrinhados, agende 1:1s, etc.</p>';
-                // Adicionar mais HTML específico do buddy aqui
-              } else if (userData.tipoPerfil === "NOVO_COLABORADOR") {
-                profileSpecificContentElement.innerHTML =
-                  '<h2 class="text-2xl font-semibold mb-2 text-purple-300">Sua Jornada de Onboarding</h2><p>Acesse suas trilhas de aprendizado, veja seu progresso, etc.</p>';
-                // Adicionar mais HTML específico do novo colaborador aqui
-              } else {
-                profileSpecificContentElement.innerHTML =
-                  "<p>Perfil de usuário não reconhecido.</p>";
+              const titleColor = 'text-purple-600 dark:text-purple-300';
+              const textColor = 'text-gray-700 dark:text-slate-300';
+              switch (userProfileData.tipoPerfil) {
+                case 'GESTOR':
+                  profileSpecificContentElement.innerHTML = `<h2 class="text-xl font-semibold mb-3 ${titleColor}">Painel do Gestor</h2><p class="${textColor}">Visão geral da equipe, progresso de onboarding e ferramentas de gerenciamento.</p>`;
+                  break;
+                case 'BUDDY':
+                  profileSpecificContentElement.innerHTML = `<h2 class="text-xl font-semibold mb-3 ${titleColor}">Área do Buddy</h2><p class="${textColor}">Acompanhe seus novos colegas, acesse recursos e agende interações.</p>`;
+                  break;
+                case 'NOVO_COLABORADOR':
+                  profileSpecificContentElement.innerHTML = `<h2 class="text-xl font-semibold mb-3 ${titleColor}">Sua Jornada de Onboarding</h2><p class="${textColor}">Bem-vindo(a)! Aqui você encontrará suas trilhas, tarefas e próximos passos.</p>`;
+                  break;
+                default:
+                  profileSpecificContentElement.innerHTML = `<p class="${textColor}">Perfil de usuário não reconhecido.</p>`;
               }
             }
-          } catch (e) {
-            console.error(
-              "Erro ao processar dados do usuário do localStorage:",
-              e
+          } else {
+            const errorData = await profileResponse
+              .json()
+              .catch(() => ({ message: 'Sessão inválida ou expirada.' }));
+            redirectToLogin(
+              errorData.message || `Erro ${profileResponse.status}: Sessão inválida.`
             );
-            if (welcomeTitleElement)
-              welcomeTitleElement.textContent = "Erro ao carregar dados.";
-            if (userInfoElement)
-              userInfoElement.innerHTML =
-                '<p class="text-red-400">Houve um problema ao carregar suas informações. Redirecionando para login...</p>';
-
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("userData");
-            setTimeout(() => {
-              window.location.href = "index.html";
-            }, 3000);
           }
+        } catch (e) {
+          redirectToLogin('Erro de comunicação ao buscar perfil.');
         }
 
-        if (logoutButton) {
-          logoutButton.addEventListener("click", function () {
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("userData");
-            // Opcional: informar o backend sobre o logout, se necessário
-            alert("Você saiu da plataforma.");
-            window.location.href = "index.html";
+        if (logoutButtonHeader) {
+          logoutButtonHeader.addEventListener('click', function () {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userData');
+            alert('Você saiu da plataforma.');
+            window.location.href = 'login.html'; // Usa login.html
           });
         }
       });
     </script>
+    <script src="js/theme-switcher.js"></script>
   </body>
 </html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apadrinhamento</title>
+  <link rel="icon" href="./imagens/logo-vivo.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #1e0f3a;
+      color: #ddd;
+      min-height: 100vh;
+      /* Para alinhar verticalmente */
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 40;
+    }
+
+    .sidebar:hover {
+      width: 220px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li:hover {
+      background: #635571;
+    }
+
+    .sidebar ul li img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      /* evita deformação */
+      margin-right: 0;
+    }
+
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+      color: black;
+      font-weight: 600;
+    }
+
+    .sidebar:hover ul li span {
+      display: inline;
+      opacity: 1;
+    }
+
+    /* Conteúdo principal deslocado para direita da sidebar */
+    main {
+      margin-left: 80px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+    }
+
+    header h1 {
+      color: #b798f9;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #b798f9;
+      flex-wrap: wrap;
+    }
+
+    .user-actions img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+
+    .user-actions button {
+      background-color: #7c4dff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-actions button:hover {
+      background-color: #5e32cc;
+    }
+
+    /* Containers (form e lista) wrapper */
+    .container-wrapper {
+      display: flex;
+      gap: 2rem;
+      width: 100%;
+      max-width: 960px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 1rem;
+    }
+
+    /* Form container */
+    .container {
+      background-color: #1a2433;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px #4f329e;
+      width: 100%;
+      max-width: 480px;
+      font-size: 14px;
+      color: #ddd;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container h2 {
+      color: #8b56ec;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    label {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      background-color: #2a3246;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 12px;
+      color: #eee;
+      font-size: 14px;
+      resize: vertical;
+      outline-offset: 2px;
+      outline-color: transparent;
+      transition: outline-color 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline-color: #704ee0;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    .btn-salvar {
+      margin-top: 10px;
+      background-color: #704ee0;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-salvar:hover {
+      background-color: #573acc;
+    }
+
+    /* Lista de apadrinhamentos */
+    .apadrinhamentos-list {
+      background: #2b1b52;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 960px;
+      color: #ddd;
+      box-shadow: 0 0 8px #4f329e;
+      font-size: 14px;
+    }
+
+    .apadrinhamentos-list h2 {
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #8b56ec;
+    }
+
+    .apadrinhamento-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid #472b85;
+      padding: 15px 0;
+    }
+
+    .apadrinhamento-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-wrapper {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid #472b85;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .status {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #b1a5ff;
+      user-select: none;
+      margin-right: 10px;
+      min-width: 40px;
+    }
+
+    .status.novo {
+      color: #ff8aff;
+    }
+
+    .dados-apadrinhamento {
+      color: #c7c1e5;
+      flex-shrink: 1;
+    }
+
+    .dados-apadrinhamento strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .dados-apadrinhamento small {
+      font-weight: 400;
+      color: #a59bd8;
+    }
+
+    .apadrinhador-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #472b85;
+      overflow: hidden;
+      background-color: #312c4f;
+      margin-left: 15px;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .apadrinhador-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btn-visitar {
+      background: #8b56ec;
+      border-radius: 24px;
+      padding: 8px 20px;
+      font-weight: 600;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 3px 8px 0 #2e1676;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      user-select: none;
+      margin-left: 12px;
+    }
+
+    .btn-visitar:hover {
+      box-shadow: 6px 14px 0 #5a3ca1;
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .container-wrapper {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+      .container,
+      .apadrinhamentos-list {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    /* Notificações */
+    #notifModal {
+      max-height: 300px;
+      overflow-y: auto;
+      transition: all 0.2s ease;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 320px;
+      background: white;
+      color: black;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgb(0 0 0 / 0.3);
+      z-index: 60;
+      display: none;
+    }
+
+    #notifModal.active {
+      display: block;
+    }
+
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 transition-all duration-300 z-50 bg-purple-200">
+    <ul>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/botao-de-inicio.png" alt="Home" />
+        <span class="ml-3">Home</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/apadrinhamento.png" alt="Meus Cursos" />
+        <span class="ml-3">Apadrinhamento</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/desempenho.png" alt="Meu Desenvolvimento" />
+        <span class="ml-3">Desempenho</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/calendario.png" alt="Meu Perfil" />
+        <span class="ml-3">Calendário</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- Header -->
+    <header>
+      <h1>Apadrinhamento</h1>
+      <div class="user-actions relative">
+        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" title="Notificações" />
+        <span>Olá, Novo Usuário</span>
+        <button>Desconectar</button>
+
+        <!-- Modal de Notificações -->
+        <div id="notifModal" aria-label="Notificações">
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar" />
+            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar" />
+            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar" />
+            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar" />
+            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Containers unificados (form + lista) -->
+    <section class="container-wrapper">
+      <!-- Formulário -->
+      <section class="container" aria-labelledby="form-title">
+        <h2 id="form-title">Novo apadrinhamento</h2>
+        <form>
+          <label for="nomeNovoUsuario">Nome do novo usuário:</label>
+          <input type="text" id="nomeNovoUsuario" name="nomeNovoUsuario" required />
+
+          <label for="buddy">Buddy: (responsável)</label>
+          <input type="text" id="buddy" name="buddy" required />
+
+          <label for="descricao">Descrição (Opcional):</label>
+          <textarea id="descricao" name="descricao"></textarea>
+
+          <button type="submit" class="btn-salvar">Salvar Apadrinhamento</button>
+        </form>
+      </section>
+
+      <!-- Lista de apadrinhamentos -->
+      <section class="apadrinhamentos-list" aria-labelledby="lista-title">
+        <h2 id="lista-title">Últimos apadrinhamentos</h2>
+        <div id="listaApadrinhamentos"></div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Botão flutuante -->
+  <button title="Ajuda"
+    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
+
+  <script>
+    // Dados simulados
+    const apadrinhamentosData = [
+      {
+        nome: "Isaac Oliveira Teixeira",
+        cargo: "Estagiário TI - QA",
+        novo: true,
+        avatar: "https://randomuser.me/api/portraits/men/11.jpg",
+        apadrinhadorAvatar: "buddy.png",
+      },
+      {
+        nome: "Roberto Andrade Castro",
+        cargo: "Nível Funcionários - Dev, Ger, RH e SOC",
+        novo: false,
+        avatar: "https://randomuser.me/api/portraits/men/49.jpg",
+        apadrinhadorAvatar: "buddy.png",
+      },
+      {
+        nome: "Bruno Oliveira Teixeira",
+        cargo: "Estagiário TI - Frontend",
+        novo: true,
+        avatar: "https://randomuser.me/api/portraits/men/15.jpg",
+        apadrinhadorAvatar: "buddy.png",
+      },
+      {
+        nome: "Bruno Oliveira Teixeira",
+        cargo: "Estagiário TI - PO",
+        novo: false,
+        avatar: "https://randomuser.me/api/portraits/men/15.jpg",
+        apadrinhadorAvatar: "buddy.png",
+      },
+      {
+        nome: "Charles Brandão Souza de Macarrone",
+        cargo: "Estagiário TI - Dev Backend",
+        novo: false,
+        avatar: "https://randomuser.me/api/portraits/men/21.jpg",
+        apadrinhadorAvatar: "buddy.png",
+      }
+    ];
+
+    const lista = document.getElementById('listaApadrinhamentos');
+
+    apadrinhamentosData.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'apadrinhamento-item';
+
+      div.innerHTML = `
+        <div class="info-wrapper">
+          <div class="status ${item.novo ? 'novo' : ''}">${item.novo ? 'Novo' : 'Antigo'}</div>
+          <div class="avatar">
+            <img src="${item.avatar}" alt="Foto de ${item.nome}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+          </div>
+          <div class="dados-apadrinhamento">
+            <strong>${item.nome}</strong>
+            <small>${item.cargo}</small>
+          </div>
+        </div>
+        <div class="right-actions">
+          <div class="apadrinhador-avatar">
+            <img src="${item.apadrinhadorAvatar}" alt="Avatar do apadrinhador" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+          </div>
+          <button class="btn-visitar" data-nome="${item.nome}">Visitar Perfil</button>
+        </div>
+      `;
+      lista.appendChild(div);
+    });
+
+    // Funcionalidade botão visitar perfil
+    lista.addEventListener('click', (e) => {
+      if (e.target.matches('.btn-visitar')) {
+        const nome = e.target.getAttribute('data-nome');
+        alert(`Você clicou para visitar o perfil de ${nome}`);
+      }
+    });
+
+    // Toggle do modal de notificações
+    const notifIcon = document.getElementById('notifIcon');
+    const notifModal = document.getElementById('notifModal');
+
+    notifIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notifModal.classList.toggle('active');
+    });
+
+    // Fecha o modal ao clicar fora
+    document.addEventListener('click', (e) => {
+      if (!notifModal.contains(e.target) && e.target !== notifIcon) {
+        notifModal.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+
+</html>

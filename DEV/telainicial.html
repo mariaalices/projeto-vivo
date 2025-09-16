@@ -297,13 +297,16 @@
           alert(message + ' Redirecionando para login...');
           localStorage.removeItem('accessToken');
           localStorage.removeItem('userData');
-          window.location.href = 'login.html'; // Usa login.html
+          window.location.href = 'login.html';
         }
 
+        // Comente este bloco para desativar o login durante o desenvolvimento
+        /*
         if (!accessToken) {
-          redirectToLogin('Acesso negado. Token não encontrado.');
-          return;
+        redirectToLogin('Acesso negado. Token não encontrado.');
+        return;
         }
+        */
 
         try {
           const profileResponse = await fetch('http://localhost:3000/auth/profile', {

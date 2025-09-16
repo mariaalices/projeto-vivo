@@ -368,18 +368,21 @@
         }
 
         const accessToken = localStorage.getItem('accessToken');
-        // ... (função redirectToLogin como antes) ...
+
         function redirectToLogin(message) {
           alert(message + ' Redirecionando para login...');
           localStorage.removeItem('accessToken');
           localStorage.removeItem('userData');
-          window.location.href = 'index.html';
+          window.location.href = 'login.html';
         }
 
+        // Comente este bloco para desativar o login durante o desenvolvimento
+        /*
         if (!accessToken) {
-          redirectToLogin('Acesso negado. Token não encontrado.');
-          return;
+        redirectToLogin('Acesso negado. Token não encontrado.');
+        return;
         }
+        */
 
         // Tentamos carregar os dados do usuário do localStorage primeiro para UI rápida
         const userDataFromStorageString = localStorage.getItem('userData');

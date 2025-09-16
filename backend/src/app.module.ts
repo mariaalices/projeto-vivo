@@ -3,10 +3,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserEntity } from './entities/user.entity'; // UserEntity ainda é necessária aqui para o TypeOrmModule.forRootAsync
+import { UserEntity } from './entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { EventosModule } from './eventos/eventos.module';
 import { EventoEntity } from './entities/evento.entity';
+import { ChatbotModule } from './chatbot/chatbot.module'; // Importação do novo módulo
 
 @Module({
   imports: [
@@ -22,8 +23,8 @@ import { EventoEntity } from './entities/evento.entity';
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASSWORD'),
         connectString: configService.get<string>('DB_CONNECT_STRING'),
-        entities: [UserEntity, EventoEntity], // UserEntity é registrada aqui para o TypeORM global
-        synchronize: false, //configService.get<string>('NODE_ENV') === 'development',
+        entities: [UserEntity, EventoEntity],
+        synchronize: false,
         logging:
           configService.get<string>('NODE_ENV') === 'development'
             ? ['query', 'error']
@@ -32,9 +33,9 @@ import { EventoEntity } from './entities/evento.entity';
     }),
     AuthModule,
     EventosModule,
-    // A importação e registro do AuthModule serão feitos pelo Nest CLI
+    ChatbotModule, // Adicione o módulo aqui
   ],
-  controllers: [AppController], // Apenas o AppController
-  providers: [AppService], // Apenas o AppService
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

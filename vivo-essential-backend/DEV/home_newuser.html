@@ -189,22 +189,22 @@
 
       </header>
       <!-- avaliacao diaria -->
-      <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
-        <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
-        <div class="flex justify-center space-x-6 mb-4 flex-wrap">
-          <button class="text-4xl">😠</button>
-          <button class="text-4xl">😕</button>
-          <button class="text-4xl">😐</button>
-          <button class="text-4xl">😊</button>
-          <button class="text-4xl">😍</button>
-        </div>
-        <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
-          placeholder="Escreva um motivo..."></textarea>
-        <div class="flex justify-center">
-          <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar
-            Avaliação</button>
-        </div>
-      </section>
+      <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
+    <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
+    <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
+    </div>
+    <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2" placeholder="Escreva um motivo... (Opcional)"></textarea>
+    <div class="flex justify-center">
+        <button id="btn-enviar-avaliacao" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed" disabled>
+            Enviar Avaliação
+        </button>
+    </div>
+</section>
       <!-- Jornada onboarding -->
       <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto">
         <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
@@ -394,5 +394,3 @@
 </html>
 
 </body>
-
-</html>

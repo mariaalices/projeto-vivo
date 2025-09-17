@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Página Inicial</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
@@ -13,6 +14,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      /* O background do body é controlado pelo Tailwind, esta linha pode ser removida se desejar */
       background: #1c0033;
       color: rgb(30, 41, 59);
     }
@@ -23,18 +25,15 @@
       top: 0;
       left: 0;
       height: 100%;
-      width: 70px;
-      /* Largura fechada */
+      width: 70px; /* Largura fechada */
       background: rgb(233 213 255);
       overflow: hidden;
       transition: width 0.3s ease;
-      z-index: 40;
-      /* sempre na frente */
+      z-index: 9999; /* sempre na frente */
     }
 
     .sidebar:hover {
-      width: 220px;
-      /* Largura aberta */
+      width: 220px; /* Largura aberta */
     }
 
     .sidebar ul {
@@ -61,13 +60,10 @@
     }
 
     .sidebar ul li img {
-      width: 24px;
-      /* tamanho fixo pequeno */
+      width: 24px; /* tamanho fixo pequeno */
       height: 24px;
-      flex-shrink: 0;
-      /* não deixa a imagem deformar */
-      margin-right: 0;
-      /* fechado não precisa espaço */
+      flex-shrink: 0; /* não deixa a imagem deformar */
+      margin-right: 0; /* fechado não precisa espaço */
     }
 
     .sidebar ul li span {
@@ -85,302 +81,250 @@
       color: black;
     }
 
-    /* Conteúdo principal */
-    .content {
-      margin-left: 80px;
-      padding: 20px;
+    /* Estilos do Modal de Notificação */
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    #notifModal {
+      max-height: 300px;
+      overflow-y: auto;
+      transition: all 0.2s ease;
+    }
+
+    /* Estilos da tabela de Ranking (para garantir consistência) */
+    .ranking-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .ranking-table thead th {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #4a2c70;
+      font-size: 16px;
+    }
+    .ranking-table tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(74, 44, 112, 0.5);
+      font-size: 15px;
+    }
+    .ranking-table tbody tr:last-child td {
+      border-bottom: none;
     }
   </style>
-  <!-- Sidebar -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Home</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/configuracoes.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
-      </li>
+
+  <div class="sidebar">
+    <ul>
+      <li><img src="./imagens/botao-de-inicio.png" alt=""> <span>Home</span></li>
+      <li><img src="./imagens/graduacao.png" alt=""><span>Meus Cursos</span></li>
+      <li><img src="./imagens/grafico-de-barras.png" alt=""><span>Meu Desenvolvimento</span></li>
+      <li><img src="./imagens/perfil-de-usuario.png" alt=""><span>Meu Perfil</span></li>
+      <li><img src="./imagens/configuracoes.png" alt=""><span>Configurações</span></li>
     </ul>
   </div>
 
-  <!-- Conteúdo principal -->
-  <main class="flex-1 md:ml-24 px-6 py-10">
-
-    <!-- Cabeçalho -->
-    <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-      <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
-
-      <!-- Container com posicionamento relativo -->
-      <div class="flex items-center gap-4 relative">
-        <!-- Ícone de Notificação -->
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-
-        <!-- Modal de Notificações -->
-        <div id="notifModal"
-          class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200">
-
-          <!-- Notificação 1 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+  <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16">
+    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+      <div class="flex items-center space-x-4 relative">
+        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 rounded-full cursor-pointer">
+        <span class="text-purple-200">Olá, Novo Usuário</span>
+        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
+        <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
           </div>
-
-          <!-- Notificação 2 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
-            </p>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
           </div>
-
-          <!-- Notificação 3 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
           </div>
-
-          <!-- Notificação 4 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar?
-              =)
-            </p>
+          <div class="notif-item">
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
           </div>
         </div>
-
-        <span class="text-purple-200">Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Desconectar</button>
       </div>
     </header>
 
-    <!-- Modal de Notificações -->
-    <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-        </p>
+    <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
+        <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
+        <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+            <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
+            <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
+            <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
+            <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
+            <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
+        </div>
+        <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2" placeholder="Escreva um motivo... (Opcional)"></textarea>
+        <div class="flex justify-center">
+            <button id="btn-enviar-avaliacao" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed" disabled>
+                Enviar Avaliação
+            </button>
+        </div>
+    </section>
+    <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto">
+      <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
+      <div class="flex flex-wrap justify-center items-center space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6">
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">2</div><span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">3</div><span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">4</div><span class="text-xs text-purple-200 mt-2 text-center">Areas</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">5</div><span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">6</div><span class="text-xs text-purple-200 mt-2 text-center">To na TI</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">7</div><span class="text-xs text-purple-200 mt-2 text-center">Senhas</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">8</div><span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span></div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+        <div class="flex flex-col items-center min-w-[60px]"><div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">9</div><span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span></div>
       </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+      <div class="flex justify-center">
+        <button class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
       </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-        </p>
-      </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-          ajudar?
-          =)</p>
-      </div>
-    </div>
-    </div>
+    </section>
 
-    <!-- CSS -->
-    <style>
-      .notif-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-
-      .notif-item:last-child {
-        border-bottom: none;
-      }
-
-      .notif-item img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-
-      #notifModal {
-        max-height: 300px;
-        overflow-y: auto;
-        transition: all 0.2s ease;
-      }
-    </style>
-
-    <!-- JS -->
-    <script>
-      const notifIcon = document.getElementById('notifIcon');
-      const notifModal = document.getElementById('notifModal');
-
-      notifIcon.addEventListener('click', () => {
-        notifModal.classList.toggle('hidden');
-      });
-
-      // Se quiser que feche ao clicar fora do modal:
-      document.addEventListener('click', (e) => {
-        if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-          notifModal.classList.add('hidden');
-        }
-      });
-    </script>
-
-    <!-- Container com largura padronizada -->
-    <div class="max-w-6xl mx-auto px-4 space-y-10">
-
-
-
-
-      <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
-
-        <div class="max-w-5xl mx-auto py-10 px-6 space-y-10">
-
-          <!-- Etapa título -->
-          <h2 class="text-xl text-white font-semibold">Acessos Inicial</h2>
-          <h3 class="text-lg font-semibold text-purple-300">Solicitação de acesso</h3>
-
-          <!-- Nova Solicitação -->
-          <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg">
-            <h4 class="font-semibold text-white mb-4">Nova Solicitação:</h4>
-
-            <div class="space-y-4">
-              <div>
-                <label class="block text-white text-sm mb-1">Nome da plataforma:</label>
-                <input type="text" placeholder="Digite aqui..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500" />
-              </div>
-              <div>
-                <label class="block text-white text-sm mb-1">Motivo da solicitação:</label>
-                <textarea placeholder="Digite o motivo..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-              </div>
-              <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg">
-                Salvar Solicitação
-              </button>
-            </div>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8 px-2">
+      <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+        <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
           </div>
-
-          <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg space-y-6">
-            <h4 class="font-semibold mb-4 text-white">Demais Acessos:</h4>
-
-            <!-- Card 1 -->
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img src="./imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12 rounded-full">
-                <div>
-                  <p class="font-semibold text-white">APP/Site: Oracle SQL</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p><span class="font-semibold">Login:</span>
-                      <input id="login1" type="password" readonly value="teste32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                    <p><span class="font-semibold">Senha:</span>
-                      <input id="senha1" type="password" readonly value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button onclick="toggleCampos('login1','senha1', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">
-                Visualizar Senha
-              </button>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img src="./imagens/postman.webp" alt="Postman" class="w-12 h-12 rounded-full">
-                <div>
-                  <p class="font-semibold text-white">APP/Site: Postman</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p><span class="font-semibold">Login:</span>
-                      <input id="login2" type="password" readonly value="testeon32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                    <p><span class="font-semibold">Senha:</span>
-                      <input id="senha2" type="password" readonly value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button onclick="toggleCampos('login2','senha2', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">
-                Visualizar Senha
-              </button>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img src="./imagens/vivoperfil.jpg" alt="VIVO Developer" class="w-12 h-12 rounded-full">
-                <div>
-                  <p class="text-white font-semibold">APP/Site: VIVO Developer</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p><span class=" font-semibold">Login:</span>
-                      <input id="login3" type="password" readonly value="vivocorp32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                    <p><span class="font-semibold">Senha:</span>
-                      <input id="senha3" type="password" readonly value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button onclick="toggleCampos('login3','senha3', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">
-                Visualizar Senha
-              </button>
-            </div>
-
+          <div class="text-purple-200 flex flex-col justify-center">
+            <p class="mb-4">
+              VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
+            </p>
+            <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
+              Saiba mais
+            </button>
           </div>
         </div>
+      </div>
 
-        <script>
-          function toggleCampos(loginId, senhaId, btn) {
-            const login = document.getElementById(loginId);
-            const senha = document.getElementById(senhaId);
+      <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
+        <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
+        <table class="ranking-table text-left text-purple-200 min-w-[300px]">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Pontos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Você</td><td>500</td></tr>
+            <tr><td>Maria</td><td>400</td></tr>
+            <tr><td>Carlos</td><td>350</td></tr>
+            <tr><td>Inacia</td><td>250</td></tr>
+            <tr><td>Paula</td><td>200</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 
-            const isHidden = login.type === "password";
+  <button class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
 
-            login.type = isHidden ? "text" : "password";
-            senha.type = isHidden ? "text" : "password";
+  <script>
+    const notifIcon = document.getElementById('notifIcon');
+    const notifModal = document.getElementById('notifModal');
 
-            btn.textContent = isHidden ? "Ocultar Senha" : "Visualizar Senha";
-          }
-        </script>
+    notifIcon.addEventListener('click', () => {
+      notifModal.classList.toggle('hidden');
+    });
 
-    </div>
-    </div>
+    // Fecha o modal ao clicar fora dele
+    document.addEventListener('click', (e) => {
+      if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+        notifModal.classList.add('hidden');
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+        if (secaoAvaliacao) {
+            const botoesEmoji = secaoAvaliacao.querySelectorAll('.emoji-btn');
+            const motivoTextarea = secaoAvaliacao.querySelector('#motivo-avaliacao');
+            const enviarBtn = secaoAvaliacao.querySelector('#btn-enviar-avaliacao');
+            let notaSelecionada = null;
+
+            botoesEmoji.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    botoesEmoji.forEach(btn => {
+                        btn.classList.remove('ring-2', 'ring-purple-400', 'scale-110');
+                    });
+                    botao.classList.add('ring-2', 'ring-purple-400', 'scale-110');
+                    notaSelecionada = botao.dataset.value;
+                    enviarBtn.disabled = false;
+                });
+            });
+
+            enviarBtn.addEventListener('click', async () => {
+                if (!notaSelecionada) {
+                    alert('Por favor, selecione um emoji para sua avaliação.');
+                    return;
+                }
+                const comentario = motivoTextarea.value.trim();
+                const usuarioId = 1; // IMPORTANTE: Num sistema real, este ID viria do login
+                const dadosParaEnviar = {
+                    usuario_id: usuarioId,
+                    humor: parseInt(notaSelecionada),
+                    comentario: comentario,
+                };
+                console.log('Enviando para o banco:', dadosParaEnviar);
+
+                try {
+                    const response = await fetch('/api/avaliacoes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(dadosParaEnviar),
+                    });
+
+                    if (response.ok) {
+                        alert('Obrigado pela sua avaliação!');
+                        // Reseta o formulário após o envio
+                        notaSelecionada = null;
+                        botoesEmoji.forEach(btn => btn.classList.remove('ring-2', 'ring-purple-400', 'scale-110'));
+                        motivoTextarea.value = '';
+                        enviarBtn.disabled = true;
+                    } else {
+                        alert('Houve um erro ao enviar sua avaliação. Tente novamente.');
+                    }
+                } catch (error) {
+                    console.error('Erro de rede:', error);
+                    alert('Não foi possível conectar ao servidor. Verifique se o backend está rodando.');
+                }
+            });
+        }
+    });
+  </script>
+
 </body>
-
-</html>
-</div>
-</main>
-<!-- Botão flutuante -->
-<button
-  class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
-
-</body>
-
 </html>

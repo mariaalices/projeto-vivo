@@ -4,92 +4,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Cursos</title>
+  <title>Onboarding</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
   <style>
-  body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #1c0033;
-  color: rgb(30, 41, 59);
-  }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1c0033;
+      color: rgb(30, 41, 59);
+    }
 
-  /* Sidebar */
-  .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 70px;
-  /* Largura fechada */
-  background: rgb(233 213 255);
-  overflow: hidden;
-  transition: width 0.3s ease;
-  z-index: 40;
-  /* sempre na frente */
-  }
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      /* Largura fechada */
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 40;
+      /* sempre na frente */
+    }
 
-  .sidebar:hover {
-  width: 220px;
-  /* Largura aberta */
-  }
+    .sidebar:hover {
+      width: 220px;
+      /* Largura aberta */
+    }
 
-  .sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-  .sidebar ul li {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  cursor: pointer;
-  transition: background 0.2s;
-  }
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
 
-  .sidebar ul li:hover {
-  background: #635571;
-  }
+    .sidebar ul li:hover {
+      background: #635571;
+    }
 
-  .sidebar ul li i {
-  font-size: 22px;
-  margin-right: 15px;
-  }
+    .sidebar ul li i {
+      font-size: 22px;
+      margin-right: 15px;
+    }
 
-  .sidebar ul li img {
-  width: 24px;
-  /* tamanho fixo pequeno */
-  height: 24px;
-  flex-shrink: 0;
-  /* não deixa a imagem deformar */
-  margin-right: 0;
-  /* fechado não precisa espaço */
-  }
+    .sidebar ul li img {
+      width: 24px;
+      /* tamanho fixo pequeno */
+      height: 24px;
+      flex-shrink: 0;
+      /* não deixa a imagem deformar */
+      margin-right: 0;
+      /* fechado não precisa espaço */
+    }
 
-  .sidebar ul li span {
-  display: none;
-  margin-left: 10px;
-  opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.3s;
-  }
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
 
-  /* Mostra o texto só quando expandido */
-  .sidebar:hover ul li span {
-  opacity: 1;
-  display: inline;
-  color: black;
-  }
+    /* Mostra o texto só quando expandido */
+    .sidebar:hover ul li span {
+      opacity: 1;
+      display: inline;
+      color: black;
+    }
 
-  /* Conteúdo principal */
-  .content {
-  margin-left: 80px;
-  padding: 20px;
-  }
+    /* Conteúdo principal */
+    .content {
+      margin-left: 80px;
+      padding: 20px;
+    }
   </style>
   <!-- Sidebar -->
   <div
@@ -123,7 +123,7 @@
 
     <!-- Cabeçalho -->
     <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+      <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
 
       <!-- Container com posicionamento relativo -->
       <div class="flex items-center gap-4 relative">
@@ -262,14 +262,20 @@
 
         <!-- Etapa 2 -->
         <section class="max-w-6xl mx-auto">
-          <h2 class="text-xl font-semibold text-white mb-4">Etapa 2 - Treinamentos Iniciais</h2>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
+            <a href="sua_vibe.html"
+              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
+              Continuar
+            </a>
+          </div>
 
           <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
             <!-- Título + Progresso -->
             <div class="flex justify-between items-center mb-6">
               <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
               <div class="flex items-center gap-2">
-                <span class="text-sm">Situação: <span class="font-semibold">Em progresso</span></span>
+                <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
                 <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
                   <div class="w-[10%] h-full bg-purple-500"></div>
                 </div>
@@ -392,7 +398,8 @@
             </div>
           </div>
         </section>
-
+        <button
+          class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
       </main>
 
       <script>

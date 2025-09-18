@@ -84,15 +84,6 @@
               </li>
               <li class="mb-3">
                 <a
-                  href="calendario.html"
-                  id="calendarioLink"
-                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
-                >
-                  <span class="mr-3">📅</span> Calendário
-                </a>
-              </li>
-              <li class="mb-3">
-                <a
                   href="#"
                   id="vivinhoLink"
                   class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
@@ -258,27 +249,26 @@
         const currentYearSidebarElement = document.getElementById('currentYearSidebar');
         const userNameHeaderElement = document.getElementById('userNameHeader');
         const pageTitleElement = document.getElementById('pageTitle');
-        // const userAvatarHeaderElement = document.getElementById('userAvatarHeader'); // Já declarado
 
-        // Marcar link ativo na sidebar e definir título da página
-        const allSidebarLinks = document.querySelectorAll('.sidebar-link');
-        allSidebarLinks.forEach((link) => link.classList.remove('active')); // Limpa todos primeiro
-
+        // Assegura que o link da página atual está ativo na barra lateral
         const currentPage = window.location.pathname.split('/').pop();
-        let activeLinkId = 'homeLink'; // Default para home
+        let activeLinkId = 'homeLink';
         let title = 'Painel Principal';
 
-        if (currentPage === 'telainicial.html' || currentPage === '') {
-          // Já é o default
-        } else if (currentPage === 'perfil.html') {
+        if (currentPage === 'perfil.html') {
           activeLinkId = 'perfilLink';
           title = 'Meu Perfil';
-        } else if (currentPage === 'calendario.html') {
-          activeLinkId = 'calendarioLink';
-          title = 'Meu Calendário';
+        } else if (currentPage === 'telainicial-buddy.html') {
+          activeLinkId = 'homeLink'; // Ou um link específico para a home do buddy
+          title = 'Painel do Buddy';
+        } else if (currentPage === 'telainicial-gestor.html') {
+          activeLinkId = 'homeLink'; // Ou um link específico para a home do gestor
+          title = 'Painel do Gestor';
         }
-        // Adicionar 'else if' para outras páginas conforme elas forem criadas
-
+        // Adicione mais verificações para outras páginas se necessário
+        document
+          .querySelectorAll('.sidebar-link')
+          .forEach((link) => link.classList.remove('active'));
         const activeElement = document.getElementById(activeLinkId);
         if (activeElement) {
           activeElement.classList.add('active');
@@ -301,13 +291,12 @@
         }
 
         // Comente este bloco para desativar o login durante o desenvolvimento
-        /*
-        if (!accessToken) {
-        redirectToLogin('Acesso negado. Token não encontrado.');
-        return;
-        }
-        */
+        // if (!accessToken) {
+        //   redirectToLogin('Acesso negado. Token não encontrado.');
+        //   return;
+        // }
 
+        // Tente carregar os dados do perfil do usuário
         try {
           const profileResponse = await fetch('http://localhost:3000/auth/profile', {
             method: 'GET',
@@ -324,25 +313,12 @@
             if (userNameHeaderElement) {
               userNameHeaderElement.textContent = userProfileData.nomeCompleto;
             }
-            if (userInfoElement) {
-              const dataCadastroFormatada = userProfileData.dataCadastro
-                ? new Date(userProfileData.dataCadastro).toLocaleDateString('pt-BR')
-                : 'N/A';
-              const diasOfensiva = userProfileData.diasOfensiva || 0;
-              const vivoCoins = userProfileData.vivoCoins || 0;
 
-              userInfoElement.innerHTML = `
-                            <p><strong class="text-gray-700 dark:text-slate-100">Email:</strong> ${userProfileData.email}</p>
-                            <p><strong class="text-gray-700 dark:text-slate-100">Perfil:</strong> <span class="font-semibold text-purple-600 dark:text-purple-300">${userProfileData.tipoPerfil}</span></p>
-                            <p><strong class="text-gray-700 dark:text-slate-100">Membro desde:</strong> ${dataCadastroFormatada}</p>
-                            <p><strong class="text-gray-700 dark:text-slate-100">Dias de Ofensiva:</strong> <span class="font-semibold text-yellow-500 dark:text-yellow-400">${diasOfensiva} 🔥</span></p>
-                            <p><strong class="text-gray-700 dark:text-slate-100">Vivo Coins:</strong> <span class="font-semibold text-green-500 dark:text-green-400">${vivoCoins} 💰</span></p>
-                        `;
-            }
-
+            // --- Lógica para conteúdo específico por perfil ---
             if (profileSpecificContentElement) {
               const titleColor = 'text-purple-600 dark:text-purple-300';
               const textColor = 'text-gray-700 dark:text-slate-300';
+
               switch (userProfileData.tipoPerfil) {
                 case 'GESTOR':
                   profileSpecificContentElement.innerHTML = `<h2 class="text-xl font-semibold mb-3 ${titleColor}">Painel do Gestor</h2><p class="${textColor}">Visão geral da equipe, progresso de onboarding e ferramentas de gerenciamento.</p>`;
@@ -361,12 +337,14 @@
             const errorData = await profileResponse
               .json()
               .catch(() => ({ message: 'Sessão inválida ou expirada.' }));
-            redirectToLogin(
-              errorData.message || `Erro ${profileResponse.status}: Sessão inválida.`
-            );
+            // Note que o redirecionamento está comentado para desenvolvimento
+            // redirectToLogin(errorData.message || `Erro ${profileResponse.status}: Sessão inválida.`);
+            console.error('Falha ao buscar perfil do backend:', errorData);
           }
         } catch (e) {
-          redirectToLogin('Erro de comunicação ao buscar perfil.');
+          console.error('Erro de comunicação ao buscar perfil:', e);
+          // Note que o redirecionamento está comentado para desenvolvimento
+          // redirectToLogin('Erro de comunicação ao buscar perfil.');
         }
 
         if (logoutButtonHeader) {
@@ -374,7 +352,7 @@
             localStorage.removeItem('accessToken');
             localStorage.removeItem('userData');
             alert('Você saiu da plataforma.');
-            window.location.href = 'login.html'; // Usa login.html
+            window.location.href = 'login.html';
           });
         }
       });

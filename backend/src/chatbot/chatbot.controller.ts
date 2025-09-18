@@ -10,7 +10,12 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ChatbotService } from './chatbot.service';
 import { ChatbotRequestDto, ChatbotResponseDto } from './dto/chatbot.dto';
-import { AuthenticatedRequest } from '../auth/jwt.strategy';
+import { AuthenticatedUser } from '../auth/jwt.strategy';
+
+// Adicione esta interface para tipar corretamente o objeto de requisição
+interface AuthenticatedRequest extends globalThis.Request {
+  user: AuthenticatedUser;
+}
 
 @Controller('chatbot')
 @UseGuards(AuthGuard('jwt'))

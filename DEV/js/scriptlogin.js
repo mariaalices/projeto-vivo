@@ -64,13 +64,29 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log('Login bem-sucedido! Resposta do backend:', data);
 
           localStorage.setItem('accessToken', data.access_token);
-          localStorage.setItem('userData', JSON.stringify(data.user)); // Armazena o objeto user completo
+          localStorage.setItem('userData', JSON.stringify(data.user));
 
           if (errorMessageElement) {
             errorMessageElement.textContent = 'Login bem-sucedido! Redirecionando...';
             errorMessageElement.classList.remove('hidden');
             errorMessageElement.classList.remove('text-red-400', 'bg-red-900');
             errorMessageElement.classList.add('text-green-400', 'bg-green-900');
+          }
+
+          // --- Lógica de redirecionamento com base no tipo de perfil ---
+          const userProfile = data.user.tipoPerfil;
+          let redirectUrl = 'telainicial.html'; // Página padrão caso não encontre
+
+          switch (userProfile) {
+            case 'NOVO_COLABORADOR':
+              redirectUrl = 'telainicial-novo-colaborador.html';
+              break;
+            case 'BUDDY':
+              redirectUrl = 'telainicial-buddy.html';
+              break;
+            case 'GESTOR':
+              redirectUrl = 'telainicial-gestor.html';
+              break;
           }
 
           setTimeout(() => {

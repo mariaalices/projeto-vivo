@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Inicial - Pesquisa</title>
+  <title>Pesquisa</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
   <style>
@@ -277,7 +277,7 @@
   <!-- Main -->
   <main>
     <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
-      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+      <h1 class="text-2xl font-bold text-purple-200">Pesquisa de Satisfação - 90 dias</h1>
       <div class="flex items-center space-x-4 relative">
         <img id="notifIcon" src="./imagens/notificacao.jpg" alt="Notificações" class="w-7 h-6 rounded-full cursor-pointer">
 
@@ -310,9 +310,9 @@
       <h2>Pesquisa de satisfação</h2>
       <p>
         E aí novo parceiro, o que está achando de nossa jornada de onboard?
-        Para que cada vez possamos agradá-los, bora fazer uma pesquisa de satisfação?!
+        Para que terminemos com chave de outro, bora fazer uma pesquisa de satisfação?!
       </p>
-      <button id="btnIniciar">Iniciar pesquisa de 30/90 dias</button>
+      <button id="btnIniciar">Iniciar pesquisa de 90 dias</button>
     </section>
 
     <!-- Tela Pesquisa -->
@@ -355,8 +355,20 @@
         </div>
       </div>
 
-      <button class="submit-btn" onclick="enviarRespostas()">Enviar</button>
-    </section>
+<div class="flex gap-4 mt-6">
+  <!-- Botão 1 -->
+  <button
+    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
+    onclick="enviarRespostas()">
+    Enviar
+  </button>
+
+  <!-- Botão 2 -->
+  <a href="finalizatrilha.html"
+    class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition text-center">
+    Finalizar Jornada de Onboard
+  </a>
+</div>    </section>
   </main>
 
   <!-- Botão de ajuda -->

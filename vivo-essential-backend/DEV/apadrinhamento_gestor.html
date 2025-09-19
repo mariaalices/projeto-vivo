@@ -21,7 +21,6 @@
       background: #1e0f3a;
       color: #ddd;
       min-height: 100vh;
-      /* Para alinhar verticalmente */
     }
 
     /* Sidebar */
@@ -65,7 +64,6 @@
       width: 24px;
       height: 24px;
       flex-shrink: 0;
-      /* evita deformação */
       margin-right: 0;
     }
 
@@ -84,7 +82,7 @@
       opacity: 1;
     }
 
-    /* Conteúdo principal deslocado para direita da sidebar */
+    /* Conteúdo principal */
     main {
       margin-left: 80px;
       padding: 20px;
@@ -93,17 +91,23 @@
       align-items: center;
       min-height: 100vh;
     }
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* h1 à esquerda, user-actions à direita */
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 2rem; /* aumenta o padding lateral se quiser mais espaço */
+}
 
-    header {
-      width: 100%;
-      max-width: 960px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
-    }
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #b798f9;
+  flex-wrap: nowrap; /* garante que não quebre linha */
+}
+
 
     header h1 {
       color: #b798f9;
@@ -111,13 +115,6 @@
       font-size: 2rem;
     }
 
-    .user-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: #b798f9;
-      flex-wrap: wrap;
-    }
 
     .user-actions img {
       width: 28px;
@@ -140,7 +137,7 @@
       background-color: #5e32cc;
     }
 
-    /* Containers (form e lista) wrapper */
+    /* Containers */
     .container-wrapper {
       display: flex;
       gap: 2rem;
@@ -151,7 +148,6 @@
       padding: 0 1rem;
     }
 
-    /* Form container */
     .container {
       background-color: #1a2433;
       padding: 25px;
@@ -221,7 +217,7 @@
       background-color: #573acc;
     }
 
-    /* Lista de apadrinhamentos */
+    /* Lista */
     .apadrinhamentos-list {
       background: #2b1b52;
       border-radius: 12px;
@@ -350,19 +346,6 @@
       box-shadow: 6px 14px 0 #5a3ca1;
     }
 
-    /* Responsividade */
-    @media (max-width: 1024px) {
-      .container-wrapper {
-        max-width: 100%;
-        padding: 0 1rem;
-      }
-      .container,
-      .apadrinhamentos-list {
-        max-width: 100%;
-        width: 100%;
-      }
-    }
-
     /* Notificações */
     #notifModal {
       max-height: 300px;
@@ -407,30 +390,17 @@
 
 <body>
   <!-- Sidebar -->
-  <nav class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 transition-all duration-300 z-50 bg-purple-200">
+  <nav class="sidebar">
     <ul>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" alt="Home" />
-        <span class="ml-3">Home</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/apadrinhamento.png" alt="Meus Cursos" />
-        <span class="ml-3">Apadrinhamento</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/desempenho.png" alt="Meu Desenvolvimento" />
-        <span class="ml-3">Desempenho</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/calendario.png" alt="Meu Perfil" />
-        <span class="ml-3">Calendário</span>
-      </li>
+      <li><img src="./imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></li>
+      <li><img src="./imagens/apadrinhamento.png" alt="Apadrinhamento" /><span>Apadrinhamento</span></li>
+      <li><img src="./imagens/desempenho.png" alt="Desempenho" /><span>Desempenho</span></li>
+      <li><img src="./imagens/calendario.png" alt="Calendário" /><span>Calendário</span></li>
     </ul>
   </nav>
 
   <!-- Conteúdo principal -->
   <main>
-    <!-- Header -->
     <header>
       <h1>Apadrinhamento</h1>
       <div class="user-actions relative">
@@ -438,7 +408,6 @@
         <span>Olá, Novo Usuário</span>
         <button>Desconectar</button>
 
-        <!-- Modal de Notificações -->
         <div id="notifModal" aria-label="Notificações">
           <div class="notif-item">
             <img src="./imagens/avatar.png" alt="Avatar" />
@@ -448,23 +417,14 @@
             <img src="./imagens/avatar.png" alt="Avatar" />
             <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
-          </div>
         </div>
       </div>
     </header>
 
-    <!-- Containers unificados (form + lista) -->
     <section class="container-wrapper">
       <!-- Formulário -->
-      <section class="container" aria-labelledby="form-title">
-        <h2 id="form-title">Novo apadrinhamento</h2>
+      <section class="container">
+        <h2>Novo apadrinhamento</h2>
         <form>
           <label for="nomeNovoUsuario">Nome do novo usuário:</label>
           <input type="text" id="nomeNovoUsuario" name="nomeNovoUsuario" required />
@@ -479,9 +439,9 @@
         </form>
       </section>
 
-      <!-- Lista de apadrinhamentos -->
-      <section class="apadrinhamentos-list" aria-labelledby="lista-title">
-        <h2 id="lista-title">Últimos apadrinhamentos</h2>
+      <!-- Lista -->
+      <section class="apadrinhamentos-list">
+        <h2>Últimos apadrinhamentos</h2>
         <div id="listaApadrinhamentos"></div>
       </section>
     </section>
@@ -507,33 +467,13 @@
         novo: false,
         avatar: "https://randomuser.me/api/portraits/men/49.jpg",
         apadrinhadorAvatar: "buddy.png",
-      },
-      {
-        nome: "Bruno Oliveira Teixeira",
-        cargo: "Estagiário TI - Frontend",
-        novo: true,
-        avatar: "https://randomuser.me/api/portraits/men/15.jpg",
-        apadrinhadorAvatar: "buddy.png",
-      },
-      {
-        nome: "Bruno Oliveira Teixeira",
-        cargo: "Estagiário TI - PO",
-        novo: false,
-        avatar: "https://randomuser.me/api/portraits/men/15.jpg",
-        apadrinhadorAvatar: "buddy.png",
-      },
-      {
-        nome: "Charles Brandão Souza de Macarrone",
-        cargo: "Estagiário TI - Dev Backend",
-        novo: false,
-        avatar: "https://randomuser.me/api/portraits/men/21.jpg",
-        apadrinhadorAvatar: "buddy.png",
       }
     ];
 
     const lista = document.getElementById('listaApadrinhamentos');
 
-    apadrinhamentosData.forEach(item => {
+    // Função para renderizar item
+    function renderItem(item) {
       const div = document.createElement('div');
       div.className = 'apadrinhamento-item';
 
@@ -541,7 +481,8 @@
         <div class="info-wrapper">
           <div class="status ${item.novo ? 'novo' : ''}">${item.novo ? 'Novo' : 'Antigo'}</div>
           <div class="avatar">
-            <img src="${item.avatar}" alt="Foto de ${item.nome}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+            <img src="${item.avatar}" alt="Foto de ${item.nome}" 
+              onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
           </div>
           <div class="dados-apadrinhamento">
             <strong>${item.nome}</strong>
@@ -549,16 +490,17 @@
           </div>
         </div>
         <div class="right-actions">
-          <div class="apadrinhador-avatar">
-            <img src="${item.apadrinhadorAvatar}" alt="Avatar do apadrinhador" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
-          </div>
+
           <button class="btn-visitar" data-nome="${item.nome}">Visitar Perfil</button>
         </div>
       `;
-      lista.appendChild(div);
-    });
+      lista.prepend(div);
+    }
 
-    // Funcionalidade botão visitar perfil
+    // Renderizar iniciais
+    apadrinhamentosData.forEach(renderItem);
+
+    // Evento botão visitar
     lista.addEventListener('click', (e) => {
       if (e.target.matches('.btn-visitar')) {
         const nome = e.target.getAttribute('data-nome');
@@ -566,7 +508,33 @@
       }
     });
 
-    // Toggle do modal de notificações
+    // Formulário
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nomeNovoUsuario').value.trim();
+      const buddy = document.getElementById('buddy').value.trim();
+      const descricao = document.getElementById('descricao').value.trim();
+
+      if (!nome || !buddy) {
+        alert("Preencha pelo menos Nome e Buddy!");
+        return;
+      }
+
+      const novoApadrinhamento = {
+        nome,
+        cargo: descricao || "Sem descrição",
+        novo: true,
+        avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png",
+        apadrinhadorAvatar: "buddy.png",
+      };
+
+      renderItem(novoApadrinhamento);
+      form.reset();
+    });
+
+    // Notificações
     const notifIcon = document.getElementById('notifIcon');
     const notifModal = document.getElementById('notifModal');
 
@@ -575,7 +543,6 @@
       notifModal.classList.toggle('active');
     });
 
-    // Fecha o modal ao clicar fora
     document.addEventListener('click', (e) => {
       if (!notifModal.contains(e.target) && e.target !== notifIcon) {
         notifModal.classList.remove('active');
@@ -583,5 +550,4 @@
     });
   </script>
 </body>
-
 </html>

@@ -1,10 +1,11 @@
+// auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../entities/user.entity';
+import { UserEntity, UserProfileType } from '../entities/user.entity'; // Importe UserProfileType
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { TokenPayload, AuthenticatedUser } from './jwt.strategy'; // Importar AMBAS as interfaces
+import { TokenPayload, AuthenticatedUser } from './jwt.strategy';
 
 @Injectable()
 export class AuthService {
@@ -18,8 +19,6 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise<Omit<UserEntity, 'senhaHash'>> {
-    // ... (código do validateUser como antes, ele já retorna Omit<UserEntity, 'senhaHash'>) ...
-    // ... (os console.logs podem ser removidos se tudo estiver funcionando) ...
     const user = await this.userRepository
       .createQueryBuilder('user')
       .addSelect('user.senhaHash')
@@ -43,13 +42,13 @@ export class AuthService {
     return result;
   }
 
+  // Modificação aqui:
   login(user: Omit<UserEntity, 'senhaHash'>): {
     access_token: string;
     user: AuthenticatedUser;
+    redirectUrl?: string; // Adicionado para a URL opcional
   } {
-    // Cria o payload para o JWT usando a estrutura de TokenPayload
     const payloadForToken: TokenPayload = {
-      // Usando TokenPayload para o que vai DENTRO do token
       sub: user.idUsuario,
       email: user.email,
       tipoPerfil: user.tipoPerfil,
@@ -61,7 +60,6 @@ export class AuthService {
       descricao: user.descricao,
     };
 
-    // O objeto 'user' retornado para o frontend pode seguir a estrutura AuthenticatedUser
     const userToReturn: AuthenticatedUser = {
       idUsuario: user.idUsuario,
       email: user.email,
@@ -74,17 +72,26 @@ export class AuthService {
       descricao: user.descricao,
     };
 
+    // Lógica para definir a URL de redirecionamento
+    let redirectUrl: string | undefined;
+    if (user.tipoPerfil === UserProfileType.NOVO_COLABORADOR) {
+      redirectUrl = '/telainicial-novo-colaborador.html';
+    } else {
+      // Você pode definir outras URLs para outros perfis aqui
+      redirectUrl = '/telainicial.html';
+    }
+
     return {
-      access_token: this.jwtService.sign(payloadForToken), // Assina o TokenPayload
-      user: userToReturn, // Retorna o AuthenticatedUser
+      access_token: this.jwtService.sign(payloadForToken),
+      user: userToReturn,
+      redirectUrl, // Retornando a URL de redirecionamento
     };
   }
 
   async updateProfile(
     userId: number,
-    updateProfileDto: any /* UpdateProfileDto */,
+    updateProfileDto: any,
   ): Promise<Omit<UserEntity, 'senhaHash'>> {
-    // ... (código do updateProfile como antes)
     const user = await this.userRepository.findOne({
       where: { idUsuario: userId },
     });

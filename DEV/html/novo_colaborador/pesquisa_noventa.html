@@ -1,434 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pesquisa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #1c0033;
-      color: rgb(30, 41, 59);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pesquisa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
 
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 70px;
-      background: rgb(233 213 255);
-      overflow: hidden;
-      transition: width 0.3s ease;
-      z-index: 9999;
-    }
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/sidebar.css" />
+    <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/pesquisa.css" />
+  </head>
 
-    .sidebar:hover {
-      width: 220px;
-    }
+  <body>
+    <div
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home" />
+          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos" />
+          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento" />
+          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil" />
+          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações" />
+          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        </li>
+      </ul>
+    </div>
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    <main>
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0"
+      >
+        <h1 class="text-2xl font-bold text-purple-200">Pesquisa de Satisfação - 90 dias</h1>
+        <div class="flex items-center space-x-4 relative">
+          <img
+            id="notifIcon"
+            src="../../imagens/notificacao.jpg"
+            alt="Notificações"
+            class="w-7 h-6 rounded-full cursor-pointer"
+          />
 
-    .sidebar ul li {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
+          >
+            Desconectar
+          </button>
 
-    .sidebar ul li:hover {
-      background: #635571;
-    }
-
-    .sidebar ul li img {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-      margin-right: 0;
-    }
-
-    .sidebar ul li span {
-      display: none;
-      margin-left: 10px;
-      opacity: 0;
-      white-space: nowrap;
-      transition: opacity 0.3s;
-    }
-
-    .sidebar:hover ul li span {
-      opacity: 1;
-      display: inline;
-      color: black;
-    }
-
-    /* Conteúdo principal */
-    main {
-      margin-left: 70px;
-      padding: 30px;
-      min-height: 100vh;
-      background: #240548;
-      transition: margin-left 0.3s ease;
-    }
-
-    .sidebar:hover~main {
-      margin-left: 220px;
-    }
-
-    /* Tela Inicial */
-    #telaInicial {
-      max-width: 600px;
-      margin: 100px auto;
-      background: #4c2b7b;
-      border-radius: 12px;
-      padding: 30px 40px;
-      color: #fff;
-      text-align: center;
-      box-shadow: 0 0 15px #7b5dcf;
-    }
-
-    #telaInicial h2 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-
-    #telaInicial p {
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      line-height: 1.4;
-    }
-
-    #btnIniciar {
-      background-color: #7b51de;
-      border: none;
-      color: white;
-      padding: 14px 28px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    #btnIniciar:hover {
-      background-color: #9747f4;
-    }
-
-    /* Tela Pesquisa */
-    #telaPesquisa {
-      display: none;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 30px;
-      background: #1e293b;
-      border-radius: 10px;
-      color: white;
-      text-align: center;
-    }
-
-    #telaPesquisa h2 {
-      margin-bottom: 30px;
-      color: #a76cbe;
-    }
-
-    .question {
-      margin-bottom: 30px;
-      text-align: left;
-    }
-
-    .question p {
-      color: #fff;
-      margin-bottom: 15px;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .buttons button {
-      background: #8b5cf6;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .buttons button:hover {
-      background: #7c3aed;
-    }
-
-    .buttons button.selected {
-      background: #22c55e;
-    }
-
-    .submit-btn {
-      margin-top: 20px;
-      background: #22c55e;
-      padding: 14px 40px;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 16px;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      background: #16a34a;
-    }
-
-    /* Modal notificações */
-    .notif-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .notif-item:last-child {
-      border-bottom: none;
-    }
-
-    .notif-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    #notifModal {
-      max-height: 300px;
-      overflow-y: auto;
-      transition: all 0.2s ease;
-    }
-
-    /* Botão de ajuda flutuante */
-    .help-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #8b36f9, #601395);
-      color: white;
-      font-size: 24px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 10000;
-    }
-
-    .help-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-    }
-  </style>
-</head>
-<body>
-  <!-- Sidebar -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Home</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/configuracoes.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Main -->
-  <main>
-    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
-      <h1 class="text-2xl font-bold text-purple-200">Pesquisa de Satisfação - 90 dias</h1>
-      <div class="flex items-center space-x-4 relative">
-        <img id="notifIcon" src="./imagens/notificacao.jpg" alt="Notificações" class="w-7 h-6 rounded-full cursor-pointer">
-
-        <span class="text-purple-200">Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
-
-        <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-          <div class="notif-item">
-            <img src="./imagens/perfil.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/perfil.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/system-integration.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/perfil.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
+          <div
+            id="notifModal"
+            class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50"
+          >
+            <div class="notif-item">
+              <img src="../../imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="../../imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+                conversar?
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="../../imagens/system-integration.png" alt="Avatar" />
+              <p>
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="../../imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
+                atrasado... posso te ajudar? =)
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- Tela Inicial -->
-    <section id="telaInicial">
-      <h2>Pesquisa de satisfação</h2>
-      <p>
-        E aí novo parceiro, o que está achando de nossa jornada de onboard?
-        Para que terminemos com chave de outro, bora fazer uma pesquisa de satisfação?!
-      </p>
-      <button id="btnIniciar">Iniciar pesquisa de 90 dias</button>
-    </section>
+      <section id="telaInicial">
+        <h2>Pesquisa de satisfação</h2>
+        <p>
+          E aí novo parceiro, o que está achando de nossa jornada de onboard? Para que terminemos
+          com chave de outro, bora fazer uma pesquisa de satisfação?!
+        </p>
+        <button id="btnIniciar">Iniciar pesquisa de 90 dias</button>
+      </section>
 
-    <!-- Tela Pesquisa -->
-    <section id="telaPesquisa">
-      <h2>Pesquisa de Satisfação</h2>
+      <section id="telaPesquisa">
+        <h2>Pesquisa de Satisfação</h2>
 
-      <div class="question">
-        <p>Pergunta 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+        <div class="question">
+          <p>Pergunta 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
+          <div class="buttons">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
         </div>
-      </div>
 
-      <div class="question">
-        <p>Pergunta 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+        <div class="question">
+          <p>Pergunta 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
+          <div class="buttons">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
         </div>
-      </div>
 
-      <div class="question">
-        <p>Pergunta 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+        <div class="question">
+          <p>Pergunta 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
+          <div class="buttons">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
         </div>
-      </div>
 
-      <div class="question">
-        <p>Pergunta 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+        <div class="question">
+          <p>Pergunta 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
+          <div class="buttons">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
         </div>
-      </div>
 
-<div class="flex gap-4 mt-6">
-  <!-- Botão 1 -->
-  <button
-    class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
-    onclick="enviarRespostas()">
-    Enviar
-  </button>
+        <div class="flex gap-4 mt-6">
+          <button
+            class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
+            onclick="enviarRespostas()"
+          >
+            Enviar
+          </button>
 
-  <!-- Botão 2 -->
-  <a href="finalizatrilha.html"
-    class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition text-center">
-    Finalizar Jornada de Onboard
-  </a>
-</div>    </section>
-  </main>
+          <a
+            href="/html/novo_colaborador/finalizatrilha.html"
+            class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition text-center"
+          >
+            Finalizar Jornada de Onboard
+          </a>
+        </div>
+      </section>
+    </main>
 
-  <!-- Botão de ajuda -->
-  <button class="help-btn">?</button>
+    <button class="help-btn">?</button>
 
-  <script>
-    const notifIcon = document.getElementById('notifIcon');
-    const notifModal = document.getElementById('notifModal');
+    <script>
+      const notifIcon = document.getElementById('notifIcon');
+      const notifModal = document.getElementById('notifModal');
 
-    notifIcon.addEventListener('click', () => {
-      notifModal.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-        notifModal.classList.add('hidden');
-      }
-    });
-
-    // Função para trocar entre as telas
-    const btnIniciar = document.getElementById('btnIniciar');
-    const telaInicial = document.getElementById('telaInicial');
-    const telaPesquisa = document.getElementById('telaPesquisa');
-
-    btnIniciar.addEventListener('click', () => {
-      telaInicial.style.display = 'none';
-      telaPesquisa.style.display = 'block';
-      window.scrollTo(0, 0);
-    });
-
-    function selectOption(button) {
-      let container = button.parentElement;
-      let buttons = container.querySelectorAll("button");
-      buttons.forEach(btn => btn.classList.remove("selected"));
-      button.classList.add("selected");
-    }
-
-    function enviarRespostas() {
-      let respostas = [];
-      let todasRespondidas = true;
-
-      document.querySelectorAll(".question").forEach((q, i) => {
-        let selected = q.querySelector(".selected");
-        if (!selected) {
-          todasRespondidas = false;
-        }
-        respostas.push({
-          pergunta: i + 1,
-          resposta: selected ? selected.innerText : "Não respondida"
-        });
+      notifIcon.addEventListener('click', () => {
+        notifModal.classList.toggle('hidden');
       });
 
-      if (!todasRespondidas) {
-        alert("⚠️ Por favor, responda todas as perguntas antes de enviar.");
-        return;
+      document.addEventListener('click', (e) => {
+        if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+          notifModal.classList.add('hidden');
+        }
+      });
+
+      // Função para trocar entre as telas
+      const btnIniciar = document.getElementById('btnIniciar');
+      const telaInicial = document.getElementById('telaInicial');
+      const telaPesquisa = document.getElementById('telaPesquisa');
+
+      btnIniciar.addEventListener('click', () => {
+        telaInicial.style.display = 'none';
+        telaPesquisa.style.display = 'block';
+        window.scrollTo(0, 0);
+      });
+
+      function selectOption(button) {
+        let container = button.parentElement;
+        let buttons = container.querySelectorAll('button');
+        buttons.forEach((btn) => btn.classList.remove('selected'));
+        button.classList.add('selected');
       }
 
-      console.log("Respostas enviadas:", respostas);
-      alert("✅ Respostas enviadas com sucesso! Confira no console.");
-    }
-  </script>
-</body>
+      function enviarRespostas() {
+        let respostas = [];
+        let todasRespondidas = true;
+
+        document.querySelectorAll('.question').forEach((q, i) => {
+          let selected = q.querySelector('.selected');
+          if (!selected) {
+            todasRespondidas = false;
+          }
+          respostas.push({
+            pergunta: i + 1,
+            resposta: selected ? selected.innerText : 'Não respondida',
+          });
+        });
+
+        if (!todasRespondidas) {
+          alert('⚠️ Por favor, responda todas as perguntas antes de enviar.');
+          return;
+        }
+
+        console.log('Respostas enviadas:', respostas);
+        alert('✅ Respostas enviadas com sucesso! Confira no console.');
+      }
+    </script>
+  </body>
 </html>

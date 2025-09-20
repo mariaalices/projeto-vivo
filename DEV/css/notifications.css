@@ -1,0 +1,23 @@
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#notifModal {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+}

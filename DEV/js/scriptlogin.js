@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = data.redirectUrl; // Redireciona com base na resposta do backend
           } else {
             // Se não houver URL de redirecionamento, use uma URL padrão
-            window.location.href = 'index.html'; // Ou qualquer página padrão
+            window.location.href = '/.../html/index.html'; // Ou qualquer página padrão
           } // **FIM DA LÓGICA DE REDIRECIONAMENTO CORRIGIDA**
           if (errorMessageElement) {
             errorMessageElement.textContent = 'Login bem-sucedido! Redirecionando...';

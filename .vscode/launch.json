@@ -1,14 +1,15 @@
+// NOVO
 {
-    // Use o IntelliSense para saber mais sobre os atributos possíveis.
-    // Focalizar para exibir as descrições dos atributos existentes.
-    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "msedge",
-            "request": "launch",
-            "name": "Open index.html",
-            "file": "c:\\Users\\ricks\\OneDrive\\Área de Trabalho\\CHALLENGE VIVO\\DEV\\index.html"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "msedge",
+      "request": "launch",
+      "name": "Launch DEV Server URL",
+      // Aponta para a URL correta do servidor
+      "url": "http://localhost:3000/html/index.html",
+      // Ajuda o VS Code a encontrar os arquivos fonte se precisar debugar
+      "webRoot": "${workspaceFolder}/DEV"
+    }
+  ]
 }

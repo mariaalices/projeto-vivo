@@ -1,0 +1,294 @@
+/* Estilos específicos de apadrinhamento_gestor.css */
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  /* O background principal é controlado pelo Tailwind no <body> */
+  color: #ddd;
+  min-height: 100vh;
+}
+
+/* Conteúdo principal deslocado para direita da sidebar */
+main {
+  margin-left: 80px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+header {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+header h1 {
+  color: #b798f9;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #b798f9;
+  flex-wrap: wrap;
+}
+
+.user-actions img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.user-actions button {
+  background-color: #7c4dff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.user-actions button:hover {
+  background-color: #5e32cc;
+}
+
+/* Containers (form e lista) wrapper */
+.container-wrapper {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  max-width: 960px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+/* Form container */
+.container {
+  background-color: #1a2433;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #4f329e;
+  width: 100%;
+  max-width: 480px;
+  font-size: 14px;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.container h2 {
+  color: #8b56ec;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+label {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  background-color: #2a3246;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #eee;
+  font-size: 14px;
+  resize: vertical;
+  outline-offset: 2px;
+  outline-color: transparent;
+  transition: outline-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+input[type='text']:focus,
+textarea:focus {
+  outline-color: #704ee0;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.btn-salvar {
+  margin-top: 10px;
+  background-color: #704ee0;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-salvar:hover {
+  background-color: #573acc;
+}
+
+/* Lista de apadrinhamentos */
+.apadrinhamentos-list {
+  background: #2b1b52;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 960px;
+  color: #ddd;
+  box-shadow: 0 0 8px #4f329e;
+  font-size: 14px;
+}
+
+.apadrinhamentos-list h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #8b56ec;
+}
+
+.apadrinhamento-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid #472b85;
+  padding: 15px 0;
+}
+
+.apadrinhamento-item:last-child {
+  border-bottom: none;
+}
+
+.info-wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex: 1;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #472b85;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #b1a5ff;
+  user-select: none;
+  margin-right: 10px;
+  min-width: 40px;
+}
+
+.status.novo {
+  color: #ff8aff;
+}
+
+.dados-apadrinhamento {
+  color: #c7c1e5;
+  flex-shrink: 1;
+}
+
+.dados-apadrinhamento strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.dados-apadrinhamento small {
+  font-weight: 400;
+  color: #a59bd8;
+}
+
+.apadrinhador-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #472b85;
+  overflow: hidden;
+  background-color: #312c4f;
+  margin-left: 15px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.apadrinhador-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-visitar {
+  background: #8b56ec;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 3px 8px 0 #2e1676;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  user-select: none;
+  margin-left: 12px;
+}
+
+.btn-visitar:hover {
+  box-shadow: 6px 14px 0 #5a3ca1;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container-wrapper {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  .container,
+  .apadrinhamentos-list {
+    max-width: 100%;
+    width: 100%;
+  }
+}

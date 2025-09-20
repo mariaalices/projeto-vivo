@@ -1,0 +1,7 @@
+/* Estilos específicos de telainicial.html */
+.profile-specific-content {
+  border: 1px dashed #6366f1; /* Apenas para visualização inicial */
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}

@@ -17,12 +17,12 @@ import { UserEntity } from './entities/user.entity';
       rootPath: join(__dirname, '..', '..', 'DEV'),
     }),
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'oracle', // Corrigido de 'postgres'
       host: process.env.DB_HOST || 'localhost', // Adiciona um valor padrão
-      port: parseInt(process.env.DB_PORT || '5432'), // Adiciona um valor padrão
+      port: parseInt(process.env.DB_PORT || '1521'), // Porta padrão do Oracle
       username: process.env.DB_USERNAME || 'postgres', // Adiciona um valor padrão
       password: process.env.DB_PASSWORD || 'postgres', // Adiciona um valor padrão
-      database: process.env.DB_DATABASE || 'db_vivo', // Adiciona um valor padrão
+      database: process.env.DB_DATABASE || 'db_vivo', // No Oracle, isso pode ser o Service Name ou SID
       entities: [UserEntity],
       synchronize: true,
     }),

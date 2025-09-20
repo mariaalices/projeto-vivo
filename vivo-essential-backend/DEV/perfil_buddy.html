@@ -383,32 +383,7 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-  <!-- Sidebar Desktop -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50 md:block hidden">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Home</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/configuracoes.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
-      </li>
-    </ul>
-  </div>
+  
 
   <!-- Botão menu hamburger para telas pequenas -->
   <button id="menuBtn" class="md:hidden fixed top-4 left-4 z-60 bg-purple-600 text-white p-2 rounded-md shadow-lg">
@@ -416,24 +391,21 @@
   </button>
 
   <!-- Sidebar off-canvas para mobile -->
+  <!-- Sidebar Desktop -->
   <div
     class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="apadrinhamento_gestor.html">Apadrinhamento</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="visao_geral_gestor.html">Desempenho</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="afilhado_newuser.html">Meu Afiliado</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_gestor.html">Meu Perfil</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_buddy.html">Meu Perfil</a></span>
       </li>
     </ul>
   </div>
@@ -442,7 +414,7 @@
   <main class="flex-1 p-4 md:ml-[220px] mt-16 md:mt-4 flex flex-col gap-10">
     <!-- Header -->
     <header class="flex flex-col md:flex-row justify-between items-center md:items-end gap-4 md:gap-0">
-      <h1 class="text-3xl font-bold text-purple-200">Página Inicial</h1>
+      <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
 
       <div class="flex items-center space-x-4 relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
@@ -483,12 +455,12 @@
       <div class="profile-image w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0"></div>
 
       <div class="profile-info flex-1 text-[#d8ceff]">
-        <h1 class="text-xl font-semibold mb-2">Bruna Oliveira Novato</h1>
+        <h1 class="text-xl font-semibold mb-2">Buddy Maria Santos</h1>
         <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
-        <p class="mb-1"><strong>Email:</strong> bruna.novato@vivo.com.br</p>
-        <p class="mb-1"><strong>Membro desde:</strong> 20/05/2025</p>
+        <p class="mb-1"><strong>Email:</strong> maria.buddy@vivo.com.br</p>
+        <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
         <p class="mb-1"><strong>Telefone:</strong> 11 98765-4321</p>
-        <p><strong>Função/Área:</strong> Novo desenvolvedor web</p>
+        <p><strong>Função/Área:</strong> Buddy treinamento TI</p>
       </div>
 
       <button
@@ -497,28 +469,7 @@
       </button>
     </section>
 
-    <!-- Visão Geral -->
-    <section class="visao-geral max-w-4xl mx-auto">
-      <h2>Visão Geral</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="numero">2</div>
-          <div class="descricao">Cursos em andamento</div>
-        </div>
-        <div class="card">
-          <div class="numero">0</div>
-          <div class="descricao">Cursos concluídos</div>
-        </div>
-        <div class="card">
-          <div class="numero">5 dias</div>
-          <div class="descricao"><span class="emoji">🔥</span>Ofensiva</div>
-        </div>
-        <div class="card">
-          <div class="numero">500</div>
-          <div class="descricao"><span class="coin">◉</span>Vivo Coins</div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Medalhas e Conquistas -->
     <section class="max-w-4xl w-full bg-[#461791] rounded-2xl p-6 shadow-[0_0_20px_#3a107888] mx-auto text-[#d6c6ff]">
@@ -531,7 +482,7 @@
       <div class="flex gap-6 flex-wrap justify-start">
         <div class="conquista destaque">
           <img src="./imagens/medalha.png" class="w-6 h-6" alt="Imagem de uma medalha" />
-          Conquistador
+          Apoiador
         </div>
         <div class="conquista">
           <img src="./imagens/star.png" class="w-6 h-6" alt="Imagem de uma estrela" />
@@ -539,7 +490,7 @@
         </div>
         <div class="conquista">
           <img src="./imagens/lampada.png" class="w-6 h-6" alt="Imagem de uma lâmpada" />
-          Curioso
+          Mentor
         </div>
       </div>
     </section>
@@ -565,7 +516,7 @@
 
     <!-- Avaliação diária responsiva -->
     <section class="avaliacao-container max-w-4xl mx-auto">
-      <h2>Avalie como está sua relação com o Buddy:</h2>
+      <h2>Avalie como está se sentindo en relação ao seu afiliado: (sinceridade nesse momento é essencial)</h2>
       <div class="flex justify-center space-x-6 mb-4 flex-wrap">
         <button class="text-4xl select-none">😠</button>
         <button class="text-4xl select-none">😕</button>
@@ -626,8 +577,8 @@
     // Dados iniciais do curso
     const cursoInicial = {
       id: 1,
-      titulo: "Introdução à Cultura VIVO",
-      descricao: "Conheça os valores, a história e a estrutura da VIVO",
+      titulo: "Direcionamento VIVO",
+      descricao: "Como melhorar seu direcionamento para o novo usuario VIVO",
       progresso: 85,
 
       // id: 2,

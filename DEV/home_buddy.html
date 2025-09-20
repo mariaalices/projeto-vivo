@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Inicial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1c0033;
+      color: rgb(30, 41, 59);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      /* Largura fechada */
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 40;
+      /* sempre na frente */
+    }
+
+    .sidebar:hover {
+      width: 220px;
+      /* Largura aberta */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li:hover {
+      background: #635571;
+    }
+
+    .sidebar ul li i {
+      font-size: 22px;
+      margin-right: 15px;
+    }
+
+    .sidebar ul li img {
+      width: 24px;
+      /* tamanho fixo pequeno */
+      height: 24px;
+      flex-shrink: 0;
+      /* não deixa a imagem deformar */
+      margin-right: 0;
+      /* fechado não precisa espaço */
+    }
+
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+
+    /* Mostra o texto só quando expandido */
+    .sidebar:hover ul li span {
+      opacity: 1;
+      display: inline;
+      color: black;
+    }
+
+    /* Conteúdo principal */
+    .content {
+      margin-left: 80px;
+      padding: 20px;
+    }
+  </style>
+  <!-- Sidebar -->
+  <div
+    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+    <ul class="flex flex-col">
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text">Home</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/configuracoes.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <main class="flex-1 md:ml-24 px-6 py-10">
+
+    <!-- Cabeçalho -->
+    <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
+      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+
+      <!-- Container com posicionamento relativo -->
+      <div class="flex items-center gap-4 relative">
+        <!-- Ícone de Notificação -->
+        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
+
+        <!-- Modal de Notificações -->
+        <div id="notifModal"
+          class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200">
+
+          <!-- Notificação 1 -->
+          <div class="flex items-start gap-3 p-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+            <p class="text-sm leading-snug">
+              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+            </p>
+          </div>
+
+          <!-- Notificação 2 -->
+          <div class="flex items-start gap-3 p-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+            <p class="text-sm leading-snug">
+              <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
+            </p>
+          </div>
+
+          <!-- Notificação 3 -->
+          <div class="flex items-start gap-3 p-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+            <p class="text-sm leading-snug">
+              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+            </p>
+          </div>
+
+          <!-- Notificação 4 -->
+          <div class="flex items-start gap-3 p-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
+            <p class="text-sm leading-snug">
+              <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
+              ajudar?
+              =)
+            </p>
+          </div>
+        </div>
+
+        <span class="text-purple-200">Olá, Novo Usuário</span>
+        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Desconectar</button>
+      </div>
+    </header>
+
+    <!-- Modal de Notificações -->
+    <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
+      <div class="notif-item">
+        <img src="./imagens/avatar.png" alt="Avatar">
+        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+        </p>
+      </div>
+      <div class="notif-item">
+        <img src="./imagens/avatar.png" alt="Avatar">
+        <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+      </div>
+      <div class="notif-item">
+        <img src="./imagens/avatar.png" alt="Avatar">
+        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+        </p>
+      </div>
+      <div class="notif-item">
+        <img src="./imagens/avatar.png" alt="Avatar">
+        <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
+          ajudar?
+          =)</p>
+      </div>
+    </div>
+    </div>
+
+    <!-- CSS -->
+    <style>
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .notif-item:last-child {
+        border-bottom: none;
+      }
+
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        transition: all 0.2s ease;
+      }
+    </style>
+
+    <!-- JS -->
+    <script>
+      const notifIcon = document.getElementById('notifIcon');
+      const notifModal = document.getElementById('notifModal');
+
+      notifIcon.addEventListener('click', () => {
+        notifModal.classList.toggle('hidden');
+      });
+
+      // Se quiser que feche ao clicar fora do modal:
+      document.addEventListener('click', (e) => {
+        if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+          notifModal.classList.add('hidden');
+        }
+      });
+    </script>
+
+    <!-- Container com largura padronizada -->
+    <div class="max-w-6xl mx-auto px-4 space-y-10">
+
+      <section class="max-w-4xl w-full mx-auto">
+
+
+        <!-- Container com largura padronizada -->
+        <div class="max-w-6xl mx-auto px-4 space-y-10">
+
+          <!-- Avaliação diária -->
+          <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-10">
+            <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Afiliado:</h2>
+            <div class="flex justify-center space-x-6 mb-4 flex-wrap">
+              <button class="text-4xl">😠</button>
+              <button class="text-4xl">😕</button>
+              <button class="text-4xl">😐</button>
+              <button class="text-4xl">😊</button>
+              <button class="text-4xl">😍</button>
+            </div>
+            <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+              placeholder="Escreva um motivo..."></textarea>
+            <div class="flex justify-center">
+              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar
+                Avaliação</button>
+            </div>
+          </section>
+
+          <!-- Jornada onboarding -->
+          <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-10">
+            <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
+            <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
+              <!-- Cada passo -->
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  2</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  3</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  4</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  5</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  6</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  7</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  8</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
+              </div>
+              <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+              <div class="flex flex-col items-center min-w-[60px]">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                  9</div>
+                <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <button
+                class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
+            </div>
+          </section>
+
+          <!-- Perfil do afiliado -->
+          <section class="mb-10">
+            <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
+            <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex items-start gap-6">
+              <!-- Imagem e nome -->
+              <div class="p-4 rounded-lg flex flex-col items-center w-48">
+                <div class="w-24 h-24 rounded-full bg-[#d9d9d9] flex items-center justify-center overflow-hidden">
+                  <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-full h-full object-cover" />
+                </div>
+                <h2 class="text-white font-semibold text-center mt-3">Bruno Oliveira Testes</h2>
+                <p class="text-[#a1a1a1] text-sm text-center">Estagiário TI</p>
+              </div>
+
+              <!-- Texto descrição -->
+              <div class="flex-1 p-4 text-[#dcdcdc] leading-relaxed text-justify">
+                <h3 class="text-white font-semibold mb-2">Um pouco sobre seu afiliado:</h3>
+                <p>
+                  In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci.
+                  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                  inceptos himenaeos. Fusce congue ultricies dui sit amet maximus. Vestibulum
+                  tempus, nulla quis lobortis vehicula, ex libero euismod ligula, sit amet
+                  aliquet nulla purus pellentesque velit. Nam dapibus lacus sed tellus
+                  malesuada iaculis. Curabitur tincidunt commodo quam at dictum.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- VIVO Coin + Ranking -->
+          <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <!-- VIVO Coin -->
+            <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+              <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <img src="./imagens/image 103.png" alt="Imagem ilustrativa"
+                    class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <div class="text-purple-200 flex flex-col justify-center">
+                  <p class="mb-4">
+                    VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.
+                    Acumule pontos e troque por benefícios exclusivos.
+                  </p>
+                  <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
+                    Saiba mais
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ranking semanal -->
+            <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
+              <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
+              <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
+                <thead>
+                  <tr>
+                    <th class="pb-2 border-b border-purple-300">Usuário</th>
+                    <th class="pb-2 border-b border-purple-300">Pontos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 border-b border-purple-300">Você</td>
+                    <td class="py-2 border-b border-purple-300">500</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 border-b border-purple-300">Maria</td>
+                    <td class="py-2 border-b border-purple-300">400</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 border-b border-purple-300">Carlos</td>
+                    <td class="py-2 border-b border-purple-300">350</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 border-b border-purple-300">Inacia</td>
+                    <td class="py-2 border-b border-purple-300">250</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2">Paula</td>
+                    <td class="py-2">200</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+
+  </main>
+
+  <!-- Botão flutuante -->
+  <button
+    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
+
+</body>
+
+</html>

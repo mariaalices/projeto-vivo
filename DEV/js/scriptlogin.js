@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // --- Script do Ano Dinâmico para a página de login ---
-  const currentYearElement = document.getElementById('currentYear'); // Espera um <span id="currentYear"> no footer do login.html
+  // --- Script do Ano Dinâmico (se você já o tinha) ---
+  const currentYearElement = document.getElementById('currentYear');
   if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
   }
@@ -14,21 +14,17 @@ document.addEventListener('DOMContentLoaded', function () {
       event.preventDefault(); // Impede o envio padrão do formulário
 
       if (errorMessageElement) {
-        errorMessageElement.textContent = '';
-        errorMessageElement.classList.add('hidden');
-        // Garante que classes de sucesso sejam removidas em nova tentativa
-        errorMessageElement.classList.remove('text-green-400', 'bg-green-900');
-        errorMessageElement.classList.add('text-red-400', 'bg-red-900'); // Padrão para erro
+        errorMessageElement.textContent = ''; // Limpa mensagens de erro anteriores
+        errorMessageElement.classList.add('hidden'); // Oculta o container de erro (Tailwind class)
       }
 
       const emailInput = document.getElementById('email');
       const passwordInput = document.getElementById('password');
 
       if (!emailInput || !passwordInput) {
-        console.error('Campos de email ou senha não encontrados no HTML da página de login!');
+        console.error('Campos de email ou senha não encontrados no HTML!');
         if (errorMessageElement) {
-          errorMessageElement.textContent =
-            'Erro interno na página. IDs dos campos não encontrados.';
+          errorMessageElement.textContent = 'Erro interno na página. Tente novamente.';
           errorMessageElement.classList.remove('hidden');
         }
         return;
@@ -45,11 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      console.log('Enviando para o backend (login):', { email, senha });
+      console.log('Enviando para o backend:', { email, senha }); // Log para debug
 
       try {
         const response = await fetch('http://localhost:3000/auth/login', {
-          // URL do seu backend
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -57,60 +52,47 @@ document.addEventListener('DOMContentLoaded', function () {
           body: JSON.stringify({ email: email, senha: senha }),
         });
 
-        const data = await response.json();
+        const data = await response.json(); // Tenta parsear o JSON da resposta
 
         if (response.ok) {
           // Status HTTP 200-299
           console.log('Login bem-sucedido! Resposta do backend:', data);
+          if (errorMessageElement) {
+            errorMessageElement.textContent =
+              'Login bem-sucedido! Token: ' + data.access_token.substring(0, 30) + '...';
+            errorMessageElement.classList.remove('hidden');
+            errorMessageElement.classList.remove('text-red-400', 'bg-red-900'); // Remove classes de erro
+            errorMessageElement.classList.add('text-green-400', 'bg-green-900'); // Adiciona classes de sucesso
+          }
+          alert('Login bem-sucedido! Redirecionando...'); // Opcional: apenas para feedback visual rápido
+          window.location.href = 'home_newuser.html'; // Redireciona para a tela de home criada
 
+          // Aqui você pode armazenar o token e os dados do usuário no localStorage
           localStorage.setItem('accessToken', data.access_token);
           localStorage.setItem('userData', JSON.stringify(data.user));
-
-          if (errorMessageElement) {
-            errorMessageElement.textContent = 'Login bem-sucedido! Redirecionando...';
-            errorMessageElement.classList.remove('hidden');
-            errorMessageElement.classList.remove('text-red-400', 'bg-red-900');
-            errorMessageElement.classList.add('text-green-400', 'bg-green-900');
-          }
-
-          // --- Lógica de redirecionamento com base no tipo de perfil ---
-          const userProfile = data.user.tipoPerfil;
-          let redirectUrl = 'telainicial.html'; // Página padrão caso não encontre
-
-          switch (userProfile) {
-            case 'NOVO_COLABORADOR':
-              redirectUrl = 'telainicial-novo-colaborador.html';
-              break;
-            case 'BUDDY':
-              redirectUrl = 'telainicial-buddy.html';
-              break;
-            case 'GESTOR':
-              redirectUrl = 'telainicial-gestor.html';
-              break;
-          }
-
-          setTimeout(() => {
-            window.location.href = 'telainicial.html'; // Redireciona para telainicial.html
-          }, 1000);
+          alert(
+            'Login bem-sucedido! Token e dados do usuário armazenados. Verifique o console e o localStorage.'
+          );
         } else {
+          // Erros como 400, 401, 500
           console.error('Falha no login. Status:', response.status, 'Resposta:', data);
           if (errorMessageElement) {
             errorMessageElement.textContent =
-              data.message ||
-              `Erro ${response.status}: Falha no login. Verifique suas credenciais.`;
+              data.message || `Erro ${response.status}: Falha no login.`;
             errorMessageElement.classList.remove('hidden');
+            errorMessageElement.classList.add('text-red-400', 'bg-red-900'); // Garante classes de erro
+            errorMessageElement.classList.remove('text-green-400', 'bg-green-900');
           }
         }
       } catch (error) {
         console.error('Erro de rede ou ao tentar fazer login:', error);
         if (errorMessageElement) {
-          errorMessageElement.textContent =
-            'Erro de comunicação com o servidor. Tente novamente mais tarde.';
+          errorMessageElement.textContent = 'Erro de comunicação com o servidor. Tente novamente.';
           errorMessageElement.classList.remove('hidden');
+          errorMessageElement.classList.add('text-red-400', 'bg-red-900');
+          errorMessageElement.classList.remove('text-green-400', 'bg-green-900');
         }
       }
     });
-  } else {
-    console.error('Elemento do formulário de login (id="loginForm") não encontrado.');
   }
 });

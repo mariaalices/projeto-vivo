@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIVO ESSENTIAL - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col p-4 selection:bg-purple-500 selection:text-white"
+  >
+    <main class="flex-grow flex items-center justify-center w-full">
+      <div
+        class="w-full max-w-md bg-slate-800 bg-opacity-70 backdrop-blur-md rounded-xl shadow-2xl p-6 sm:p-8 md:p-12 transform transition-all duration-500 hover:scale-[1.01]"
+      >
+        <div class="text-center mb-6 sm:mb-8">
+          <img src="imagens/logo-vivo.svg" alt="Logo VIVO" class="w-32 md:w-36 h-auto mx-auto" />
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-purple-300 tracking-tight mt-0 mb-1 sm:mb-2"
+          >
+            ESSENTIAL
+          </h1>
+          <p class="mt-1 text-base sm:text-lg text-purple-300">Todo aprendizado em um só lugar</p>
+        </div>
+
+        <form id="loginForm" action="#" method="POST" class="space-y-5 sm:space-y-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-purple-200"
+              >Email ou Usuário</label
+            >
+            <div class="mt-1">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="appearance-none block w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-sm bg-slate-700 border border-slate-600 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm sm:text-base transition duration-300"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-purple-200">Senha</label>
+            <div class="mt-1">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                class="appearance-none block w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg shadow-sm bg-slate-700 border border-slate-600 placeholder-slate-400 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm sm:text-base transition duration-300"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox" 
+                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-slate-500 rounded bg-slate-700 transition duration-300"
+              />
+              <label for="remember-me" class="ml-2 block text-xs sm:text-sm text-purple-200">
+                Lembrar-me
+              </label>
+            </div>
+
+            <div class="text-xs sm:text-sm">
+              <a
+                href="#"
+                class="font-medium text-purple-400 hover:text-purple-300 transition duration-300"
+              >
+                Esqueceu sua senha?
+              </a>
+            </div>
+          </div>
+
+          <div
+            id="errorMessage"
+            class="hidden text-center text-red-400 mb-4 p-2 bg-red-900 bg-opacity-30 rounded-md"
+          ></div>
+
+          <div>
+            <button
+              type="submit"
+              class="w-full flex justify-center py-2.5 sm:py-3 px-4 border border-transparent rounded-lg shadow-lg text-sm sm:text-base font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-6 sm:mt-8 text-center">
+          <p class="text-xs sm:text-sm text-slate-400">
+            Não tem uma conta?
+            <a
+              href="#"
+              class="font-medium text-purple-400 hover:text-purple-300 transition duration-300"
+            >
+              Crie uma agora
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="w-full text-center text-xs text-slate-500 py-4 px-4">
+      &copy; <span id="currentYear">2025</span> VIVO ESSENTIAL. Todos os direitos reservados.
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

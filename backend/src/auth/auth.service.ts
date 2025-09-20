@@ -1,4 +1,3 @@
-// auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -72,16 +71,15 @@ export class AuthService {
       descricao: user.descricao,
     };
 
-    // Lógica para definir a URL de redirecionamento
     let redirectUrl: string | undefined;
     if (user.tipoPerfil === UserProfileType.NOVO_COLABORADOR) {
-      redirectUrl = '/telainicial-novo-colaborador.html';
+      redirectUrl = '/DEV/home_newuser.html'; // Corrigido para a página existente
     } else if (user.tipoPerfil === UserProfileType.BUDDY) {
-      redirectUrl = '/home_buddy.html';
+      redirectUrl = '/DEV/home_buddy.html'; // Corrigido para a página existente
     } else if (user.tipoPerfil === UserProfileType.GESTOR) {
-      redirectUrl = '/home_gestor.html';
+      redirectUrl = '/DEV/home_gestor.html'; // Corrigido para a página existente
     } else {
-      redirectUrl = '/telainicial.html'; // Default
+      redirectUrl = '/DEV/telainicial.html';
     }
 
     return {

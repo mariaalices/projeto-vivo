@@ -2,7 +2,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity, UserProfileType } from '../entities/user.entity'; // Importe UserProfileType
+import { UserEntity, UserProfileType } from '../entities/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { TokenPayload, AuthenticatedUser } from './jwt.strategy';
@@ -37,16 +37,16 @@ export class AuthService {
         'Credenciais inválidas ou usuário inativo.',
       );
     }
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { senhaHash, ...result } = user;
     return result;
   }
 
-  // Modificação aqui:
   login(user: Omit<UserEntity, 'senhaHash'>): {
     access_token: string;
     user: AuthenticatedUser;
-    redirectUrl?: string; // Adicionado para a URL opcional
+    redirectUrl?: string;
   } {
     const payloadForToken: TokenPayload = {
       sub: user.idUsuario,
@@ -76,15 +76,18 @@ export class AuthService {
     let redirectUrl: string | undefined;
     if (user.tipoPerfil === UserProfileType.NOVO_COLABORADOR) {
       redirectUrl = '/telainicial-novo-colaborador.html';
+    } else if (user.tipoPerfil === UserProfileType.BUDDY) {
+      redirectUrl = '/home_buddy.html';
+    } else if (user.tipoPerfil === UserProfileType.GESTOR) {
+      redirectUrl = '/home_gestor.html';
     } else {
-      // Você pode definir outras URLs para outros perfis aqui
-      redirectUrl = '/telainicial.html';
+      redirectUrl = '/telainicial.html'; // Default
     }
 
     return {
       access_token: this.jwtService.sign(payloadForToken),
       user: userToReturn,
-      redirectUrl, // Retornando a URL de redirecionamento
+      redirectUrl,
     };
   }
 

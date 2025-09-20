@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ChatbotResponseDto } from './dto/chatbot.dto';
 import axios from 'axios';
 import { ChatbotAiResponseDto } from './dto/chatbot-ai-response.dto';
-
 @Injectable()
 export class ChatbotService {
   private readonly logger = new Logger(ChatbotService.name);
@@ -35,7 +34,6 @@ export class ChatbotService {
       return { assistantMessage };
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
-        // O método 'isAxiosError' é o mais seguro para essa verificação
         this.logger.error(
           'Erro ao chamar a API da LLM:',
           error.response?.data || error.message,

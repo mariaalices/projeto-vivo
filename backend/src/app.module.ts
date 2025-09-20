@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -9,6 +11,9 @@ import { ChatbotModule } from './chatbot/chatbot.module';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', 'DEV'),
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
@@ -21,7 +26,7 @@ import { ChatbotModule } from './chatbot/chatbot.module';
         username: configService.get<string>('DB_USER'),
         password: configService.get<string>('DB_PASSWORD'),
         connectString: configService.get<string>('DB_CONNECT_STRING'),
-        entities: [UserEntity], // Removida a referência a EventoEntity
+        entities: [UserEntity],
         synchronize: false,
         logging:
           configService.get<string>('NODE_ENV') === 'development'
@@ -30,7 +35,7 @@ import { ChatbotModule } from './chatbot/chatbot.module';
       }),
     }),
     AuthModule,
-    ChatbotModule, // O módulo do Chatbot é mantido
+    ChatbotModule,
   ],
   controllers: [AppController],
   providers: [AppService],

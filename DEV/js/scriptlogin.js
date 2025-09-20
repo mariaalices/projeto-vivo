@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const currentYearElement = document.getElementById('currentYear');
   if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
-  }
+  } // --- Lógica do Formulário de Login ---
 
-  // --- Lógica do Formulário de Login ---
   const loginForm = document.getElementById('loginForm');
   const errorMessageElement = document.getElementById('errorMessage');
 
@@ -56,23 +55,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (response.ok) {
           // Status HTTP 200-299
-          console.log('Login bem-sucedido! Resposta do backend:', data);
-          if (errorMessageElement) {
-            errorMessageElement.textContent =
-              'Login bem-sucedido! Token: ' + data.access_token.substring(0, 30) + '...';
-            errorMessageElement.classList.remove('hidden');
-            errorMessageElement.classList.remove('text-red-400', 'bg-red-900'); // Remove classes de erro
-            errorMessageElement.classList.add('text-green-400', 'bg-green-900'); // Adiciona classes de sucesso
-          }
-          alert('Login bem-sucedido! Redirecionando...'); // Opcional: apenas para feedback visual rápido
-          window.location.href = 'home_newuser.html'; // Redireciona para a tela de home criada
+          console.log('Login bem-sucedido! Resposta do backend:', data); // Armazena o token e os dados do usuário no localStorage
 
-          // Aqui você pode armazenar o token e os dados do usuário no localStorage
           localStorage.setItem('accessToken', data.access_token);
-          localStorage.setItem('userData', JSON.stringify(data.user));
-          alert(
-            'Login bem-sucedido! Token e dados do usuário armazenados. Verifique o console e o localStorage.'
-          );
+          localStorage.setItem('userData', JSON.stringify(data.user)); // **INÍCIO DA LÓGICA DE REDIRECIONAMENTO CORRIGIDA**
+
+          if (data.redirectUrl) {
+            window.location.href = data.redirectUrl; // Redireciona com base na resposta do backend
+          } else {
+            // Se não houver URL de redirecionamento, use uma URL padrão
+            window.location.href = 'index.html'; // Ou qualquer página padrão
+          } // **FIM DA LÓGICA DE REDIRECIONAMENTO CORRIGIDA**
+          if (errorMessageElement) {
+            errorMessageElement.textContent = 'Login bem-sucedido! Redirecionando...';
+            errorMessageElement.classList.remove('hidden');
+            errorMessageElement.classList.remove('text-red-400', 'bg-red-900');
+            errorMessageElement.classList.add('text-green-400', 'bg-green-900');
+          }
+          alert('Login bem-sucedido! Redirecionando...');
         } else {
           // Erros como 400, 401, 500
           console.error('Falha no login. Status:', response.status, 'Resposta:', data);
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMessageElement.textContent =
               data.message || `Erro ${response.status}: Falha no login.`;
             errorMessageElement.classList.remove('hidden');
-            errorMessageElement.classList.add('text-red-400', 'bg-red-900'); // Garante classes de erro
+            errorMessageElement.classList.add('text-red-400', 'bg-red-900');
             errorMessageElement.classList.remove('text-green-400', 'bg-green-900');
           }
         }

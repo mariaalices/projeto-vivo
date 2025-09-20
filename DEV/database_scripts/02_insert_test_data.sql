@@ -19,17 +19,17 @@ COMMIT;
 
 -- Atualiza a senha do Novo Colaborador
 UPDATE VE_USUARIOS
-SET SENHA_HASH = '$2b$10$xYzxOiSX3V7saFq8n3t/BeFfcwz0tF2rBUKRd.QBGxw9nVUZQmORu'
+SET SENHA_HASH = '$2b$10$W3V1w/vRrzs5ox8Te5Km4.blgyKfF1PKesnCB2lIoe.OQVXlpdYyG'
 WHERE EMAIL = 'novato@vivo.com.br';
 
 -- Atualiza a senha do Buddy
 UPDATE VE_USUARIOS
-SET SENHA_HASH = '$2b$10$CLhwmQ6FBn0.iXKuJVhWeeQW/DGkTjiOVbvoxVJngA8.QkUpxmAOG'
+SET SENHA_HASH = '$2b$10$aVdrwokdyhJ4tofyL9iqyORrmbxS.JnrtiR3fo0cUIns9mnWVZZbK'
 WHERE EMAIL = 'buddy.legal@vivo.com.br';
 
 -- Atualiza a senha do Gestor
 UPDATE VE_USUARIOS
-SET SENHA_HASH = '$2b$10$tZOSJaj2eVThu2SKztrwROtDEDwWFR4q9.eUQp5lYg5BY3F1l2eMy'
+SET SENHA_HASH = '$2b$10$LtUylohO7BT5WJPryuWw3e3pj5FRTgMHkdGcSP78qNuF6Tbk2x76K'
 WHERE EMAIL = 'gestor.chefe@vivo.com.br';
 
 -- Confirme as alterações

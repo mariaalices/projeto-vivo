@@ -14,10 +14,9 @@ import {
 import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { AuthGuard } from '@nestjs/passport';
-// import { JwtPayload } from './jwt.strategy'; // << REMOVA ESTA SE NÃO FOR USADA E JÁ TIVER AuthenticatedUser
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UserEntity } from '../entities/user.entity';
-import { AuthenticatedUser } from './jwt.strategy'; // Esta é a que queremos para req.user
+import { AuthenticatedUser } from './jwt.strategy';
 
 interface AuthenticatedRequest extends globalThis.Request {
   user: AuthenticatedUser;
@@ -64,7 +63,7 @@ export class AuthController {
     @Request() req: AuthenticatedRequest,
     @Body() updateProfileDto: UpdateProfileDto,
   ): Promise<Omit<UserEntity, 'senhaHash'>> {
-    const userId = req.user.idUsuario; // Correto, pois AuthenticatedUser tem idUsuario
+    const userId = req.user.idUsuario;
     return this.authService.updateProfile(userId, updateProfileDto);
   }
 }

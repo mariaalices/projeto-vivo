@@ -4,7 +4,7 @@ import { ChatbotController } from './chatbot.controller';
 import { AuthModule } from '../auth/auth.module'; // Importe o AuthModule
 
 @Module({
-  imports: [AuthModule], // Adicione aqui
+  imports: [AuthModule], // Adicione o AuthModule aqui
   providers: [ChatbotService],
   controllers: [ChatbotController],
 })

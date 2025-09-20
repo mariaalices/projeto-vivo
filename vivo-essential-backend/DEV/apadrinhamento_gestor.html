@@ -7,7 +7,7 @@
   <title>Apadrinhamento</title>
   <link rel="icon" href="./imagens/logo-vivo.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <style>
     /* Reset básico */
     * {
@@ -91,22 +91,26 @@
       align-items: center;
       min-height: 100vh;
     }
-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* h1 à esquerda, user-actions à direita */
-  align-items: center;
-  margin-bottom: 2rem;
-  padding: 0 2rem; /* aumenta o padding lateral se quiser mais espaço */
-}
 
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #b798f9;
-  flex-wrap: nowrap; /* garante que não quebre linha */
-}
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      /* h1 à esquerda, user-actions à direita */
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 2rem;
+      /* aumenta o padding lateral se quiser mais espaço */
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #b798f9;
+      flex-wrap: nowrap;
+      /* garante que não quebre linha */
+    }
 
 
     header h1 {
@@ -390,14 +394,27 @@ header {
 
 <body>
   <!-- Sidebar -->
-  <nav class="sidebar">
-    <ul>
-      <li><img src="./imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></li>
-      <li><img src="./imagens/apadrinhamento.png" alt="Apadrinhamento" /><span>Apadrinhamento</span></li>
-      <li><img src="./imagens/desempenho.png" alt="Desempenho" /><span>Desempenho</span></li>
-      <li><img src="./imagens/calendario.png" alt="Calendário" /><span>Calendário</span></li>
+  <div
+    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+    <ul class="flex flex-col">
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="apadrinhamento_gestor.html">Apadrinhamento</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="visao_geral_gestor.html">Desempenho</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_gestor.html">Meu Perfil</a></span>
+      </li>
     </ul>
-  </nav>
+  </div>
 
   <!-- Conteúdo principal -->
   <main>
@@ -411,7 +428,8 @@ header {
         <div id="notifModal" aria-label="Notificações">
           <div class="notif-item">
             <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+            </p>
           </div>
           <div class="notif-item">
             <img src="./imagens/avatar.png" alt="Avatar" />
@@ -550,4 +568,5 @@ header {
     });
   </script>
 </body>
+
 </html>

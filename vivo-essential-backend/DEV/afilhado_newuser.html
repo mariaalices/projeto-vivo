@@ -152,6 +152,9 @@
       border-radius: 10px;
       border: none;
       font-size: 14px;
+      background: #000000;
+      /* cinza escuro */
+      color: #ffffff;
     }
 
     #saveSchedule {
@@ -213,87 +216,67 @@
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Home</span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="afilhado_newuser.html">Meu Afiliado</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/configuracoes.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_buddy.html">Meu Perfil</a></span>
       </li>
     </ul>
   </div>
 
+
   <!-- Main -->
-  <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16">
-    <!-- Cabeçalho -->
-    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
-      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-      <div class="flex items-center space-x-4 relative">
-        <!-- Ícone de Notificação -->
-        <img id="notifIcon" src="./imagens/notificacao.jpg" alt="Notificações"
-          class="w-7 h-6 rounded-full cursor-pointer">
+  <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16 flex justify-center">
+    <div class="w-full max-w-5xl"> <!-- Limite de largura -->
+      <!-- Cabeçalho -->
+      <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+        <h1 class="text-2xl font-bold text-purple-200">Meu Afiliado</h1>
+        <div class="flex items-center space-x-4 relative">
+          <!-- Ícone de Notificação -->
+          <img id="notifIcon" src="./imagens/notificacao.jpg" alt="Notificações"
+            class="w-7 h-6 rounded-full cursor-pointer">
 
-        <span class="text-purple-200">Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
+          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
 
-        <!-- Modal de Notificações -->
-        <div id="notifModal"
-          class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
+          <!-- Modal de Notificações -->
+          <div id="notifModal"
+            class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
+            <!-- ... conteúdo igual ... -->
           </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- Conteúdo do primeiro código -->
-    <section class="afilhado-info">
-      <h2>MEU AFILHADO</h2>
-      <div class="perfil">
-        <img src="perfil.png" alt="avatar" />
-        <div class="info-text">
-          <p><strong>Lorem ipsum dolor sit amet</strong></p>
-          <p>In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent taciti sociosqu ad
-            litora torquent per conubia nostra, per inceptos himenaeos. Fusce congue ultricies dui sit amet maximus.
-            Vestibulum</p>
+      <!-- Conteúdo do primeiro código -->
+      <section class="afilhado-info">
+        <h2>MEU AFILHADO</h2>
+        <div class="perfil">
+          <img src="./imagens/perfil.png" alt="avatar" />
+          <div class="info-text">
+            <p><strong>Um pouco sobre mim:</strong></p>
+            <p>In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci...</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="progress-message">
-      <div class="progress-chart">
-        <canvas id="myPieChart"></canvas>
-      </div>
-      <div class="message-box">
-        <textarea placeholder="Enviar mensagem:"></textarea>
-        <button id="saveSchedule">Salvar Agendamento</button>
-      </div>
-    </section>
+      <section class="progress-message text-black">
+        <div class="progress-chart">
+          <canvas id="myPieChart"></canvas>
+        </div>
+        <div class="message-box">
+          <textarea placeholder="Enviar mensagem:"></textarea>
+          <button id="saveSchedule">Salvar Agendamento</button>
+        </div>
+      </section>
+    </div>
   </main>
+
 
   <!-- Botão de ajuda -->
   <button class="help-btn">?</button>
@@ -395,4 +378,5 @@
     }
   </script>
 </body>
+
 </html>

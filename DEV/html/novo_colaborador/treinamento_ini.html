@@ -3,369 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Onboarding</title>
+    <title>Treinamento Inicial</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
-    <link rel="stylesheet" href="../../css/notifications.css" />
-
-    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
-
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
-    <div
-      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
-    >
-      <ul class="flex flex-col">
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home" />
-          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+    <div class="sidebar">
+      <ul>
+        <li><img src="../../imagens/botao-de-inicio.png" alt="Home" /> <span>Home</span></li>
+        <li><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></li>
+        <li>
+          <img src="../../imagens/grafico-de-barras.png" alt="Meu Desenvolvimento" /><span
+            >Meu Desenvolvimento</span
+          >
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos" />
-          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+        <li>
+          <img src="../../imagens/perfil-de-usuario.png" alt="Meu Perfil" /><span>Meu Perfil</span>
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações" />
-          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        <li>
+          <img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+            >Configurações</span
+          >
         </li>
       </ul>
     </div>
 
-    <main class="flex-1 md:ml-24 px-6 py-10">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
-      >
-        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:ml-20">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">
+          Etapa 2 - Treinamento Inicial
+        </h1>
 
-        <div class="flex items-center gap-4 relative">
-          <img
-            id="notifIcon"
-            src="../../imagens/packard-bell.png"
-            alt="Notificações"
-            class="w-7 h-6 cursor-pointer"
-          />
-
-          <div
-            id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
           >
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
-                conversar?
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
-                atrasado... posso te ajudar? =)
-              </p>
-            </div>
-          </div>
-
-          <span class="text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-            Desconectar
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <button
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+          >
+            Continuar
           </button>
         </div>
       </header>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const notifIcon = document.getElementById('notifIcon');
-          // CORRIGINDO SELETOR: O modal de notificações está no header
-          const notifModal = document.querySelector('header #notifModal');
-          if (notifIcon && notifModal) {
-            notifIcon.addEventListener('click', function (e) {
-              notifModal.classList.toggle('hidden');
-              e.stopPropagation();
-            });
-            document.addEventListener('click', function (e) {
-              if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-                notifModal.classList.add('hidden');
-              }
-            });
-            notifModal.addEventListener('click', function (e) {
-              e.stopPropagation();
-            });
-          }
-        });
-      </script>
-
-      <div class="flex-1 md:ml-24 px-6 py-10 space-y-12">
-        <section class="max-w-6xl mx-auto">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
-            <a
-              href="/html/novo_colaborador/sua_vibe.html"
-              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
-            >
-              Continuar
-            </a>
-          </div>
-
-          <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-white"
-                  >Situação: <span class="font-semibold">Em progresso</span></span
-                >
-                <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-                  <div class="w-[10%] h-full bg-purple-500"></div>
-                </div>
-                <span class="text-sm text-white">10%</span>
-              </div>
-            </div>
-
-            <div class="relative">
-              <button
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollLeft('carrossel1')"
-              >
-                &lt;
-              </button>
-
-              <div
-                id="carrossel1"
-                class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10"
-              >
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-blue-300 font-bold text-gray-400 text-left">
-                    500 coins
-                  </div>
-                  <img
-                    src="../../imagens/onboarding.jpg"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm text-white mb-3">Curso: Jornada de Onboarding</p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
-                    Finalizado
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-                  <img
-                    src="../../imagens/seguranca.png"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Normas de Segurança</p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
-                    Finalizado
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">1000 coins</div>
-                  <img
-                    src="../../imagens/qa.webp"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">
-                    Curso: Jornada iniciante QA (Iniciante)
-                  </p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
-                    Iniciar
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-                  <img
-                    src="../../imagens/politica.png"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Política de Privacidade</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
-                    Iniciar
-                  </button>
-                </div>
-              </div>
-
-              <button
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollRight('carrossel1')"
-              >
-                &gt;
-              </button>
-            </div>
-
-            <div class="flex justify-center mt-4 gap-2">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-            </div>
-          </div>
-        </section>
-
-        <section class="max-w-6xl mx-auto">
-          <h2 class="text-xl font-semibold mb-4 text-white">Conhecimentos Gerais</h2>
-
-          <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-bold text-white">Treinamentos Opcionais</h3>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-white"
-                  >Situação: <span class="font-semibold">Em progresso</span></span
-                >
-                <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-                  <div class="w-[5%] h-full bg-purple-500"></div>
-                </div>
-                <span class="text-sm text-white">5%</span>
-              </div>
-            </div>
-
-            <div class="relative">
-              <button
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollLeft('carrossel2')"
-              >
-                &lt;
-              </button>
-
-              <div
-                id="carrossel2"
-                class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10"
-              >
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img
-                    src="../../imagens/database.jpg"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">
-                    Curso: Banco de Dados (Intermediario)
-                  </p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
-                    Finalizado
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img
-                    src="../../imagens/ux.jpg"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">Curso: User Experience (Avançado)</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
-                    Iniciar
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img
-                    src="../../imagens/ia.jpeg"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">
-                    Curso: Inteligência Artificial (Básico)
-                  </p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
-                    Iniciar
-                  </button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img
-                    src="../../imagens/Bm.webp"
-                    alt="Curso"
-                    class="rounded-md my-3 w-full h-28 object-cover"
-                  />
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Business Management</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
-                    Iniciar
-                  </button>
-                </div>
-              </div>
-
-              <button
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollRight('carrossel2')"
-              >
-                &gt;
-              </button>
-            </div>
-
-            <div class="flex justify-center mt-4 gap-2">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-            </div>
-          </div>
-        </section>
-        <button
-          class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition"
-        >
-          ?
-        </button>
-      </div>
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 shadow-lg w-full max-w-4xl"
+      >
+        <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+          Assista ao vídeo de boas-vindas da VIVO:
+        </p>
+        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">
+          <iframe
+            class="w-full h-full"
+            src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+            title="Vídeo de Boas-Vindas VIVO"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
     </main>
 
-    <script>
-      function scrollLeft(id) {
-        document.getElementById(id).scrollBy({ left: -250, behavior: 'smooth' });
-      }
-      function scrollRight(id) {
-        document.getElementById(id).scrollBy({ left: 250, behavior: 'smooth' });
-      }
-    </script>
+    <script src="../../js/theme-swither.js"></script>
   </body>
 </html>

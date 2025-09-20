@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
     <div
       class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
@@ -44,9 +45,17 @@
       <header
         class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
       >
-        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Página Inicial</h1>
 
         <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
@@ -107,7 +116,7 @@
             </div>
           </div>
 
-          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
           <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
             Desconectar
           </button>
@@ -117,8 +126,10 @@
       <div class="max-w-6xl mx-auto px-4 space-y-10">
         <section class="max-w-4xl w-full mx-auto">
           <div class="max-w-6xl mx-auto px-4 space-y-10">
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-10">
-              <h2 class="text-lg font-semibold text-purple-300 mb-4">
+            <section
+              class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-10 shadow-md"
+            >
+              <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
                 Avalie sua relação com o Afiliado:
               </h2>
               <div class="flex justify-center space-x-6 mb-4 flex-wrap">
@@ -129,7 +140,7 @@
                 <button class="text-4xl">😍</button>
               </div>
               <textarea
-                class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4"
+                class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3 mb-4"
                 rows="2"
                 placeholder="Escreva um motivo..."
               ></textarea>
@@ -142,8 +153,12 @@
               </div>
             </section>
 
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-10">
-              <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
+            <section
+              class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-10 shadow-md"
+            >
+              <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+                Sua Jornada Onboarding
+              </h2>
               <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -151,9 +166,11 @@
                   >
                     2
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Treinamentos</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -161,9 +178,11 @@
                   >
                     3
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Sua Vibe</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -171,9 +190,11 @@
                   >
                     4
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Areas</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -181,9 +202,11 @@
                   >
                     5
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Buddy+CLS</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -191,9 +214,11 @@
                   >
                     6
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >To na TI</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -201,9 +226,11 @@
                   >
                     7
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Senhas</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -211,9 +238,11 @@
                   >
                     8
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Pesquisa</span
+                  >
                 </div>
-                <span class="hidden md:inline text-purple-400">&#8594;</span>
+                <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
 
                 <div class="flex flex-col items-center min-w-[60px]">
                   <div
@@ -221,7 +250,9 @@
                   >
                     9
                   </div>
-                  <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
+                  <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+                    >Preparaçao</span
+                  >
                 </div>
               </div>
               <div class="flex justify-center">
@@ -234,11 +265,13 @@
             </section>
 
             <section class="mb-10">
-              <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
-              <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex items-start gap-6">
+              <h2 class="text-slate-700 dark:text-white font-semibold mb-4">Perfil do afiliado:</h2>
+              <div
+                class="bg-white dark:bg-slate-800 dark:bg-opacity-70 p-6 rounded-lg flex items-start gap-6 shadow-md"
+              >
                 <div class="p-4 rounded-lg flex flex-col items-center w-48">
                   <div
-                    class="w-24 h-24 rounded-full bg-[#d9d9d9] flex items-center justify-center overflow-hidden"
+                    class="w-24 h-24 rounded-full bg-gray-200 dark:bg-[#d9d9d9] flex items-center justify-center overflow-hidden"
                   >
                     <img
                       src="../../imagens/pessoa1.jpg"
@@ -246,12 +279,18 @@
                       class="w-full h-full object-cover"
                     />
                   </div>
-                  <h2 class="text-white font-semibold text-center mt-3">Bruno Oliveira Testes</h2>
-                  <p class="text-[#a1a1a1] text-sm text-center">Estagiário TI</p>
+                  <h2 class="text-slate-800 dark:text-white font-semibold text-center mt-3">
+                    Bruno Oliveira Testes
+                  </h2>
+                  <p class="text-gray-500 dark:text-[#a1a1a1] text-sm text-center">Estagiário TI</p>
                 </div>
 
-                <div class="flex-1 p-4 text-[#dcdcdc] leading-relaxed text-justify">
-                  <h3 class="text-white font-semibold mb-2">Um pouco sobre seu afiliado:</h3>
+                <div
+                  class="flex-1 p-4 text-gray-600 dark:text-[#dcdcdc] leading-relaxed text-justify"
+                >
+                  <h3 class="text-slate-700 dark:text-white font-semibold mb-2">
+                    Um pouco sobre seu afiliado:
+                  </h3>
                   <p>
                     In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class
                     aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
@@ -265,8 +304,10 @@
             </section>
 
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-              <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+              <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md">
+                <h3 class="text-purple-700 dark:text-purple-300 font-semibold text-xl mb-6">
+                  VIVO Coin
+                </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   <div>
                     <img
@@ -275,7 +316,7 @@
                       class="w-full h-auto rounded-lg shadow-lg"
                     />
                   </div>
-                  <div class="text-purple-200 flex flex-col justify-center">
+                  <div class="text-slate-600 dark:text-purple-200 flex flex-col justify-center">
                     <p class="mb-4">
                       VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
                       interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
@@ -289,31 +330,37 @@
                 </div>
               </div>
 
-              <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-                <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
-                <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
+              <div
+                class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto shadow-md"
+              >
+                <h3 class="text-purple-700 dark:text-purple-300 font-semibold mb-4">
+                  Ranking semanal Vivo coins
+                </h3>
+                <table
+                  class="w-full text-left text-slate-600 dark:text-purple-200 min-w-[300px] border-collapse"
+                >
                   <thead>
                     <tr>
-                      <th class="pb-2 border-b border-purple-300">Usuário</th>
-                      <th class="pb-2 border-b border-purple-300">Pontos</th>
+                      <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Usuário</th>
+                      <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Pontos</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="py-2 border-b border-purple-300">Você</td>
-                      <td class="py-2 border-b border-purple-300">500</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">Você</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">500</td>
                     </tr>
                     <tr>
-                      <td class="py-2 border-b border-purple-300">Maria</td>
-                      <td class="py-2 border-b border-purple-300">400</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">Maria</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">400</td>
                     </tr>
                     <tr>
-                      <td class="py-2 border-b border-purple-300">Carlos</td>
-                      <td class="py-2 border-b border-purple-300">350</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">Carlos</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">350</td>
                     </tr>
                     <tr>
-                      <td class="py-2 border-b border-purple-300">Inacia</td>
-                      <td class="py-2 border-b border-purple-300">250</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">Inacia</td>
+                      <td class="py-2 border-b border-gray-300 dark:border-purple-300">250</td>
                     </tr>
                     <tr>
                       <td class="py-2">Paula</td>
@@ -334,6 +381,7 @@
       ?
     </button>
 
+    <script src="../../js/theme-swither.js"></script>
     <script>
       const notifIcon = document.getElementById('notifIcon');
       const notifModal = document.getElementById('notifModal');

@@ -3,325 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Onboarding</title>
+    <title>Acesso Inicial</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
-    <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
-
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
-    <div
-      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
-    >
-      <ul class="flex flex-col">
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home" />
-          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+    <div class="sidebar">
+      <ul>
+        <li><img src="../../imagens/botao-de-inicio.png" alt="Home" /> <span>Home</span></li>
+        <li><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></li>
+        <li>
+          <img src="../../imagens/grafico-de-barras.png" alt="Meu Desenvolvimento" /><span
+            >Meu Desenvolvimento</span
+          >
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos" />
-          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+        <li>
+          <img src="../../imagens/perfil-de-usuario.png" alt="Meu Perfil" /><span>Meu Perfil</span>
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações" />
-          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        <li>
+          <img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+            >Configurações</span
+          >
         </li>
       </ul>
     </div>
 
-    <main class="flex-1 md:ml-24 px-6 py-10">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
-      >
-        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
-
-        <div class="flex items-center gap-4 relative">
-          <img
-            id="notifIcon"
-            src="../../imagens/packard-bell.png"
-            alt="Notificações"
-            class="w-7 h-6 cursor-pointer"
-          />
-
-          <div
-            id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:ml-20">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">
+          Etapa 7 - Acesso Inicial
+        </h1>
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
           >
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
-                conversar?
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
-                atrasado... posso te ajudar? =)
-              </p>
-            </div>
-          </div>
-
-          <span class="text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-            Desconectar
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <button
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+          >
+            Continuar
           </button>
         </div>
       </header>
 
-      <script>
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.querySelector('header #notifModal'); // Corrigido para selecionar o modal correto
-
-        if (notifIcon && notifModal) {
-          notifIcon.addEventListener('click', () => {
-            notifModal.classList.toggle('hidden');
-          });
-
-          // Se quiser que feche ao clicar fora do modal:
-          document.addEventListener('click', (e) => {
-            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-              notifModal.classList.add('hidden');
-            }
-          });
-        }
-      </script>
-
-      <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <div class="max-w-5xl mx-auto py-10 px-6 space-y-10">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Etapa 4 - Acessos Iniciais:</h2>
-            <a
-              href="/html/buddy/buddy_cls_ti.html"
-              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
-            >
-              Continuar
-            </a>
-          </div>
-
-          <h3 class="text-lg font-semibold text-purple-300">Solicitação de acesso:</h3>
-
-          <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg">
-            <h4 class="font-semibold text-white mb-4">Nova Solicitação:</h4>
-
-            <div class="space-y-4">
-              <div>
-                <label class="block text-white text-sm mb-1">Nome da plataforma:</label>
-                <input
-                  type="text"
-                  placeholder="Digite aqui..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                />
-              </div>
-              <div>
-                <label class="block text-white text-sm mb-1">Motivo da solicitação:</label>
-                <textarea
-                  placeholder="Digite o motivo..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                ></textarea>
-              </div>
-              <button
-                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg"
-              >
-                Salvar Solicitação
-              </button>
-            </div>
-          </div>
-
-          <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg space-y-6">
-            <h4 class="font-semibold mb-4 text-white">Demais Acessos:</h4>
-
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img
-                  src="../../imagens/oracle.png"
-                  alt="Oracle SQL"
-                  class="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <p class="font-semibold text-white">APP/Site: Oracle SQL</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p>
-                      <span class="font-semibold">Login:</span>
-                      <input
-                        id="login1"
-                        type="password"
-                        readonly
-                        value="teste32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                    <p>
-                      <span class="font-semibold">Senha:</span>
-                      <input
-                        id="senha1"
-                        type="password"
-                        readonly
-                        value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button
-                onclick="toggleCampos('login1','senha1', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg"
-              >
-                Visualizar Senha
-              </button>
-            </div>
-
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img
-                  src="../../imagens/postman.webp"
-                  alt="Postman"
-                  class="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <p class="font-semibold text-white">APP/Site: Postman</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p>
-                      <span class="font-semibold">Login:</span>
-                      <input
-                        id="login2"
-                        type="password"
-                        readonly
-                        value="testeon32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                    <p>
-                      <span class="font-semibold">Senha:</span>
-                      <input
-                        id="senha2"
-                        type="password"
-                        readonly
-                        value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button
-                onclick="toggleCampos('login2','senha2', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg"
-              >
-                Visualizar Senha
-              </button>
-            </div>
-
-            <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-              <div class="flex items-center gap-4">
-                <img
-                  src="../../imagens/vivoperfil.jpg"
-                  alt="VIVO Developer"
-                  class="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <p class="text-white font-semibold">APP/Site: VIVO Developer</p>
-                  <div class="mt-2 text-sm text-gray-300 space-y-1">
-                    <p>
-                      <span class="font-semibold">Login:</span>
-                      <input
-                        id="login3"
-                        type="password"
-                        readonly
-                        value="vivocorp32@gmail.com"
-                        class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                    <p>
-                      <span class="font-semibold">Senha:</span>
-                      <input
-                        id="senha3"
-                        type="password"
-                        readonly
-                        value="w32x329"
-                        class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600"
-                      />
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button
-                onclick="toggleCampos('login3','senha3', this)"
-                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg"
-              >
-                Visualizar Senha
-              </button>
-            </div>
-          </div>
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 shadow-lg w-full max-w-4xl"
+      >
+        <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+          Solicite seus acessos iniciais:
+        </p>
+        <div class="space-y-3 text-slate-600 dark:text-gray-300">
+          <label class="block"
+            ><input type="checkbox" name="acesso" value="teams" class="mr-2" /> Microsoft
+            Teams</label
+          >
+          <label class="block"
+            ><input type="checkbox" name="acesso" value="outlook" class="mr-2" /> Outlook</label
+          >
+          <label class="block"
+            ><input type="checkbox" name="acesso" value="jira" class="mr-2" /> JIRA</label
+          >
+          <label class="block"
+            ><input type="checkbox" name="acesso" value="confluence" class="mr-2" />
+            Confluence</label
+          >
         </div>
-
-        <script>
-          function toggleCampos(loginId, senhaId, btn) {
-            const login = document.getElementById(loginId);
-            const senha = document.getElementById(senhaId);
-
-            const isHidden = login.type === 'password';
-
-            login.type = isHidden ? 'text' : 'password';
-            senha.type = isHidden ? 'text' : 'password';
-
-            btn.textContent = isHidden ? 'Ocultar Senha' : 'Visualizar Senha';
-          }
-        </script>
-      </div>
+      </section>
     </main>
 
-    <button
-      class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition"
-    >
-      ?
-    </button>
+    <script src="../../js/theme-swither.js"></script>
   </body>
 </html>

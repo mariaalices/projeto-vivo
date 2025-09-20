@@ -1,203 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pesquisa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="../../css/style.css" />
-  <link rel="stylesheet" href="../../css/sidebar.css" />
-  <link rel="stylesheet" href="../../css/notifications.css" />
-  <link rel="stylesheet" href="../../css/pesquisa.css" />
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pesquisa 30 Dias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/sidebar.css" />
+    <link rel="stylesheet" href="../../css/pesquisas.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
+  <body
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
+  >
+    <div class="sidebar">
+      <ul>
+        <li><img src="../../imagens/botao-de-inicio.png" alt="Home" /> <span>Home</span></li>
+        <li><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></li>
+        <li>
+          <img src="../../imagens/grafico-de-barras.png" alt="Meu Desenvolvimento" /><span
+            >Meu Desenvolvimento</span
+          >
+        </li>
+        <li>
+          <img src="../../imagens/perfil-de-usuario.png" alt="Meu Perfil" /><span>Meu Perfil</span>
+        </li>
+        <li>
+          <img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+            >Configurações</span
+          >
+        </li>
+      </ul>
+    </div>
 
-<body>
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home">
-        <span class="ml-3 text-black hidden sidebar-text">Home</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos">
-        <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil">
-        <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações">
-        <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
-      </li>
-    </ul>
-  </div>
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:ml-20">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">
+          Etapa 8 - Pesquisa 30 dias
+        </h1>
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <button
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+          >
+            Continuar
+          </button>
+        </div>
+      </header>
 
-  <main>
-    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
-      <h1 class="text-2xl font-bold text-purple-200">Pesquisa de Satisfação - 30 dias</h1>
-      <div class="flex items-center space-x-4 relative">
-        <img id="notifIcon" src="../../imagens/notificacao.jpg" alt="Notificações"
-          class="w-7 h-6 rounded-full cursor-pointer">
-
-        <span class="text-purple-200">Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
-
-        <div id="notifModal"
-          class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-          <div class="notif-item">
-            <img src="../../imagens/perfil.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 shadow-lg w-full max-w-4xl"
+      >
+        <div class="pergunta mb-6">
+          <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-3">
+            1. Como você avalia seu processo de onboarding até agora?
+          </p>
+          <div class="opcoes-emojis">
+            <button class="emoji-btn">
+              <img src="../../imagens/Péssimo.svg" alt="Péssimo" />
+            </button>
+            <button class="emoji-btn"><img src="../../imagens/Ruim.svg" alt="Ruim" /></button>
+            <button class="emoji-btn"><img src="../../imagens/Média.svg" alt="Média" /></button>
+            <button class="emoji-btn"><img src="../../imagens/Bom.svg" alt="Bom" /></button>
+            <button class="emoji-btn">
+              <img src="../../imagens/Maravilhoso.svg" alt="Maravilhoso" />
+            </button>
           </div>
-          <div class="notif-item">
-            <img src="../../imagens/perfil.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+        </div>
+
+        <div class="pergunta mb-6">
+          <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-3">
+            2. Você se sente acolhido(a) pela equipe e pela VIVO?
+          </p>
+          <div class="opcoes-emojis">
+            <button class="emoji-btn">
+              <img src="../../imagens/Péssimo.svg" alt="Péssimo" />
+            </button>
+            <button class="emoji-btn"><img src="../../imagens/Ruim.svg" alt="Ruim" /></button>
+            <button class="emoji-btn"><img src="../../imagens/Média.svg" alt="Média" /></button>
+            <button class="emoji-btn"><img src="../../imagens/Bom.svg" alt="Bom" /></button>
+            <button class="emoji-btn">
+              <img src="../../imagens/Maravilhoso.svg" alt="Maravilhoso" />
+            </button>
           </div>
-          <div class="notif-item">
-            <img src="../../imagens/system-integration.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+        </div>
+
+        <div class="pergunta mb-6">
+          <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-3">
+            3. Você acredita que as ferramentas e acessos disponibilizados são suficientes?
+          </p>
+          <div class="opcoes space-y-2 text-slate-600 dark:text-gray-300">
+            <label class="block"
+              ><input type="radio" name="q3" value="sim" class="mr-2" /> Sim</label
+            >
+            <label class="block"
+              ><input type="radio" name="q3" value="nao" class="mr-2" /> Não</label
+            >
+            <label class="block"
+              ><input type="radio" name="q3" value="parcialmente" class="mr-2" />
+              Parcialmente</label
+            >
           </div>
-          <div class="notif-item">
-            <img src="../../imagens/perfil.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar? =)</p>
-          </div>
         </div>
-      </div>
-    </header>
 
-    <section id="telaInicial">
-      <h2>Etapa 8 - Pesquisa de satisfação</h2>
-      <p>
-        E aí novo parceiro, o que está achando de nossa jornada de onboard?
-        Para que cada vez possamos agradá-los, bora fazer uma pesquisa de satisfação?!
-      </p>
-      <button id="btnIniciar">Iniciar pesquisa de 30 dias</button>
-    </section>
-
-    <section id="telaPesquisa">
-      <h2>Pesquisa de Satisfação</h2>
-
-      <div class="question">
-        <p>Pergunta 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+        <div class="pergunta">
+          <p class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-3">
+            4. Deixe um feedback para seu Buddy (Opcional):
+          </p>
+          <textarea
+            class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3"
+            rows="3"
+            placeholder="Seu feedback..."
+          ></textarea>
         </div>
-      </div>
+      </section>
+    </main>
 
-      <div class="question">
-        <p>Pergunta 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>Pergunta 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>Pergunta 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
-      <div class="flex gap-4 mt-6">
-        <button
-          class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
-          onclick="enviarRespostas()">
-          Enviar
-        </button>
-
-        <a href="/html/novo_colaborador/trilhastec_etnove.html"
-          class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition text-center">
-          Ir para a próxima etapa
-        </a>
-      </div>
-
-      </div>
-    </section>
-  </main>
-
-  <button class="help-btn">?</button>
-
-  <script>
-    const notifIcon = document.getElementById('notifIcon');
-    const notifModal = document.getElementById('notifModal');
-
-    notifIcon.addEventListener('click', () => {
-      notifModal.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-        notifModal.classList.add('hidden');
-      }
-    });
-
-    // Função para trocar entre as telas
-    const btnIniciar = document.getElementById('btnIniciar');
-    const telaInicial = document.getElementById('telaInicial');
-    const telaPesquisa = document.getElementById('telaPesquisa');
-
-    btnIniciar.addEventListener('click', () => {
-      telaInicial.style.display = 'none';
-      telaPesquisa.style.display = 'block';
-      window.scrollTo(0, 0);
-    });
-
-    function selectOption(button) {
-      let container = button.parentElement;
-      let buttons = container.querySelectorAll("button");
-      buttons.forEach(btn => btn.classList.remove("selected"));
-      button.classList.add("selected");
-    }
-
-    function enviarRespostas() {
-      let respostas = [];
-      let todasRespondidas = true;
-
-      document.querySelectorAll(".question").forEach((q, i) => {
-        let selected = q.querySelector(".selected");
-        if (!selected) {
-          todasRespondidas = false;
-        }
-        respostas.push({
-          pergunta: i + 1,
-          resposta: selected ? selected.innerText : "Não respondida"
-        });
-      });
-
-      if (!todasRespondidas) {
-        alert("⚠️ Por favor, responda todas as perguntas antes de enviar.");
-        return;
-      }
-
-      console.log("Respostas enviadas:", respostas);
-      alert("✅ Respostas enviadas com sucesso! Confira no console.");
-    }
-  </script>
-</body>
-
+    <script src="../../js/theme-swither.js"></script>
+  </body>
 </html>

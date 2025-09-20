@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="../../css/home_newuser.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
 
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
   </head>
 
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
     <div class="sidebar">
       <ul>
@@ -41,8 +42,16 @@
       <header
         class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0"
       >
-        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Página Inicial</h1>
         <div class="flex items-center space-x-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
@@ -50,7 +59,7 @@
             class="w-7 h-6 rounded-full cursor-pointer"
           />
 
-          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
           <button
             class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
           >
@@ -91,29 +100,15 @@
             </div>
           </div>
         </div>
-
-        <script>
-          // Script das notificações
-          const notifIcon = document.getElementById('notifIcon');
-          const notifModal = document.getElementById('notifModal');
-
-          notifIcon.addEventListener('click', () => {
-            notifModal.classList.toggle('hidden');
-          });
-
-          document.addEventListener('click', (e) => {
-            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-              notifModal.classList.add('hidden');
-            }
-          });
-        </script>
       </header>
 
       <section
         id="secao-avaliacao-buddy"
-        class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto"
+        class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto shadow-md"
       >
-        <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
+        <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+          Avalie sua relação com o Buddy:
+        </h2>
         <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
           <button
             class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
@@ -148,14 +143,14 @@
         </div>
         <textarea
           id="motivo-avaliacao"
-          class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4"
+          class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3 mb-4"
           rows="2"
           placeholder="Escreva um motivo... (Opcional)"
         ></textarea>
         <div class="flex justify-center">
           <button
             id="btn-enviar-avaliacao"
-            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-300 dark:disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
             disabled
           >
             Enviar Avaliação
@@ -163,8 +158,12 @@
         </div>
       </section>
 
-      <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto">
-        <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
+      <section
+        class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto shadow-md"
+      >
+        <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+          Sua Jornada Onboarding
+        </h2>
         <div
           class="flex flex-wrap justify-center items-center space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6"
         >
@@ -174,70 +173,82 @@
             >
               2
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >Treinamentos</span
+            >
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               3
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >Sua Vibe</span
+            >
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               4
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center">Areas</span>
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               5
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >Buddy+CLS</span
+            >
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               6
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >To na TI</span
+            >
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               7
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center">Senhas</span>
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               8
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >Pesquisa</span
+            >
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
+          <span class="hidden md:inline text-purple-600 dark:text-purple-400">&#8594;</span>
           <div class="flex flex-col items-center min-w-[60px]">
             <div
               class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold"
             >
               9
             </div>
-            <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
+            <span class="text-xs text-slate-600 dark:text-purple-200 mt-2 text-center"
+              >Preparaçao</span
+            >
           </div>
         </div>
         <div class="flex justify-center">
@@ -251,8 +262,10 @@
 
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8 px-2">
         <section class="max-w-6xl mx-auto px-4 mb-8">
-          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+          <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md">
+            <h3 class="text-purple-700 dark:text-purple-300 font-semibold text-xl mb-6">
+              VIVO Coin
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <img
@@ -261,7 +274,7 @@
                   class="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
-              <div class="text-purple-200 flex flex-col justify-center">
+              <div class="text-slate-700 dark:text-purple-200 flex flex-col justify-center">
                 <p class="mb-4">
                   VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
                   interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
@@ -276,10 +289,14 @@
           </div>
         </section>
 
-        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-          <h3 class="text-purple-300 font-semibold mb-2">Ranking semanal Vivo coins</h3>
+        <div
+          class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto shadow-md"
+        >
+          <h3 class="text-purple-700 dark:text-purple-300 font-semibold mb-2">
+            Ranking semanal Vivo coins
+          </h3>
 
-          <table class="w-full text-left text-purple-200 min-w-[300px]">
+          <table class="w-full text-left text-slate-700 dark:text-purple-200 min-w-[300px]">
             <thead>
               <tr>
                 <th>Usuário</th>
@@ -318,5 +335,27 @@
     >
       ?
     </button>
+
+    <script src="../../js/theme-swither.js"></script>
+    <script>
+      // Script das notificações (mantido)
+      document.addEventListener('DOMContentLoaded', function () {
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
+
+          document.addEventListener('click', (e) => {
+            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+              notifModal.classList.add('hidden');
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>

@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
 
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
     <div
       class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
@@ -45,9 +46,17 @@
       <header
         class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
       >
-        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Onboarding</h1>
 
         <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
@@ -61,7 +70,7 @@
           >
             <div class="flex items-start gap-3 p-3">
               <img
-                src="../../imagens/avatar.png"
+                src="../../imagens/perfil.png"
                 alt="Avatar"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -73,7 +82,7 @@
 
             <div class="flex items-start gap-3 p-3">
               <img
-                src="../../imagens/avatar.png"
+                src="../../imagens/perfil.png"
                 alt="Avatar"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -85,7 +94,7 @@
 
             <div class="flex items-start gap-3 p-3">
               <img
-                src="../../imagens/avatar.png"
+                src="../../imagens/perfil.png"
                 alt="Avatar"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -97,7 +106,7 @@
 
             <div class="flex items-start gap-3 p-3">
               <img
-                src="../../imagens/avatar.png"
+                src="../../imagens/perfil.png"
                 alt="Avatar"
                 class="w-10 h-10 rounded-full object-cover"
               />
@@ -108,7 +117,7 @@
             </div>
           </div>
 
-          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
           <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
             Desconectar
           </button>
@@ -118,7 +127,9 @@
       <div class="max-w-6xl mx-auto px-4 space-y-10">
         <section class="mb-10">
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Etapa 5 - Buddy e CLS</h2>
+            <h2 class="text-xl font-semibold text-slate-800 dark:text-white">
+              Etapa 5 - Buddy e CLS
+            </h2>
             <a
               href="acessoareas.html"
               class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
@@ -127,12 +138,14 @@
             </a>
           </div>
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-white font-semibold">Seu buddy:</h2>
+            <h2 class="text-slate-700 dark:text-white font-semibold">Seu buddy:</h2>
           </div>
-          <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex items-start gap-6">
+          <div
+            class="bg-white dark:bg-slate-800 dark:bg-opacity-70 p-6 rounded-lg flex items-start gap-6 shadow-md"
+          >
             <div class="p-4 rounded-lg flex flex-col items-center w-48">
               <div
-                class="w-24 h-24 rounded-full bg-[#d9d9d9] flex items-center justify-center overflow-hidden"
+                class="w-24 h-24 rounded-full bg-gray-200 dark:bg-[#d9d9d9] flex items-center justify-center overflow-hidden"
               >
                 <img
                   src="../../imagens/pessoa1.jpg"
@@ -140,11 +153,15 @@
                   class="w-full h-full object-cover"
                 />
               </div>
-              <h2 class="text-white font-semibold text-center mt-3">Carlos Gomes Salvatori</h2>
-              <p class="text-[#a1a1a1] text-sm text-center">Jr. QA</p>
+              <h2 class="text-slate-800 dark:text-white font-semibold text-center mt-3">
+                Carlos Gomes Salvatori
+              </h2>
+              <p class="text-gray-500 dark:text-[#a1a1a1] text-sm text-center">Jr. QA</p>
             </div>
-            <div class="flex-1 p-4 text-[#dcdcdc] leading-relaxed text-justify">
-              <h3 class="text-white font-semibold mb-2">Um pouco sorbre mim:</h3>
+            <div class="flex-1 p-4 text-gray-600 dark:text-[#dcdcdc] leading-relaxed text-justify">
+              <h3 class="text-slate-700 dark:text-white font-semibold mb-2">
+                Um pouco sorbre mim:
+              </h3>
               <p>
                 In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent
                 taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce
@@ -159,11 +176,13 @@
 
         <div class="max-w-5xl mx-auto py-10 px-6 space-y-8">
           <div>
-            <h2 class="text-lg text-white font-semibold">Etapa 6 - To na TI</h2>
-            <p class="text-sm mt-1 text-white">Apresentação da estrutura/áreas e papeis Vivo:</p>
+            <h2 class="text-lg text-slate-800 dark:text-white font-semibold">Etapa 6 - To na TI</h2>
+            <p class="text-sm mt-1 text-gray-600 dark:text-white">
+              Apresentação da estrutura/áreas e papeis Vivo:
+            </p>
           </div>
 
-          <div class="bg-slate-800/80 rounded-xl overflow-hidden shadow-lg">
+          <div class="bg-gray-200 dark:bg-slate-800/80 rounded-xl overflow-hidden shadow-lg">
             <iframe
               class="w-full h-72 md:h-96"
               src="https://www.youtube.com/embed/watch?v=cZnkvlyh7uM"
@@ -173,12 +192,14 @@
             ></iframe>
           </div>
 
-          <p class="text-sm mt-6">Conheça as principais plataformas da TI:</p>
+          <p class="text-sm mt-6 text-gray-600 dark:text-gray-300">
+            Conheça as principais plataformas da TI:
+          </p>
 
           <div class="relative">
             <button
               onclick="scrollCarousel(-1)"
-              class="absolute left-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-slate-800 dark:bg-slate-800/70 dark:hover:bg-slate-700 dark:text-white p-2 rounded-full z-10"
             >
               &lt;
             </button>
@@ -186,74 +207,86 @@
             <div id="carousel" class="flex gap-8 overflow-x-hidden scroll-smooth px-12">
               <div class="flex flex-col items-center min-w-[120px]">
                 <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <img src="../../imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12" />
                 </div>
-                <p class="mt-2 text-sm text-white">Oracle SQL</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Oracle SQL</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
               </div>
 
               <div class="flex flex-col items-center min-w-[120px]">
                 <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <img src="../../imagens/postman.webp" alt="Postman" class="w-12 h-12" />
                 </div>
-                <p class="mt-2 text-sm text-white">Postman</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Postman</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
               </div>
 
               <div class="flex flex-col items-center min-w-[120px]">
                 <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <img src="../../imagens/vivodev.jpg" alt="Vivo Pro" class="w-12 h-12" />
                 </div>
-                <p class="mt-2 text-sm text-white">Vivo Pro</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
-              </div>
-              <div class="flex flex-col items-center min-w-[120px]">
-                <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Vivo Pro</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
                 >
-                  <img src="../../imagens/plawright.png" alt="Playwhight" class="w-12 h-12" />
-                </div>
-                <p class="mt-2 text-sm text-white">Playwhight</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
               </div>
               <div class="flex flex-col items-center min-w-[120px]">
                 <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/plawright.png" alt="Playwright" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Playwright</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <img src="../../imagens/Swagger-logo (1).png" alt="Swagger" class="w-12 h-12" />
                 </div>
-                <p class="mt-2 text-sm text-white">Swagger</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Swagger</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
               </div>
 
               <div class="flex flex-col items-center min-w-[120px]">
                 <div
-                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <img src="../../imagens/aws.png" alt="AWS" class="w-12 h-12" />
                 </div>
-                <p class="mt-2 text-sm text-white">AWS</p>
-                <a href="#" class="text-xs text-purple-300 hover:underline">ver mais</a>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">AWS</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
               </div>
             </div>
 
             <button
               onclick="scrollCarousel(1)"
-              class="absolute right-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-slate-800 dark:bg-slate-800/70 dark:hover:bg-slate-700 dark:text-white p-2 rounded-full z-10"
             >
               &gt;
             </button>
 
             <div class="flex justify-center gap-2 mt-4">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-600 dark:bg-white rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-300 dark:bg-gray-400 rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-300 dark:bg-gray-400 rounded-full"></span>
             </div>
           </div>
         </div>
@@ -265,6 +298,8 @@
     >
       ?
     </button>
+
+    <script src="../../js/theme-swither.js"></script>
 
     <script>
       // Script de Notificação

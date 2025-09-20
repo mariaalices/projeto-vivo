@@ -3,155 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página Inicial</title>
+    <title>Trilha Finalizada</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
-    <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
-
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
-    <div
-      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
-    >
-      <ul class="flex flex-col">
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home" />
-          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+    <canvas id="confetti-canvas" class="fixed top-0 left-0 w-full h-full z-0"></canvas>
+
+    <div class="sidebar z-10">
+      <ul>
+        <li><img src="../../imagens/botao-de-inicio.png" alt="Home" /> <span>Home</span></li>
+        <li><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></li>
+        <li>
+          <img src="../../imagens/grafico-de-barras.png" alt="Meu Desenvolvimento" /><span
+            >Meu Desenvolvimento</span
+          >
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos" />
-          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+        <li>
+          <img src="../../imagens/perfil-de-usuario.png" alt="Meu Perfil" /><span>Meu Perfil</span>
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações" />
-          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        <li>
+          <img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+            >Configurações</span
+          >
         </li>
       </ul>
     </div>
 
-    <main class="flex-1 md:ml-24 px-6 py-10">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
-      >
-        <h1 class="text-2xl font-bold text-purple-200">Jornada FINALIZADAA!</h1>
-
-        <div class="flex items-center gap-4 relative">
-          <img
-            id="notifIcon"
-            src="../../imagens/packard-bell.png"
-            alt="Notificações"
-            class="w-7 h-6 cursor-pointer"
-          />
-
-          <div
-            id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:ml-20 z-10">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Etapa 9 - Preparação</h1>
+        <div class="flex items-center gap-4">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
           >
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
-                conversar?
-              </p>
-            </div>
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/avatar.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
-                atrasado... posso te ajudar? =)
-              </p>
-            </div>
-          </div>
-
-          <span class="text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-            Desconectar
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <button
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+          >
+            Continuar
           </button>
         </div>
       </header>
 
-      <script>
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.querySelector('header #notifModal'); // Seletor corrigido
-
-        if (notifIcon && notifModal) {
-          notifIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            notifModal.classList.toggle('hidden');
-          });
-        }
-
-        document.addEventListener('click', (e) => {
-          if (
-            notifIcon &&
-            notifModal &&
-            !notifIcon.contains(e.target) &&
-            !notifModal.contains(e.target)
-          ) {
-            notifModal.classList.add('hidden');
-          }
-        });
-      </script>
-
-      <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <div
-          class="bg-green-600 text-white font-bold text-2xl rounded-2xl justify-center px-10 py-6 flex items-center gap-6 shadow-2xl"
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 shadow-lg w-full max-w-4xl text-center"
+      >
+        <img src="../../imagens/confete.png" alt="Confete" class="w-24 h-24 mx-auto mb-4" />
+        <h2 class="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-2">Parabéns!</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+          Você finalizou a sua trilha de Onboarding!
+        </p>
+        <button
+          id="celebrateButton"
+          class="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition-all hover:scale-110"
         >
-          <img src="../../imagens/confete.png" alt="Congrats" class="w-14 h-14" />
-
-          <span> Parabéns Jornada Onboard concluída com sucesso! </span>
-
-          <img src="../../imagens/confete.png" alt="Confete" class="w-14 h-14" />
-        </div>
-      </div>
+          Comemorar!
+        </button>
+      </section>
     </main>
 
-    <button
-      class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition"
-    >
-      ?
-    </button>
+    <script src="../../js/theme-swither.js"></script>
+
+    <script>
+      document.getElementById('celebrateButton').addEventListener('click', () => {
+        const confettiElement = document.getElementById('confetti-canvas');
+        const confettiSettings = {
+          target: confettiElement,
+          max: 150,
+          size: 1,
+          animate: true,
+          props: ['circle', 'square', 'triangle', 'line'],
+          colors: [
+            [165, 104, 246],
+            [230, 61, 135],
+            [0, 199, 228],
+            [253, 214, 126],
+          ],
+          clock: 25,
+          rotate: true,
+          width: window.innerWidth,
+          height: window.innerHeight,
+          start_from_edge: false,
+          respawn: true,
+        };
+        const confetti = new ConfettiGenerator(confettiSettings);
+        confetti.render();
+
+        // Para o confete após 5 segundos
+        setTimeout(() => {
+          confetti.clear();
+        }, 5000);
+      });
+    </script>
   </body>
 </html>

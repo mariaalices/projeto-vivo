@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
 
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
     <div
       class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
@@ -45,9 +46,17 @@
       <header
         class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
       >
-        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Página Inicial</h1>
 
         <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
@@ -108,7 +117,7 @@
             </div>
           </div>
 
-          <span class="text-purple-200">Olá, Novo Usuário</span>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
           <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
             Desconectar
           </button>
@@ -116,17 +125,23 @@
       </header>
 
       <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
-          <h2 class="text-xl font-semibold mb-6 text-white">Novos colaboradores e seu buddy</h2>
+        <section class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-2xl p-6 shadow-lg">
+          <h2 class="text-xl font-semibold mb-6 text-slate-800 dark:text-white">
+            Novos colaboradores e seu buddy
+          </h2>
 
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
+          <div
+            class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
+          >
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
                 <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
               </div>
               <div class="flex flex-col">
-                <strong class="text-sm text-white">Bruna Oliveira Testes</strong>
-                <span class="text-xs text-gray-400">Estagiária TI - QA</span>
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Bruna Oliveira Testes</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400">Estagiária TI - QA</span>
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -141,14 +156,20 @@
             </div>
           </div>
 
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
+          <div
+            class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
+          >
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
                 <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
               </div>
               <div class="flex flex-col">
-                <strong class="text-sm text-white">Gustavo Almeida Coxtos</strong>
-                <span class="text-xs text-gray-400">Novo Funcionário - Dev. Front end Junior</span>
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Gustavo Almeida Coxtos</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Novo Funcionário - Dev. Front end Junior</span
+                >
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -163,14 +184,20 @@
             </div>
           </div>
 
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
+          <div
+            class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
+          >
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
                 <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
               </div>
               <div class="flex flex-col">
-                <strong class="text-sm text-white">Bruna Oliveira Testes</strong>
-                <span class="text-xs text-gray-400">Novo Funcionário - Fullstack</span>
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Bruna Oliveira Testes</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Novo Funcionário - Fullstack</span
+                >
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -185,14 +212,16 @@
             </div>
           </div>
 
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
+          <div
+            class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
+          >
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
                 <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
               </div>
               <div class="flex flex-col">
-                <strong class="text-sm text-white">Carla Coxtos</strong>
-                <span class="text-xs text-gray-400">Estagiário TI - PO</span>
+                <strong class="text-sm text-slate-800 dark:text-white">Carla Coxtos</strong>
+                <span class="text-xs text-gray-500 dark:text-gray-400">Estagiário TI - PO</span>
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -206,14 +235,20 @@
               </button>
             </div>
           </div>
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
+          <div
+            class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
+          >
             <div class="flex items-center gap-3">
               <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
                 <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
               </div>
               <div class="flex flex-col">
-                <strong class="text-sm text-white">Carlina Pereira Almeida</strong>
-                <span class="text-xs text-gray-400">Estagiário TI - Dev. Backend</span>
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Carlina Pereira Almeida</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Estagiário TI - Dev. Backend</span
+                >
               </div>
             </div>
             <div class="flex items-center gap-3">
@@ -228,12 +263,16 @@
             </div>
           </div>
 
-          <div class="text-center mt-4 text-2xl tracking-widest text-white/50">···</div>
+          <div class="text-center mt-4 text-2xl tracking-widest text-gray-400 dark:text-white/50">
+            ···
+          </div>
         </section>
 
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+          <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md">
+            <h3 class="text-purple-700 dark:text-purple-300 font-semibold text-xl mb-6">
+              VIVO Coin
+            </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <img
@@ -242,7 +281,7 @@
                   class="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
-              <div class="text-purple-200 flex flex-col justify-center">
+              <div class="text-slate-600 dark:text-purple-200 flex flex-col justify-center">
                 <p class="mb-4">
                   VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
                   interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
@@ -256,31 +295,37 @@
             </div>
           </div>
 
-          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-            <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
-            <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
+          <div
+            class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto shadow-md"
+          >
+            <h3 class="text-purple-700 dark:text-purple-300 font-semibold mb-4">
+              Ranking semanal Vivo coins
+            </h3>
+            <table
+              class="w-full text-left text-slate-600 dark:text-purple-200 min-w-[300px] border-collapse"
+            >
               <thead>
                 <tr>
-                  <th class="pb-2 border-b border-purple-300">Usuário</th>
-                  <th class="pb-2 border-b border-purple-300">Pontos</th>
+                  <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Usuário</th>
+                  <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Pontos</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="py-2 border-b border-purple-300">Você</td>
-                  <td class="py-2 border-b border-purple-300">500</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">Você</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">500</td>
                 </tr>
                 <tr>
-                  <td class="py-2 border-b border-purple-300">Maria</td>
-                  <td class="py-2 border-b border-purple-300">400</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">Maria</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">400</td>
                 </tr>
                 <tr>
-                  <td class="py-2 border-b border-purple-300">Carlos</td>
-                  <td class="py-2 border-b border-purple-300">350</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">Carlos</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">350</td>
                 </tr>
                 <tr>
-                  <td class="py-2 border-b border-purple-300">Inacia</td>
-                  <td class="py-2 border-b border-purple-300">250</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">Inacia</td>
+                  <td class="py-2 border-b border-gray-300 dark:border-purple-300">250</td>
                 </tr>
                 <tr>
                   <td class="py-2">Paula</td>
@@ -299,6 +344,7 @@
       ?
     </button>
 
+    <script src="../../js/theme-swither.js"></script>
     <script>
       const notifIcon = document.getElementById('notifIcon');
       const notifModal = document.getElementById('notifModal');

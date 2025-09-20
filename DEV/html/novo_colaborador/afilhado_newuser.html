@@ -3,226 +3,217 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Meu Afilhado</title>
+    <title>Buddy e CLS</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
-    <link rel="stylesheet" href="../../css/notifications.css" />
     <link rel="stylesheet" href="../../css/afilhado_newuser.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
-
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
-    <div
-      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
-    >
-      <ul class="flex flex-col">
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/home.jpg" class="w-6 h-6" alt="Home" />
-          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+    <div class="sidebar">
+      <ul>
+        <li><img src="../../imagens/botao-de-inicio.png" alt="Home" /> <span>Home</span></li>
+        <li><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></li>
+        <li>
+          <img src="../../imagens/grafico-de-barras.png" alt="Meu Desenvolvimento" /><span
+            >Meu Desenvolvimento</span
+          >
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/cursos.jpg" class="w-6 h-6" alt="Meus Cursos" />
-          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+        <li>
+          <img src="../../imagens/perfil-de-usuario.png" alt="Meu Perfil" /><span>Meu Perfil</span>
         </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/desenvolvimento.jpg" class="w-6 h-6" alt="Meu Desenvolvimento" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/perfil2.jpg" class="w-6 h-6" alt="Meu Perfil" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/configuracao.jpg" class="w-6 h-6" alt="Configurações" />
-          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+        <li>
+          <img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+            >Configurações</span
+          >
         </li>
       </ul>
     </div>
 
-    <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0"
-      >
-        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-        <div class="flex items-center space-x-4 relative">
-          <img
-            id="notifIcon"
-            src="../../imagens/notificacao.jpg"
-            alt="Notificações"
-            class="w-7 h-6 rounded-full cursor-pointer"
-          />
-
-          <span class="text-purple-200">Olá, Novo Usuário</span>
+    <main class="flex-grow flex flex-col items-center p-4 md:ml-20">
+      <header class="w-full max-w-5xl flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">
+          Etapa 5 - Buddy e CLS
+        </h1>
+        <div class="flex items-center gap-4">
           <button
-            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
           >
-            Desconectar
+            <span id="themeIcon" class="text-xl"></span>
           </button>
-
-          <div
-            id="notifModal"
-            class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50"
+          <a
+            href="acessoareas.html"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
           >
-            <div class="notif-item">
-              <img src="../../imagens/avatar.png" alt="Avatar" />
-              <p>
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-            <div class="notif-item">
-              <img src="../../imagens/avatar.png" alt="Avatar" />
-              <p>
-                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
-                conversar?
-              </p>
-            </div>
-            <div class="notif-item">
-              <img src="../../imagens/avatar.png" alt="Avatar" />
-              <p>
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-            <div class="notif-item">
-              <img src="../../imagens/avatar.png" alt="Avatar" />
-              <p>
-                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
-                atrasado... posso te ajudar? =)
-              </p>
-            </div>
-          </div>
+            Continuar
+          </a>
         </div>
       </header>
 
-      <section class="afilhado-info">
-        <h2>MEU AFILHADO</h2>
-        <div class="perfil">
-          <img src="../../imagens/perfil.png" alt="avatar" />
-          <div class="info-text">
-            <p><strong>Lorem ipsum dolor sit amet</strong></p>
-            <p>
-              In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent
-              taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce
-              congue ultricies dui sit amet maximus. Vestibulum
+      <div class="w-full max-w-5xl space-y-8">
+        <section class="bg-white dark:bg-slate-800 dark:bg-opacity-70 p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold text-slate-700 dark:text-white mb-4">Seu buddy:</h2>
+          <div class="flex flex-col md:flex-row items-start gap-6">
+            <div class="p-4 rounded-lg flex flex-col items-center w-full md:w-48 flex-shrink-0">
+              <div
+                class="w-24 h-24 rounded-full bg-gray-200 dark:bg-[#d9d9d9] flex items-center justify-center overflow-hidden"
+              >
+                <img
+                  src="../../imagens/pessoa1.jpg"
+                  alt="Avatar"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <h2 class="text-slate-800 dark:text-white font-semibold text-center mt-3">
+                Carlos Gomes Salvatori
+              </h2>
+              <p class="text-gray-500 dark:text-[#a1a1a1] text-sm text-center">Jr. QA</p>
+            </div>
+            <div class="flex-1 p-4 text-gray-600 dark:text-[#dcdcdc] leading-relaxed text-justify">
+              <h3 class="text-slate-700 dark:text-white font-semibold mb-2">Um pouco sobre mim:</h3>
+              <p>
+                In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent
+                taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce
+                congue ultricies dui sit amet maximus. Vestibulum tempus, nulla quis lobortis
+                vehicula, ex libero euismod ligula, sit amet aliquet nulla purus pellentesque velit.
+                Nam dapibus lacus sed tellus malesuada iaculis. Curabitur tincidunt commodo quam at
+                dictum.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <div>
+            <h2 class="text-xl text-slate-800 dark:text-white font-semibold">Etapa 6 - To na TI</h2>
+            <p class="text-sm mt-1 text-gray-600 dark:text-gray-300">
+              Apresentação da estrutura/áreas e papeis Vivo:
             </p>
           </div>
-        </div>
-      </section>
 
-      <section class="progress-message">
-        <div class="progress-chart">
-          <canvas id="myPieChart"></canvas>
-        </div>
-        <div class="message-box">
-          <textarea placeholder="Enviar mensagem:"></textarea>
-          <button id="saveSchedule">Salvar Agendamento</button>
-        </div>
-      </section>
+          <div class="bg-gray-200 dark:bg-slate-800/80 rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              class="w-full h-72 md:h-96"
+              src="https://www.youtube.com/embed/watch?v=cZnkvlyh7uM"
+              title="Apresentação TI"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Conheça as principais plataformas da TI:
+          </p>
+
+          <div class="relative">
+            <button
+              onclick="scrollCarousel(-1)"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-slate-800 dark:bg-slate-800/70 dark:hover:bg-slate-700 dark:text-white p-2 rounded-full z-10"
+            >
+              &lt;
+            </button>
+
+            <div id="carousel" class="flex gap-8 overflow-x-hidden scroll-smooth px-12">
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Oracle SQL</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/postman.webp" alt="Postman" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Postman</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/vivodev.jpg" alt="Vivo Pro" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Vivo Pro</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/plawright.png" alt="Playwright" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Playwright</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/Swagger-logo (1).png" alt="Swagger" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">Swagger</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+
+              <div class="flex flex-col items-center min-w-[120px]">
+                <div
+                  class="w-20 h-20 bg-white dark:bg-gray-100 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="../../imagens/aws.png" alt="AWS" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-slate-700 dark:text-white">AWS</p>
+                <a href="#" class="text-xs text-purple-600 dark:text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+            </div>
+
+            <button
+              onclick="scrollCarousel(1)"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 text-slate-800 dark:bg-slate-800/70 dark:hover:bg-slate-700 dark:text-white p-2 rounded-full z-10"
+            >
+              &gt;
+            </button>
+
+            <div class="flex justify-center gap-2 mt-4">
+              <span class="w-2 h-2 bg-gray-600 dark:bg-white rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-300 dark:bg-gray-400 rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-300 dark:bg-gray-400 rounded-full"></span>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <button class="help-btn">?</button>
+    <script src="../../js/theme-swither.js"></script>
 
     <script>
-      // Alternar modo escuro (caso exista o botão)
-      const toggle = document.getElementById('darkModeToggle');
-      if (toggle) {
-        toggle.addEventListener('change', () => {
-          if (toggle.checked) {
-            document.body.style.background = '#222';
-            document.body.style.color = 'white';
-          } else {
-            document.body.style.background = '';
-            document.body.style.color = '';
-          }
-        });
-      }
-
-      // Evento para salvar agendamento (versão com notificações)
-      const saveButton = document.getElementById('saveSchedule');
-      if (saveButton) {
-        saveButton.addEventListener('click', () => {
-          const message = document.querySelector('textarea').value.trim();
-          if (message.length > 0) {
-            // Criar item de notificação
-            const notifItem = document.createElement('div');
-            notifItem.classList.add('notif-item');
-            notifItem.innerHTML = `
-            <img src="../../imagens/avatar.png" alt="Avatar">
-            <p><strong>Você:</strong> ${message}</p>
-          `;
-
-            // Adiciona no topo da lista de notificações
-            const notifModal = document.getElementById('notifModal');
-            notifModal.prepend(notifItem);
-
-            // Limpa a caixa de texto
-            document.querySelector('textarea').value = '';
-
-            // Feedback opcional
-            alert('Mensagem enviada para notificações!');
-          } else {
-            alert('Digite uma mensagem antes de salvar.');
-          }
-        });
-      }
-
-      // Gráfico de pizza
-      const data = {
-        labels: [
-          'Finalizações de Cursos',
-          'Categoria 2',
-          'Categoria 3',
-          'Categoria 4',
-          'Categoria 5',
-        ],
-        datasets: [
-          {
-            data: [30, 15, 25, 10, 20],
-            backgroundColor: ['#8a52f1', '#ff6347', '#4caf50', '#ff9800', '#c0c0c0'],
-            borderWidth: 0,
-          },
-        ],
-      };
-
-      const config = {
-        type: 'pie',
-        data: data,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: true },
-          },
-        },
-      };
-
-      // Criar gráfico
-      window.addEventListener('load', () => {
-        const ctx = document.getElementById('myPieChart').getContext('2d');
-        new Chart(ctx, config);
-      });
-
-      // Controle do modal de notificações
-      const notifIcon = document.getElementById('notifIcon');
-      const notifModal = document.getElementById('notifModal');
-
-      if (notifIcon && notifModal) {
-        notifIcon.addEventListener('click', () => {
-          notifModal.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-            notifModal.classList.add('hidden');
-          }
-        });
+      function scrollCarousel(direction) {
+        const carousel = document.getElementById('carousel');
+        const scrollAmount = 150;
+        carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
       }
     </script>
   </body>

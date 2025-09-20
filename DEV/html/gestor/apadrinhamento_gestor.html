@@ -3,318 +3,284 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página Inicial - Gestor</title>
+    <title>Apadrinhamento</title>
+    <link rel="icon" href="../../imagens/logo-vivo.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/apadrinhamento_gestor.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
 
   <body
-    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
-    <div
-      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    <nav
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 transition-all duration-300 z-50 bg-purple-200"
     >
-      <ul class="flex flex-col">
+      <ul>
         <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
-          <span class="ml-3 text-black hidden sidebar-text">Home</span>
+          <img src="../../imagens/botao-de-inicio.png" alt="Home" />
+          <span class="ml-3">Home</span>
         </li>
         <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/graduacao.png" class="w-6 h-6" alt="" />
-          <span class="ml-3 text-black hidden sidebar-text">Meus Cursos</span>
+          <img src="../../imagens/apadrinhamento.png" alt="Meus Cursos" />
+          <span class="ml-3">Apadrinhamento</span>
         </li>
         <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Desenvolvimento</span>
+          <img src="../../imagens/desempenho.png" alt="Meu Desenvolvimento" />
+          <span class="ml-3">Desempenho</span>
         </li>
         <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
-          <span class="ml-3 text-black hidden sidebar-text">Meu Perfil</span>
-        </li>
-        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-          <img src="../../imagens/configuracoes.png" class="w-6 h-6" alt="" />
-          <span class="ml-3 text-black hidden sidebar-text">Configurações</span>
+          <img src="../../imagens/calendario.png" alt="Meu Perfil" />
+          <span class="ml-3">Calendário</span>
         </li>
       </ul>
-    </div>
+    </nav>
 
-    <main class="flex-1 md:ml-24 px-6 py-10">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
-      >
-        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-
+    <main class="flex-grow flex flex-col items-center p-4 md:ml-20">
+      <header class="w-full max-w-6xl flex flex-wrap justify-between items-center mb-6 gap-4">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Apadrinhamento</h1>
         <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
             alt="Notificações"
+            title="Notificações"
             class="w-7 h-6 cursor-pointer"
           />
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
+          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+            Desconectar
+          </button>
 
           <div
             id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+            aria-label="Notificações"
+            class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
           >
             <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/perfil.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
+              <img src="../../imagens/perfil.png" alt="Avatar" class="w-10 h-10 rounded-full" />
+              <p class="text-sm">
                 <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
                 seu 1:1 com ele =)
               </p>
             </div>
-
             <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/perfil.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
+              <img src="../../imagens/perfil.png" alt="Avatar" class="w-10 h-10 rounded-full" />
+              <p class="text-sm">
                 <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
                 conversar?
               </p>
             </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/perfil.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)
-              </p>
-            </div>
-
-            <div class="flex items-start gap-3 p-3">
-              <img
-                src="../../imagens/perfil.png"
-                alt="Avatar"
-                class="w-10 h-10 rounded-full object-cover"
-              />
-              <p class="text-sm leading-snug">
-                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
-                atrasado... posso te ajudar? =)
-              </p>
-            </div>
           </div>
-
-          <span class="text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-            Desconectar
-          </button>
         </div>
       </header>
 
-      <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
-          <h2 class="text-xl font-semibold mb-6 text-white">Novos colaboradores e seu buddy</h2>
-
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
-                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex flex-col">
-                <strong class="text-sm text-white">Bruna Oliveira Testes</strong>
-                <span class="text-xs text-gray-400">Estagiária TI - QA</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
-                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
-              </div>
-              <button
-                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+      <section class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section
+          class="lg:col-span-1 bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-lg"
+          aria-labelledby="form-title"
+        >
+          <h2
+            id="form-title"
+            class="text-xl font-semibold text-purple-700 dark:text-purple-300 mb-4"
+          >
+            Novo apadrinhamento
+          </h2>
+          <form class="space-y-4">
+            <div>
+              <label
+                for="nomeNovoUsuario"
+                class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1"
+                >Nome do novo usuário:</label
               >
-                Visitar Perfil
-              </button>
+              <input
+                type="text"
+                id="nomeNovoUsuario"
+                name="nomeNovoUsuario"
+                required
+                class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-2 border border-gray-300 dark:border-slate-600 focus:ring-purple-500 focus:border-purple-500"
+              />
             </div>
-          </div>
-
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
-                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex flex-col">
-                <strong class="text-sm text-white">Gustavo Almeida Coxtos</strong>
-                <span class="text-xs text-gray-400">Novo Funcionário - Dev. Front end Junior</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
-                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
-              </div>
-              <button
-                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+            <div>
+              <label
+                for="buddy"
+                class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1"
+                >Buddy: (responsável)</label
               >
-                Visitar Perfil
-              </button>
+              <input
+                type="text"
+                id="buddy"
+                name="buddy"
+                required
+                class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-2 border border-gray-300 dark:border-slate-600 focus:ring-purple-500 focus:border-purple-500"
+              />
             </div>
-          </div>
-
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
-                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex flex-col">
-                <strong class="text-sm text-white">Bruna Oliveira Testes</strong>
-                <span class="text-xs text-gray-400">Novo Funcionário - Fullstack</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
-                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
-              </div>
-              <button
-                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+            <div>
+              <label
+                for="descricao"
+                class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1"
+                >Descrição (Opcional):</label
               >
-                Visitar Perfil
-              </button>
+              <textarea
+                id="descricao"
+                name="descricao"
+                rows="3"
+                class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-2 border border-gray-300 dark:border-slate-600 focus:ring-purple-500 focus:border-purple-500"
+              ></textarea>
             </div>
-          </div>
-
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
-                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex flex-col">
-                <strong class="text-sm text-white">Carla Coxtos</strong>
-                <span class="text-xs text-gray-400">Estagiário TI - PO</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
-                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
-              </div>
-              <button
-                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
-              >
-                Visitar Perfil
-              </button>
-            </div>
-          </div>
-          <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
-                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
-              </div>
-              <div class="flex flex-col">
-                <strong class="text-sm text-white">Carlina Pereira Almeida</strong>
-                <span class="text-xs text-gray-400">Estagiário TI - Dev. Backend</span>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
-                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
-              </div>
-              <button
-                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
-              >
-                Visitar Perfil
-              </button>
-            </div>
-          </div>
-
-          <div class="text-center mt-4 text-2xl tracking-widest text-white/50">···</div>
+            <button
+              type="submit"
+              class="w-full bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
+            >
+              Salvar Apadrinhamento
+            </button>
+          </form>
         </section>
 
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <img
-                  src="../../imagens/image 103.png"
-                  alt="Imagem ilustrativa"
-                  class="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="text-purple-200 flex flex-col justify-center">
-                <p class="mb-4">
-                  VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
-                  interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
-                </p>
-                <button
-                  class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit"
-                >
-                  Saiba mais
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-            <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
-            <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
-              <thead>
-                <tr>
-                  <th class="pb-2 border-b border-purple-300">Usuário</th>
-                  <th class="pb-2 border-b border-purple-300">Pontos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="py-2 border-b border-purple-300">Você</td>
-                  <td class="py-2 border-b border-purple-300">500</td>
-                </tr>
-                <tr>
-                  <td class="py-2 border-b border-purple-300">Maria</td>
-                  <td class="py-2 border-b border-purple-300">400</td>
-                </tr>
-                <tr>
-                  <td class="py-2 border-b border-purple-300">Carlos</td>
-                  <td class="py-2 border-b border-purple-300">350</td>
-                </tr>
-                <tr>
-                  <td class="py-2 border-b border-purple-300">Inacia</td>
-                  <td class="py-2 border-b border-purple-300">250</td>
-                </tr>
-                <tr>
-                  <td class="py-2">Paula</td>
-                  <td class="py-2">200</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <section
+          class="lg:col-span-2 bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-lg"
+          aria-labelledby="lista-title"
+        >
+          <h2
+            id="lista-title"
+            class="text-xl font-semibold text-purple-700 dark:text-purple-300 mb-4"
+          >
+            Últimos apadrinhamentos
+          </h2>
+          <div id="listaApadrinhamentos" class="space-y-3"></div>
         </section>
-      </div>
+      </section>
     </main>
 
     <button
+      title="Ajuda"
       class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition"
     >
       ?
     </button>
 
+    <script src="../../js/theme-swither.js"></script>
+
     <script>
+      // Dados simulados
+      const apadrinhamentosData = [
+        {
+          nome: 'Isaac Oliveira Teixeira',
+          cargo: 'Estagiário TI - QA',
+          novo: true,
+          avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Roberto Andrade Castro',
+          cargo: 'Nível Funcionários - Dev, Ger, RH e SOC',
+          novo: false,
+          avatar: 'https://randomuser.me/api/portraits/men/49.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Bruno Oliveira Teixeira',
+          cargo: 'Estagiário TI - Frontend',
+          novo: true,
+          avatar: 'https://randomuser.me/api/portraits/men/15.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Bruno Oliveira Teixeira',
+          cargo: 'Estagiário TI - PO',
+          novo: false,
+          avatar: 'https://randomuser.me/api/portraits/men/15.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Charles Brandão Souza de Macarrone',
+          cargo: 'Estagiário TI - Dev Backend',
+          novo: false,
+          avatar: 'https://randomuser.me/api/portraits/men/21.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+      ];
+
+      const lista = document.getElementById('listaApadrinhamentos');
+
+      apadrinhamentosData.forEach((item) => {
+        const div = document.createElement('div');
+        // Este CSS é do arquivo apadrinhamento_gestor.css
+        div.className =
+          'apadrinhamento-item flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-3';
+
+        div.innerHTML = `
+          <div class="info-wrapper flex items-center gap-3">
+            <div class="status ${
+              item.novo ? 'novo text-pink-500' : 'text-gray-500'
+            } text-xs font-bold uppercase w-12 text-center">
+              ${item.novo ? 'Novo' : 'Antigo'}
+            </div>
+            <div class="avatar w-12 h-12 rounded-full overflow-hidden">
+              <img src="${item.avatar}" alt="Foto de ${
+          item.nome
+        }" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+            </div>
+            <div class="dados-apadrinhamento">
+              <strong class="block font-semibold text-slate-800 dark:text-white">${
+                item.nome
+              }</strong>
+              <small class="text-gray-500 dark:text-gray-400">${item.cargo}</small>
+            </div>
+          </div>
+          <div class="right-actions flex items-center gap-3">
+            <div class="apadrinhador-avatar w-10 h-10 rounded-full overflow-hidden">
+              <img src="${
+                item.apadrinhadorAvatar
+              }" alt="Avatar do apadrinhador" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+            </div>
+            <button class="btn-visitar bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-purple-700" data-nome="${
+              item.nome
+            }">
+              Visitar
+            </button>
+          </div>
+        `;
+        lista.appendChild(div);
+      });
+
+      // Funcionalidade botão visitar perfil
+      lista.addEventListener('click', (e) => {
+        if (e.target.matches('.btn-visitar')) {
+          const nome = e.target.getAttribute('data-nome');
+          alert(`Você clicou para visitar o perfil de ${nome}`);
+        }
+      });
+
+      // Toggle do modal de notificações (Padronizado para 'hidden')
       const notifIcon = document.getElementById('notifIcon');
       const notifModal = document.getElementById('notifModal');
 
       if (notifIcon && notifModal) {
         notifIcon.addEventListener('click', (e) => {
           e.stopPropagation();
-          notifModal.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-            notifModal.classList.add('hidden');
-          }
+          notifModal.classList.toggle('hidden'); // Padronizado
         });
       }
+
+      // Fecha o modal ao clicar fora
+      document.addEventListener('click', (e) => {
+        if (notifIcon && notifModal && !notifModal.contains(e.target) && e.target !== notifIcon) {
+          notifModal.classList.add('hidden'); // Padronizado
+        }
+      });
     </script>
   </body>
 </html>

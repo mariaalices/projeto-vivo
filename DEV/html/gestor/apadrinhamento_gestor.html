@@ -74,7 +74,22 @@
             id="notifModal"
             aria-label="Notificações"
             class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
-          ></div>
+          >
+            <div class="flex items-start gap-3 p-3">
+              <img src="../../imagens/perfil.png" alt="Avatar" class="w-10 h-10 rounded-full" />
+              <p class="text-sm">
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="flex items-start gap-3 p-3">
+              <img src="../../imagens/perfil.png" alt="Avatar" class="w-10 h-10 rounded-full" />
+              <p class="text-sm">
+                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+                conversar?
+              </p>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -165,31 +180,97 @@
     <script src="../../js/theme-swither.js"></script>
 
     <script>
-      // Script de Lista (Mantido)
+      // Dados simulados
       const apadrinhamentosData = [
-        // (Dados simulados...)
+        {
+          nome: 'Isaac Oliveira Teixeira',
+          cargo: 'Estagiário TI - QA',
+          novo: true,
+          avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Roberto Andrade Castro',
+          cargo: 'Nível Funcionários - Dev, Ger, RH e SOC',
+          novo: false,
+          avatar: 'https://randomuser.me/api/portraits/men/49.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
+        {
+          nome: 'Bruno Oliveira Teixeira',
+          cargo: 'Estagiário TI - Frontend',
+          novo: true,
+          avatar: 'https://randomuser.me/api/portraits/men/15.jpg',
+          apadrinhadorAvatar: '../../imagens/perfil.png', // Caminho corrigido
+        },
       ];
+
       const lista = document.getElementById('listaApadrinhamentos');
+
       apadrinhamentosData.forEach((item) => {
-        // (Código de renderização da lista...)
-      });
-      lista.addEventListener('click', (e) => {
-        // (Código do botão visitar...)
+        const div = document.createElement('div');
+        // Este CSS é do arquivo apadrinhamento_gestor.css
+        div.className =
+          'apadrinhamento-item flex items-center justify-between border-b border-gray-200 dark:border-gray-700 py-3';
+
+        div.innerHTML = `
+          <div class="info-wrapper flex items-center gap-3">
+            <div class="status ${
+              item.novo ? 'novo text-pink-500' : 'text-gray-500'
+            } text-xs font-bold uppercase w-12 text-center">
+              ${item.novo ? 'Novo' : 'Antigo'}
+            </div>
+            <div class="avatar w-12 h-12 rounded-full overflow-hidden">
+              <img src="${item.avatar}" alt="Foto de ${
+          item.nome
+        }" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+            </div>
+            <div class="dados-apadrinhamento">
+              <strong class="block font-semibold text-slate-800 dark:text-white">${
+                item.nome
+              }</strong>
+              <small class="text-gray-500 dark:text-gray-400">${item.cargo}</small>
+            </div>
+          </div>
+          <div class="right-actions flex items-center gap-3">
+            <div class="apadrinhador-avatar w-10 h-10 rounded-full overflow-hidden">
+              <img src="${
+                item.apadrinhadorAvatar
+              }" alt="Avatar do apadrinhador" onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
+            </div>
+            <button class="btn-visitar bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-purple-700" data-nome="${
+              item.nome
+            }">
+              Visitar
+            </button>
+          </div>
+        `;
+        lista.appendChild(div);
       });
 
-      // Script de Notificação (Mantido)
+      // Funcionalidade botão visitar perfil
+      lista.addEventListener('click', (e) => {
+        if (e.target.matches('.btn-visitar')) {
+          const nome = e.target.getAttribute('data-nome');
+          alert(`Você clicou para visitar o perfil de ${nome}`);
+        }
+      });
+
+      // Toggle do modal de notificações (Padronizado para 'hidden')
       const notifIcon = document.getElementById('notifIcon');
       const notifModal = document.getElementById('notifModal');
 
       if (notifIcon && notifModal) {
         notifIcon.addEventListener('click', (e) => {
           e.stopPropagation();
-          notifModal.classList.toggle('hidden');
+          notifModal.classList.toggle('hidden'); // Padronizado
         });
       }
+
+      // Fecha o modal ao clicar fora
       document.addEventListener('click', (e) => {
         if (notifIcon && notifModal && !notifModal.contains(e.target) && e.target !== notifIcon) {
-          notifModal.classList.add('hidden');
+          notifModal.classList.add('hidden'); // Padronizado
         }
       });
     </script>

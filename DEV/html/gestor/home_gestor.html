@@ -69,7 +69,30 @@
           <div
             id="notifModal"
             class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
-          ></div>
+          >
+            <div class="flex items-start gap-3 p-3">
+              <img
+                src="../../imagens/perfil.png"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full object-cover"
+              />
+              <p class="text-sm leading-snug">
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="flex items-start gap-3 p-3">
+              <img
+                src="../../imagens/perfil.png"
+                alt="Avatar"
+                class="w-10 h-10 rounded-full object-cover"
+              />
+              <p class="text-sm leading-snug">
+                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+                conversar?
+              </D>
+            </div>
+          </div>
 
           <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
           <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
@@ -79,28 +102,121 @@
       </header>
 
       <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <section class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-2xl p-6 shadow-lg">
+        <section
+          class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-2xl p-6 shadow-lg"
+        >
           <h2 class="text-xl font-semibold mb-6 text-slate-800 dark:text-white">
             Novos colaboradores e seu buddy
           </h2>
 
           <div
             class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
-          ></div>
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
+                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex flex-col">
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Bruna Oliveira Testes</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400">Estagiária TI - QA</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
+                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
+              </div>
+              <button
+                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+              >
+                Visitar Perfil
+              </button>
+            </div>
+          </div>
+
           <div
             class="flex justify-between items-center py-4 border-b border-gray-200 dark:border-white/20"
-          ></div>
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-400">
+                <img src="../../imagens/Pessoa-2mobile.webp" class="w-full h-full object-cover" />
+              </div>
+              <div class="flex flex-col">
+                <strong class="text-sm text-slate-800 dark:text-white"
+                  >Gustavo Almeida Coxtos</strong
+                >
+                <span class="text-xs text-gray-500 dark:text-gray-400"
+                  >Novo Funcionário - Dev. Front end Junior</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full overflow-hidden bg-gray-600">
+                <img src="../../imagens/pessoa1.jpg" class="w-full h-full object-cover" />
+              </div>
+              <button
+                class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+              >
+                Visitar Perfil
+              </button>
+            </div>
+          </div>
           <div class="text-center mt-4 text-2xl tracking-widest text-gray-400 dark:text-white/50">
             ···
           </div>
         </section>
 
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md"></div>
+          <div
+            class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md"
+          >
+            <h3 class="text-purple-700 dark:text-purple-300 font-semibold text-xl mb-6">
+              VIVO Coin
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <img
+                  src="../../imagens/image 103.png"
+                  alt="Imagem ilustrativa"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+              <div
+                class="text-slate-600 dark:text-purple-200 flex flex-col justify-center"
+              >
+                <p class="mb-4">
+                  VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
+                  interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
+                </p>
+                <button
+                  class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit"
+                >
+                  Saiba mais
+                </button>
+              </div>
+            </div>
+          </div>
 
           <div
             class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto shadow-md"
-          ></div>
+          >
+            <h3 class="text-purple-700 dark:text-purple-300 font-semibold mb-4">
+              Ranking semanal Vivo coins
+            </h3>
+            <table
+              class="w-full text-left text-slate-600 dark:text-purple-200 min-w-[300px] border-collapse"
+            >
+              <thead>
+                <tr>
+                  <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Usuário</th>
+                  <th class="pb-2 border-b border-gray-300 dark:border-purple-300">Pontos</th>
+                </tr>
+              </thead>
+              <tbody>
+                </tbody>
+            </table>
+          </div>
         </section>
       </div>
     </main>

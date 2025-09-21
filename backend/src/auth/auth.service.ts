@@ -26,6 +26,7 @@ export class AuthService {
       .getOne();
 
     if (!user || user.statusAtivo !== 1) {
+      console.error('Falha no LOGIN: Usuário não encontrado ou inativo.'); // Log de erro
       throw new UnauthorizedException(
         'Credenciais inválidas ou usuário inativo.',
       );
@@ -33,6 +34,7 @@ export class AuthService {
 
     const isPasswordMatching = await bcrypt.compare(pass, user.senhaHash);
     if (!isPasswordMatching) {
+      console.error('Falha no LOGIN: bcrypt.compare retornou false.'); // Log de erro
       throw new UnauthorizedException(
         'Credenciais inválidas ou usuário inativo.',
       );

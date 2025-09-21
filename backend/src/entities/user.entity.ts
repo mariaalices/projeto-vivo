@@ -30,7 +30,7 @@ export class UserEntity {
     type: 'varchar2',
     length: 255,
     nullable: false,
-    select: false,
+    //select: false,
   })
   senhaHash: string;
 

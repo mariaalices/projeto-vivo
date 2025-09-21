@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página Inicial</title>
+    <title>Página Inicial - Buddy</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
     <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/home_buddy.css" />
   </head>
+
   <body
     class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
   >
@@ -43,7 +45,7 @@
       </ul>
     </div>
 
-    <main class="flex-1 px-6 py-10">
+    <main class="flex-1 md:ml-20 px-6 py-10">
       <header
         class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
       >
@@ -67,10 +69,10 @@
 
           <div
             id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black dark:bg-slate-800 dark:text-white rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200 dark:divide-slate-700"
           ></div>
 
-          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Buddy (Nome Mock)</span>
           <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
             Desconectar
           </button>
@@ -78,55 +80,83 @@
       </header>
 
       <div class="max-w-6xl mx-auto px-4 space-y-10">
-        <section class="max-w-4xl w-full mx-auto">
-          <div class="max-w-6xl mx-auto px-4 space-y-10">
-            <section
-              class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-10 shadow-md"
+        <section class="mb-10">
+          <h2 class="text-xl font-semibold text-slate-700 dark:text-white mb-4">
+            Seus Afiliados (Novos Colaboradores):
+          </h2>
+
+          <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 p-6 rounded-lg shadow-md mb-6">
+            <div class="flex flex-col sm:flex-row items-start gap-6">
+              <img src="../../imagens/avatar.png" alt="Foto do Afiliado" class="afiliado-avatar" />
+              <div class="flex-1">
+                <div class="flex justify-between items-center mb-2">
+                  <h3 class="text-2xl font-bold text-slate-800 dark:text-purple-300">
+                    Nome do Afiliado 1
+                  </h3>
+                  <span class="text-sm font-medium text-slate-500 dark:text-slate-400"
+                    >Em onboarding (Dia 5)</span
+                  >
+                </div>
+                <p class="text-md text-slate-600 dark:text-slate-400 mb-4">
+                  Cargo do Afiliado (Ex: Dev Jr.)
+                </p>
+
+                <div class="mb-2">
+                  <span class="text-sm font-medium text-slate-700 dark:text-slate-300"
+                    >Progresso do Onboarding: 60%</span
+                  >
+                  <div class="afiliado-progresso-bar-bg mt-1">
+                    <div class="afiliado-progresso-bar-inner" style="width: 60%"></div>
+                  </div>
+                </div>
+
+                <div class="flex gap-4 mt-6">
+                  <a
+                    href="#"
+                    class="bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-medium"
+                  >
+                    Enviar Mensagem (Teams)
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-gray-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 px-5 py-2 rounded-lg hover:bg-gray-300 dark:hover:bg-slate-600 transition text-sm font-medium"
+                  >
+                    Ver Desenvolvimento
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="secao-avaliacao-afiliado"
+          class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-10 shadow-md max-w-2xl mx-auto"
+        >
+          <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+            Avalie seu Afiliado (Ex: Nome do Afiliado 1):
+          </h2>
+          <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+            <button class="emoji-btn text-4xl" data-value="1">😠</button>
+            <button class="emoji-btn text-4xl" data-value="2">😕</button>
+            <button class="emoji-btn text-4xl" data-value="3">😐</button>
+            <button class="emoji-btn text-4xl" data-value="4">😊</button>
+            <button class="emoji-btn text-4xl" data-value="5">😍</button>
+          </div>
+          <textarea
+            id="motivo-avaliacao"
+            class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3 mb-4"
+            rows="2"
+            placeholder="Escreva um motivo... (Opcional)"
+          ></textarea>
+          <div class="flex justify-center">
+            <button
+              id="btn-enviar-avaliacao"
+              class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+              disabled
             >
-              <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
-                Avalie sua relação com o Afiliado:
-              </h2>
-              <div class="flex justify-center space-x-6 mb-4 flex-wrap">
-                <button class="text-4xl">😠</button>
-                <button class="text-4xl">😕</button>
-                <button class="text-4xl">😐</button>
-                <button class="text-4xl">😊</button>
-                <button class="text-4xl">😍</button>
-              </div>
-              <textarea
-                class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3 mb-4"
-                rows="2"
-                placeholder="Escreva um motivo..."
-              ></textarea>
-              <div class="flex justify-center">
-                <button
-                  class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition"
-                >
-                  Enviar Avaliação
-                </button>
-              </div>
-            </section>
-
-            <section
-              class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-10 shadow-md"
-            ></section>
-
-            <section class="mb-10">
-              <h2 class="text-slate-700 dark:text-white font-semibold mb-4">Perfil do afiliado:</h2>
-              <div
-                class="bg-white dark:bg-slate-800 dark:bg-opacity-70 p-6 rounded-lg flex items-start gap-6 shadow-md"
-              ></div>
-            </section>
-
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-              <div
-                class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 shadow-md"
-              ></div>
-
-              <div
-                class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto shadow-md"
-              ></div>
-            </section>
+              Enviar Avaliação
+            </button>
           </div>
         </section>
       </div>
@@ -139,23 +169,7 @@
     </button>
 
     <script src="../../js/theme-swither.js"></script>
-    <script>
-      // Script de Notificação (Mantido)
-      const notifIcon = document.getElementById('notifIcon');
-      const notifModal = document.getElementById('notifModal');
-
-      if (notifIcon && notifModal) {
-        notifIcon.addEventListener('click', (e) => {
-          e.stopPropagation();
-          notifModal.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-            notifModal.classList.add('hidden');
-          }
-        });
-      }
-    </script>
+    <script src="../../js/components/notifications.js"></script>
+    <script src="../../js/home_buddy.js"></script>
   </body>
 </html>

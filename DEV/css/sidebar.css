@@ -1,23 +1,35 @@
-/* --- Conteúdo de DEV/css/sidebar.css --- */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
+/*
+ * PILAR 2: Manutenibilidade.
+ * Esta é a ÚNICA Fonte da Verdade para o estilo da Sidebar.
+ * Todas as outras definições de .sidebar em outros arquivos (home.css, etc.)
+ * DEVEM SER REMOVIDAS.
+*/
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: 70px; /* Largura fechada */
+
+  /* Estilo Light Mode (Padrão) */
   background: rgb(233 213 255);
+
   overflow: hidden;
   transition: width 0.3s ease;
-  z-index: 9999;
+  z-index: 999; /* Z-index alto para ficar na frente */
+}
+
+/* Ajuste para Dark Mode (quando o <body> tem a classe 'dark') */
+body.dark .sidebar {
+  background: rgb(
+    233 213 255
+  ); /* Mantendo a cor roxa clara no dark mode, como no design original */
+  /* Se quiséssemos um sidebar escuro no dark mode: */
+  /* background: #1e293b; */
 }
 
 .sidebar:hover {
-  width: 256px; /* Largura aberta (Mantendo 256px) */
+  width: 220px; /* Largura aberta */
 }
 
 .sidebar ul {
@@ -26,125 +38,48 @@ body {
   margin: 0;
 }
 
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 220px; /* Garante que o item ocupe o espaço total no hover */
+}
+
+.sidebar ul li:hover {
+  background: #c084fc; /* purple-400 (Light Mode Hover) */
+}
+
+body.dark .sidebar ul li:hover {
+  background: #635571; /* Cor escura do hover */
+}
+
 .sidebar ul li a {
   display: flex;
   align-items: center;
-  cursor: pointer;
-  transition: background 0.2s;
   text-decoration: none;
-  color: black;
-  height: 54px;
-  box-sizing: border-box;
-  /* Padding horizontal fixo para centralizar (70-24)/2 = 23px */
-  padding: 15px 23px;
+  color: #1f293b; /* Cor padrão do texto (Escuro, legível no fundo claro) */
+  white-space: nowrap;
+  width: 100%;
 }
 
-.sidebar ul li a:hover {
-  background: #635571; /* Roxo escuro */
+/* O texto (span) dentro do link */
+.sidebar ul li a span {
+  margin-left: 10px; /* Margem movida do 'span' para o 'a img' */
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .sidebar ul li a img {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-}
-
-.sidebar ul li a span {
-  display: none;
-  margin-left: 10px;
-  opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.2s ease 0.1s;
+  margin-right: 15px; /* Espaço entre ícone e texto */
 }
 
 .sidebar:hover ul li a span {
-  opacity: 1;
   display: inline;
-}
-
-/* --- NOVAS REGRAS PARA O CONTEÚDO PRINCIPAL --- 
-  Controla o <main> que é "irmão" (sibling) da .sidebar
-*/
-main {
-  /* A margem esquerda inicial deve ser a largura recolhida */
-  margin-left: 70px;
-  /* A animação deve ser IDÊNTICA à da sidebar */
-  transition: margin-left 0.3s ease;
-  /* Garante que o <main> fique atrás da sidebar */
-  z-index: 50;
-  /* O padding será aplicado pelo Tailwind (p-4, p-6, etc.) */
-}
-
-/* Quando a sidebar expandir, "empurre" o <main> */
-.sidebar:hover ~ main {
-  margin-left: 256px; /* Deve ser igual à largura expandida */
-}
-
-/* --- Estilos para o Botão de Fixar (Pin) --- */
-.sidebar-pin-container {
-  /* NÃO é mais 'position: absolute' */
-  width: 100%;
-  display: flex;
-  justify-content: center; /* Centraliza na sidebar recolhida */
-  align-items: center;
-  padding: 15px 0;
-  background: inherit; /* Herda o fundo da sidebar */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Trocado de border-top */
-  transition: all 0.3s ease;
-}
-
-/* Na sidebar expandida (hover ou fixed), alinha o pin à direita */
-.sidebar:hover .sidebar-pin-container,
-body.sidebar-fixed .sidebar .sidebar-pin-container {
-  justify-content: flex-end;
-  padding-right: 23px; /* Mesmo padding horizontal dos links */
-}
-
-#pin-sidebar-btn {
-  font-size: 1.1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 5px;
-  transition: all 0.2s ease;
-
-  /* Garante tamanho fixo (da nossa depuração anterior) */
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
-}
-
-/* --- Lógica da Sidebar Fixada (PIN) --- */
-
-/* 1. Quando o body TIVER a classe .sidebar-fixed... */
-body.sidebar-fixed .sidebar {
-  width: 256px; /* ...força a largura expandida */
-}
-
-/* 2. ...mostra os spans (textos dos links) */
-body.sidebar-fixed .sidebar ul li a span {
   opacity: 1;
-  display: inline;
-}
-
-/* 3. ...empurra o <main> permanentemente */
-body.sidebar-fixed main {
-  margin-left: 256px;
-}
-
-/* 4. ...desativa a animação de hover da sidebar e main */
-body.sidebar-fixed .sidebar:hover {
-  width: 256px;
-}
-
-body.sidebar-fixed .sidebar:hover ~ main {
-  margin-left: 256px;
-}
-
-/* 5. ...estiliza o botão de pin como "ativo" (girado E COM COR) */
-body.sidebar-fixed #pin-sidebar-btn {
-  transform: rotate(45deg);
-  color: #6d28d9; /* Cor roxa ativa (dark:text-purple-600) */
 }

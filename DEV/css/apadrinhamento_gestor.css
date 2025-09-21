@@ -16,7 +16,6 @@ body {
 
 /* Conteúdo principal deslocado para direita da sidebar */
 main {
-  margin-left: 80px;
   padding: 20px;
   display: flex;
   flex-direction: column;

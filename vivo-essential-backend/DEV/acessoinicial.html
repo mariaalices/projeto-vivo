@@ -264,29 +264,62 @@
           <h3 class="text-lg font-semibold text-purple-300">Solicitação de acesso:</h3>
 
           <!-- Nova Solicitação -->
-          <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg">
-            <h4 class="font-semibold text-white mb-4">Nova Solicitação:</h4>
+         <div class="bg-slate-800 bg-opacity-70 rounded-xl p-8 max-w-lg w-full">
+    
+    <div class="space-y-4" id="form-solicitacao">
+        <h2 class="text-xl font-semibold text-purple-300 mb-4 text-center">Nova Solicitação de Acesso</h2>
+        <div>
+            <label for="nome-plataforma" class="block text-white text-sm mb-1">Nome da plataforma:</label>
+            <input id="nome-plataforma" type="text" placeholder="Digite aqui..."
+                class="w-full px-4 py-2 rounded-lg bg-slate-700 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500" />
+        </div>
+        <div>
+            <label for="motivo-solicitacao" class="block text-white text-sm mb-1">Motivo da solicitação:</label>
+            <textarea id="motivo-solicitacao" placeholder="Digite o motivo..." rows="3"
+                class="w-full px-4 py-2 rounded-lg bg-slate-700 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500"></textarea>
+        </div>
+        <button id="btn-salvar" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg w-full transition-colors">
+            Salvar Solicitação
+        </button>
+    </div>
 
-            <div class="space-y-4">
-              <div>
-                <label class="block text-white text-sm mb-1">Nome da plataforma:</label>
-                <input type="text" placeholder="Digite aqui..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500" />
-              </div>
-              <div>
-                <label class="block text-white text-sm mb-1">Motivo da solicitação:</label>
-                <textarea placeholder="Digite o motivo..."
-                  class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500"></textarea>
-              </div>
-              <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg">
-                Salvar Solicitação
-              </button>
-            </div>
-          </div>
-
+</div>
           <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg space-y-6">
             <h4 class="font-semibold mb-4 text-white">Demais Acessos:</h4>
 
+            <script>
+    // Espera a página carregar por completo
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Seleciona os elementos importantes pelos IDs
+        const formContainer = document.getElementById('form-solicitacao');
+        const saveButton = document.getElementById('btn-salvar');
+        const plataformaInput = document.getElementById('nome-plataforma');
+        const motivoTextarea = document.getElementById('motivo-solicitacao');
+
+        // Adiciona um "ouvinte" de clique no botão
+        saveButton.addEventListener('click', () => {
+
+            // (Opcional) Captura os dados antes de limpar o formulário
+            const dados = {
+                plataforma: plataformaInput.value,
+                motivo: motivoTextarea.value
+            };
+            console.log('Dados capturados:', dados);
+
+            // Define a mensagem de confirmação que vai substituir o formulário
+            const mensagemDeConfirmacao = `
+                <div class="text-center transition-all">
+                    <h2 class="text-2xl font-bold text-green-400 mb-3">✅ Sucesso!</h2>
+                    <p class="text-slate-300">Sua solicitação foi salva e será processada em breve.</p>
+                </div>
+            `;
+
+            // Substitui todo o conteúdo da div 'form-solicitacao' pela mensagem
+            formContainer.innerHTML = mensagemDeConfirmacao;
+        });
+    });
+</script>
             <!-- Card 1 -->
             <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
               <div class="flex items-center gap-4">

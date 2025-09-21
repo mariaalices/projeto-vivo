@@ -1,0 +1,63 @@
+/*
+ * Pilar 1: Usabilidade
+ * Estilizando a tela de conclusão.
+*/
+
+.completion-icon {
+  font-size: 5rem; /* 80px */
+  line-height: 1;
+  color: #22c55e; /* green-500 */
+}
+
+.completion-title {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 800;
+  color: #d1d5db; /* gray-300 */
+  /* Um gradiente bonito para o título de parabéns */
+  background: linear-gradient(to right, #a78bfa, #22c55e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 1rem;
+}
+
+.completion-text {
+  font-size: 1.125rem; /* 18px */
+  color: #d1d5db; /* gray-300 */
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+.next-steps-container {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Estilo para o botão primário (Voltar à Home) */
+.btn-primary {
+  background-color: #7c3aed; /* purple-700 */
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* 8px */
+  transition: background-color 0.2s;
+}
+.btn-primary:hover {
+  background-color: #6d28d9; /* purple-800 */
+}
+
+/* Estilo para o botão secundário (Meus Cursos) */
+.btn-secondary {
+  background-color: #374151; /* slate-700 */
+  color: #d1d5db; /* gray-300 */
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* 8px */
+  transition: background-color 0.2s;
+}
+.btn-secondary:hover {
+  background-color: #4b5563; /* slate-600 */
+}

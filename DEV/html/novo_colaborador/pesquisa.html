@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Etapa 8 - Pesquisa de Satisfação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/sidebar.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/pesquisa.css" />
+  </head>
+
+  <body
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
+  >
+    <div class="sidebar">
+      <ul>
+        <li>
+          <a href="home_newuser.html"
+            ><img src="../../imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" /><span
+              >Meu Desenvolvimento</span
+            ></a
+          >
+        </li>
+        <li>
+          <a href="perfil_newuser.html"
+            ><img src="../../imagens/perfil-de-usuario.png" alt="Perfil" /><span
+              >Meu Perfil</span
+            ></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+              >Configurações</span
+            ></a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <main class="flex-1 md:ml-20 px-6 py-10 flex flex-col items-center">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-10">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">
+          Etapa 8 - Pesquisa de Satisfação
+        </h1>
+        <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <img
+            id="notifIcon"
+            src="../../imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
+          <div
+            id="notifModal"
+            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black dark:bg-slate-800 dark:text-white rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200 dark:divide-slate-700"
+          ></div>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
+          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+            Desconectar
+          </button>
+        </div>
+      </header>
+
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 shadow-lg w-full max-w-4xl"
+      >
+        <form id="form-pesquisa" onsubmit="return false;">
+          <div class="mb-8">
+            <label class="block text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+              Como você está se sentindo sobre seu onboarding até agora?
+            </label>
+            <div class="rating-group">
+              <input
+                type="radio"
+                id="sentimento-1"
+                name="sentimento"
+                value="confuso"
+                class="rating-input"
+              />
+              <label for="sentimento-1" class="rating-label">😕 Confuso</label>
+
+              <input
+                type="radio"
+                id="sentimento-2"
+                name="sentimento"
+                value="ok"
+                class="rating-input"
+              />
+              <label for="sentimento-2" class="rating-label">😐 Ok</label>
+
+              <input
+                type="radio"
+                id="sentimento-3"
+                name="sentimento"
+                value="bem"
+                class="rating-input"
+              />
+              <label for="sentimento-3" class="rating-label">😊 Bem</label>
+
+              <input
+                type="radio"
+                id="sentimento-4"
+                name="sentimento"
+                value="otimo"
+                class="rating-input"
+              />
+              <label for="sentimento-4" class="rating-label">🤩 Ótimo!</label>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <label class="block text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
+              Você está recebendo o suporte necessário do seu Buddy e Gestor?
+            </label>
+            <div class="rating-group">
+              <input
+                type="radio"
+                id="suporte-1"
+                name="suporte_buddy"
+                value="nao"
+                class="rating-input"
+              />
+              <label for="suporte-1" class="rating-label">Não</label>
+
+              <input
+                type="radio"
+                id="suporte-2"
+                name="suporte_buddy"
+                value="parcialmente"
+                class="rating-input"
+              />
+              <label for="suporte-2" class="rating-label">Parcialmente</label>
+
+              <input
+                type="radio"
+                id="suporte-3"
+                name="suporte_buddy"
+                value="sim"
+                class="rating-input"
+              />
+              <label for="suporte-3" class="rating-label">Sim</label>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <label
+              class="block text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4"
+              for="feedback-text"
+            >
+              Tem algum feedback ou ponto de dificuldade que queira compartilhar? (Opcional)
+            </label>
+            <textarea
+              id="feedback-text"
+              name="feedback"
+              class="feedback-textarea"
+              placeholder="Digite seu feedback aqui..."
+            ></textarea>
+          </div>
+
+          <div class="mt-8 text-right">
+            <button
+              id="btn-enviar-pesquisa"
+              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition disabled:bg-gray-500"
+            >
+              Enviar Feedback e Continuar
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="../../js/theme-swither.js"></script>
+    <script src="../../js/components/notifications.js"></script>
+    <script src="../../js/pesquisa.js"></script>
+  </body>
+</html>

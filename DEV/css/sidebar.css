@@ -26,10 +26,6 @@ body {
   margin: 0;
 }
 
-.sidebar ul li {
-  /* <li> não tem estilo */
-}
-
 .sidebar ul li a {
   display: flex;
   align-items: center;
@@ -82,4 +78,73 @@ main {
 /* Quando a sidebar expandir, "empurre" o <main> */
 .sidebar:hover ~ main {
   margin-left: 256px; /* Deve ser igual à largura expandida */
+}
+
+/* --- Estilos para o Botão de Fixar (Pin) --- */
+.sidebar-pin-container {
+  /* NÃO é mais 'position: absolute' */
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centraliza na sidebar recolhida */
+  align-items: center;
+  padding: 15px 0;
+  background: inherit; /* Herda o fundo da sidebar */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Trocado de border-top */
+  transition: all 0.3s ease;
+}
+
+/* Na sidebar expandida (hover ou fixed), alinha o pin à direita */
+.sidebar:hover .sidebar-pin-container,
+body.sidebar-fixed .sidebar .sidebar-pin-container {
+  justify-content: flex-end;
+  padding-right: 23px; /* Mesmo padding horizontal dos links */
+}
+
+#pin-sidebar-btn {
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+
+  /* Garante tamanho fixo (da nossa depuração anterior) */
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+}
+
+/* --- Lógica da Sidebar Fixada (PIN) --- */
+
+/* 1. Quando o body TIVER a classe .sidebar-fixed... */
+body.sidebar-fixed .sidebar {
+  width: 256px; /* ...força a largura expandida */
+}
+
+/* 2. ...mostra os spans (textos dos links) */
+body.sidebar-fixed .sidebar ul li a span {
+  opacity: 1;
+  display: inline;
+}
+
+/* 3. ...empurra o <main> permanentemente */
+body.sidebar-fixed main {
+  margin-left: 256px;
+}
+
+/* 4. ...desativa a animação de hover da sidebar e main */
+body.sidebar-fixed .sidebar:hover {
+  width: 256px;
+}
+
+body.sidebar-fixed .sidebar:hover ~ main {
+  margin-left: 256px;
+}
+
+/* 5. ...estiliza o botão de pin como "ativo" (girado E COM COR) */
+body.sidebar-fixed #pin-sidebar-btn {
+  transform: rotate(45deg);
+  color: #6d28d9; /* Cor roxa ativa (dark:text-purple-600) */
 }

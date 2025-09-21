@@ -1,0 +1,50 @@
+/*
+ * Pilar 1: Usabilidade
+ * Estilizando os checkboxes para parecerem cards selecionáveis,
+ * o que é muito mais intuitivo e moderno do que checkboxes padrão.
+*/
+
+.area-card {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem; /* 20px */
+  border-radius: 0.75rem; /* 12px */
+  border: 2px solid #374151; /* slate-700 */
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  /* Cor de fundo padrão (dark mode) */
+  background-color: rgba(30, 41, 59, 0.7); /* slate-800 com opacidade */
+  color: #d1d5db; /* gray-300 */
+}
+
+/* Estilo HOVER */
+.area-card:hover {
+  border-color: #a78bfa; /* purple-400 */
+  background-color: #374151; /* slate-700 */
+}
+
+/* Estilo SELECIONADO */
+.area-card.selected {
+  border-color: #8b5cf6; /* purple-600 */
+  background-color: #581c87; /* purple-900 */
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
+}
+
+/* Oculta o checkbox real, pois o card todo é clicável */
+.area-card input[type='checkbox'] {
+  display: none;
+}
+
+.area-card .icon {
+  width: 2rem; /* 32px */
+  height: 2rem; /* 32px */
+  margin-right: 1rem; /* 16px */
+  flex-shrink: 0;
+}
+
+.area-card .description {
+  font-weight: 600;
+  font-size: 1.125rem; /* 18px */
+}

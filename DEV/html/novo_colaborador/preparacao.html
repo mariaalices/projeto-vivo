@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Etapa 9 - Onboarding Concluído!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/sidebar.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/notifications.css" />
+    <link rel="stylesheet" href="../../css/preparacao.css" />
+  </head>
+
+  <body
+    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
+  >
+    <div class="sidebar">
+      <ul>
+        <li>
+          <a href="home_newuser.html"
+            ><img src="../../imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" /><span
+              >Meu Desenvolvimento</span
+            ></a
+          >
+        </li>
+        <li>
+          <a href="perfil_newuser.html"
+            ><img src="../../imagens/perfil-de-usuario.png" alt="Perfil" /><span
+              >Meu Perfil</span
+            ></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img src="../../imagens/configuracoes.png" alt="Configurações" /><span
+              >Configurações</span
+            ></a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <main class="flex-1 md:ml-20 px-6 py-10 flex flex-col items-center justify-center text-center">
+      <header class="w-full max-w-4xl flex justify-between items-center mb-10 hidden">
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Etapa 9 - Preparação</h1>
+        <div class="flex items-center gap-4 relative">
+          <button
+            id="themeToggleButton"
+            title="Alternar tema"
+            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+          >
+            <span id="themeIcon" class="text-xl"></span>
+          </button>
+          <img
+            id="notifIcon"
+            src="../../imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
+          <div
+            id="notifModal"
+            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black dark:bg-slate-800 dark:text-white rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200 dark:divide-slate-700"
+          ></div>
+          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
+        </div>
+      </header>
+
+      <section
+        class="container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-8 sm:p-12 shadow-lg w-full max-w-3xl"
+      >
+        <div class="completion-icon">
+          <span>✅</span>
+        </div>
+
+        <h2 class="completion-title">Onboarding Concluído!</h2>
+
+        <p class="completion-text">
+          Parabéns, Novo Usuário! Você completou todas as etapas iniciais do seu onboarding. Agora
+          você está pronto para explorar seus cursos e iniciar suas atividades.
+        </p>
+
+        <p id="completion-status" class="text-sm text-yellow-400 font-mono mt-4">
+          Status: Pendente...
+        </p>
+
+        <div class="next-steps-container">
+          <a href="home_newuser.html" class="btn-primary"> Voltar para a Home </a>
+          <a href="#" class="btn-secondary"> Explorar Meus Cursos </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="../../js/theme-swither.js"></script>
+    <script src="../../js/components/notifications.js"></script>
+    <script src="../../js/preparacao.js"></script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+/* Estilos principais e Sidebar (Bloco 1) */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* O background é controlado pelo Tailwind no body, mas mantemos a cor do texto */
+  color: rgb(30, 41, 59);
+}
+
+/* * NOTA DE MENTORIA: A sidebar abaixo é uma DUPLICAÇÃO.
+ * Ela deveria estar em um arquivo centralizado, como 'sidebar.css'.
+ * Vamos manter aqui por enquanto para corrigir o arquivo 'home',
+ * mas nosso próximo passo será centralizar isso.
+*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70px;
+  /* Largura fechada */
+  background: rgb(233 213 255);
+  overflow: hidden;
+  transition: width 0.3s ease;
+  z-index: 9999;
+  /* sempre na frente */
+}
+
+.sidebar:hover {
+  width: 220px;
+  /* Largura aberta */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar ul li:hover {
+  background: #635571;
+}
+
+.sidebar ul li i {
+  font-size: 22px;
+  margin-right: 15px;
+}
+
+.sidebar ul li img {
+  width: 24px;
+  /* tamanho fixo pequeno */
+  height: 24px;
+  flex-shrink: 0;
+  /* não deixa a imagem deformar */
+  margin-right: 0;
+  /* fechado não precisa espaço */
+}
+
+.sidebar ul li span {
+  display: none;
+  margin-left: 10px;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+
+/* Mostra o texto só quando expandido */
+.sidebar:hover ul li span {
+  opacity: 1;
+  display: inline;
+  color: black;
+}
+
+/* Conteúdo principal */
+.content {
+  margin-left: 80px;
+  padding: 20px;
+}
+
+/* Botão de emoji da avaliação (Bloco 1) */
+.emoji-btn.selecionado {
+  background-color: #6d28d9;
+  /* Um tom de roxo do Tailwind */
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+}
+
+/* Modal de Notificações (Bloco 2) */
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#notifModal {
+  max-height: 300px;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+}
+
+/* Ranking Table (Bloco 3) */
+/* Nota: O seletor 'body' deste bloco foi removido por ser redundante e conflitar com o Tailwind */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead th {
+  padding: 17px;
+  text-align: left;
+  border-bottom: 1px solid #e6d9ff;
+  /* linha sólida clara */
+  font-size: 16px;
+  color: white;
+  /* Mantido do original */
+}
+
+tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(230, 217, 255, 0.3);
+  /* linha mais transparente */
+  font-size: 15px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+  /* remove linha final */
+}

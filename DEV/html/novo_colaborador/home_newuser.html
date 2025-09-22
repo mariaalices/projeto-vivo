@@ -1,249 +1,370 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página Inicial</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIVO ESSENTIAL - Página Inicial</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/sidebar.css" />
-    <link rel="stylesheet" href="../../css/theme.css" />
-    <link rel="stylesheet" href="../../css/notifications.css" />
-    <link rel="stylesheet" href="../../css/home.css" />
+    <link rel="stylesheet" href="../../css/home_newuser_refactored.css" />
   </head>
-
-  <body class="min-h-screen flex bg-[#1c0033] text-white dark:bg-gray-100 dark:text-slate-800">
-    <div class="sidebar">
-      <div class="sidebar-pin-toggle" id="pin-sidebar-btn" title="Expandir menu">
-        <i class="fas fa-thumbtack icon"></i>
-      </div>
-      <ul>
-        <li>
-          <a href="home_newuser.html" title="Home">
-            <img src="../../imagens/botao-de-inicio.png" alt="Home" />
-            <span>Home</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Meus Cursos">
-            <img src="../../imagens/graduacao.png" alt="Meus Cursos" />
-            <span>Meus Cursos</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Meu Desenvolvimento">
-            <img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" />
-            <span>Desenvolvimento</span>
-          </a>
-        </li>
-        <li>
-          <a href="perfil_newuser.html" title="Meu Perfil">
-            <img src="../../imagens/perfil-de-usuario.png" alt="Perfil" />
-            <span>Meu Perfil</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Configurações">
-            <img src="../../imagens/configuracoes.png" alt="Configurações" />
-            <span>Configurações</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <main class="main-content flex-1">
-      <header
-        class="flex flex-col md:flex-row justify-between items-center bg-[#2a1c5b] dark:bg-white rounded-lg p-4 mb-6 shadow-lg"
+  <body
+    class="bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-slate-200 selection:bg-purple-400 dark:selection:bg-purple-500 selection:text-white transition-colors duration-300"
+  >
+    <div class="flex h-screen overflow-hidden">
+      <aside
+        class="w-64 bg-white dark:bg-slate-800 p-6 flex flex-col justify-between shadow-xl flex-shrink-0 transition-colors duration-300"
       >
-        <h1 class="text-2xl font-bold text-white dark:text-slate-800">Página Inicial</h1>
-
-        <div class="flex items-center gap-4 relative">
-          <button
-            id="themeToggleButton"
-            title="Alternar tema"
-            class="p-2 rounded-full text-white dark:text-gray-500 hover:bg-white/20 dark:hover:bg-gray-200"
-          >
-            <span id="themeIcon" class="text-xl"></span>
-          </button>
-
-          <img
-            id="notifIcon"
-            src="../../imagens/packard-bell.png"
-            alt="Notificações"
-            class="w-7 h-6 cursor-pointer filter dark:filter-none"
-            style="filter: invert(1)"
-          />
-
-          <div
-            id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 bg-[#2a1c5b] text-white border border-[#4c2b7b] dark:bg-white dark:text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-[#4c2b7b] dark:divide-gray-200"
-          ></div>
-
-          <span class="text-white dark:text-slate-700">Olá, Novo Usuário</span>
-          <button
-            class="bg-[#7c3aed] text-white px-4 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700"
-          >
-            Desconectar
-          </button>
-        </div>
-      </header>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-2 flex flex-col gap-6">
-          <section
-            id="secao-avaliacao-buddy"
-            class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg"
-          >
-            <h2 class="text-lg font-semibold text-white dark:text-purple-700 mb-4 text-center">
-              Avalie sua relação com o Buddy:
-            </h2>
-            <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
-              <button
-                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-                data-value="1"
-              >
-                😠
-              </button>
-              <button
-                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-                data-value="2"
-              >
-                😕
-              </button>
-              <button
-                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-                data-value="3"
-              >
-                😐
-              </button>
-              <button
-                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-                data-value="4"
-              >
-                😊
-              </button>
-              <button
-                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-                data-value="5"
-              >
-                😍
-              </button>
-            </div>
-            <textarea
-              id="motivo-avaliacao"
-              class="w-full rounded-lg bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300 text-white dark:text-slate-800 p-3 mb-4"
-              rows="2"
-              placeholder="Escreva um motivo... (Opcional)"
-            ></textarea>
-            <div class="flex justify-center">
-              <button
-                id="btn-enviar-avaliacao"
-                class="bg-[#7c3aed] text-white px-6 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition disabled:opacity-50"
-                disabled
-              >
-                Enviar Avaliação
-              </button>
-            </div>
-          </section>
-
-          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg">
-            <h2 class="text-lg font-semibold text-white dark:text-purple-700 mb-4">
-              Sua Jornada Onboarding
-            </h2>
-            <div
-              class="flex flex-wrap justify-center items-start space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6"
-            >
-              <div class="flex flex-col items-center min-w-[60px] text-center">
-                <div
-                  class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
-                >
-                  1
-                </div>
-                <span class="text-xs text-green-300 dark:text-green-700 mt-2">Home</span>
-              </div>
-              <span class="hidden md:inline text-purple-400 mt-2">&#8594;</span>
-              <div class="flex flex-col items-center min-w-[60px] text-center">
-                <div
-                  class="w-10 h-10 rounded-full bg-[#7c3aed] dark:bg-purple-500 flex items-center justify-center text-white font-bold"
-                >
-                  2
-                </div>
-                <span class="text-xs text-white dark:text-slate-700 mt-2">Treinamentos</span>
-              </div>
-            </div>
-            <div class="flex justify-center">
-              <a
-                href="treinamento_ini.html"
-                class="bg-[#7c3aed] text-white px-8 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition"
-              >
-                Iniciar Treinamentos (Etapa 2)
-              </a>
-            </div>
-          </section>
-        </div>
-
-        <div class="lg:col-span-1 flex flex-col gap-6">
-          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg text-center">
+        <div>
+          <div class="mb-10 text-center">
             <img
-              src="../../imagens/image 103.png"
-              alt="Vivo Coin"
-              class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-[#7c3aed]"
+              src="../../imagens/logo-vivo.svg"
+              alt="Logo VIVO"
+              class="w-28 h-auto mx-auto mb-1"
             />
-            <h3 class="text-lg font-semibold text-white dark:text-purple-700">VIVO Coin</h3>
-            <p class="text-sm text-gray-300 dark:text-gray-500 mb-3">Sua moeda digital</p>
-            <div class="bg-[#1c0033] dark:bg-slate-100 rounded-lg p-3 mb-4">
-              <div class="text-3xl font-bold text-[#a78bfa] dark:text-purple-500">500</div>
-              <p class="text-xs text-gray-300 dark:text-gray-500">Moedas acumuladas</p>
-            </div>
-            <a
-              href="#"
-              class="block w-full bg-[#7c3aed] text-white px-6 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition"
-            >
-              Saiba mais
-            </a>
-          </section>
-
-          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg">
-            <h3 class="text-lg font-semibold text-white dark:text-purple-700 mb-4">
-              Ranking Semanal
-            </h3>
-            <ul class="space-y-3">
-              <li class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <img src="../../imagens/perfil2.jpg" alt="Você" class="w-8 h-8 rounded-full" />
-                  <span class="font-medium text-white dark:text-slate-700">Você</span>
-                </div>
-                <span class="font-bold text-[#a78bfa] dark:text-purple-500">500</span>
+            <span class="text-2xl font-bold text-purple-700 dark:text-purple-400">ESSENTIAL</span>
+          </div>
+          <nav>
+            <ul>
+              <li class="mb-3">
+                <a
+                  href="home_newuser.html"
+                  id="homeLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200 active"
+                >
+                  <span class="mr-3">🏠</span> Home
+                </a>
               </li>
-              <li class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <img src="../../imagens/pessoa1.jpg" alt="Maria" class="w-8 h-8 rounded-full" />
-                  <span class="font-medium text-white dark:text-slate-700">Maria</span>
-                </div>
-                <span class="font-bold text-[#a78bfa] dark:text-purple-500">400</span>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="cursosLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">📚</span> Meus Cursos
+                </a>
               </li>
-              <li classs="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <img
-                    src="../../imagens/Pessoa-2mobile.webp"
-                    alt="Carlos"
-                    class="w-8 h-8 rounded-full"
-                  />
-                  <span class="font-medium text-white dark:text-slate-700">Carlos</span>
-                </div>
-                <span class="font-bold text-[#a78bfa] dark:text-purple-500">350</span>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="desenvolvimentoLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">📊</span> Desenvolvimento
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="perfil_newuser.html"
+                  id="perfilLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">👤</span> Meu Perfil
+                </a>
+              </li>
+              <li class="mb-3">
+                <a
+                  href="#"
+                  id="configuracoesLink"
+                  class="sidebar-link flex items-center py-3 px-4 rounded-lg text-gray-700 dark:text-slate-100 transition-colors duration-200"
+                >
+                  <span class="mr-3">⚙️</span> Configurações
+                </a>
               </li>
             </ul>
-          </section>
+          </nav>
         </div>
+        <div class="text-center text-xs text-gray-500 dark:text-slate-500">
+          &copy; <span id="currentYearSidebar"></span> VIVO ESSENTIAL
+        </div>
+      </aside>
+
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <header
+          class="bg-white dark:bg-slate-800 shadow-md p-4 flex justify-between items-center flex-shrink-0 transition-colors duration-300"
+        >
+          <h2 class="text-xl font-semibold text-gray-800 dark:text-slate-200" id="pageTitle">
+            Página Inicial
+          </h2>
+          <div class="flex items-center space-x-4">
+            <button
+              id="themeToggleButton"
+              title="Alternar tema"
+              class="p-2 rounded-full text-gray-600 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
+              <span id="themeIcon" class="text-xl"></span>
+            </button>
+            <div class="relative">
+              <img
+                id="notifIcon"
+                src="../../imagens/packard-bell.png"
+                alt="Notificações"
+                class="w-6 h-6 cursor-pointer filter dark:invert-0"
+                style="filter: invert(0.5)"
+              />
+              <div
+                id="notifModal"
+                class="hidden absolute top-full right-0 mt-3 w-80 bg-white dark:bg-slate-700 text-gray-800 dark:text-white rounded-lg shadow-xl z-50 max-h-72 overflow-y-auto"
+              ></div>
+            </div>
+            <div class="relative">
+              <button
+                class="flex items-center text-gray-900 dark:text-slate-200 p-1 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-700"
+              >
+                <img
+                  class="h-8 w-8 rounded-full object-cover mr-2"
+                  src="../../imagens/perfil2.jpg"
+                  alt="Avatar"
+                  id="userAvatarHeader"
+                />
+                <span id="userNameHeader" class="font-medium">Carregando...</span>
+              </button>
+            </div>
+            <button
+              id="logoutButtonHeader"
+              class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 rounded-lg text-sm"
+            >
+              Sair
+            </button>
+          </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto bg-gray-200 dark:bg-slate-900 p-6">
+          <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-6 text-center">
+            <h1
+              id="welcomeTitle"
+              class="text-3xl font-bold text-purple-600 dark:text-purple-300 mb-2"
+            >
+              Olá, Carregando...
+            </h1>
+            <p class="text-md text-gray-600 dark:text-slate-400">
+              Bem-vindo(a) à sua jornada de Onboarding na VIVO!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 flex flex-col gap-6">
+              <section
+                class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 transition-colors duration-300"
+              >
+                <h2 class="text-lg font-semibold text-gray-800 dark:text-slate-200 mb-4">
+                  Sua Jornada Onboarding
+                </h2>
+                <div class="flex justify-center items-center space-x-4 my-4">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
+                    >
+                      1
+                    </div>
+                    <span class="text-xs text-gray-600 dark:text-slate-400 mt-2">Home</span>
+                  </div>
+                  <div class="text-purple-400 font-bold text-2xl">→</div>
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold"
+                    >
+                      2
+                    </div>
+                    <span class="text-xs text-gray-600 dark:text-slate-400 mt-2">Treinamentos</span>
+                  </div>
+                </div>
+                <div class="flex justify-center mt-4">
+                  <a
+                    href="treinamento_ini.html"
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:ring-offset-slate-900"
+                  >
+                    Iniciar Treinamentos (Etapa 2)
+                  </a>
+                </div>
+              </section>
+
+              <section
+                id="secao-avaliacao-buddy"
+                class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 transition-colors duration-300"
+              >
+                <h2
+                  class="text-lg font-semibold text-gray-800 dark:text-slate-200 mb-4 text-center"
+                >
+                  Avalie sua relação com o Buddy:
+                </h2>
+                <div class="flex justify-center space-x-2 sm:space-x-6 my-4">
+                  <button
+                    class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                    data-value="1"
+                  >
+                    😠
+                  </button>
+                  <button
+                    class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                    data-value="2"
+                  >
+                    😕
+                  </button>
+                  <button
+                    class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                    data-value="3"
+                  >
+                    😐
+                  </button>
+                  <button
+                    class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                    data-value="4"
+                  >
+                    😊
+                  </button>
+                  <button
+                    class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                    data-value="5"
+                  >
+                    😍
+                  </button>
+                </div>
+                <textarea
+                  id="motivo-avaliacao"
+                  class="w-full rounded-lg bg-gray-200 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 p-3 mb-4"
+                  rows="2"
+                  placeholder="Escreva um motivo... (Opcional)"
+                ></textarea>
+                <div class="flex justify-center">
+                  <button
+                    id="btn-enviar-avaliacao"
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:ring-offset-slate-900"
+                    disabled
+                  >
+                    Enviar Avaliação
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <div class="lg:col-span-1 flex flex-col gap-6">
+              <section
+                class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 transition-colors duration-300 text-center"
+              >
+                <img
+                  src="../../imagens/image 103.png"
+                  alt="Vivo Coin"
+                  class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-purple-500"
+                />
+                <h3 class="text-lg font-semibold text-purple-600 dark:text-purple-300">
+                  VIVO Coin
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-slate-400 mb-3">Sua moeda digital</p>
+                <div class="bg-gray-100 dark:bg-slate-700 rounded-lg p-3 mb-4">
+                  <div id="vivoCoins" class="text-3xl font-bold text-purple-500">...</div>
+                  <p class="text-xs text-gray-500 dark:text-slate-400">Moedas acumuladas</p>
+                </div>
+                <a
+                  href="#"
+                  class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:ring-offset-slate-900"
+                >
+                  Saiba mais
+                </a>
+              </section>
+
+              <section
+                class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 transition-colors duration-300"
+              >
+                <h3 class="text-lg font-semibold text-gray-800 dark:text-slate-200 mb-4">
+                  Ranking Semanal
+                </h3>
+                <ul class="space-y-3">
+                  <li class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <img
+                        src="../../imagens/perfil2.jpg"
+                        alt="Você"
+                        class="w-8 h-8 rounded-full"
+                      />
+                      <span class="font-medium">Você</span>
+                    </div>
+                    <span id="userRank" class="font-bold text-purple-500">...</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+        </main>
       </div>
-    </main>
+    </div>
 
     <script src="../../js/theme-swither.js"></script>
-    <script src="../../js/sidebar.js"></script>
     <script src="../../js/components/notifications.js"></script>
     <script src="../../js/home.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', async function () {
+        // Elementos da UI
+        const welcomeTitleElement = document.getElementById('welcomeTitle');
+        const userNameHeaderElement = document.getElementById('userNameHeader');
+        const vivoCoinsElement = document.getElementById('vivoCoins');
+        const userRankElement = document.getElementById('userRank');
+        const logoutButtonHeader = document.getElementById('logoutButtonHeader');
+        const currentYearSidebarElement = document.getElementById('currentYearSidebar');
+
+        // Configuração do ano no rodapé da sidebar
+        if (currentYearSidebarElement) {
+          currentYearSidebarElement.textContent = new Date().getFullYear();
+        }
+
+        const accessToken = localStorage.getItem('accessToken');
+
+        function redirectToLogin(message) {
+          alert(message + ' Redirecionando para login...');
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userData');
+          window.location.href = 'login.html'; // Ajuste se o nome for diferente
+        }
+
+        if (!accessToken) {
+          // Descomente para produção
+          // redirectToLogin('Acesso negado. Token não encontrado.');
+          // return;
+        }
+
+        // Simulação de dados para desenvolvimento sem backend
+        const mockUserProfileData = {
+          nomeCompleto: 'Novo Colaborador',
+          email: 'novo.colaborador@vivo.com.br',
+          tipoPerfil: 'NOVO_COLABORADOR',
+          dataCadastro: new Date().toISOString(),
+          diasOfensiva: 5,
+          vivoCoins: 500,
+        };
+
+        // Função para atualizar a UI com dados do usuário
+        function updateUI(userProfileData) {
+          if (welcomeTitleElement) {
+            welcomeTitleElement.textContent = `Olá, ${userProfileData.nomeCompleto}!`;
+          }
+          if (userNameHeaderElement) {
+            userNameHeaderElement.textContent = userProfileData.nomeCompleto;
+          }
+          if (vivoCoinsElement) {
+            vivoCoinsElement.textContent = userProfileData.vivoCoins || 0;
+          }
+          if (userRankElement) {
+            userRankElement.textContent = userProfileData.vivoCoins || 0;
+          }
+        }
+
+        // Use os dados mockados para preencher a UI
+        updateUI(mockUserProfileData);
+
+        // Lógica de Logout
+        if (logoutButtonHeader) {
+          logoutButtonHeader.addEventListener('click', function () {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userData');
+            alert('Você saiu da plataforma.');
+            window.location.href = 'login.html'; // Ajuste se necessário
+          });
+        }
+      });
+    </script>
   </body>
 </html>

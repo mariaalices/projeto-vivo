@@ -1,0 +1,33 @@
+/*
+ * PILAR 2: Manutenibilidade.
+ * Estilos centralizados para a nova home do colaborador.
+ * Todas as diretivas @apply foram removidas para compatibilidade com CDN.
+*/
+
+/* --- Sidebar --- */
+.sidebar-link.active {
+  background-color: #6d28d9; /* Cor violet-700 para item ativo no modo escuro */
+  color: white;
+}
+body:not(.dark) .sidebar-link.active {
+  background-color: #4f46e5; /* Cor indigo-600 para item ativo no modo claro */
+}
+
+.sidebar-link:not(.active):hover {
+  background-color: #5b21b6; /* Cor violet-800 para hover no modo escuro */
+}
+body:not(.dark) .sidebar-link:not(.active):hover {
+  background-color: #6366f1; /* Cor indigo-500 para hover no modo claro */
+}
+
+/* --- Seção de Avaliação (Emojis) --- */
+/* A estilização base do .emoji-btn foi movida para o HTML. */
+/* Mantemos apenas os pseudo-classes e classes de estado. */
+.emoji-btn:hover {
+  transform: scale(1.2);
+}
+
+.emoji-btn.selected {
+  background-color: rgba(167, 139, 250, 0.3); /* Cor purple-300 com opacidade */
+  transform: scale(1.2);
+}

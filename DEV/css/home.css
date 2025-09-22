@@ -1,4 +1,4 @@
-/* Estilos principais e Sidebar (Bloco 1) */
+/* Estilos principais (Bloco 1) */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,11 +6,11 @@ body {
   color: rgb(30, 41, 59);
 }
 
-/* Conteúdo principal */
-.content {
-  margin-left: 80px;
-  padding: 20px;
-}
+/*
+ * REMOVIDO: .content { margin-left: 80px; ... }
+ * Pilar 2: Manutenibilidade. A margem de layout agora é
+ * controlada APENAS pelo Tailwind (ex: 'md:ml-20') no HTML.
+*/
 
 /* Botão de emoji da avaliação (Bloco 1) */
 .emoji-btn.selecionado {

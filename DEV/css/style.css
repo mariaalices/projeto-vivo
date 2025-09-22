@@ -1,8 +1,29 @@
 body {
   font-family: 'Inter', sans-serif;
+  /* Garante que o body não tenha overflow */
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar for a more modern look (optional) */
+/*
+ * PILAR 2 & 3: Manutenibilidade e Performance
+ * Esta é a classe principal para TODO o conteúdo fora da sidebar.
+ * O 'margin-left' transiciona suavemente.
+*/
+.main-content {
+  margin-left: 80px; /* Corresponde à largura RECOLHIDA da sidebar */
+  transition: margin-left 0.3s ease; /* Pilar 3: Performance */
+  padding: 1.5rem; /* Padding padrão (p-6 do Tailwind) */
+  width: 100%;
+  /* Garante que o main-content possa encolher corretamente */
+  min-width: 0;
+}
+
+/* ESTADO EXPANDIDO (quando o body tem a classe) */
+body.sidebar-pinned .main-content {
+  margin-left: 220px; /* Corresponde à largura EXPANDIDA da sidebar */
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -24,5 +45,3 @@ body {
 ::placeholder {
   color: #9ca3af; /* gray-400, conforme o placeholder-slate-400 do Tailwind */
 }
-
-/* Você pode adicionar outros estilos globais ou específicos aqui se necessário */

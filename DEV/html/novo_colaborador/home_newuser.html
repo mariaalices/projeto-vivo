@@ -14,56 +14,56 @@
     <link rel="stylesheet" href="../../css/home.css" />
   </head>
 
-  <body
-    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
-  >
+  <body class="min-h-screen flex bg-[#1c0033] text-white dark:bg-gray-100 dark:text-slate-800">
     <div class="sidebar">
+      <div class="sidebar-pin-toggle" id="pin-sidebar-btn" title="Expandir menu">
+        <i class="fas fa-thumbtack icon"></i>
+      </div>
       <ul>
         <li>
-          <a href="home_newuser.html"
-            ><img src="../../imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></a
-          >
+          <a href="home_newuser.html" title="Home">
+            <img src="../../imagens/botao-de-inicio.png" alt="Home" />
+            <span>Home</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></a
-          >
+          <a href="#" title="Meus Cursos">
+            <img src="../../imagens/graduacao.png" alt="Meus Cursos" />
+            <span>Meus Cursos</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" /><span
-              >Meu Desenvolvimento</span
-            ></a
-          >
+          <a href="#" title="Meu Desenvolvimento">
+            <img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" />
+            <span>Desenvolvimento</span>
+          </a>
         </li>
         <li>
-          <a href="perfil_newuser.html"
-            ><img src="../../imagens/perfil-de-usuario.png" alt="Perfil" /><span
-              >Meu Perfil</span
-            ></a
-          >
+          <a href="perfil_newuser.html" title="Meu Perfil">
+            <img src="../../imagens/perfil-de-usuario.png" alt="Perfil" />
+            <span>Meu Perfil</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/configuracoes.png" alt="Configurações" /><span
-              >Configurações</span
-            ></a
-          >
+          <a href="#" title="Configurações">
+            <img src="../../imagens/configuracoes.png" alt="Configurações" />
+            <span>Configurações</span>
+          </a>
         </li>
       </ul>
     </div>
 
-    <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16">
+    <main class="main-content flex-1">
       <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
+        class="flex flex-col md:flex-row justify-between items-center bg-[#2a1c5b] dark:bg-white rounded-lg p-4 mb-6 shadow-lg"
       >
-        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Página Inicial</h1>
+        <h1 class="text-2xl font-bold text-white dark:text-slate-800">Página Inicial</h1>
 
         <div class="flex items-center gap-4 relative">
           <button
             id="themeToggleButton"
             title="Alternar tema"
-            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+            class="p-2 rounded-full text-white dark:text-gray-500 hover:bg-white/20 dark:hover:bg-gray-200"
           >
             <span id="themeIcon" class="text-xl"></span>
           </button>
@@ -72,263 +72,177 @@
             id="notifIcon"
             src="../../imagens/packard-bell.png"
             alt="Notificações"
-            class="w-7 h-6 cursor-pointer"
+            class="w-7 h-6 cursor-pointer filter dark:filter-none"
+            style="filter: invert(1)"
           />
 
           <div
             id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black dark:bg-slate-800 dark:text-white rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200 dark:divide-slate-700"
+            class="hidden absolute top-full right-0 mt-3 w-80 bg-[#2a1c5b] text-white border border-[#4c2b7b] dark:bg-white dark:text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-[#4c2b7b] dark:divide-gray-200"
           ></div>
 
-          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+          <span class="text-white dark:text-slate-700">Olá, Novo Usuário</span>
+          <button
+            class="bg-[#7c3aed] text-white px-4 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700"
+          >
             Desconectar
           </button>
         </div>
       </header>
 
-      <section
-        id="secao-avaliacao-buddy"
-        class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto"
-      >
-        <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
-          Avalie sua relação com o Buddy:
-        </h2>
-        <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
-          <button
-            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-            data-value="1"
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 flex flex-col gap-6">
+          <section
+            id="secao-avaliacao-buddy"
+            class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg"
           >
-            😠
-          </button>
-          <button
-            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-            data-value="2"
-          >
-            😕
-          </button>
-          <button
-            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-            data-value="3"
-          >
-            😐
-          </button>
-          <button
-            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-            data-value="4"
-          >
-            😊
-          </button>
-          <button
-            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
-            data-value="5"
-          >
-            😍
-          </button>
-        </div>
-        <textarea
-          id="motivo-avaliacao"
-          class="w-full rounded-lg bg-gray-100 dark:bg-slate-700 text-slate-800 dark:text-white p-3 mb-4"
-          rows="2"
-          placeholder="Escreva um motivo... (Opcional)"
-        ></textarea>
-        <div class="flex justify-center">
-          <button
-            id="btn-enviar-avaliacao"
-            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
-            disabled
-          >
-            Enviar Avaliação
-          </button>
-        </div>
-      </section>
+            <h2 class="text-lg font-semibold text-white dark:text-purple-700 mb-4 text-center">
+              Avalie sua relação com o Buddy:
+            </h2>
+            <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+              <button
+                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                data-value="1"
+              >
+                😠
+              </button>
+              <button
+                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                data-value="2"
+              >
+                😕
+              </button>
+              <button
+                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                data-value="3"
+              >
+                😐
+              </button>
+              <button
+                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                data-value="4"
+              >
+                😊
+              </button>
+              <button
+                class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                data-value="5"
+              >
+                😍
+              </button>
+            </div>
+            <textarea
+              id="motivo-avaliacao"
+              class="w-full rounded-lg bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300 text-white dark:text-slate-800 p-3 mb-4"
+              rows="2"
+              placeholder="Escreva um motivo... (Opcional)"
+            ></textarea>
+            <div class="flex justify-center">
+              <button
+                id="btn-enviar-avaliacao"
+                class="bg-[#7c3aed] text-white px-6 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition disabled:opacity-50"
+                disabled
+              >
+                Enviar Avaliação
+              </button>
+            </div>
+          </section>
 
-      <section
-        class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto"
-      >
-        <h2 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4">
-          Sua Jornada Onboarding
-        </h2>
-        <div
-          class="flex flex-wrap justify-center items-center space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6"
-        >
-          <div class="flex flex-col items-center min-w-[60px]">
+          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg">
+            <h2 class="text-lg font-semibold text-white dark:text-purple-700 mb-4">
+              Sua Jornada Onboarding
+            </h2>
             <div
-              class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
+              class="flex flex-wrap justify-center items-start space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6"
             >
-              1
-            </div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Home (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-purple-500 ...">2</div>
-            <span class="text-xs text-slate-700 dark:text-purple-200 mt-2 text-center"
-              >Treinamentos</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-purple-500 ...">3</div>
-            <span class="text-xs text-slate-700 dark:text-purple-200 mt-2 text-center"
-              >Sua Vibe</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">4</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Areas (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">5</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Buddy+CLS (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">6</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >To na TI (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">7</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Senhas (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">8</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Pesquisa (Concluído)</span
-            >
-          </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>
-          <div class="flex flex-col items-center min-w-[60px]">
-            <div class="w-10 h-10 rounded-full bg-green-500 ...">9</div>
-            <span class="text-xs text-green-700 dark:text-green-300 mt-2 text-center"
-              >Preparação (Concluído)</span
-            >
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <button
-            class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition"
-          >
-            <a href="treinamento_ini.html">Iniciar Treinamentos (Etapa 2)</a>
-          </button>
-        </div>
-      </section>
-
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8 px-2">
-        <section class="max-w-6xl mx-auto px-4 mb-8">
-          <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6">
-            <h3 class="text-purple-700 dark:text-purple-300 font-semibold text-xl mb-6">
-              VIVO Coin
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <img
-                  src="../../imagens/image 103.png"
-                  alt="Imagem ilustrativa"
-                  class="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-              <div class="text-slate-700 dark:text-purple-200 flex flex-col justify-center">
-                <p class="mb-4">
-                  VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
-                  interagir na plataforma. Acumule pontos e troque por benefícios exclusivos.
-                </p>
-                <button
-                  class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit"
+              <div class="flex flex-col items-center min-w-[60px] text-center">
+                <div
+                  class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
                 >
-                  Saiba mais
-                </button>
+                  1
+                </div>
+                <span class="text-xs text-green-300 dark:text-green-700 mt-2">Home</span>
+              </div>
+              <span class="hidden md:inline text-purple-400 mt-2">&#8594;</span>
+              <div class="flex flex-col items-center min-w-[60px] text-center">
+                <div
+                  class="w-10 h-10 rounded-full bg-[#7c3aed] dark:bg-purple-500 flex items-center justify-center text-white font-bold"
+                >
+                  2
+                </div>
+                <span class="text-xs text-white dark:text-slate-700 mt-2">Treinamentos</span>
               </div>
             </div>
-          </div>
-        </section>
-
-        <div class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-          <h3 class="text-purple-700 dark:text-purple-300 font-semibold mb-2">
-            Ranking semanal Vivo coins
-          </h3>
-          <table class="w-full text-left text-slate-700 dark:text-purple-200 min-w-[300px]">
-            <hr style="border: none; height: 2px; background-color: #ccc; margin: 10px 0" />
-            <table>
-              <thead>
-                <tr>
-                  <th>Usuário</th>
-                  <th>Pontos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Você</td>
-                  <td>500</td>
-                </tr>
-                <tr>
-                  <td>Maria</td>
-                  <td>400</td>
-                </tr>
-                <tr>
-                  <td>Carlos</td>
-                  <td>350</td>
-                </tr>
-                <tr>
-                  <td>Inacia</td>
-                  <td>250</td>
-                </tr>
-                <tr>
-                  <td>Paula</td>
-                  <td>200</td>
-                </tr>
-              </tbody>
-            </table>
-          </table>
+            <div class="flex justify-center">
+              <a
+                href="treinamento_ini.html"
+                class="bg-[#7c3aed] text-white px-8 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition"
+              >
+                Iniciar Treinamentos (Etapa 2)
+              </a>
+            </div>
+          </section>
         </div>
-      </section>
 
-      <section
-        id="secao-gerenciar-acesso"
-        class="bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 max-w-xl mx-auto"
-      >
-        <h2
-          class="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-4 text-center sm:text-left"
-        >
-          Gerenciar Acessos
-        </h2>
-        <p class="text-slate-700 dark:text-slate-300 mb-6 text-center sm:text-left">
-          Nesta página você pode consultar os seus acessos e solicitar um novo.
-        </p>
-        <div class="flex justify-center">
-          <a
-            href="acessoinicial.html"
-            class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-semibold text-center"
-          >
-            Consultar e Solicitar Acessos (Etapa 7)
-          </a>
+        <div class="lg:col-span-1 flex flex-col gap-6">
+          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg text-center">
+            <img
+              src="../../imagens/image 103.png"
+              alt="Vivo Coin"
+              class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-[#7c3aed]"
+            />
+            <h3 class="text-lg font-semibold text-white dark:text-purple-700">VIVO Coin</h3>
+            <p class="text-sm text-gray-300 dark:text-gray-500 mb-3">Sua moeda digital</p>
+            <div class="bg-[#1c0033] dark:bg-slate-100 rounded-lg p-3 mb-4">
+              <div class="text-3xl font-bold text-[#a78bfa] dark:text-purple-500">500</div>
+              <p class="text-xs text-gray-300 dark:text-gray-500">Moedas acumuladas</p>
+            </div>
+            <a
+              href="#"
+              class="block w-full bg-[#7c3aed] text-white px-6 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition"
+            >
+              Saiba mais
+            </a>
+          </section>
+
+          <section class="bg-[#2a1c5b] dark:bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="text-lg font-semibold text-white dark:text-purple-700 mb-4">
+              Ranking Semanal
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img src="../../imagens/perfil2.jpg" alt="Você" class="w-8 h-8 rounded-full" />
+                  <span class="font-medium text-white dark:text-slate-700">Você</span>
+                </div>
+                <span class="font-bold text-[#a78bfa] dark:text-purple-500">500</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img src="../../imagens/pessoa1.jpg" alt="Maria" class="w-8 h-8 rounded-full" />
+                  <span class="font-medium text-white dark:text-slate-700">Maria</span>
+                </div>
+                <span class="font-bold text-[#a78bfa] dark:text-purple-500">400</span>
+              </li>
+              <li classs="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <img
+                    src="../../imagens/Pessoa-2mobile.webp"
+                    alt="Carlos"
+                    class="w-8 h-8 rounded-full"
+                  />
+                  <span class="font-medium text-white dark:text-slate-700">Carlos</span>
+                </div>
+                <span class="font-bold text-[#a78bfa] dark:text-purple-500">350</span>
+              </li>
+            </ul>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
 
-    <button
-      class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition"
-    >
-      ?
-    </button>
-
     <script src="../../js/theme-swither.js"></script>
+    <script src="../../js/sidebar.js"></script>
     <script src="../../js/components/notifications.js"></script>
     <script src="../../js/home.js"></script>
   </body>

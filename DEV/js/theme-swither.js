@@ -1,48 +1,52 @@
+/*
+ * V4.1 - Lógica de Tema (Dark por Padrão)
+ * Alinhado ao visual 'segunda_tentativa'
+ */
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggleButton = document.getElementById('themeToggleButton');
   const themeIcon = document.getElementById('themeIcon');
-  const htmlElement = document.documentElement; // Pega o elemento <html>
+  const body = document.body;
 
-  // Função para aplicar o tema e atualizar o ícone
+  // PILAR 1: O tema padrão agora é 'dark' para corresponder ao V2
+  const defaultTheme = 'dark';
+
   const applyTheme = (theme) => {
     if (theme === 'dark') {
-      htmlElement.classList.add('dark');
+      body.classList.add('dark');
       if (themeIcon) themeIcon.textContent = '☀️'; // Sol para mudar para claro
       localStorage.setItem('theme', 'dark');
     } else {
       // light theme
-      htmlElement.classList.remove('dark');
+      body.classList.remove('dark');
       if (themeIcon) themeIcon.textContent = '🌙'; // Lua para mudar para escuro
       localStorage.setItem('theme', 'light');
     }
   };
 
-  // Define o tema inicial
-  // Se há um tema salvo, usa ele. Senão, usa 'dark' como padrão.
-  const savedTheme = localStorage.getItem('theme');
-  let currentTheme = savedTheme || 'dark'; // Padrão para escuro
+  // Carrega o tema salvo ou usa o padrão 'dark'
+  let currentTheme = localStorage.getItem('theme') || defaultTheme;
 
-  // Se não houver tema salvo E o sistema operacional preferir o modo claro, usa claro.
-  // Isso é uma melhoria para respeitar a preferência inicial do SO se não houver nada salvo.
+  // Se não houver preferência salva, mas o S.O. preferir 'light', usamos 'light'
   if (
-    !savedTheme &&
+    !localStorage.getItem('theme') &&
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: light)').matches
   ) {
     currentTheme = 'light';
   }
 
+  // Aplica o tema no carregamento da página
   applyTheme(currentTheme);
 
+  // Adiciona o listener de clique
   if (themeToggleButton) {
     themeToggleButton.addEventListener('click', () => {
-      const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
+      const newTheme = body.classList.contains('dark') ? 'light' : 'dark';
       applyTheme(newTheme);
     });
   }
 
-  // Opcional: Observa mudanças na preferência de tema do sistema operacional
-  // Só muda se o usuário não tiver uma preferência explícita salva no localStorage
+  // Opcional: Observa mudanças no SO (se o usuário não tiver setado preferência)
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
     if (!localStorage.getItem('theme')) {
       applyTheme(event.matches ? 'dark' : 'light');

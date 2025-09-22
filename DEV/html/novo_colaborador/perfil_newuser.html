@@ -5,165 +5,287 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Meu Perfil</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/sidebar.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/notifications.css" />
     <link rel="stylesheet" href="../../css/perfil_newuser.css" />
-    <link rel="stylesheet" href="../../css/theme.css" />
   </head>
-  <body
-    class="bg-gray-100 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-950 dark:to-indigo-950 min-h-screen flex flex-col"
-  >
+
+  <body class="min-h-screen flex bg-[#1c0033] text-white dark:bg-gray-100 dark:text-slate-800">
     <div class="sidebar">
+      <div class="sidebar-pin-toggle" id="pin-sidebar-btn" title="Expandir menu">
+        <i class="fas fa-thumbtack icon"></i>
+      </div>
       <ul>
         <li>
-          <a href="home_newuser.html"
-            ><img src="../../imagens/botao-de-inicio.png" alt="Home" /><span>Home</span></a
-          >
+          <a href="home_newuser.html" title="Home">
+            <img src="../../imagens/botao-de-inicio.png" alt="Home" />
+            <span>Home</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/graduacao.png" alt="Meus Cursos" /><span>Meus Cursos</span></a
-          >
+          <a href="#" title="Meus Cursos">
+            <img src="../../imagens/graduacao.png" alt="Meus Cursos" />
+            <span>Meus Cursos</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" /><span
-              >Meu Desenvolvimento</span
-            ></a
-          >
+          <a href="#" title="Meu Desenvolvimento">
+            <img src="../../imagens/grafico-de-barras.png" alt="Desenvolvimento" />
+            <span>Desenvolvimento</span>
+          </a>
         </li>
         <li>
-          <a href="perfil_newuser.html"
-            ><img src="../../imagens/perfil-de-usuario.png" alt="Perfil" /><span
-              >Meu Perfil</span
-            ></a
-          >
+          <a href="perfil_newuser.html" title="Meu Perfil">
+            <img src="../../imagens/perfil-de-usuario.png" alt="Perfil" />
+            <span>Meu Perfil</span>
+          </a>
         </li>
         <li>
-          <a href="#"
-            ><img src="../../imagens/configuracoes.png" alt="Configurações" /><span
-              >Configurações</span
-            ></a
-          >
+          <a href="#" title="Configurações">
+            <img src="../../imagens/configuracoes.png" alt="Configurações" />
+            <span>Configurações</span>
+          </a>
         </li>
       </ul>
     </div>
 
-    <main class="flex-grow flex flex-col items-center p-4">
+    <main class="main-content flex-1">
       <header
-        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10 w-full"
+        class="flex flex-col md:flex-row justify-between items-center bg-[#2a1c5b] dark:bg-white rounded-lg p-4 mb-6 shadow-lg"
       >
-        <h1 class="text-2xl font-bold text-slate-800 dark:text-purple-200">Meu Perfil</h1>
+        <h1 class="text-2xl font-bold text-white dark:text-slate-800">Meu Perfil</h1>
         <div class="flex items-center gap-4 relative">
           <button
             id="themeToggleButton"
             title="Alternar tema"
-            class="p-2 rounded-full text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-600 transition-colors duration-200"
+            class="p-2 rounded-full text-white dark:text-gray-500 hover:bg-white/20 dark:hover:bg-gray-200"
           >
             <span id="themeIcon" class="text-xl"></span>
           </button>
-
           <img
             id="notifIcon"
             src="../../imagens/packard-bell.png"
             alt="Notificações"
-            class="w-7 h-6 cursor-pointer"
+            class="w-7 h-6 cursor-pointer filter dark:filter-none"
+            style="filter: invert(1)"
           />
-
           <div
             id="notifModal"
-            class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200"
+            class="hidden absolute top-full right-0 mt-3 w-80 bg-[#2a1c5b] text-white border border-[#4c2b7b] dark:bg-white dark:text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-[#4c2b7b] dark:divide-gray-200"
           ></div>
-
-          <span class="text-slate-700 dark:text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-            Desconectar
-          </button>
+          <span class="text-white dark:text-slate-700">Olá, Novo Usuário</span>
         </div>
       </header>
 
       <section
-        class="profile-container bg-white dark:bg-slate-800 dark:bg-opacity-70 rounded-2xl p-6 md:p-8 shadow-lg w-full max-w-4xl"
+        class="bg-[#2a1c5b] dark:bg-white rounded-lg p-6 flex flex-col items-center mb-6 shadow-lg"
       >
-        <div class="flex flex-col items-center md:flex-row md:items-start md:gap-8">
-          <div class="flex-shrink-0 text-center">
-            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-lg mx-auto">
-              <img
-                src="../../imagens/pessoa1.jpg"
-                alt="Foto do Usuário"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <h2 class="text-2xl font-semibold text-slate-800 dark:text-white mt-4">
-              Nome do Usuário
-            </h2>
-            <p class="text-gray-500 dark:text-gray-400">Cargo do Usuário (ex: Estagiário TI)</p>
+        <img
+          src="../../imagens/perfil2.jpg"
+          alt="Foto do Perfil"
+          class="w-32 h-32 rounded-full border-4 border-[#7c3aed] mb-4"
+        />
+        <h2 class="text-2xl font-bold text-white dark:text-slate-800" id="profile-nome">
+          Carregando...
+        </h2>
+        <p class="text-base text-gray-300 dark:text-gray-500" id="profile-cargo">Carregando...</p>
+        <div class="flex gap-8 mt-4">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white dark:text-slate-800">500</div>
+            <div class="text-sm text-gray-300 dark:text-gray-500">Vivo Coins</div>
           </div>
-
-          <div class="w-full mt-6 md:mt-0">
-            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mt-6 mb-2">
-              Sobre mim
-            </h3>
-            <p class="text-gray-600 dark:text-gray-200 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-
-            <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300 mt-6 mb-3">
-              Minhas Conquistas
-            </h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              <div
-                class="conquista-box bg-gray-100 dark:bg-slate-700 p-4 rounded-lg text-center shadow"
-              >
-                <img src="../../imagens/medalha.png" alt="Conquista" class="w-12 h-12 mx-auto" />
-                <p class="text-sm font-medium text-slate-700 dark:text-white mt-2">
-                  Primeiro Acesso
-                </p>
-              </div>
-              <div
-                class="conquista-box bg-gray-100 dark:bg-slate-700 p-4 rounded-lg text-center shadow"
-              >
-                <img src="../../imagens/medalha.png" alt="Conquista" class="w-12 h-12 mx-auto" />
-                <p class="text-sm font-medium text-slate-700 dark:text-white mt-2">
-                  Trilha Concluída
-                </p>
-              </div>
-              <div
-                class="conquista-box bg-gray-100 dark:bg-slate-900 p-4 rounded-lg text-center shadow opacity-50"
-              >
-                <img src="../../imagens/medalha.png" alt="Conquista" class="w-12 h-12 mx-auto" />
-                <p class="text-sm font-medium text-slate-700 dark:text-gray-400 mt-2">
-                  Buddy Nota 10
-                </p>
-              </div>
-            </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-white dark:text-slate-800">3</div>
+            <div class="text-sm text-gray-300 dark:text-gray-500">Conquistas</div>
           </div>
         </div>
       </section>
+
+      <div class="w-full">
+        <div class="border-b-2 border-[#2a1c5b] dark:border-gray-200 mb-6">
+          <nav class="flex space-x-4" id="profile-tabs">
+            <button
+              class="tab-btn py-2 px-4 font-semibold text-gray-400 dark:text-gray-500 border-b-4 border-transparent hover:border-[#7c3aed] hover:text-white dark:hover:text-purple-600"
+              data-tab="geral"
+            >
+              Visão Geral
+            </button>
+            <button
+              class="tab-btn py-2 px-4 font-semibold text-gray-400 dark:text-gray-500 border-b-4 border-transparent hover:border-[#7c3aed] hover:text-white dark:hover:text-purple-600"
+              data-tab="senha"
+            >
+              Segurança
+            </button>
+          </nav>
+        </div>
+
+        <div id="tab-content">
+          <div id="tab-geral" class="tab-pane">
+            <div class="bg-[#2a1c5b] dark:bg-white rounded-lg p-6 shadow-lg">
+              <h3 class="text-lg font-semibold text-white dark:text-slate-800 mb-4">
+                Informações de Perfil
+              </h3>
+              <form id="profile-form" class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 dark:text-gray-600"
+                    >Nome</label
+                  >
+                  <input
+                    type="text"
+                    id="nome"
+                    class="w-full mt-1 p-2 rounded-md bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300"
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 dark:text-gray-600"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full mt-1 p-2 rounded-md bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300"
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 dark:text-gray-600"
+                    >Cargo</label
+                  >
+                  <input
+                    type="text"
+                    id="cargo"
+                    class="w-full mt-1 p-2 rounded-md bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300"
+                    disabled
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div id="tab-senha" class="tab-pane hidden">
+            <div class="bg-[#2a1c5b] dark:bg-white rounded-lg p-6 shadow-lg">
+              <h3 class="text-lg font-semibold text-white dark:text-slate-800 mb-4">
+                Alterar Senha
+              </h3>
+              <form id="password-form" class="space-y-4">
+                <div>
+                  <label
+                    for="current-password"
+                    class="block text-sm font-medium text-gray-300 dark:text-gray-600"
+                    >Senha Atual</label
+                  >
+                  <input
+                    type="password"
+                    id="current-password"
+                    class="w-full mt-1 p-2 rounded-md bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="new-password"
+                    class="block text-sm font-medium text-gray-300 dark:text-gray-600"
+                    >Nova Senha</label
+                  >
+                  <input
+                    type="password"
+                    id="new-password"
+                    class="w-full mt-1 p-2 rounded-md bg-[#1c0033] border border-[#4c2b7b] dark:bg-slate-100 dark:border-slate-300"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="bg-[#7c3aed] text-white px-6 py-2 rounded-lg hover:bg-[#6d28d9] dark:bg-purple-600 dark:hover:bg-purple-700 transition"
+                >
+                  Salvar Alterações
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script src="../../js/theme-swither.js"></script>
-
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/components/notifications.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.getElementById('notifModal');
+      document.addEventListener('DOMContentLoaded', () => {
+        // Lógica de Tabs (Layout V2)
+        const tabs = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
 
-        if (notifIcon && notifModal) {
-          notifIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            notifModal.classList.toggle('hidden');
-          });
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            // Desativa todos
+            tabs.forEach((t) => t.classList.remove('active', 'text-white', 'border-[#7c3aed]'));
+            tabPanes.forEach((p) => p.classList.add('hidden'));
 
-          document.addEventListener('click', (e) => {
-            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-              notifModal.classList.add('hidden');
-            }
+            // Ativa o clicado
+            tab.classList.add('active', 'text-white', 'border-[#7c3aed]');
+            const tabName = tab.getAttribute('data-tab');
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
           });
+        });
+
+        // Ativa o primeiro tab por padrão
+        if (tabs.length > 0) {
+          tabs[0].click();
         }
+
+        // Lógica de Preenchimento de Perfil (V4)
+        const token = localStorage.getItem('accessToken');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        if (!token || !userData) {
+          window.location.href = '../index.html';
+          return;
+        }
+
+        document.getElementById('profile-nome').textContent = userData.nome || 'Usuário';
+        document.getElementById('profile-cargo').textContent =
+          userData.cargo || 'Cargo não definido';
+
+        document.getElementById('nome').value = userData.nome || '';
+        document.getElementById('email').value = userData.email || '';
+        document.getElementById('cargo').value = userData.cargo || '';
+
+        // Lógica de Alterar Senha (V4)
+        const passwordForm = document.getElementById('password-form');
+        passwordForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const currentPassword = document.getElementById('current-password').value;
+          const newPassword = document.getElementById('new-password').value;
+
+          try {
+            const response = await fetch('http://localhost:3000/auth/update-password', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ currentPassword, newPassword }),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+              throw new Error(result.message || 'Erro ao atualizar senha');
+            }
+
+            alert('Senha atualizada com sucesso!');
+            passwordForm.reset();
+          } catch (error) {
+            console.error('Erro:', error);
+            alert(`Falha ao atualizar senha: ${error.message}`);
+          }
+        });
       });
     </script>
   </body>

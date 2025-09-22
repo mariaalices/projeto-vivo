@@ -1,85 +1,172 @@
 /*
  * PILAR 2: Manutenibilidade.
- * Esta é a ÚNICA Fonte da Verdade para o estilo da Sidebar.
- * Todas as outras definições de .sidebar em outros arquivos (home.css, etc.)
- * DEVEM SER REMOVIDAS.
+ * Versão 5.5 (Funcionalidade V5 + Cores V2 'segunda_tentativa')
 */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
-  width: 70px; /* Largura fechada */
+  width: 80px; /* Largura RECOLHIDA (default) */
 
-  /* Estilo Light Mode (Padrão) */
-  background: rgb(233 213 255);
+  /* Cores V2 (Dark Mode Padrão) */
+  background: #4c2b7b;
+  color: #fff;
+  border-right: 1px solid #6a3aab;
 
-  overflow: hidden;
-  transition: width 0.3s ease;
-  z-index: 999; /* Z-index alto para ficar na frente */
+  overflow-x: hidden;
+  transition: width 0.3s ease, background 0.3s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Ajuste para Dark Mode (quando o <body> tem a classe 'dark') */
-body.dark .sidebar {
-  background: rgb(
-    233 213 255
-  ); /* Mantendo a cor roxa clara no dark mode, como no design original */
-  /* Se quiséssemos um sidebar escuro no dark mode: */
-  /* background: #1e293b; */
+/* --- Light Mode (Cores V2) --- */
+body:not(.dark) .sidebar {
+  background: #fff;
+  border-right: 1px solid #e2e8f0; /* slate-200 */
 }
 
-.sidebar:hover {
-  width: 220px; /* Largura aberta */
+/* ESTADO EXPANDIDO */
+body.sidebar-pinned .sidebar {
+  width: 220px; /* Largura EXPANDIDA */
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
+  flex-grow: 1;
 }
 
-.sidebar ul li {
+/* --- Botão de Pin (Cores V2) --- */
+.sidebar-pin-toggle {
   display: flex;
   align-items: center;
-  padding: 15px;
+  position: relative;
+  height: 60px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+
+  /* Estilo padrão (recolhido) */
+  background: #6a3aab;
+  color: white;
+}
+/* Light Mode */
+body:not(.dark) .sidebar-pin-toggle {
+  background: #f1f5f9; /* slate-100 */
+  color: #333;
+}
+
+.sidebar-pin-toggle:hover {
+  background: #7c3aed;
+}
+body:not(.dark) .sidebar-pin-toggle:hover {
+  background: #e2e8f0;
+}
+
+.sidebar-pin-toggle .icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  transition: all 0.3s ease;
+  left: 28px; /* (80px - 24px) / 2 = 28px */
+  transform: rotate(0deg);
+}
+
+/* No estado expandido, o botão de pin muda */
+body.sidebar-pinned .sidebar-pin-toggle {
+  background: transparent;
+  color: #fff; /* Ícone branco no dark */
+}
+/* Light Mode */
+body:not(.dark).sidebar-pinned .sidebar-pin-toggle {
+  color: #333; /* Ícone escuro no light */
+}
+
+/* No estado expandido, o ícone se move para a direita e gira */
+body.sidebar-pinned .sidebar-pin-toggle .icon {
+  /* 220px (largura) - 24px (ícone) - 24px (padding-right) = 172px */
+  left: 172px;
+  transform: rotate(180deg);
+}
+.sidebar-pin-toggle .icon.pinned {
+  left: 172px;
+  transform: rotate(180deg);
+}
+body.sidebar-pinned .sidebar-pin-toggle .icon:not(.pinned) {
+  left: 28px;
+  transform: rotate(0deg);
+}
+
+/* --- Itens da Lista (Cores V2) --- */
+.sidebar ul li {
   cursor: pointer;
   transition: background 0.2s;
-  width: 220px; /* Garante que o item ocupe o espaço total no hover */
-}
-
-.sidebar ul li:hover {
-  background: #c084fc; /* purple-400 (Light Mode Hover) */
-}
-
-body.dark .sidebar ul li:hover {
-  background: #635571; /* Cor escura do hover */
+  width: 100%;
+  height: 60px;
 }
 
 .sidebar ul li a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #1f293b; /* Cor padrão do texto (Escuro, legível no fundo claro) */
+  color: #fff; /* V2 Cor Padrão */
   white-space: nowrap;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
-
-/* O texto (span) dentro do link */
-.sidebar ul li a span {
-  margin-left: 10px; /* Margem movida do 'span' para o 'a img' */
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* Light Mode */
+body:not(.dark) .sidebar ul li a {
+  color: #334155; /* slate-700 */
 }
 
 .sidebar ul li a img {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  margin-right: 15px; /* Espaço entre ícone e texto */
+  position: absolute;
+  left: 28px; /* (80px - 24px) / 2 = 28px */
+  transition: none; /* ÍCONE NÃO SE MOVE */
 }
 
-.sidebar:hover ul li a span {
-  display: inline;
+/*
+body:not(.dark) .sidebar ul li a img {
+  /* Pode ser necessário inverter a cor de ícones PNG brancos */
+/* filter: invert(1);}
+*/
+
+.sidebar ul li a span {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+  margin-left: 64px; /* 28px (ícone left) + 24px (ícone width) + 12px (gap) */
+  transition: opacity 0.2s ease, width 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff; /* V2 Cor Padrão */
+  overflow: hidden;
+}
+/* Light Mode */
+body:not(.dark) .sidebar ul li a span {
+  color: #334155;
+}
+
+/* ESTADO EXPANDIDO - Alinhamento do Texto */
+body.sidebar-pinned .sidebar ul li a span {
   opacity: 1;
+  width: auto;
+}
+
+/* Estilo de hover/ativo */
+.sidebar ul li:hover a {
+  background: #6a3aab; /* V2 Hover */
+}
+body:not(.dark) .sidebar ul li:hover a {
+  background: #eef2ff; /* indigo-50 */
 }

@@ -32,11 +32,12 @@
       /* sempre na frente */
     }
 
-     .emoji-btn.selecionado {
-            background-color: #6d28d9; /* Um tom de roxo do Tailwind */
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
-        }
+    .emoji-btn.selecionado {
+      background-color: #6d28d9;
+      /* Um tom de roxo do Tailwind */
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+    }
 
 
     .sidebar:hover {
@@ -108,8 +109,10 @@
       <ul>
         <li><img src="./imagens/botao-de-inicio.png" alt=""> <span><a href="home_newuser.html">Home</a></span></li>
         <li><img src="./imagens/graduacao.png" alt=""><span><a href="treinamento_ini.html">Meus Cursos</a></span></li>
-        <li><img src="./imagens/grafico-de-barras.png" alt=""><span><a href="perfil_newuser.html">Meu Desenvolvimento</a></span></li>
-        <li><img src="./imagens/configuracoes.png" alt=""><span><a href="perfil_newuser.html">Meus Ajustes</a></span></li>
+        <li><img src="./imagens/grafico-de-barras.png" alt=""><span><a href="perfil_newuser.html">Meu
+              Desenvolvimento</a></span></li>
+        <li><img src="./imagens/configuracoes.png" alt=""><span><a href="perfil_newuser.html">Meus Ajustes</a></span>
+        </li>
       </ul>
     </div>
 
@@ -122,16 +125,20 @@
         <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
         <div class="flex items-center space-x-4 relative">
           <!-- Ícone de Notificação -->
-          <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 rounded-full cursor-pointer">
-        
+          <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
+            class="w-7 h-6 rounded-full cursor-pointer">
+
           <span class="text-purple-200">Olá, Novo Usuário</span>
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
-        
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
+
           <!-- Modal de Notificações -->
-          <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
+          <div id="notifModal"
+            class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
             <div class="notif-item">
               <img src="./imagens/avatar.png" alt="Avatar">
-              <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+              <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+              </p>
             </div>
             <div class="notif-item">
               <img src="./imagens/avatar.png" alt="Avatar">
@@ -139,16 +146,18 @@
             </div>
             <div class="notif-item">
               <img src="./imagens/avatar.png" alt="Avatar">
-              <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
+              <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
+              </p>
             </div>
             <div class="notif-item">
               <img src="./imagens/avatar.png" alt="Avatar">
-              <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar?
+              <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
+                ajudar?
                 =)</p>
             </div>
           </div>
         </div>
-        
+
         <!-- CSS -->
         <style>
           .notif-item {
@@ -158,24 +167,24 @@
             padding: 10px;
             border-bottom: 1px solid #ccc;
           }
-        
+
           .notif-item:last-child {
             border-bottom: none;
           }
-        
+
           .notif-item img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
           }
-        
+
           #notifModal {
             max-height: 300px;
             overflow-y: auto;
             transition: all 0.2s ease;
           }
         </style>
-        
+
         <!-- JS -->
         <script>
           const notifIcon = document.getElementById('notifIcon');
@@ -196,24 +205,27 @@
       </header>
       <!-- avaliacao diaria -->
       <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
-    <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
-    <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
-    </div>
+        <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Buddy:</h2>
+        <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+          <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
+          <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
+          <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
+          <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
+          <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
+        </div>
 
 
-    
-    <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2" placeholder="Escreva um motivo... (Opcional)"></textarea>
-    <div class="flex justify-center">
-        <button id="btn-enviar-avaliacao" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed" disabled>
+
+        <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+          placeholder="Escreva um motivo... (Opcional)"></textarea>
+        <div class="flex justify-center">
+          <button id="btn-enviar-avaliacao"
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled>
             Enviar Avaliação
-        </button>
-    </div>
-</section>
+          </button>
+        </div>
+      </section>
 
 
       <!-- Jornada onboarding -->
@@ -226,75 +238,75 @@
             </div>
             <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
           </div>
-          <span class="hidden md:inline text-purple-400">&#8594;</span>  
+          <span class="hidden md:inline text-purple-400">&#8594;</span>
           <script>
-    // Espera o documento carregar completamente antes de rodar o script
-    document.addEventListener('DOMContentLoaded', () => {
+            // Espera o documento carregar completamente antes de rodar o script
+            document.addEventListener('DOMContentLoaded', () => {
 
-        // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
-        // Os dados enviados ficarão guardados neste array.
-        let bancoDeDadosSimulado = [];
+              // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
+              // Os dados enviados ficarão guardados neste array.
+              let bancoDeDadosSimulado = [];
 
-        // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
-        const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
-        const emojiBtns = document.querySelectorAll('.emoji-btn');
-        const motivoTextarea = document.getElementById('motivo-avaliacao');
-        const btnEnviar = document.getElementById('btn-enviar-avaliacao');
+              // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
+              const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+              const emojiBtns = document.querySelectorAll('.emoji-btn');
+              const motivoTextarea = document.getElementById('motivo-avaliacao');
+              const btnEnviar = document.getElementById('btn-enviar-avaliacao');
 
-        let avaliacaoSelecionada = null;
+              let avaliacaoSelecionada = null;
 
-        // --- LÓGICA PARA SELECIONAR EMOJI ---
-        emojiBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 1. Remove a seleção de todos os outros botões
-                emojiBtns.forEach(outroBtn => {
+              // --- LÓGICA PARA SELECIONAR EMOJI ---
+              emojiBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                  // 1. Remove a seleção de todos os outros botões
+                  emojiBtns.forEach(outroBtn => {
                     outroBtn.classList.remove('selecionado');
+                  });
+
+                  // 2. Adiciona a classe 'selecionado' apenas no botão clicado
+                  btn.classList.add('selecionado');
+
+                  // 3. Guarda o valor do emoji selecionado
+                  avaliacaoSelecionada = btn.dataset.value;
+
+                  // 4. Habilita o botão de enviar
+                  btnEnviar.disabled = false;
                 });
+              });
 
-                // 2. Adiciona a classe 'selecionado' apenas no botão clicado
-                btn.classList.add('selecionado');
+              // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
+              btnEnviar.addEventListener('click', () => {
+                // Pega o texto do motivo (se houver)
+                const motivo = motivoTextarea.value.trim();
 
-                // 3. Guarda o valor do emoji selecionado
-                avaliacaoSelecionada = btn.dataset.value;
+                // Cria um objeto com os dados da avaliação
+                const novaAvaliacao = {
+                  nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
+                  motivo: motivo,
+                  data: new Date().toISOString() // Adiciona a data do envio
+                };
 
-                // 4. Habilita o botão de enviar
-                btnEnviar.disabled = false;
-            });
-        });
+                // "Envia" para o nosso banco de dados simulado
+                bancoDeDadosSimulado.push(novaAvaliacao);
 
-        // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
-        btnEnviar.addEventListener('click', () => {
-            // Pega o texto do motivo (se houver)
-            const motivo = motivoTextarea.value.trim();
+                // Exibe no console do navegador para provar que foi "salvo"
+                console.log('Avaliação enviada com sucesso!');
+                console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
 
-            // Cria um objeto com os dados da avaliação
-            const novaAvaliacao = {
-                nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
-                motivo: motivo,
-                data: new Date().toISOString() // Adiciona a data do envio
-            };
-
-            // "Envia" para o nosso banco de dados simulado
-            bancoDeDadosSimulado.push(novaAvaliacao);
-
-            // Exibe no console do navegador para provar que foi "salvo"
-            console.log('Avaliação enviada com sucesso!');
-            console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
-
-            // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
-            const mensagemSucessoHTML = `
+                // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
+                const mensagemSucessoHTML = `
                 <div class="text-center">
                     <h2 class="text-2xl font-bold text-green-400 mb-2">Obrigado!</h2>
                     <p class="text-slate-300">Sua avaliação foi enviada com sucesso.</p>
                 </div>
             `;
 
-            // Substitui todo o conteúdo da seção pela mensagem de sucesso
-            secaoAvaliacao.innerHTML = mensagemSucessoHTML;
-        });
+                // Substitui todo o conteúdo da seção pela mensagem de sucesso
+                secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+              });
 
-    });
-</script>
+            });
+          </script>
 
 
           <div class="flex flex-col items-center min-w-[60px]">
@@ -346,41 +358,42 @@
           </div>
         </div>
         <div class="flex justify-center">
-          <button
-            class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition"><a href="treinamento_ini.html">Continuar</a></button>
+          <button class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition"><a
+              href="treinamento_ini.html">Continuar</a></button>
         </div>
       </section>
 
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8 px-2">
         <section class="max-w-6xl mx-auto px-4 mb-8">
-          
-        <!-- Container principal -->
-        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-        
-          <!-- Título no canto superior esquerdo -->
-          <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
-        
-          <!-- Grid com imagem à esquerda e texto à direita -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        
-            <!-- Imagem à esquerda -->
-            <div>
-              <img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
+
+          <!-- Container principal -->
+          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+
+            <!-- Título no canto superior esquerdo -->
+            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+
+            <!-- Grid com imagem à esquerda e texto à direita -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+              <!-- Imagem à esquerda -->
+              <div>
+                <img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
+              </div>
+
+              <!-- Texto à direita -->
+              <div class="text-purple-200 flex flex-col justify-center">
+                <p class="mb-4">
+                  VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.
+                  Acumule pontos e
+                  troque por benefícios exclusivos.
+                </p>
+                <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
+                  Saiba mais
+                </button>
+              </div>
+
             </div>
-        
-            <!-- Texto à direita -->
-            <div class="text-purple-200 flex flex-col justify-center">
-              <p class="mb-4">
-              VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma. Acumule pontos e
-              troque por benefícios exclusivos.
-              </p>
-              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
-                Saiba mais
-              </button>
-            </div>
-        
           </div>
-        </div>
 
         </section>
         <!-- Ranking semanal vivo coins -->
@@ -388,99 +401,101 @@
           <h3 class="text-purple-300 font-semibold mb-2">Ranking semanal Vivo coins</h3>
           <table class="w-full text-left text-purple-200 min-w-[300px]">
             <hr style="border: none; height: 2px; background-color: #ccc; margin: 10px 0;">
-           
-            
+
+
 
             <!--Aqui é a parte do vivo coin ranking-->
-              <style>
-                body {
-                  background-color: #2c0057;
-                  /* fundo roxo escuro */
-                  font-family: Arial, sans-serif;
-                  margin: 40px;
-                  color: white;
-                 }
-            
-                table {
-                  width: 100%;
-                  border-collapse: collapse;
-                   border-radius: 10px;
-                  overflow: hidden;
-                }
-            
-                thead th {
-                  padding: 17px;
-                  text-align: left;
-                  border-bottom: 1px solid #e6d9ff;
-                  /* linha sólida clara */
-                  font-size: 16px;
-                  color: white;
-                }
-            
-                tbody td {
-                  padding: 10px 12px;
-                  border-bottom: 1px solid rgba(230, 217, 255, 0.3);
-                  /* linha mais transparente */
-                  font-size: 15px;
-                }
-            
-                tbody tr:last-child td {
-                  border-bottom: none;
-                  /* remove linha final */
-                }
-              </style>
+            <style>
+              body {
+                background-color: #2c0057;
+                /* fundo roxo escuro */
+                font-family: Arial, sans-serif;
+                margin: 40px;
+                color: white;
+              }
+
+              table {
+                width: 100%;
+                border-collapse: collapse;
+                border-radius: 10px;
+                overflow: hidden;
+              }
+
+              thead th {
+                padding: 17px;
+                text-align: left;
+                border-bottom: 1px solid #e6d9ff;
+                /* linha sólida clara */
+                font-size: 16px;
+                color: white;
+              }
+
+              tbody td {
+                padding: 10px 12px;
+                border-bottom: 1px solid rgba(230, 217, 255, 0.3);
+                /* linha mais transparente */
+                font-size: 15px;
+              }
+
+              tbody tr:last-child td {
+                border-bottom: none;
+                /* remove linha final */
+              }
+            </style>
             </head>
-               <table>
-                <thead>
-                  <tr>
-                    <th>Usuário</th>
-                    <th>Pontos</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Você</td>
-                    <td>500</td>
-                  </tr>
-                  <tr>
-                    <td>Maria</td>
-                    <td>400</td>
-                  </tr>
-                  <tr>
-                    <td>Carlos</td>
-                    <td>350</td>
-                  </tr>
-                  <tr>
-                    <td>Inacia</td>
-                    <td>250</td>
-                  </tr>
-                  <tr>
-                    <td>Paula</td>
-                    <td>200</td>
-                  </tr>
-                </tbody>
-              </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Pontos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Você</td>
+                  <td>500</td>
+                </tr>
+                <tr>
+                  <td>Maria</td>
+                  <td>400</td>
+                </tr>
+                <tr>
+                  <td>Carlos</td>
+                  <td>350</td>
+                </tr>
+                <tr>
+                  <td>Inacia</td>
+                  <td>250</td>
+                </tr>
+                <tr>
+                  <td>Paula</td>
+                  <td>200</td>
+                </tr>
+              </tbody>
+            </table>
           </table>
         </div>
       </section>
     </main>
 
-    <button
-      class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
+    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+      src="https://chatling.ai/js/embed.js"></script>
 
-<section id="secao-gerenciar-acesso" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 max-w-xl mx-auto">
-    <h2 class="text-lg font-semibold text-purple-300 mb-4 text-center sm:text-left">
+    <section id="secao-gerenciar-acesso" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 max-w-xl mx-auto">
+      <h2 class="text-lg font-semibold text-purple-300 mb-4 text-center sm:text-left">
         Gerenciar Acessos
-    </h2>
-    <p class="text-slate-300 mb-6 text-center sm:text-left">
+      </h2>
+      <p class="text-slate-300 mb-6 text-center sm:text-left">
         Nesta página você pode consultar os seus acessos e solicitar um novo.
-    </p>
-    <div class="flex justify-center">
-        <a href="acessoinicial.html" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-semibold text-center">
-            Consultar e Solicitar Acessos
+      </p>
+      <div class="flex justify-center">
+        <a href="acessoinicial.html"
+          class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-all duration-200 font-semibold text-center">
+          Consultar e Solicitar Acessos
         </a>
-    </div>
-</section>
+      </div>
+    </section>
 
 </html>
 

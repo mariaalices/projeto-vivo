@@ -383,7 +383,7 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-  
+
 
   <!-- Botão menu hamburger para telas pequenas -->
   <button id="menuBtn" class="md:hidden fixed top-4 left-4 z-60 bg-purple-600 text-white p-2 rounded-md shadow-lg">
@@ -422,7 +422,8 @@
 
         <span class="text-purple-200 hidden sm:inline select-none">Olá, Novo Usuário</span>
         <button
-          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition whitespace-nowrap select-none">Desconectar</button>
+          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition whitespace-nowrap select-none onclick="
+          window.location.href="'login.html'">Desconectar</button>
 
         <div id="notifModal"
           class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50 max-h-72 overflow-y-auto">
@@ -536,9 +537,9 @@
   </main>
 
   <!-- Botão de ajuda (?) -->
-  <button
-    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition select-none">?</button>
-
+  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+    src="https://chatling.ai/js/embed.js"></script>
   <!-- Scripts -->
   <script>
     // Toggle notificação

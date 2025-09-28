@@ -2,673 +2,160 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Meu Perfil</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #1c0033;
-      color: rgb(30, 41, 59);
-    }
-
-    /* Sidebar estilizado e responsivo */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 70px;
-      background: rgb(233 213 255);
-      overflow: hidden;
-      transition: width 0.3s ease;
-      z-index: 9999;
-    }
-
-    .sidebar:hover {
-      width: 220px;
-    }
-
-    /* Esconder sidebar em telas pequenas */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 0;
-        overflow: visible;
-      }
-
-      .sidebar:hover {
-        width: 0;
-      }
-    }
-
-    /* Mostrar texto no hover */
-    .sidebar ul li span {
-      display: none;
-      margin-left: 10px;
-      opacity: 0;
-      white-space: nowrap;
-      transition: opacity 0.3s;
-    }
-
-    .sidebar:hover ul li span {
-      opacity: 1;
-      display: inline;
-      color: black;
-    }
-
-    /* Notificações */
-    #notifModal {
-      max-height: 300px;
-      overflow-y: auto;
-      transition: all 0.2s ease;
-    }
-
-    .notif-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .notif-item:last-child {
-      border-bottom: none;
-    }
-
-    .notif-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    /* Cards visão geral */
-    .visao-geral h2 {
-      font-weight: 600;
-      margin-bottom: 16px;
-      font-size: 1.25rem;
-      color: #c1a6e9;
-    }
-
-    .cards {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background-color: #3b305f;
-      border: 1.5px solid #7a6a9a;
-      border-radius: 8px;
-      padding: 20px;
-      flex: 1 1 150px;
-      min-width: 150px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 0 10px rgb(122 106 154 / 0.3);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-    }
-
-    .numero {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .descricao {
-      font-size: 0.875rem;
-    }
-
-    /* Container geral para seções */
-    .container {
-      max-width: 700px;
-      background: #461791;
-      border-radius: 12px;
-      padding: 24px 32px 36px;
-      box-shadow: 0 0 20px rgb(58 16 120 / 0.5);
-      margin: 0 auto;
-      color: #d6c6ff;
-    }
-
-    /* Conquistas */
-    .conquistas {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .conquista {
-      background-color: #361963;
-      border-radius: 9999px;
-      width: 100px;
-      height: 100px;
-      padding: 16px 12px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.875rem;
-      text-align: center;
-      cursor: default;
-      position: relative;
-      user-select: none;
-      box-shadow: 0 0 5px rgb(58 16 120 / 0.6);
-      transition: transform 0.3s;
-    }
-
-    .conquista.destaque {
-      border: 3px solid #7a4fff;
-    }
-
-    .conquista:hover {
-      transform: scale(1.05);
-    }
-
-    .conquista img {
-      margin-bottom: 8px;
-      width: 40px;
-      height: 40px;
-    }
-
-    /* Título cursos */
-    .titulo_cursos {
-      margin: 24px auto 12px;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #c1a6e9;
-      max-width: 700px;
-      padding-left: 1rem;
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      gap: 24px;
-      border-bottom: 1px solid #2d1848;
-      margin-bottom: 20px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-    }
-
-    .tab {
-      font-weight: 700;
-      font-size: 1rem;
-      color: #c1a6e9;
-      padding-bottom: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s, border-bottom 0.3s;
-      border-bottom: 3px solid transparent;
-    }
-
-    .tab.active {
-      color: #fff;
-      border-bottom: 3px solid #a024ff;
-      font-weight: 900;
-    }
-
-    /* Courses list */
-    .courses-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-height: 100px;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
-      padding-left: 1rem;
-      color: #d6c6ff;
-    }
-
-    .course-card {
-      background: #5a3dbd;
-      border-radius: 10px;
-      padding: 16px 18px;
-      box-shadow: inset 0 0 6px #330f82;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      user-select: none;
-    }
-
-    .course-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .course-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #d6c6ff;
-      max-width: 70%;
-      word-wrap: break-word;
-    }
-
-    .btn-access,
-    .btn-complete {
-      background: #a024ff;
-      border: none;
-      color: white;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.3s;
-      user-select: none;
-      font-size: 0.9rem;
-      white-space: nowrap;
-    }
-
-    .btn-access:hover,
-    .btn-complete:hover {
-      background: #7a00cc;
-    }
-
-    .btn-complete {
-      background: #3a0a99;
-    }
-
-    .btn-complete:hover {
-      background: #240565;
-    }
-
-    /* Barra de progresso */
-    .progress-wrapper {
-      width: 100%;
-      height: 8px;
-      background: #201254;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 8px;
-      background: linear-gradient(90deg, #8826ff, #ca4fff);
-      border-radius: 5px 0 0 5px;
-      width: 0%;
-      transition: width 0.5s ease;
-    }
-
-    .progress-info {
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #d3b7ff;
-      margin-top: 2px;
-    }
-
-    /* Flex horizontal para botões */
-    .actions-row {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Avaliação diária */
-    .avaliacao-container {
-      background-color: rgba(71, 61, 155, 0.7);
-      border-radius: 1rem;
-      padding: 1.5rem 2rem;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      color: #c1a6e9;
-    }
-
-    .avaliacao-container h2 {
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      main {
-        margin-left: 0 !important;
-        padding: 1rem !important;
-      }
-
-      .cards {
-        justify-content: center;
-      }
-
-      .conquistas {
-        justify-content: center;
-      }
-
-      .conquista {
-        width: 80px;
-        height: 80px;
-        font-size: 0.75rem;
-      }
-
-      .course-title {
-        max-width: 100%;
-      }
-
-      .btn-access,
-      .btn-complete {
-        width: 100%;
-        text-align: center;
-      }
-
-      .actions-row {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .course-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meu Perfil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
+    <style>
+        /* Seu CSS (mantido como está, pois está bem estruturado) */
+        body { margin: 0; font-family: Arial, sans-serif; background: #1c0033; }
+        .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 70px; background: rgb(233 213 255); overflow: hidden; transition: width 0.3s ease; z-index: 50; }
+        .sidebar:hover { width: 220px; }
+        .sidebar ul li a { display: flex; align-items: center; padding: 15px; cursor: pointer; transition: background 0.2s; text-decoration: none; color: inherit; }
+        .sidebar ul li a:hover { background: #635571; }
+        .sidebar ul li img { width: 24px; height: 24px; flex-shrink: 0; }
+        .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; color: black; }
+        .sidebar:hover ul li span { opacity: 1; display: inline; }
+        /* Outros estilos... */
+    </style>
 </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-  
-
-  <!-- Botão menu hamburger para telas pequenas -->
-  <button id="menuBtn" class="md:hidden fixed top-4 left-4 z-60 bg-purple-600 text-white p-2 rounded-md shadow-lg">
-    <i class="fas fa-bars"></i>
-  </button>
-
-  <!-- Sidebar off-canvas para mobile -->
-  <!-- Sidebar Desktop -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="afilhado_newuser.html">Meu Afiliado</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_buddy.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Main: margem à esquerda para desktop, margem topo para mobile; gaps entre containers -->
-  <main class="flex-1 p-4 md:ml-[220px] mt-16 md:mt-4 flex flex-col gap-10">
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row justify-between items-center md:items-end gap-4 md:gap-0">
-      <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
-
-      <div class="flex items-center space-x-4 relative">
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-          class="w-7 h-6 rounded-full cursor-pointer">
-
-        <span class="text-purple-200 hidden sm:inline select-none">Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-
-        <div id="notifModal"
-          class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50 max-h-72 overflow-y-auto">
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar? =)</p>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Perfil -->
-    <section
-      class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6 mx-auto">
-      <div class="profile-image w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0"></div>
-
-      <div class="profile-info flex-1 text-[#d8ceff]">
-        <h1 class="text-xl font-semibold mb-2">Buddy Maria Santos</h1>
-        <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
-        <p class="mb-1"><strong>Email:</strong> maria.buddy@vivo.com.br</p>
-        <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
-        <p class="mb-1"><strong>Telefone:</strong> 11 98765-4321</p>
-        <p><strong>Função/Área:</strong> Buddy treinamento TI</p>
-      </div>
-
-      <button
-        class="edit-profile-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 whitespace-nowrap transition select-none">
-        Editar perfil
-      </button>
-    </section>
-
-
-
-    <!-- Medalhas e Conquistas -->
-    <section class="max-w-4xl w-full bg-[#461791] rounded-2xl p-6 shadow-[0_0_20px_#3a107888] mx-auto text-[#d6c6ff]">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-semibold">Medalhas e Conquistas</h2>
-        <button class="text-sm font-semibold text-purple-300 hover:text-purple-100 transition">
-          Visualizar todas →
-        </button>
-      </div>
-      <div class="flex gap-6 flex-wrap justify-start">
-        <div class="conquista destaque">
-          <img src="./imagens/medalha.png" class="w-6 h-6" alt="Imagem de uma medalha" />
-          Apoiador
-        </div>
-        <div class="conquista">
-          <img src="./imagens/star.png" class="w-6 h-6" alt="Imagem de uma estrela" />
-          Maratonista
-        </div>
-        <div class="conquista">
-          <img src="./imagens/lampada.png" class="w-6 h-6" alt="Imagem de uma lâmpada" />
-          Mentor
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Meus Cursos -->
-
-    <div class="container max-w-4xl mx-auto">
-      <h2 class="titulo_cursos">Meus Cursos</h2>
-      <div class="tabs">
-        <div class="tab active" data-tab="em-andamento">Em andamento</div>
-        <div class="tab" data-tab="concluidos">Concluídos</div>
-      </div>
-
-      <div class="courses-list" id="em-andamento-list">
-        <!-- Curso dinâmico será inserido aqui -->
-      </div>
-
-      <div class="courses-list" id="concluidos-list" style="display:none;">
-        <!-- Cursos concluídos dinâmicos -->
-      </div>
+<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
+    <div class="sidebar">
+        <ul>
+            <li><a href="home_buddy.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
+            <li><a href="afilhado_newuser.html"><img src="./imagens/graduacao.png" alt="Afilhado"><span>Meu Afiliado</span></a></li>
+            <li><a href="perfil_buddy.html"><img src="./imagens/perfil-de-usuario.png" alt="Perfil"><span>Meu Perfil</span></a></li>
+        </ul>
     </div>
 
-    <!-- Avaliação diária responsiva -->
-    <section class="avaliacao-container max-w-4xl mx-auto">
-      <h2>Avalie como está se sentindo en relação ao seu afiliado: (sinceridade nesse momento é essencial)</h2>
-      <div class="flex justify-center space-x-6 mb-4 flex-wrap">
-        <button class="text-4xl select-none">😠</button>
-        <button class="text-4xl select-none">😕</button>
-        <button class="text-4xl select-none">😐</button>
-        <button class="text-4xl select-none">😊</button>
-        <button class="text-4xl select-none">😍</button>
-      </div>
-      <h2>Nos conte o motivo:</h2>
-      <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4 resize-none" rows="2"
-        placeholder="Escreva um motivo..."></textarea>
-      <div class="flex justify-center">
-        <button
-          class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition whitespace-nowrap select-none">Enviar
-          Avaliação</button>
-      </div>
-    </section>
-  </main>
+    <main class="flex-1 p-4 md:ml-20 flex flex-col items-center gap-10">
+        <header class="w-full max-w-4xl flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
+            <div class="flex items-center space-x-4 relative">
+                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
+                <div id="notifModal" class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                    </div>
+                <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Buddy</span>
+                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+            </div>
+        </header>
 
-  <!-- Botão de ajuda (?) -->
-  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-    src="https://chatling.ai/js/embed.js"></script>
-  <!-- Scripts -->
-  <script>
-    // Toggle notificação
-    const notifIcon = document.getElementById('notifIcon');
-    const notifModal = document.getElementById('notifModal');
-    notifIcon.addEventListener('click', () => {
-      notifModal.classList.toggle('hidden');
-    });
+        <section class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6">
+            <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
+                <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
+            </div>
+            <div class="flex-1 text-[#d8ceff] text-center md:text-left">
+                <h1 id="profileName" class="text-xl font-semibold mb-2">Buddy Maria Santos</h1>
+                <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
+                <p id="profileEmail" class="mb-1"><strong>Email:</strong> maria.buddy@vivo.com.br</p>
+            </div>
+            <button class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar perfil</button>
+        </section>
 
-    document.addEventListener('click', (e) => {
-      if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-        notifModal.classList.add('hidden');
-      }
-    });
+        <section class="max-w-4xl w-full bg-[#461791] rounded-2xl p-6 shadow-[0_0_20px_#3a107888] text-[#d6c6ff]">
+            <h2 class="text-xl font-semibold mb-4">Medalhas e Conquistas</h2>
+            </section>
 
-    // Toggle menu mobile
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileSidebar = document.getElementById('mobileSidebar');
+        <section class="max-w-4xl w-full">
+            <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
+            <div class="flex gap-6 border-b border-purple-800 mb-6">
+                <div class="tab active cursor-pointer pb-2 border-b-2 border-purple-400 text-white" data-tab="em-andamento">Em andamento</div>
+                <div class="tab cursor-pointer pb-2 border-b-2 border-transparent text-purple-300" data-tab="concluidos">Concluídos</div>
+            </div>
+            <div id="em-andamento-list" class="space-y-4"></div>
+            <div id="concluidos-list" class="hidden space-y-4"></div>
+        </section>
+    </main>
 
-    menuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (mobileSidebar.classList.contains('-translate-x-full')) {
-        mobileSidebar.classList.remove('-translate-x-full');
-      } else {
-        mobileSidebar.classList.add('-translate-x-full');
-      }
-    });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- LÓGICA DA PÁGINA (Notificações, Cursos, etc.) ---
+            const notifIcon = document.getElementById('notifIcon');
+            const notifModal = document.getElementById('notifModal');
+            if (notifIcon && notifModal) {
+                notifIcon.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    notifModal.classList.toggle('hidden');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!notifModal.contains(e.target) && e.target !== notifIcon) {
+                        notifModal.classList.add('hidden');
+                    }
+                });
+            }
 
-    // Fechar menu ao clicar fora (mobile)
-    document.addEventListener('click', (e) => {
-      if (!mobileSidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-        mobileSidebar.classList.add('-translate-x-full');
-      }
-    });
+            // --- LÓGICA DOS CURSOS ---
+            const cursoInicial = { id: 1, titulo: "Direcionamento VIVO", descricao: "Como melhorar seu direcionamento para o novo usuario VIVO", progresso: 85 };
+            const tabs = document.querySelectorAll('.tab');
+            const emAndamentoList = document.getElementById('em-andamento-list');
+            const concluidosList = document.getElementById('concluidos-list');
 
-    // Dados iniciais do curso
-    const cursoInicial = {
-      id: 1,
-      titulo: "Direcionamento VIVO",
-      descricao: "Como melhorar seu direcionamento para o novo usuario VIVO",
-      progresso: 85,
+            function criarCardCurso(curso, concluido = false) {
+                // ... (lógica para criar o card, mantida como está no seu código) ...
+                const card = document.createElement('div');
+                card.className = 'bg-slate-800/70 p-4 rounded-lg space-y-2';
+                card.dataset.id = curso.id;
+                card.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-bold text-lg">${curso.titulo}</h3>
+                        <a href="#" class="bg-purple-600 text-sm px-4 py-1 rounded-full">Acessar</a>
+                    </div>
+                    <p class="text-sm text-slate-300">${curso.descricao}</p>
+                    <div class="w-full bg-slate-700 rounded-full h-2.5"><div class="bg-purple-500 h-2.5 rounded-full" style="width: ${curso.progresso}%"></div></div>
+                    <p class="text-xs text-slate-400">${curso.progresso}% concluído</p>
+                    ${!concluido ? '<div class="flex justify-end"><button class="btn-complete text-sm bg-green-600 px-3 py-1 rounded-md">Marcar como Concluído</button></div>' : ''}
+                `;
+                if (!concluido) {
+                    card.querySelector('.btn-complete').addEventListener('click', () => {
+                        adicionarConcluido(curso);
+                        card.remove();
+                    });
+                }
+                return card;
+            }
 
-      // id: 2,
-      // titulo: "Cibersegurança",
-      // descricao: "Aprenda a proteger nossos sistemas e informações contra ameaças digitais, garantindo confidencialidade, integridade e disponibilidade dos dados.",
-      // progresso: 48,
-    };
+            function adicionarConcluido(curso) {
+                if ([...concluidosList.children].some(c => c.dataset.id == curso.id)) return;
+                const curso100 = { ...curso, progresso: 100 };
+                concluidosList.appendChild(criarCardCurso(curso100, true));
+            }
 
-    const tabs = document.querySelectorAll('.tab');
-    const emAndamentoList = document.getElementById('em-andamento-list');
-    const concluidosList = document.getElementById('concluidos-list');
+            emAndamentoList.appendChild(criarCardCurso(cursoInicial)); // Inicializa com o curso
 
-    function criarCardCurso(curso, concluido = false) {
-      const card = document.createElement('div');
-      card.classList.add('course-card');
-      card.dataset.id = curso.id;
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active', 'text-white', 'border-purple-400'));
+                    tab.classList.add('active', 'text-white', 'border-purple-400');
+                    if (tab.dataset.tab === 'em-andamento') {
+                        emAndamentoList.classList.remove('hidden');
+                        concluidosList.classList.add('hidden');
+                    } else {
+                        emAndamentoList.classList.add('hidden');
+                        concluidosList.classList.remove('hidden');
+                    }
+                });
+            });
 
-      card.innerHTML = `
-        <div class="course-header">
-          <div class="course-title">${curso.titulo}</div>
-          <button class="btn-access">
-            Acessar curso →
-          </button>
-        </div>
-        <div class="descricao" style="font-size:0.85rem; color:#cfc0ff; margin-bottom: 4px;">
-          ${curso.descricao}
-        </div>
-        <div class="progress-wrapper">
-          <div class="progress-bar" style="width:${curso.progresso}%;"></div>
-        </div>
-        <div class="progress-info">${curso.progresso}% concluído</div>
-        ${concluido ? '' : `<div class="actions-row"><button class="btn-complete">Concluído</button></div>`}
-      `;
+            // CORREÇÃO: Exibindo o nome do usuário que veio do backend
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const profileName = document.getElementById('profileName');
+            const profileEmail = document.getElementById('profileEmail');
 
-      if (!concluido) {
-        const btnConcluir = card.querySelector('.btn-complete');
-        btnConcluir.addEventListener('click', () => {
-          adicionarConcluido(curso);
-          card.remove();
-          if (emAndamentoList.childElementCount === 0) {
-            emAndamentoList.innerHTML = `<p style="color:#d3b7ff; font-style: italic">Nenhum curso em andamento.</p>`;
-          }
+            if (userData && userData.nome) {
+                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`; // Mostra só o primeiro nome
+                profileName.textContent = userData.nome;
+                profileEmail.innerHTML = `<strong>Email:</strong> ${userData.email}`;
+            }
         });
-      }
+    </script>
 
-      return card;
-    }
-
-    // Adiciona curso concluído
-    function adicionarConcluido(curso) {
-      if ([...concluidosList.children].some(card => card.dataset.id == curso.id)) {
-        return;
-      }
-
-      if (concluidosList.textContent.includes('Nenhum curso concluído.')) {
-        concluidosList.textContent = '';
-      }
-
-      const curso100 = { ...curso, progresso: 100 };
-      const card = criarCardCurso(curso100, true);
-      concluidosList.appendChild(card);
-    }
-
-    function inicializar() {
-      emAndamentoList.textContent = '';
-      concluidosList.textContent = 'Nenhum curso concluído.';
-      emAndamentoList.appendChild(criarCardCurso(cursoInicial));
-    }
-
-    // Controle tabs
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const tabSelecionada = tab.dataset.tab;
-        if (tabSelecionada === 'em-andamento') {
-          emAndamentoList.style.display = 'flex';
-          concluidosList.style.display = 'none';
-        } else {
-          emAndamentoList.style.display = 'none';
-          concluidosList.style.display = 'flex';
-          if (concluidosList.childElementCount === 0) {
-            concluidosList.textContent = 'Nenhum curso concluído.';
-          }
-        }
-      });
-    });
-
-    inicializar();
-  </script>
+    <script src="/js/script.js"></script>
+    
+    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

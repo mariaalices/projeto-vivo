@@ -2,571 +2,156 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Apadrinhamento</title>
-  <link rel="icon" href="./imagens/logo-vivo.png" type="image/png">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: #1e0f3a;
-      color: #ddd;
-      min-height: 100vh;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 70px;
-      background: rgb(233 213 255);
-      overflow: hidden;
-      transition: width 0.3s ease;
-      z-index: 40;
-    }
-
-    .sidebar:hover {
-      width: 220px;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sidebar ul li {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .sidebar ul li:hover {
-      background: #635571;
-    }
-
-    .sidebar ul li img {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-      margin-right: 0;
-    }
-
-    .sidebar ul li span {
-      display: none;
-      margin-left: 10px;
-      opacity: 0;
-      white-space: nowrap;
-      transition: opacity 0.3s;
-      color: black;
-      font-weight: 600;
-    }
-
-    .sidebar:hover ul li span {
-      display: inline;
-      opacity: 1;
-    }
-
-    /* Conteúdo principal */
-    main {
-      margin-left: 80px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      /* h1 à esquerda, user-actions à direita */
-      align-items: center;
-      margin-bottom: 2rem;
-      padding: 0 2rem;
-      /* aumenta o padding lateral se quiser mais espaço */
-    }
-
-    .user-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: #b798f9;
-      flex-wrap: nowrap;
-      /* garante que não quebre linha */
-    }
-
-
-    header h1 {
-      color: #b798f9;
-      font-weight: 700;
-      font-size: 2rem;
-    }
-
-
-    .user-actions img {
-      width: 28px;
-      height: 28px;
-      cursor: pointer;
-    }
-
-    .user-actions button {
-      background-color: #7c4dff;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-
-    .user-actions button:hover {
-      background-color: #5e32cc;
-    }
-
-    /* Containers */
-    .container-wrapper {
-      display: flex;
-      gap: 2rem;
-      width: 100%;
-      max-width: 960px;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 0 1rem;
-    }
-
-    .container {
-      background-color: #1a2433;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 8px #4f329e;
-      width: 100%;
-      max-width: 480px;
-      font-size: 14px;
-      color: #ddd;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .container h2 {
-      color: #8b56ec;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-
-    label {
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    input[type="text"],
-    textarea {
-      width: 100%;
-      background-color: #2a3246;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 12px;
-      color: #eee;
-      font-size: 14px;
-      resize: vertical;
-      outline-offset: 2px;
-      outline-color: transparent;
-      transition: outline-color 0.3s ease;
-      margin-bottom: 15px;
-    }
-
-    input[type="text"]:focus,
-    textarea:focus {
-      outline-color: #704ee0;
-    }
-
-    textarea {
-      min-height: 80px;
-    }
-
-    .btn-salvar {
-      margin-top: 10px;
-      background-color: #704ee0;
-      border: none;
-      border-radius: 6px;
-      padding: 12px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn-salvar:hover {
-      background-color: #573acc;
-    }
-
-    /* Lista */
-    .apadrinhamentos-list {
-      background: #2b1b52;
-      border-radius: 12px;
-      padding: 20px;
-      width: 100%;
-      max-width: 960px;
-      color: #ddd;
-      box-shadow: 0 0 8px #4f329e;
-      font-size: 14px;
-    }
-
-    .apadrinhamentos-list h2 {
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: #8b56ec;
-    }
-
-    .apadrinhamento-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1.5px solid #472b85;
-      padding: 15px 0;
-    }
-
-    .apadrinhamento-item:last-child {
-      border-bottom: none;
-    }
-
-    .info-wrapper {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex: 1;
-    }
-
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background-color: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 2px solid #472b85;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .status {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #b1a5ff;
-      user-select: none;
-      margin-right: 10px;
-      min-width: 40px;
-    }
-
-    .status.novo {
-      color: #ff8aff;
-    }
-
-    .dados-apadrinhamento {
-      color: #c7c1e5;
-      flex-shrink: 1;
-    }
-
-    .dados-apadrinhamento strong {
-      display: block;
-      font-weight: 700;
-      margin-bottom: 4px;
-      font-size: 16px;
-    }
-
-    .dados-apadrinhamento small {
-      font-weight: 400;
-      color: #a59bd8;
-    }
-
-    .apadrinhador-avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 2px solid #472b85;
-      overflow: hidden;
-      background-color: #312c4f;
-      margin-left: 15px;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .apadrinhador-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .btn-visitar {
-      background: #8b56ec;
-      border-radius: 24px;
-      padding: 8px 20px;
-      font-weight: 600;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 3px 8px 0 #2e1676;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      user-select: none;
-      margin-left: 12px;
-    }
-
-    .btn-visitar:hover {
-      box-shadow: 6px 14px 0 #5a3ca1;
-    }
-
-    /* Notificações */
-    #notifModal {
-      max-height: 300px;
-      overflow-y: auto;
-      transition: all 0.2s ease;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 320px;
-      background: white;
-      color: black;
-      border-radius: 1rem;
-      box-shadow: 0 0 15px rgb(0 0 0 / 0.3);
-      z-index: 60;
-      display: none;
-    }
-
-    #notifModal.active {
-      display: block;
-    }
-
-    .notif-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .notif-item:last-child {
-      border-bottom: none;
-    }
-
-    .notif-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apadrinhamento</title>
+    <link rel="icon" href="./imagens/logo-vivo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos da Sidebar e da Página */
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e0f3a; }
+        .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 70px; background: rgb(233 213 255); overflow: hidden; transition: width 0.3s ease; z-index: 50; }
+        .sidebar:hover { width: 220px; }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar ul li a { display: flex; align-items: center; padding: 15px; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+        .sidebar ul li a:hover { background: #635571; }
+        .sidebar ul li img { width: 24px; height: 24px; flex-shrink: 0; }
+        .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; color: black; font-weight: 600; }
+        .sidebar:hover ul li span { display: inline; opacity: 1; }
+        #notifModal { max-height: 300px; overflow-y: auto; }
+        .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
+        .notif-item:last-child { border-bottom: none; }
+        .notif-item img { width: 40px; height: 40px; border-radius: 50%; }
+    </style>
 </head>
 
-<body>
-  <!-- Sidebar -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="apadrinhamento_gestor.html">Apadrinhamento</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="visao_geral_gestor.html">Desempenho</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_gestor.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
+<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
+    <div class="sidebar">
+        <ul>
+            <li><a href="home_gestor.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
+            <li><a href="apadrinhamento_gestor.html"><img src="./imagens/graduacao.png" alt="Apadrinhamento"><span>Apadrinhamento</span></a></li>
+            <li><a href="visao_geral_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
+            <li><a href="perfil_gestor.html"><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu Perfil</span></a></li>
+        </ul>
+    </div>
 
-  <!-- Conteúdo principal -->
-  <main>
-    <header>
-      <h1>Apadrinhamento</h1>
-      <div class="user-actions relative">
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" title="Notificações" />
-        <span>Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+    <main class="flex-1 md:ml-20 p-6 flex flex-col items-center">
+        <header class="w-full max-w-5xl flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-purple-300">Apadrinhamento</h1>
+            <div class="flex items-center gap-4 relative">
+                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-7 cursor-pointer" />
+                <div id="notifModal" class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                    </div>
+                <span id="welcomeMessage" class="text-purple-200">Olá, Gestor</span>
+                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+            </div>
+        </header>
 
-        <div id="notifModal" aria-label="Notificações">
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
-          </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar" />
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-          </div>
+        <div class="w-full max-w-5xl grid lg:grid-cols-2 gap-8">
+            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+                <h2 class="text-xl font-semibold text-purple-300 mb-4">Novo apadrinhamento</h2>
+                <form id="formApadrinhamento" class="space-y-4">
+                    <div>
+                        <label for="nomeNovoUsuario" class="block text-sm font-medium text-slate-300">Nome do novo usuário:</label>
+                        <input type="text" id="nomeNovoUsuario" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" required />
+                    </div>
+                    <div>
+                        <label for="buddy" class="block text-sm font-medium text-slate-300">Buddy (responsável):</label>
+                        <input type="text" id="buddy" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" required />
+                    </div>
+                    <div>
+                        <label for="descricao" class="block text-sm font-medium text-slate-300">Descrição (Opcional):</label>
+                        <textarea id="descricao" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Salvar Apadrinhamento</button>
+                </form>
+            </section>
+
+            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+                <h2 class="text-xl font-semibold text-purple-300 mb-4">Últimos apadrinhamentos</h2>
+                <div id="listaApadrinhamentos" class="space-y-4">
+                    </div>
+            </section>
         </div>
-      </div>
-    </header>
+    </main>
 
-    <section class="container-wrapper">
-      <!-- Formulário -->
-      <section class="container">
-        <h2>Novo apadrinhamento</h2>
-        <form>
-          <label for="nomeNovoUsuario">Nome do novo usuário:</label>
-          <input type="text" id="nomeNovoUsuario" name="nomeNovoUsuario" required />
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DADOS E RENDERIZAÇÃO DA LISTA ---
+            const apadrinhamentosData = [
+                { nome: "Isaac Oliveira Teixeira", cargo: "Estagiário TI - QA", novo: true, avatar: "https://randomuser.me/api/portraits/men/11.jpg" },
+                { nome: "Roberto Andrade Castro", cargo: "Nível Funcionários - Dev, Ger, RH e SOC", novo: false, avatar: "https://randomuser.me/api/portraits/men/49.jpg" }
+            ];
+            const listaContainer = document.getElementById('listaApadrinhamentos');
+            
+            function renderItem(item) {
+                const itemHTML = `
+                    <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
+                        <div class="flex items-center gap-4">
+                            <img src="${item.avatar}" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 ${item.novo ? 'border-pink-500' : 'border-purple-500'}">
+                            <div>
+                                <strong class="text-white">${item.nome}</strong>
+                                <small class="block text-slate-400">${item.cargo}</small>
+                            </div>
+                        </div>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg" data-nome="${item.nome}">Visitar Perfil</button>
+                    </div>`;
+                listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
+            }
+            
+            apadrinhamentosData.forEach(renderItem);
 
-          <label for="buddy">Buddy: (responsável)</label>
-          <input type="text" id="buddy" name="buddy" required />
+            // --- LÓGICA DO FORMULÁRIO ---
+            const form = document.getElementById('formApadrinhamento');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nome = document.getElementById('nomeNovoUsuario').value.trim();
+                const buddy = document.getElementById('buddy').value.trim();
+                const descricao = document.getElementById('descricao').value.trim();
+                
+                if (!nome || !buddy) {
+                    alert("Preencha pelo menos Nome e Buddy!");
+                    return;
+                }
 
-          <label for="descricao">Descrição (Opcional):</label>
-          <textarea id="descricao" name="descricao"></textarea>
+                const novoApadrinhamento = {
+                    nome,
+                    cargo: `Buddy: ${buddy} | ${descricao || "Sem descrição"}`,
+                    novo: true,
+                    avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png"
+                };
+                renderItem(novoApadrinhamento);
+                form.reset();
+            });
 
-          <button type="submit" class="btn-salvar">Salvar Apadrinhamento</button>
-        </form>
-      </section>
+            // --- LÓGICA DAS NOTIFICAÇÕES ---
+            const notifIcon = document.getElementById('notifIcon');
+            const notifModal = document.getElementById('notifModal');
+            if(notifIcon && notifModal) {
+                notifIcon.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    notifModal.classList.toggle('hidden');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                        notifModal.classList.add('hidden');
+                    }
+                });
+            }
 
-      <!-- Lista -->
-      <section class="apadrinhamentos-list">
-        <h2>Últimos apadrinhamentos</h2>
-        <div id="listaApadrinhamentos"></div>
-      </section>
-    </section>
-  </main>
+            // --- NOME DE USUÁRIO DINÂMICO ---
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (userData && userData.nome && welcomeMessage) {
+                welcomeMessage.textContent = `Olá, ${userData.nome}`;
+            }
+        });
+    </script>
 
-  <!-- Botão flutuante -->
-  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-    src="https://chatling.ai/js/embed.js"></script>
-  <script>
-    // Dados simulados
-    const apadrinhamentosData = [
-      {
-        nome: "Isaac Oliveira Teixeira",
-        cargo: "Estagiário TI - QA",
-        novo: true,
-        avatar: "https://randomuser.me/api/portraits/men/11.jpg",
-        apadrinhadorAvatar: "buddy.png",
-      },
-      {
-        nome: "Roberto Andrade Castro",
-        cargo: "Nível Funcionários - Dev, Ger, RH e SOC",
-        novo: false,
-        avatar: "https://randomuser.me/api/portraits/men/49.jpg",
-        apadrinhadorAvatar: "buddy.png",
-      }
-    ];
+    <script src="/js/script.js"></script>
 
-    const lista = document.getElementById('listaApadrinhamentos');
-
-    // Função para renderizar item
-    function renderItem(item) {
-      const div = document.createElement('div');
-      div.className = 'apadrinhamento-item';
-
-      div.innerHTML = `
-        <div class="info-wrapper">
-          <div class="status ${item.novo ? 'novo' : ''}">${item.novo ? 'Novo' : 'Antigo'}</div>
-          <div class="avatar">
-            <img src="${item.avatar}" alt="Foto de ${item.nome}" 
-              onerror="this.src='https://cdn-icons-png.flaticon.com/512/747/747376.png'"/>
-          </div>
-          <div class="dados-apadrinhamento">
-            <strong>${item.nome}</strong>
-            <small>${item.cargo}</small>
-          </div>
-        </div>
-        <div class="right-actions">
-
-          <button class="btn-visitar" data-nome="${item.nome}">Visitar Perfil</button>
-        </div>
-      `;
-      lista.prepend(div);
-    }
-
-    // Renderizar iniciais
-    apadrinhamentosData.forEach(renderItem);
-
-    // Evento botão visitar
-    lista.addEventListener('click', (e) => {
-      if (e.target.matches('.btn-visitar')) {
-        const nome = e.target.getAttribute('data-nome');
-        alert(`Você clicou para visitar o perfil de ${nome}`);
-      }
-    });
-
-    // Formulário
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const nome = document.getElementById('nomeNovoUsuario').value.trim();
-      const buddy = document.getElementById('buddy').value.trim();
-      const descricao = document.getElementById('descricao').value.trim();
-
-      if (!nome || !buddy) {
-        alert("Preencha pelo menos Nome e Buddy!");
-        return;
-      }
-
-      const novoApadrinhamento = {
-        nome,
-        cargo: descricao || "Sem descrição",
-        novo: true,
-        avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png",
-        apadrinhadorAvatar: "buddy.png",
-      };
-
-      renderItem(novoApadrinhamento);
-      form.reset();
-    });
-
-    // Notificações
-    const notifIcon = document.getElementById('notifIcon');
-    const notifModal = document.getElementById('notifModal');
-
-    notifIcon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      notifModal.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!notifModal.contains(e.target) && e.target !== notifIcon) {
-        notifModal.classList.remove('active');
-      }
-    });
-  </script>
+    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

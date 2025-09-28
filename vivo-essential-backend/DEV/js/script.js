@@ -1,15 +1,17 @@
+// Aguarda o HTML ser completamente carregado antes de executar qualquer script
 document.addEventListener("DOMContentLoaded", function () {
-  const currentYearElement = document.getElementById("currentYear");
-  if (currentYearElement) {
-    currentYearElement.textContent = new Date().getFullYear();
-  }
+  
+  // --- SEÇÃO 1: LÓGICA PARA O FORMULÁRIO DE LOGIN ---
+  // (Funciona apenas na página index.html)
 
   const loginForm = document.getElementById("loginForm");
   const errorMessageElement = document.getElementById("errorMessage");
 
+  // A verificação 'if (loginForm)' garante que este código só tente rodar se o formulário de login existir na página.
   if (loginForm) {
+    // Adiciona o "ouvinte" para o evento de envio do formulário
     loginForm.addEventListener("submit", async function (event) {
-      event.preventDefault();
+      event.preventDefault(); // Impede o recarregamento da página
 
       if (errorMessageElement) {
         errorMessageElement.textContent = "";
@@ -19,50 +21,24 @@ document.addEventListener("DOMContentLoaded", function () {
       const emailInput = document.getElementById("email");
       const passwordInput = document.getElementById("password");
       const email = emailInput.value;
-      // Corrigido para corresponder ao backend, que espera 'password'
-      const password = passwordInput.value; 
-
-      if (!email || !password) {
-        if (errorMessageElement) {
-          errorMessageElement.textContent = "Por favor, preencha o email e a senha.";
-          errorMessageElement.classList.remove("hidden");
-        }
-        return;
-      }
+      const password = passwordInput.value;
 
       try {
-        // Ajustado para o nome da variável ser 'password' e a rota ser /login
-        const response = await fetch("http://localhost:3000/login", { 
-          method: "POST",
+        const response = await fetch('/login', { // Acessa a rota /login no backend
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-          // Garante que o backend receba 'email' e 'password'
-          body: JSON.stringify({ email: email, password: password }), 
+          body: JSON.stringify({ email, password }),
         });
 
         const data = await response.json();
 
         if (response.ok) {
-          console.log("Login bem-sucedido! Resposta do backend:", data);
-
-          // Armazena o token e os dados do usuário (se o seu backend os enviar)
-          if (data.access_token) {
-            localStorage.setItem("accessToken", data.access_token);
-          }
-          if (data.user) {
-            localStorage.setItem("userData", JSON.stringify(data.user));
-          }
-
-          // <<< MUDANÇA PRINCIPAL AQUI: LÓGICA DE REDIRECIONAMENTO DINÂMICO >>>
-          
-          // 1. Pega o perfil (role) do usuário que veio do backend
-          //    (Estou assumindo que a resposta do backend é algo como: { user: { role: 'gestor' }, ... })
+          // Lógica de redirecionamento dinâmico
           const userRole = data.user ? data.user.role : null;
-          
           let redirectUrl = "";
 
-          // 2. Decide para qual URL redirecionar com base no perfil
           switch (userRole) {
             case 'gestor':
               redirectUrl = 'home_gestor.html';
@@ -74,30 +50,23 @@ document.addEventListener("DOMContentLoaded", function () {
               redirectUrl = 'home_newuser.html';
               break;
             default:
-              // Se o perfil não for reconhecido, mostra um erro.
-              console.error("Perfil de usuário não reconhecido:", userRole);
               if (errorMessageElement) {
-                errorMessageElement.textContent = "Seu perfil de usuário não foi reconhecido. Contate o suporte.";
+                errorMessageElement.textContent = "Perfil de usuário não reconhecido.";
                 errorMessageElement.classList.remove("hidden");
               }
-              return; // Para a execução para não redirecionar
+              return;
           }
-          
-          // 3. Redireciona para a URL correta
-          alert("Login bem-sucedido! Redirecionando...");
-          window.location.href = redirectUrl;
+          window.location.href = redirectUrl; // Redireciona para a página correta
 
         } else {
-          // Trata erros do servidor (ex: senha errada)
-          console.error("Falha no login. Status:", response.status, "Resposta:", data);
+          // Mostra a mensagem de erro vinda do servidor (ex: "Email ou senha inválidos.")
           if (errorMessageElement) {
-            errorMessageElement.textContent = data.message || `Erro ${response.status}: Falha no login.`;
+            errorMessageElement.textContent = data.message || "Falha no login.";
             errorMessageElement.classList.remove("hidden");
           }
         }
       } catch (error) {
-        // Trata erros de rede (ex: servidor offline)
-        console.error("Erro de rede ou ao tentar fazer login:", error);
+        console.error("Erro de comunicação com o servidor:", error);
         if (errorMessageElement) {
           errorMessageElement.textContent = "Erro de comunicação com o servidor. Tente novamente.";
           errorMessageElement.classList.remove("hidden");
@@ -105,4 +74,19 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // --- NOVA SEÇÃO 2: LÓGICA PARA BOTÕES DE LOGOUT ---
+  // (Funciona em qualquer página que tenha um botão com a classe 'logout-btn')
+
+  // Procura por todos os elementos que tenham a classe 'logout-btn'
+  const logoutButtons = document.querySelectorAll('.logout-btn');
+
+  // Adiciona a funcionalidade de clique para cada botão encontrado
+  logoutButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Redireciona o navegador para a rota de logout no servidor
+      window.location.href = '/logout';
+    });
+  });
+
 });

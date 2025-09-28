@@ -10,12 +10,12 @@
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
   <style>
-    /* Estilos da Sidebar e Notificações (mantidos como estão, sem alterações) */
+    /* Estilos da Sidebar e Notificações */
     .sidebar {
-      position: fixed; top: 0; left: 0; height: 100%; width: 80px; /* Largura fechada com Tailwind */
+      position: fixed; top: 0; left: 0; height: 100%; width: 80px;
       transition: width 0.3s ease; z-index: 50;
     }
-    .sidebar:hover { width: 224px; /* Largura aberta com Tailwind */ }
+    .sidebar:hover { width: 224px; }
     .sidebar-text { transition: opacity 0.3s ease; }
     .sidebar:hover .sidebar-text { display: inline; opacity: 1; }
     .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
@@ -26,22 +26,10 @@
 
   <div class="sidebar bg-purple-200 overflow-hidden">
     <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-8 h-8 flex-shrink-0" alt="Home">
-        <span class="ml-4 text-black opacity-0 sidebar-text"><a href="home_gestor.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-8 h-8 flex-shrink-0" alt="Apadrinhamento">
-        <span class="ml-4 text-black opacity-0 sidebar-text"><a href="apadrinhamento_gestor.html">Apadrinhamento</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-8 h-8 flex-shrink-0" alt="Desempenho">
-        <span class="ml-4 text-black opacity-0 sidebar-text"><a href="visao_geral_gestor.html">Desempenho</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-8 h-8 flex-shrink-0" alt="Meu Perfil">
-        <span class="ml-4 text-black opacity-0 sidebar-text"><a href="perfil_gestor.html">Meu Perfil</a></span>
-      </li>
+      <li><a href="home_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/botao-de-inicio.png" class="w-8 h-8 flex-shrink-0" alt="Home"><span class="ml-4 text-black opacity-0 sidebar-text">Home</span></a></li>
+      <li><a href="apadrinhamento_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/graduacao.png" class="w-8 h-8 flex-shrink-0" alt="Apadrinhamento"><span class="ml-4 text-black opacity-0 sidebar-text">Apadrinhamento</span></a></li>
+      <li><a href="visao_geral_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/grafico-de-barras.png" class="w-8 h-8 flex-shrink-0" alt="Desempenho"><span class="ml-4 text-black opacity-0 sidebar-text">Desempenho</span></a></li>
+      <li><a href="perfil_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/perfil-de-usuario.png" class="w-8 h-8 flex-shrink-0" alt="Meu Perfil"><span class="ml-4 text-black opacity-0 sidebar-text">Meu Perfil</span></a></li>
     </ul>
   </div>
 
@@ -49,31 +37,14 @@
 
     <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
       <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-
       <div class="flex items-center gap-4 relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-
         <div id="notifModal" class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
           <div class="divide-y divide-gray-200">
-            <div class="notif-item">
-              <img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-            </div>
-            <div class="notif-item">
-              <img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-            </div>
-            <div class="notif-item">
-              <img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p>
-            </div>
-            <div class="notif-item">
-              <img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te ajudar? =)</p>
-            </div>
+            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p></div>
+            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p></div>
           </div>
         </div>
-
         <span id="welcomeMessage" class="text-purple-200">Olá, Gestor</span>
         <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
       </div>
@@ -87,4 +58,91 @@
             <img src="./imagens/pessoa1.jpg" class="w-12 h-12 rounded-xl object-cover" />
             <div>
               <strong class="text-sm text-white">Bruna Oliveira Testes</strong>
-              <span class="block text-xs text-gray-400">Estagiária TI
+              <span class="block text-xs text-gray-400">Estagiária TI - QA</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/Pessoa-2mobile.webp" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
+        </div>
+        <div class="flex justify-between items-center py-4 border-b border-white/20">
+            <div class="flex items-center gap-3">
+                <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
+                <div>
+                    <strong class="text-sm text-white">Gustavo Almeida Coxtos</strong>
+                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Front end Junior</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg"></div>
+                <div class="text-purple-200 flex flex-col justify-center">
+                    <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.</p>
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba mais</button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
+          <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
+          <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
+            <thead>
+                <tr>
+                    <th class="pb-2 border-b border-purple-400/50">Usuário</th>
+                    <th class="pb-2 border-b border-purple-400/50">Pontos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="py-2 border-b border-purple-400/20">Você</td><td class="py-2 border-b border-purple-400/20">500</td></tr>
+                <tr><td class="py-2 border-b border-purple-400/20">Maria</td><td class="py-2 border-b border-purple-400/20">400</td></tr>
+                <tr><td class="py-2 border-b border-purple-400/20">Carlos</td><td class="py-2 border-b border-purple-400/20">350</td></tr>
+                <tr><td class="py-2">Paula</td><td class="py-2">200</td></tr>
+            </tbody>
+        </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Script das Notificações
+    document.addEventListener('DOMContentLoaded', () => {
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+            notifIcon.addEventListener('click', (event) => {
+                event.stopPropagation();
+                notifModal.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                    notifModal.classList.add('hidden');
+                }
+            });
+        }
+
+        // Exibindo o nome do usuário que veio do backend
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome && welcomeMessage) {
+            welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+        }
+    });
+  </script>
+
+  <script src="/js/script.js"></script>
+
+  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+  <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+</body>
+
+</html>

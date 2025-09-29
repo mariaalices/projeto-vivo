@@ -2,140 +2,333 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Onboarding - Acessos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
-    <style>
-        /* Estilos da Sidebar e da Página */
-        body { margin: 0; font-family: Arial, sans-serif; background: #1c0033; color: rgb(30, 41, 59); }
-        .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 70px; background: rgb(233 213 255); overflow: hidden; transition: width 0.3s ease; z-index: 50; }
-        .sidebar:hover { width: 220px; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar ul li { display: flex; align-items: center; padding: 15px; cursor: pointer; transition: background 0.2s; }
-        .sidebar ul li:hover { background: #635571; }
-        .sidebar ul li img { width: 24px; height: 24px; flex-shrink: 0; }
-        .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; }
-        .sidebar:hover ul li span { opacity: 1; display: inline; color: black; }
-        .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
-        .notif-item:last-child { border-bottom: none; }
-        .notif-item img { width: 40px; height: 40px; border-radius: 50%; }
-        #notifModal { max-height: 300px; overflow-y: auto; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Onboarding - Acessos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="./imagens/Boneco VIVO.png">
+  <style>
+    /* Estilos da Sidebar e da Página */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1c0033;
+      color: rgb(30, 41, 59);
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 50;
+    }
+
+    .sidebar:hover {
+      width: 220px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li:hover {
+      background: #635571;
+    }
+
+    .sidebar ul li img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+
+    .sidebar:hover ul li span {
+      opacity: 1;
+      display: inline;
+      color: black;
+    }
+
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    #notifModal {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col text-white">
-    <div class="sidebar">
-        <ul>
-            <li><a href="home_newuser.html" class="flex items-center p-4"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
-            <li><a href="treinamento_ini.html" class="flex items-center p-4"><img src="./imagens/graduacao.png" alt="Cursos"><span>Meus Cursos</span></a></li>
-            <li><a href="perfil_newuser.html" class="flex items-center p-4"><img src="./imagens/grafico-de-barras.png" alt="Desenvolvimento"><span>Meu Desenvolvimento</span></a></li>
-            <li><a href="perfil_newuser.html" class="flex items-center p-4"><img src="./imagens/perfil-de-usuario.png" alt="Ajustes"><span>Meus Ajustes</span></a></li>
-        </ul>
-    </div>
+  <div class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300
+      z-50">
+    <ul class="flex flex-col">
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer transition">
+        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6 flex-shrink-0" alt="">
+        <span class="ml-3 text-black whitespace-nowrap opacity-0 transition-opacity duration-300 sidebar-text">
+          <a href="home_newuser.html">Home</a>
+        </span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer transition">
+        <img src="./imagens/graduacao.png" class="w-6 h-6 flex-shrink-0" alt="">
+        <span class="ml-3 text-black whitespace-nowrap opacity-0 transition-opacity duration-300 sidebar-text">
+          <a href="treinamento_ini.html">Meus Cursos</a>
+        </span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_newuser.html">Meu
+            Desenvolvimento</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer transition">
+        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6 flex-shrink-0" alt="">
+        <span class="ml-3 text-black whitespace-nowrap opacity-0 transition-opacity duration-300 sidebar-text">
+          <a href="perfil_newuser.html">Meus Ajustes</a>
+        </span>
+      </li>
+    </ul>
+  </div>
 
-    <main class="flex-1 md:ml-24 px-6 py-10">
-        <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-            <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
-            <div class="flex items-center gap-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                
-                <div id="notifModal" class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-                    </div>
-                
-                <span id="welcomeMessage" class="text-purple-200">Olá, Novo Usuário</span>
-                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-            </div>
-        </header>
+  <main class="flex-1 md:ml-24 px-6 py-10">
+    <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
+      <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+      <div class="flex items-center gap-4 relative">
+        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
 
-        <div class="max-w-5xl mx-auto space-y-10">
-            <div class="flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-white">Etapa 7 - Acessos as Áreas</h2>
-                <a href="pesquisa_trinta.html" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
-                    Continuar
-                </a>
-            </div>
-
-            <h3 class="text-lg font-semibold text-purple-300">Demais solicitações de acesso</h3>
-
-            <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg">
-                <h4 class="font-semibold text-white mb-4">Nova Solicitação:</h4>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm mb-1">Nome da plataforma:</label>
-                        <input type="text" placeholder="Digite aqui..." class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500" />
-                    </div>
-                    <div>
-                        <label class="block text-sm mb-1">Motivo da solicitação:</label>
-                        <textarea placeholder="Digite o motivo..." class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-                    </div>
-                    <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg">
-                        Salvar Solicitação
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg space-y-6">
-                <h4 class="font-semibold mb-4 text-white">Demais Acessos:</h4>
-                <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
-                    <div class="flex items-center gap-4">
-                        <img src="./imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12 rounded-full">
-                        <div>
-                            <p class="font-semibold">APP/Site: Oracle SQL</p>
-                            <div class="mt-2 text-sm text-gray-300 space-y-1">
-                                <p><span class="font-semibold">Login:</span> <input id="login1" type="password" readonly value="teste32@gmail.com" class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" /></p>
-                                <p><span class="font-semibold">Senha:</span> <input id="senha1" type="password" readonly value="w32x329" class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" /></p>
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="toggleCampos('login1','senha1', this)" class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">Visualizar Senha</button>
-                </div>
-                </div>
+        <div id="notifModal"
+          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
         </div>
-    </main>
 
-    <script>
-        // Script para as funcionalidades da PÁGINA (Notificações, Visualizar Senha)
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica das Notificações
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if(notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
-            }
+        <span id="welcomeMessage" class="text-purple-200">Olá, Novo Usuário</span>
+        <button
+          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+      </div>
+    </header>
 
-            // Exibe o nome do usuário vindo do localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome && welcomeMessage) {
-                welcomeMessage.textContent = `Olá, ${userData.nome}`;
-            }
+    <div class="max-w-5xl mx-auto space-y-10">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-semibold text-white">Etapa 7 - Acessos as Áreas</h2>
+        <a href="pesquisa_trinta.html"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
+          Continuar
+        </a>
+      </div>
+
+      <h3 class="text-lg font-semibold text-purple-300">Demais solicitações de acesso</h3>
+
+      <div class="bg-slate-800 bg-opacity-70 rounded-xl p-8 w-full">
+        <div class="space-y-4" id="form-solicitacao">
+          <h2 class="text-xl font-semibold text-purple-300 mb-4 text-center">Nova Solicitação de Acesso</h2>
+          <div>
+            <label for="nome-plataforma" class="block text-sm mb-1">Nome da plataforma:</label>
+            <input id="nome-plataforma" type="text" placeholder="Digite aqui..."
+              class="w-full px-4 py-2 rounded-lg bg-slate-700 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500" />
+          </div>
+          <div>
+            <label for="motivo-solicitacao" class="block text-sm mb-1">Motivo da solicitação:</label>
+            <textarea id="motivo-solicitacao" placeholder="Digite o motivo..." rows="3"
+              class="w-full px-4 py-2 rounded-lg bg-slate-700 border border-purple-600 focus:outline-none text-white focus:ring-2 focus:ring-purple-500"></textarea>
+          </div>
+          <button id="btn-salvar"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg w-full transition-colors">
+            Salvar Solicitação
+          </button>
+        </div>
+      </div>
+
+      <!-- 🔽 Agora "Demais Acessos" está dentro do mesmo container -->
+      <div class="bg-purple-900/40 p-6 rounded-xl shadow-lg space-y-6">
+        <h4 class="font-semibold mb-4 text-white">Demais Acessos:</h4>
+
+        <!-- Card 1 -->
+        <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
+          <div class="flex items-center gap-4">
+            <img src="./imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12 rounded-full">
+            <div>
+              <p class="font-semibold text-white">APP/Site: Oracle SQL</p>
+              <div class="mt-2 text-sm text-gray-300 space-y-1">
+                <p><span class="font-semibold">Login:</span>
+                  <input id="login1" type="password" readonly value="teste32@gmail.com"
+                    class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
+                </p>
+                <p><span class="font-semibold">Senha:</span>
+                  <input id="senha1" type="password" readonly value="w32x329"
+                    class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
+                </p>
+              </div>
+            </div>
+          </div>
+          <button onclick="toggleCampos('login1','senha1', this)"
+            class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">
+            Visualizar Senha
+          </button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
+          <div class="flex items-center gap-4">
+            <img src="./imagens/postman.webp" alt="Postman" class="w-12 h-12 rounded-full">
+            <div>
+              <p class="font-semibold text-white">APP/Site: Postman</p>
+              <div class="mt-2 text-sm text-gray-300 space-y-1">
+                <p><span class="font-semibold">Login:</span>
+                  <input id="login2" type="password" readonly value="testeon32@gmail.com"
+                    class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
+                </p>
+                <p><span class="font-semibold">Senha:</span>
+                  <input id="senha2" type="password" readonly value="w32x329"
+                    class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-4 py-2 rounded-lg">
+            Pendente
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
+          <div class="flex items-center gap-4">
+            <img src="./imagens/vivoperfil.jpg" alt="VIVO Developer" class="w-12 h-12 rounded-full">
+            <div>
+              <p class="text-white font-semibold">APP/Site: VIVO Developer</p>
+              <div class="mt-2 text-sm text-gray-300 space-y-1">
+                <p><span class=" font-semibold">Login:</span>
+                  <input id="login3" type="password" readonly value="vivocorp32@gmail.com"
+                    class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
+                </p>
+                <p><span class="font-semibold">Senha:</span>
+                  <input id="senha3" type="password" readonly value="w32x329"
+                    class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
+                </p>
+              </div>
+            </div>
+          </div>
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg">
+            Recusado
+          </button>
+        </div>
+        <!-- Card 1 -->
+        <div class="flex items-center justify-between p-4 bg-slate-900/60 rounded-lg">
+          <div class="flex items-center gap-4">
+            <img src="./imagens/Swagger-logo (1).png" alt="Oracle SQL" class="w-12 h-12 rounded-full">
+            <div>
+              <p class="font-semibold text-white">APP/Site: SwaggerL</p>
+              <div class="mt-2 text-sm text-gray-300 space-y-1">
+                <p><span class="font-semibold">Login:</span>
+                  <input id="login1" type="password" readonly value="teste32@gmail.com"
+                    class="px-2 py-1 w-64 bg-slate-800 rounded border border-slate-600" />
+                </p>
+                <p><span class="font-semibold">Senha:</span>
+                  <input id="senha1" type="password" readonly value="w32x329"
+                    class="px-2 py-1 w-40 bg-slate-800 rounded border border-slate-600" />
+                </p>
+              </div>
+            </div>
+          </div>
+          <button onclick="toggleCampos('login1','senha1', this)"
+            class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg">
+            Visualizar Senha
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+
+  <script>
+    // Script para as funcionalidades da PÁGINA (Notificações, Visualizar Senha)
+    document.addEventListener('DOMContentLoaded', () => {
+      // Lógica das Notificações
+      const notifIcon = document.getElementById('notifIcon');
+      const notifModal = document.getElementById('notifModal');
+      if (notifIcon && notifModal) {
+        notifIcon.addEventListener('click', (event) => {
+          event.stopPropagation();
+          notifModal.classList.toggle('hidden');
         });
+        document.addEventListener('click', (e) => {
+          if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+            notifModal.classList.add('hidden');
+          }
+        });
+      }
 
-        // Função para Visualizar Senha (pode ficar fora do DOMContentLoaded)
-        function toggleCampos(loginId, senhaId, btn) {
-            const login = document.getElementById(loginId);
-            const senha = document.getElementById(senhaId);
-            const isHidden = login.type === "password";
-            login.type = isHidden ? "text" : "password";
-            senha.type = isHidden ? "text" : "password";
-            btn.textContent = isHidden ? "Ocultar Senha" : "Visualizar Senha";
-        }
-    </script>
-    
-    <script src="/js/script.js"></script>
+      // Exibe o nome do usuário vindo do localStorage
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      const welcomeMessage = document.getElementById('welcomeMessage');
+      if (userData && userData.nome && welcomeMessage) {
+        welcomeMessage.textContent = `Olá, ${userData.nome}`;
+      }
+    });
+    // Lógica do Formulário de Solicitação
+    const formContainer = document.getElementById('form-solicitacao');
+    const saveButton = document.getElementById('btn-salvar');
+    if (formContainer && saveButton) {
+      saveButton.addEventListener('click', () => {
+        const dados = {
+          plataforma: document.getElementById('nome-plataforma').value,
+          motivo: document.getElementById('motivo-solicitacao').value
+        };
+        console.log('Dados capturados:', dados);
+        const mensagemDeConfirmacao =
+          `<div class="text-center transition-all"><h2 class="text-2xl font-bold text-green-400 mb-3">✅ Sucesso!</h2><p class="text-slate-300">Sua solicitação foi salva e será processada em breve.</p></div>`;
+        formContainer.innerHTML = mensagemDeConfirmacao;
+      });
+    }
+    // Função para Visualizar Senha (pode ficar fora do DOMContentLoaded)
+    function toggleCampos(loginId, senhaId, btn) {
+      const login = document.getElementById(loginId);
+      const senha = document.getElementById(senhaId);
+      const isHidden = login.type === "password";
+      login.type = isHidden ? "text" : "password";
+      senha.type = isHidden ? "text" : "password";
+      btn.textContent = isHidden ? "Ocultar Senha" : "Visualizar Senha";
+    }
+  </script>
 
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+  <script src="/js/script.js"></script>
+
+  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+    src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

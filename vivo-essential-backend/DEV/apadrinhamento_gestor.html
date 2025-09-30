@@ -30,7 +30,7 @@
         <ul>
             <li><a href="home_gestor.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
             <li><a href="apadrinhamento_gestor.html"><img src="./imagens/graduacao.png" alt="Apadrinhamento"><span>Apadrinhamento</span></a></li>
-            <li><a href="visao_geral_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
+            <li><a href="trilhastec_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
             <li><a href="perfil_gestor.html"><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu Perfil</span></a></li>
         </ul>
     </div>
@@ -108,7 +108,7 @@
                 const nome = document.getElementById('nomeNovoUsuario').value.trim();
                 const buddy = document.getElementById('buddy').value.trim();
                 const descricao = document.getElementById('descricao').value.trim();
-                
+
                 if (!nome || !buddy) {
                     alert("Preencha pelo menos Nome e Buddy!");
                     return;
@@ -122,6 +122,25 @@
                 };
                 renderItem(novoApadrinhamento);
                 form.reset();
+                addVisitarPerfilListeners();
+            });
+
+            // --- LÓGICA DO BOTÃO VISITAR PERFIL ---
+            function addVisitarPerfilListeners() {
+                const buttons = document.querySelectorAll('button[data-nome]');
+                buttons.forEach(btn => {
+                    btn.onclick = () => {
+                        window.location.href = 'visao_geral_gestor.html';
+                    };
+                });
+            }
+            addVisitarPerfilListeners();
+
+            // --- EVENT DELEGATION PARA VISITAR PERFIL ---
+            listaContainer.addEventListener('click', function(e) {
+                if (e.target && e.target.matches('button[data-nome]')) {
+                    window.location.href = 'visao_geral_gestor.html';
+                }
             });
 
             // --- LÓGICA DAS NOTIFICAÇÕES ---

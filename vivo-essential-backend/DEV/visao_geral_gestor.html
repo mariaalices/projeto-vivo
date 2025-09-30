@@ -386,7 +386,7 @@
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="visao_geral_gestor.html">Desempenho</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="trilhastec_gestor.html">Desempenho</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
@@ -402,7 +402,8 @@
       <div class="user-actions relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" title="Notificações" />
         <span>Olá, Novo Usuário</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+        <button
+          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
 
         <div id="notifModal" aria-label="Notificações">
           <div class="notif-item">
@@ -432,9 +433,12 @@
     <section aria-labelledby="perfil-novo-usuario">
       <h2 id="perfil-novo-usuario">Perfil do Novo Usuário</h2>
       <div class="profile-box" role="region" aria-label="Perfil do novo usuário">
-        <div class="profile-image" aria-label="Foto de perfil do novo usuário"></div>
+        <div class="profile-image flex items-center justify-center" aria-label="Foto de perfil do novo usuário">
+          <img src="./imagens/pessoa1.jpg" alt=""
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px #8b56ec inset;">
+        </div>
         <div class="profile-info">
-          <strong>Bruna Oliveira Testes</strong>
+          <strong>Gustavo Almeida Coxtos</strong>
           <span>Estagiario TI - Dev. Backend</span>
           <div class="description-label">Descrição:</div>
           <div class="description-text">
@@ -457,7 +461,10 @@
     <section aria-labelledby="perfil-responsavel">
       <h2 id="perfil-responsavel">Perfil do buddy responsável</h2>
       <div class="profile-box" role="region" aria-label="Perfil do buddy responsável">
-        <div class="profile-image" aria-label="Foto de perfil do buddy"></div>
+        <div class="profile-image flex items-center justify-center" aria-label="Foto de perfil do novo usuário">
+          <img src="./imagens/pessoa3.jpg" alt=""
+            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px #8b56ec inset;">
+        </div>
         <div class="profile-info">
           <strong>Ana Clara</strong>
           <span>Júnior TI - Dev. Front-end</span>
@@ -466,7 +473,7 @@
             Disponível para apoiar o onboarding, orientar atividades e resolver dúvidas
             do novo colaborador.
           </div>
-          <button class="button buddy-button" type="button">Trocar Buddy</button>
+          <button class="button buddy-button" type="button" ><a href="apadrinhamento_gestor.html">Trocar Buddy</a></button>
         </div>
       </div>
     </section>

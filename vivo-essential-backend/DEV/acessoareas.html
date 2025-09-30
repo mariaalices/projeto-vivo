@@ -70,6 +70,7 @@
       color: black;
     }
 
+    /* Estilo do item de notificação */
     .notif-item {
       display: flex;
       align-items: flex-start;
@@ -88,9 +89,31 @@
       border-radius: 50%;
     }
 
+    /* Modal com scroll se muitas notificações */
     #notifModal {
       max-height: 300px;
       overflow-y: auto;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 300px;
+      background: #fff;
+      color: #000;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    /* Oculto por padrão */
+    .hidden {
+      display: none;
+    }
+
+    /* Ícone de notificação */
+    #notifIcon {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -128,16 +151,37 @@
   <main class="flex-1 md:ml-24 px-6 py-10">
     <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
       <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+
       <div class="flex items-center gap-4 relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
+        <!-- Modal de Notificações -->
+        <div id="notifModal" class="hidden">
+          <div class="notif-item">
+            <img src="./imagens/Boneco VIVO.png" alt="user">
+            <div>
+              <strong>Notificação de um usuário</strong>
+              <p>Reunião às 15:00h</p>
+            </div>
+          </div>
+
+          <div class="notif-item">
+            <img src="./imagens/Boneco VIVO.png" alt="user">
+            <div>
+              <strong>Sistema</strong>
+              <p>Seu acesso foi atualizado</p>
+            </div>
+          </div>
+        </div>
 
         <div id="notifModal"
           class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
         </div>
 
         <span id="welcomeMessage" class="text-purple-200">Olá, Novo Usuário</span>
-        <button
-          class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+        <a href="index.html">
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+        </a>
       </div>
     </header>
 
@@ -275,29 +319,33 @@
 
   <script>
     // Script para as funcionalidades da PÁGINA (Notificações, Visualizar Senha)
+
     document.addEventListener('DOMContentLoaded', () => {
-      // Lógica das Notificações
       const notifIcon = document.getElementById('notifIcon');
       const notifModal = document.getElementById('notifModal');
+
       if (notifIcon && notifModal) {
+        // Abrir/fechar ao clicar no ícone
         notifIcon.addEventListener('click', (event) => {
           event.stopPropagation();
           notifModal.classList.toggle('hidden');
         });
+
+        // Fechar ao clicar fora
         document.addEventListener('click', (e) => {
           if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
             notifModal.classList.add('hidden');
           }
         });
       }
-
-      // Exibe o nome do usuário vindo do localStorage
-      const userData = JSON.parse(localStorage.getItem('userData'));
-      const welcomeMessage = document.getElementById('welcomeMessage');
-      if (userData && userData.nome && welcomeMessage) {
-        welcomeMessage.textContent = `Olá, ${userData.nome}`;
-      }
     });
+
+    // Exibe o nome do usuário vindo do localStorage
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    if (userData && userData.nome && welcomeMessage) {
+      welcomeMessage.textContent = `Olá, ${userData.nome}`;
+    }
     // Lógica do Formulário de Solicitação
     const formContainer = document.getElementById('form-solicitacao');
     const saveButton = document.getElementById('btn-salvar');

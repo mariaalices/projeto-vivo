@@ -120,15 +120,26 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col text-white">
-    <div class="sidebar">
-        <ul>
-            <li><a href="" class="flex items-center p-4"><img src="./imagens/botao-de-inicio.png"
-                        alt="Home"><span>Home</span></a></li>
-            <li><a href="" class="flex items-center p-4"><img src="./imagens/graduacao.png"
-                        alt="Afilhado"><span>Meu Afilhado</span></a></li>
-            <li><a href="" class="flex items-center p-4"><img src="./imagens/perfil-de-usuario.png"
-                        alt="Perfil"><span>Meu Perfil</span></a></li>
-        </ul>
+    <div class="sidebar"></div>
+            class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+            <ul class="flex flex-col">
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Afiliado</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Desempenho</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
+                </li>
+            </ul>
     </div>
 
     <main class="flex-1 p-4 md:ml-20 flex justify-center">
@@ -198,7 +209,14 @@
                         Agendamento / Enviar</button>
                 </div>
             </section>
-        </div>
+            <!-- Botão Outros Apadrinhados após todas as sections -->
+            <div class="w-full flex justify-end mt-6">
+                <button onclick="window.location.href='outros_afilhados.html'" 
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200">
+                    Outros Apadrinhados
+                </button>
+            </div>
+        </div> 
     </main>
 
     <script>
@@ -273,6 +291,7 @@
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
     <script async data-id="3149227724" id="chtl-script" type="text/javascript"
         src="https://chatling.ai/js/embed.js"></script>
+        
 </body>
 
 </html>

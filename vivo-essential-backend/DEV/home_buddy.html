@@ -27,11 +27,25 @@
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
     <div class="sidebar">
-        <ul>
-            <li><a href=""><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
-            <li><a href=""><img src="./imagens/graduacao.png" alt="Meu Afilhado"><span>Meu Afilhado</span></a></li>
-            <li><a href=""><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu Perfil</span></a></li>
-        </ul>
+            class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+            <ul class="flex flex-col">
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Afiliado</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Desempenho</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
+                </li>
+            </ul>
     </div>
 
     <main class="flex-1 md:ml-20 p-6">
@@ -64,11 +78,70 @@
                 </div>
             </section>
 
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h2 class="text-lg font-semibold text-purple-300 mb-4">Jornada Onboarding do seu Afilhado</h2>
-                </section>
-
-            <section>
+            <!-- Jornada onboarding -->
+            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-10">
+                <h2 class="text-lg font-semibold text-purple-300 mb-4">Jornada Onboarding de seu afiliado</h2>
+                <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
+                    <!-- Cada passo -->
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+                            2</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+                            3</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            4</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            5</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            6</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            7</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            8</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
+                    </div>
+                    <span class="hidden md:inline text-purple-400">&#8594;</span>
+            
+                    <div class="flex flex-col items-center min-w-[60px]">
+                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            9</div>
+                        <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <button class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
+                </div>
+            </section>
                 <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
                 <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center gap-6">
                     <div class="flex-shrink-0 flex flex-col items-center w-48 text-center">

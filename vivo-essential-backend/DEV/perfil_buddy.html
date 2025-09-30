@@ -24,11 +24,25 @@
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
     <div class="sidebar">
-        <ul>
-            <li><a href=""><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
-            <li><a href=""><img src="./imagens/graduacao.png" alt="Afilhado"><span>Meu Afiliado</span></a></li>
-            <li><a href=""><img src="./imagens/perfil-de-usuario.png" alt="Perfil"><span>Meu Perfil</span></a></li>
-        </ul>
+            class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+            <ul class="flex flex-col">
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Afiliado</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Desempenho</a></span>
+                </li>
+                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                    <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
+                </li>
+            </ul>
     </div>
 
     <main class="flex-1 p-4 md:ml-20 flex flex-col items-center gap-10">
@@ -49,17 +63,73 @@
             <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
                 <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
             </div>
-            <div class="flex-1 text-[#d8ceff] text-center md:text-left">
-                <h1 id="profileName" class="text-xl font-semibold mb-2">Buddy Maria Santos</h1>
+            <div class="profile-info flex-1 text-[#d8ceff]">
+                <h1 class="text-xl font-semibold mb-2">Gestor: Cralos Santos</h1>
                 <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
-                <p id="profileEmail" class="mb-1"><strong>Email:</strong> maria.buddy@vivo.com.br</p>
+                <p class="mb-1"><strong>Email:</strong> carlos.gestor@vivo.com.br</p>
+                <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
+                <p class="mb-1"><strong>Telefone:</strong> 11 98765-4321</p>
+                <p><strong>Função/Área:</strong> Gestor geral de TI</p>
             </div>
             <button class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar perfil</button>
         </section>
 
-        <section class="max-w-4xl w-full bg-[#461791] rounded-2xl p-6 shadow-[0_0_20px_#3a107888] text-[#d6c6ff]">
-            <h2 class="text-xl font-semibold mb-4">Medalhas e Conquistas</h2>
-            </section>
+        <!-- Visão Geral -->
+        <section class="mb-8 max-w-4xl w-full mx-auto">
+            <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
+            <div class="flex gap-6 flex-wrap">
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                    <div class="text-3xl font-extrabold text-white">2</div>
+                    <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
+                </div>
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                    <div class="text-3xl font-extrabold text-white">3</div>
+                    <div class="text-sm text-gray-300 mt-1">Afiliados</div>
+                </div>
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                    <div class="text-3xl font-extrabold text-white">2 dias</div>
+                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+                        <img src="./imagens/medalha.png" class="w-4 inline-block">Jornadas Positivas
+                    </div>
+                </div>
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                    <div class="text-3xl font-extrabold text-white">800</div>
+                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+                        <img src="./imagens/star.png" class="w-4 inline-block">Vivo Coins
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Medalhas e Conquistas -->
+        <section class="mb-10 max-w-4xl w-full mx-auto">
+            <div class="bg-[#3a197a] rounded-xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
+                    <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center">
+                            <img src="./imagens/medalha.png" alt="Conquistador" class="w-8">
+                        </div>
+                        <span class="text-white text-xs mt-2">Colaborador</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                            <img src="./imagens/star.png" alt="Maratonista" class="w-8">
+                        </div>
+                        <span class="text-white text-xs mt-2">Preocupado</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                            <img src="./imagens/lampada.png" alt="Curioso" class="w-8">
+                        </div>
+                        <span class="text-white text-xs mt-2">Curioso</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="max-w-4xl w-full">
             <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>

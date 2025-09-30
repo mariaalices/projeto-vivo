@@ -9,7 +9,6 @@
     <link rel="icon" href="./imagens/Boneco VIVO.png">
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
     <style>
-        /* Seu CSS (mantido como está, pois está bem estruturado) */
         body { margin: 0; font-family: Arial, sans-serif; background: #1c0033; }
         .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 70px; background: rgb(233 213 255); overflow: hidden; transition: width 0.3s ease; z-index: 50; }
         .sidebar:hover { width: 220px; }
@@ -18,35 +17,39 @@
         .sidebar ul li img { width: 24px; height: 24px; flex-shrink: 0; }
         .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; color: black; }
         .sidebar:hover ul li span { opacity: 1; display: inline; }
-        /* Outros estilos... */
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
+
+    <!-- Sidebar -->
     <div class="sidebar">
         <ul>
             <li><a href="home_gestor.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
-            <li><a href="apadrinhamento_gestor.html"><img src="./imagens/graduacao.png"
-                        alt="Apadrinhamento"><span>Apadrinhamento</span></a></li>
-            <li><a href="trilhastec_gestor.html"><img src="./imagens/grafico-de-barras.png"
-                        alt="Desempenho"><span>Desempenho</span></a></li>
-            <li><a href="perfil_gestor.html"><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu
-                        Perfil</span></a></li>
+            <li><a href="apadrinhamento_gestor.html"><img src="./imagens/graduacao.png" alt="Apadrinhamento"><span>Apadrinhamento</span></a></li>
+            <li><a href="trilhastec_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
+            <li><a href="perfil_gestor.html"><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu Perfil</span></a></li>
         </ul>
     </div>
 
     <main class="flex-1 p-4 md:ml-20 flex flex-col items-center gap-10">
+
+        <!-- Header -->
         <header class="w-full max-w-4xl flex justify-between items-center">
             <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
             <div class="flex items-center space-x-4 relative">
                 <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                <div id="notifModal" class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
-                    </div>
+                <div id="notifModal" class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50"></div>
                 <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Gestor</span>
-                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                <a href="index.html">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">
+                        Desconectar
+                    </button>
+                </a>
             </div>
         </header>
 
+        <!-- Perfil do usuário -->
         <section class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6">
             <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
                 <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
@@ -62,28 +65,24 @@
             <button class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar perfil</button>
         </section>
 
-        <!-- VISÃO GERAL -->
+        <!-- Visão Geral -->
         <section class="mb-8 max-w-4xl w-full mx-auto">
             <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
             <div class="flex gap-6 flex-wrap">
-                <!-- Card -->
                 <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
                     <div class="text-3xl font-extrabold text-white">2</div>
                     <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
                 </div>
-        
                 <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
                     <div class="text-3xl font-extrabold text-white">10</div>
                     <div class="text-sm text-gray-300 mt-1">Novos usuários</div>
                 </div>
-        
                 <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
                     <div class="text-3xl font-extrabold text-white">10 dias</div>
                     <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
                         <img src="./imagens/medalha.png" class="w-4 inline-block">Ofensiva
                     </div>
                 </div>
-        
                 <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
                     <div class="text-3xl font-extrabold text-white">900</div>
                     <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
@@ -92,31 +91,27 @@
                 </div>
             </div>
         </section>
-        
-        <!-- MEDALHAS E CONQUISTAS -->
+
+        <!-- Medalhas e Conquistas -->
         <section class="mb-10 max-w-4xl w-full mx-auto">
             <div class="bg-[#3a197a] rounded-xl p-6">
                 <div class="flex justify-between items-center mb-6">
                     <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
                     <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
                 </div>
-        
                 <div class="flex gap-6">
-                    <!-- Medalha -->
                     <div class="flex flex-col items-center">
                         <div class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center">
                             <img src="./imagens/medalha.png" alt="Conquistador" class="w-8">
                         </div>
                         <span class="text-white text-xs mt-2">Colaborador</span>
                     </div>
-        
                     <div class="flex flex-col items-center">
                         <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
                             <img src="./imagens/star.png" alt="Maratonista" class="w-8">
                         </div>
                         <span class="text-white text-xs mt-2">Ambicioso</span>
                     </div>
-        
                     <div class="flex flex-col items-center">
                         <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
                             <img src="./imagens/lampada.png" alt="Curioso" class="w-8">
@@ -125,8 +120,9 @@
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
 
+        <!-- Meus Cursos -->
         <section class="max-w-4xl w-full">
             <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
             <div class="flex gap-6 border-b border-purple-800 mb-6">
@@ -136,33 +132,32 @@
             <div id="em-andamento-list" class="space-y-4"></div>
             <div id="concluidos-list" class="hidden space-y-4"></div>
         </section>
+
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- LÓGICA DA PÁGINA (Notificações, Cursos, etc.) ---
             const notifIcon = document.getElementById('notifIcon');
             const notifModal = document.getElementById('notifModal');
             if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (e) => {
+                notifIcon.addEventListener('click', e => {
                     e.stopPropagation();
                     notifModal.classList.toggle('hidden');
                 });
-                document.addEventListener('click', (e) => {
+                document.addEventListener('click', e => {
                     if (!notifModal.contains(e.target) && e.target !== notifIcon) {
                         notifModal.classList.add('hidden');
                     }
                 });
             }
 
-            // --- LÓGICA DOS CURSOS ---
+            // Cursos
             const cursoInicial = { id: 1, titulo: "Direcionamento VIVO", descricao: "Como melhorar seu direcionamento para o novo usuario VIVO", progresso: 85 };
             const tabs = document.querySelectorAll('.tab');
             const emAndamentoList = document.getElementById('em-andamento-list');
             const concluidosList = document.getElementById('concluidos-list');
 
             function criarCardCurso(curso, concluido = false) {
-                // ... (lógica para criar o card, mantida como está no seu código) ...
                 const card = document.createElement('div');
                 card.className = 'bg-slate-800/70 p-4 rounded-lg space-y-2';
                 card.dataset.id = curso.id;
@@ -191,7 +186,7 @@
                 concluidosList.appendChild(criarCardCurso(curso100, true));
             }
 
-            emAndamentoList.appendChild(criarCardCurso(cursoInicial)); // Inicializa com o curso
+            emAndamentoList.appendChild(criarCardCurso(cursoInicial));
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -207,22 +202,16 @@
                 });
             });
 
-            // CORREÇÃO: Exibindo o nome do usuário que veio do backend
+            // Nome do usuário
             const userData = JSON.parse(localStorage.getItem('userData'));
             const welcomeMessage = document.getElementById('welcomeMessage');
-            const profileName = document.getElementById('profileName');
-            const profileEmail = document.getElementById('profileEmail');
-
             if (userData && userData.nome) {
-                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`; // Mostra só o primeiro nome
-                profileName.textContent = userData.nome;
-                profileEmail.innerHTML = `<strong>Email:</strong> ${userData.email}`;
+                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
             }
         });
     </script>
 
     <script src="/js/script.js"></script>
-    
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
     <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 </body>

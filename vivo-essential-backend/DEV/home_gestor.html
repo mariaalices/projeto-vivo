@@ -27,10 +27,30 @@
 
   <div class="sidebar bg-purple-200 overflow-hidden">
     <ul class="flex flex-col">
-      <li><a href="home_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/botao-de-inicio.png" class="w-8 h-8 flex-shrink-0" alt="Home"><span class="ml-4 text-black opacity-0 sidebar-text">Home</span></a></li>
-      <li><a href="apadrinhamento_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/graduacao.png" class="w-8 h-8 flex-shrink-0" alt="Apadrinhamento"><span class="ml-4 text-black opacity-0 sidebar-text">Apadrinhamento</span></a></li>
-      <li><a href="trilhastec_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/grafico-de-barras.png" class="w-8 h-8 flex-shrink-0" alt="Desempenho"><span class="ml-4 text-black opacity-0 sidebar-text">Desempenho</span></a></li>
-      <li><a href="perfil_gestor.html" class="flex items-center p-4 hover:bg-purple-400"><img src="./imagens/perfil-de-usuario.png" class="w-8 h-8 flex-shrink-0" alt="Meu Perfil"><span class="ml-4 text-black opacity-0 sidebar-text">Meu Perfil</span></a></li>
+      <li>
+        <a href="home_gestor.html" class="flex items-center p-4 hover:bg-purple-400">
+          <img src="./imagens/botao-de-inicio.png" class="w-8 h-8 flex-shrink-0" alt="Home">
+          <span class="ml-4 text-black opacity-0 sidebar-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="apadrinhamento_gestor.html" class="flex items-center p-4 hover:bg-purple-400">
+          <img src="./imagens/graduacao.png" class="w-8 h-8 flex-shrink-0" alt="Apadrinhamento">
+          <span class="ml-4 text-black opacity-0 sidebar-text">Apadrinhamento</span>
+        </a>
+      </li>
+      <li>
+        <a href="trilhastec_gestor.html" class="flex items-center p-4 hover:bg-purple-400">
+          <img src="./imagens/grafico-de-barras.png" class="w-8 h-8 flex-shrink-0" alt="Desempenho">
+          <span class="ml-4 text-black opacity-0 sidebar-text">Desempenho</span>
+        </a>
+      </li>
+      <li>
+        <a href="perfil_gestor.html" class="flex items-center p-4 hover:bg-purple-400">
+          <img src="./imagens/perfil-de-usuario.png" class="w-8 h-8 flex-shrink-0" alt="Meu Perfil">
+          <span class="ml-4 text-black opacity-0 sidebar-text">Meu Perfil</span>
+        </a>
+      </li>
     </ul>
   </div>
 
@@ -47,13 +67,17 @@
           </div>
         </div>
         <span id="welcomeMessage" class="text-purple-200">Olá, Gestor</span>
-        <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+        <a href="index.html">
+          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+        </a>
       </div>
     </header>
 
     <div class="max-w-6xl mx-auto px-4 space-y-10">
       <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
         <h2 class="text-xl font-semibold mb-6 text-white">Novos colaboradores e seu buddy</h2>
+        
+        <!-- Lista de colaboradores -->
         <div class="flex justify-between items-center py-4 border-b border-white/20">
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa1.jpg" class="w-12 h-12 rounded-xl object-cover" />
@@ -67,100 +91,106 @@
             <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
           </div>
         </div>
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
-                <div>
-                    <strong class="text-sm text-white">Brenda Almeida Gomes</strong>
-                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
-                </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
+            <div>
+              <strong class="text-sm text-white">Brenda Almeida Gomes</strong>
+              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
             </div>
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
-            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
         </div>
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-                <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
-                <div>
-                    <strong class="text-sm text-white">Paula Fernandes</strong>
-                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
-                </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
+            <div>
+              <strong class="text-sm text-white">Paula Fernandes</strong>
+              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
             </div>
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa4.jpg" class="w-11 h-11 rounded-full object-cover" />
-                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
-            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa4.jpg" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
         </div>
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa4.jpg" class="w-12 h-12 rounded-xl object-cover" />
-                <div>
-                    <strong class="text-sm text-white">Roberto Carlos Costas</strong>
-                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Full Stack Senior</span>
-                </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa4.jpg" class="w-12 h-12 rounded-xl object-cover" />
+            <div>
+              <strong class="text-sm text-white">Roberto Carlos Costas</strong>
+              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Full Stack Senior</span>
             </div>
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
-            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
         </div>
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-                <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
-                <div>
-                    <strong class="text-sm text-white">Gertudes Guimareaes</strong>
-                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
-                </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
+            <div>
+              <strong class="text-sm text-white">Gertudes Guimareaes</strong>
+              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
             </div>
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa3.jpg" class="w-11 h-11 rounded-full object-cover" />
-                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
-            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa3.jpg" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
         </div>
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
-                <div>
-                    <strong class="text-sm text-white">Thalitao Almeida Mari</strong>
-                    <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
-                </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
+            <div>
+              <strong class="text-sm text-white">Thalitao Almeida Mari</strong>
+              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
             </div>
-            <div class="flex items-center gap-3">
-                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-                <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
-            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+          </div>
         </div>
       </section>
 
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg"></div>
-                <div class="text-purple-200 flex flex-col justify-center">
-                    <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.</p>
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba mais</button>
-                </div>
+          <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg"></div>
+            <div class="text-purple-200 flex flex-col justify-center">
+              <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.</p>
+              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba mais</button>
             </div>
+          </div>
         </div>
+
         <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
           <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
           <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
             <thead>
-                <tr>
-                    <th class="pb-2 border-b border-purple-400/50">Usuário</th>
-                    <th class="pb-2 border-b border-purple-400/50">Pontos</th>
-                </tr>
+              <tr>
+                <th class="pb-2 border-b border-purple-400/50">Usuário</th>
+                <th class="pb-2 border-b border-purple-400/50">Pontos</th>
+              </tr>
             </thead>
             <tbody>
-                <tr><td class="py-2 border-b border-purple-400/20">Você</td><td class="py-2 border-b border-purple-400/20">500</td></tr>
-                <tr><td class="py-2 border-b border-purple-400/20">Maria</td><td class="py-2 border-b border-purple-400/20">400</td></tr>
-                <tr><td class="py-2 border-b border-purple-400/20">Carlos</td><td class="py-2 border-b border-purple-400/20">350</td></tr>
-                <tr><td class="py-2">Paula</td><td class="py-2">200</td></tr>
+              <tr><td class="py-2 border-b border-purple-400/20">Você</td><td class="py-2 border-b border-purple-400/20">500</td></tr>
+              <tr><td class="py-2 border-b border-purple-400/20">Maria</td><td class="py-2 border-b border-purple-400/20">400</td></tr>
+              <tr><td class="py-2 border-b border-purple-400/20">Carlos</td><td class="py-2 border-b border-purple-400/20">350</td></tr>
+              <tr><td class="py-2">Paula</td><td class="py-2">200</td></tr>
             </tbody>
-        </table>
+          </table>
         </div>
       </section>
     </div>
@@ -169,26 +199,26 @@
   <script>
     // Script das Notificações
     document.addEventListener('DOMContentLoaded', () => {
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.getElementById('notifModal');
-        if (notifIcon && notifModal) {
-            notifIcon.addEventListener('click', (event) => {
-                event.stopPropagation();
-                notifModal.classList.toggle('hidden');
-            });
-            document.addEventListener('click', (e) => {
-                if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                    notifModal.classList.add('hidden');
-                }
-            });
-        }
+      const notifIcon = document.getElementById('notifIcon');
+      const notifModal = document.getElementById('notifModal');
+      if (notifIcon && notifModal) {
+        notifIcon.addEventListener('click', (event) => {
+          event.stopPropagation();
+          notifModal.classList.toggle('hidden');
+        });
+        document.addEventListener('click', (e) => {
+          if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+            notifModal.classList.add('hidden');
+          }
+        });
+      }
 
-        // Exibindo o nome do usuário que veio do backend
-        const userData = JSON.parse(localStorage.getItem('userData'));
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        if (userData && userData.nome && welcomeMessage) {
-            welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
-        }
+      // Exibindo o nome do usuário que veio do backend
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      const welcomeMessage = document.getElementById('welcomeMessage');
+      if (userData && userData.nome && welcomeMessage) {
+        welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+      }
     });
   </script>
 

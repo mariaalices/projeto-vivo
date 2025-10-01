@@ -9,19 +9,115 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Estilos da Sidebar e da Página */
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e0f3a; }
-        .sidebar { position: fixed; top: 0; left: 0; height: 100%; width: 70px; background: rgb(233 213 255); overflow: hidden; transition: width 0.3s ease; z-index: 50; }
-        .sidebar:hover { width: 220px; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar ul li a { display: flex; align-items: center; padding: 15px; cursor: pointer; transition: background 0.2s; text-decoration: none; }
-        .sidebar ul li a:hover { background: #635571; }
-        .sidebar ul li img { width: 24px; height: 24px; flex-shrink: 0; }
-        .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; color: black; font-weight: 600; }
-        .sidebar:hover ul li span { display: inline; opacity: 1; }
-        #notifModal { max-height: 300px; overflow-y: auto; }
-        .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
-        .notif-item:last-child { border-bottom: none; }
-        .notif-item img { width: 40px; height: 40px; border-radius: 50%; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e0f3a;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 70px;
+            background: rgb(233 213 255);
+            overflow: hidden;
+            transition: width 0.3s ease;
+            z-index: 50;
+        }
+
+        .sidebar:hover {
+            width: 220px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            background: #635571;
+        }
+
+        .sidebar ul li img {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .sidebar ul li span {
+            display: none;
+            margin-left: 10px;
+            opacity: 0;
+            white-space: nowrap;
+            transition: opacity 0.3s;
+            color: black;
+            font-weight: 600;
+        }
+
+        .sidebar:hover ul li span {
+            display: inline;
+            opacity: 1;
+        }
+
+        #notifModal {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notif-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .notif-item:last-child {
+            border-bottom: none;
+        }
+
+        .notif-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+         /* --- ESTILOS DO MODAL EXTRA --- */
+        #notifModal {
+            max-height: 300px;
+            overflow-y: auto;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 300px;
+            background: #fff;
+            color: #000;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #notifIcon {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -30,7 +126,7 @@
         <ul>
             <li><a href="home_gestor.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
             <li><a href="apadrinhamento_gestor.html"><img src="./imagens/graduacao.png" alt="Apadrinhamento"><span>Apadrinhamento</span></a></li>
-            <li><a href="visao_geral_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
+            <li><a href="trilhastec_gestor.html"><img src="./imagens/grafico-de-barras.png" alt="Desempenho"><span>Desempenho</span></a></li>
             <li><a href="perfil_gestor.html"><img src="./imagens/perfil-de-usuario.png" alt="Meu Perfil"><span>Meu Perfil</span></a></li>
         </ul>
     </div>
@@ -39,11 +135,31 @@
         <header class="w-full max-w-5xl flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold text-purple-300">Apadrinhamento</h1>
             <div class="flex items-center gap-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-7 cursor-pointer" />
-                <div id="notifModal" class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
+                    class="w-7 h-7 cursor-pointer" />
+                 <!-- Modal de Notificações Adicionado -->
+                <div id="notifModal" class="hidden">
+                    <div class="notif-item">
+                        <img src="./imagens/Boneco VIVO.png" alt="user">
+                        <div>
+                            <strong>Notificação de um usuário</strong>
+                            <p>Reunião às 15:00h</p>
+                        </div>
                     </div>
+
+                    <div class="notif-item">
+                        <img src="./imagens/Boneco VIVO.png" alt="user">
+                        <div>
+                            <strong>Sistema</strong>
+                            <p>Seu acesso foi atualizado</p>
+                        </div>
+                    </div>
+                </div>
                 <span id="welcomeMessage" class="text-purple-200">Olá, Gestor</span>
-                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                <a href="index.html">
+                    <button
+                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                </a>
             </div>
         </header>
 
@@ -52,25 +168,35 @@
                 <h2 class="text-xl font-semibold text-purple-300 mb-4">Novo apadrinhamento</h2>
                 <form id="formApadrinhamento" class="space-y-4">
                     <div>
-                        <label for="nomeNovoUsuario" class="block text-sm font-medium text-slate-300">Nome do novo usuário:</label>
-                        <input type="text" id="nomeNovoUsuario" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" required />
+                        <label for="nomeNovoUsuario" class="block text-sm font-medium text-slate-300">Nome do novo
+                            usuário:</label>
+                        <input type="text" id="nomeNovoUsuario"
+                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                            required />
                     </div>
                     <div>
                         <label for="buddy" class="block text-sm font-medium text-slate-300">Buddy (responsável):</label>
-                        <input type="text" id="buddy" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" required />
+                        <input type="text" id="buddy"
+                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                            required />
                     </div>
                     <div>
-                        <label for="descricao" class="block text-sm font-medium text-slate-300">Descrição (Opcional):</label>
-                        <textarea id="descricao" class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2" rows="3"></textarea>
+                        <label for="descricao" class="block text-sm font-medium text-slate-300">Descrição
+                            (Opcional):</label>
+                        <textarea id="descricao"
+                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                            rows="3"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Salvar Apadrinhamento</button>
+                    <button type="submit"
+                        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Salvar
+                        Apadrinhamento</button>
                 </form>
             </section>
 
             <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
                 <h2 class="text-xl font-semibold text-purple-300 mb-4">Últimos apadrinhamentos</h2>
                 <div id="listaApadrinhamentos" class="space-y-4">
-                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -83,7 +209,7 @@
                 { nome: "Roberto Andrade Castro", cargo: "Nível Funcionários - Dev, Ger, RH e SOC", novo: false, avatar: "https://randomuser.me/api/portraits/men/49.jpg" }
             ];
             const listaContainer = document.getElementById('listaApadrinhamentos');
-            
+
             function renderItem(item) {
                 const itemHTML = `
                     <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
@@ -98,7 +224,7 @@
                     </div>`;
                 listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
             }
-            
+
             apadrinhamentosData.forEach(renderItem);
 
             // --- LÓGICA DO FORMULÁRIO ---
@@ -108,7 +234,7 @@
                 const nome = document.getElementById('nomeNovoUsuario').value.trim();
                 const buddy = document.getElementById('buddy').value.trim();
                 const descricao = document.getElementById('descricao').value.trim();
-                
+
                 if (!nome || !buddy) {
                     alert("Preencha pelo menos Nome e Buddy!");
                     return;
@@ -122,23 +248,47 @@
                 };
                 renderItem(novoApadrinhamento);
                 form.reset();
+                addVisitarPerfilListeners();
+            });
+
+            // --- LÓGICA DO BOTÃO VISITAR PERFIL ---
+            function addVisitarPerfilListeners() {
+                const buttons = document.querySelectorAll('button[data-nome]');
+                buttons.forEach(btn => {
+                    btn.onclick = () => {
+                        window.location.href = 'visao_geral_gestor.html';
+                    };
+                });
+            }
+            addVisitarPerfilListeners();
+
+            // --- EVENT DELEGATION PARA VISITAR PERFIL ---
+            listaContainer.addEventListener('click', function(e) {
+                if (e.target && e.target.matches('button[data-nome]')) {
+                    window.location.href = 'visao_geral_gestor.html';
+                }
             });
 
             // --- LÓGICA DAS NOTIFICAÇÕES ---
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if(notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
-            }
+           
+                const notifIcon = document.getElementById('notifIcon');
+                const notifModal = document.getElementById('notifModal');
 
+                if (notifIcon && notifModal) {
+                    // Abrir/fechar ao clicar no ícone
+                    notifIcon.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        notifModal.classList.toggle('hidden');
+                    });
+
+                    // Fechar ao clicar fora
+                    document.addEventListener('click', (e) => {
+                        if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                            notifModal.classList.add('hidden');
+                        }
+                    });
+                }
+            
             // --- NOME DE USUÁRIO DINÂMICO ---
             const userData = JSON.parse(localStorage.getItem('userData'));
             const welcomeMessage = document.getElementById('welcomeMessage');
@@ -151,7 +301,8 @@
     <script src="/js/script.js"></script>
 
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+        src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

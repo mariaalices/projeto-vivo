@@ -19,16 +19,54 @@
         .sidebar ul li span { display: none; margin-left: 10px; opacity: 0; white-space: nowrap; transition: opacity 0.3s; color: black; }
         .sidebar:hover ul li span { opacity: 1; display: inline; }
         /* Outros estilos... */
+
+        /* --- CSS do modal de notificações (adicionado) --- */
+        .notif-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 10px;
+          border-bottom: 1px solid #ccc;
+        }
+        .notif-item:last-child {
+          border-bottom: none;
+        }
+        .notif-item img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+        #notifModal {
+          max-height: 300px;
+          overflow-y: auto;
+          position: absolute;
+          top: 50px;
+          right: 0;
+          width: 300px;
+          background: #fff;
+          color: #000;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          z-index: 100;
+        }
+        .hidden {
+          display: none;
+        }
+        #notifIcon {
+          width: 32px;
+          height: 32px;
+          cursor: pointer;
+        }
     </style>
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
     <div class="sidebar">
         <ul>
-            <li><a href="home_newuser.html"><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
-            <li><a href="treinamento_ini.html"><img src="./imagens/graduacao.png" alt="Cursos"><span>Meus Cursos</span></a></li>
-            <li><a href="perfil_newuser.html"><img src="./imagens/grafico-de-barras.png" alt="Desenvolvimento"><span>Meu Desenvolvimento</span></a></li>
-            <li><a href="perfil_newuser.html"><img src="./imagens/perfil-de-usuario.png" alt="Ajustes"><span>Meus Ajustes</span></a></li>
+            <li><a href=""><img src="./imagens/botao-de-inicio.png" alt="Home"><span>Home</span></a></li>
+            <li><a href=""><img src="./imagens/graduacao.png" alt="Cursos"><span>Meus Cursos</span></a></li>
+            <li><a href=""><img src="./imagens/grafico-de-barras.png" alt="Desenvolvimento"><span>Meu Desenvolvimento</span></a></li>
+            <li><a href=""><img src="./imagens/perfil-de-usuario.png" alt="Ajustes"><span>Meus Ajustes</span></a></li>
         </ul>
     </div>
 
@@ -37,10 +75,27 @@
             <h1 class="text-2xl font-bold text-purple-200 text-center md:text-left">Pesquisa de Satisfação - 90 dias</h1>
             <div class="flex items-center space-x-4 relative">
                 <img id="notifIcon" src="./imagens/notificacao.jpg" alt="Notificações" class="w-7 h-6 cursor-pointer">
+                 <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
                 <div id="notifModal" class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                  <div class="notif-item">
+                    <img src="./imagens/Boneco VIVO.png" alt="user">
+                    <div>
+                      <strong>Notificação de um usuário</strong>
+                      <p>Reunião às 15:00h</p>
                     </div>
+                  </div>
+                  <div class="notif-item">
+                    <img src="./imagens/Boneco VIVO.png" alt="user">
+                    <div>
+                      <strong>Sistema</strong>
+                      <p>Seu acesso foi atualizado</p>
+                    </div>
+                  </div>
+                </div>
                 <span id="welcomeMessage" class="text-purple-200">Olá, Novo Usuário</span>
-                <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                <a href="index.html">
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                </a>
             </div>
         </header>
 

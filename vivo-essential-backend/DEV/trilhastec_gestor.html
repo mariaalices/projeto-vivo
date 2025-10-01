@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Página Inicial</title>
-  <link rel="icon" href="./imagens/Boneco VIVO.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -111,20 +110,19 @@
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Meus Cursos</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="apadrinhamento_gestor.html">Apadrinhamento</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu
-            Desenvolvimento</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="trilhastec_etnove.html">Desempenho</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Meus Ajustes</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="perfil_gestor.html">Meu Perfil</a></span>
       </li>
     </ul>
   </div>
@@ -164,10 +162,9 @@
           </div>
         </div>
 
-        <span class="text-purple-200">Olá, Novo Usuário</span>
-        <a href="index.html">
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-        </a>
+        <span class="text-purple-200">Olá, Gestor</span>
+
+        <button onclick="window.location.href='login.html'" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Desconectar</button>
       </div>
     </header>
 
@@ -177,11 +174,7 @@
 
       <section class="max-w-6xl mx-auto">
         <div class="flex justify-between items-center mb-4">
-          <h2 class="text-xl font-semibold text-white">Etapa 9 - Trilhas Técnicas</h2>
-          <a href="pesquisa_noventa.html"
-            class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
-            Continuar
-          </a>
+          
         </div>
         <!-- Perfil do afiliado -->
         <section class="mb-10">
@@ -195,8 +188,8 @@
               <div class="w-24 h-24 rounded-full bg-[#d9d9d9] flex items-center justify-center overflow-hidden">
                 <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-full h-full object-cover" />
               </div>
-              <h2 class="text-white font-semibold text-center mt-3">Bruno Oliveira Testes</h2>
-              <p class="text-[#a1a1a1] text-sm text-center">Estagiário TI</p>
+              <h2 class="text-white font-semibold text-center mt-3">Maria Santos</h2>
+              <p class="text-[#a1a1a1] text-sm text-center">Gestor</p>
             </div>
             <div class="flex-1 p-4 text-[#dcdcdc] leading-relaxed text-justify">
               <h3 class="text-white font-semibold mb-2">Um pouco do que trabalharemos:</h3>
@@ -281,9 +274,9 @@
   </main>
 
   <!-- Botão flutuante -->
-  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-    src="https://chatling.ai/js/embed.js"></script>
+  <button
+    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
+
   <!-- JS -->
   <script>
     const notifIcon = document.getElementById('notifIcon');
@@ -299,7 +292,7 @@
       }
     });
   </script>
-<script src="/js/script.js"></script>
+
 </body>
 
 </html>

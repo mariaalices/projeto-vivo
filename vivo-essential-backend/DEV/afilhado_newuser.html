@@ -120,26 +120,26 @@
 </head>
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col text-white">
-    <div class="sidebar"></div>
-            class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-            <ul class="flex flex-col">
-                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                    <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
-                </li>
-                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                    <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Afiliado</a></span>
-                </li>
-                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                    <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Desempenho</a></span>
-                </li>
-                <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                    <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                    <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
-                </li>
-            </ul>
+    <div
+        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+        <ul class="flex flex-col">
+            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+                <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+            </li>
+            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+                <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Afiliado</a></span>
+            </li>
+            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+                <span class="ml-3 text-black hidden sidebar-text"><a href="">Desempenho</a></span>
+            </li>
+            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+                <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
+            </li>
+        </ul>
     </div>
 
     <main class="flex-1 p-4 md:ml-20 flex justify-center">
@@ -151,7 +151,6 @@
                     <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
                         class="w-7 h-6 cursor-pointer">
 
-                    <!-- Modal de Notificações -->
                     <div id="notifModal" class="hidden">
                         <div class="notif-item">
                             <img src="./imagens/Boneco VIVO.png" alt="user">
@@ -209,14 +208,20 @@
                         Agendamento / Enviar</button>
                 </div>
             </section>
-            <!-- Botão Outros Apadrinhados após todas as sections -->
+
+            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 my-8">
+                <h3 class="text-lg font-semibold text-purple-300 mb-4 text-center">Ranking de Cursos Opcionais por Afilhado</h3>
+                <div class="w-full h-[400px]">
+                    <canvas id="groupedBarChart"></canvas>
+                </div>
+            </section>
             <div class="w-full flex justify-end mt-6">
-                <button onclick="window.location.href='outros_afilhados.html'" 
+                <button onclick="window.location.href='outros_afilhados.html'"
                     class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200">
                     Outros Apadrinhados
                 </button>
             </div>
-        </div> 
+        </div>
     </main>
 
     <script>
@@ -239,59 +244,99 @@
                     }
                 });
             }
+
+            // Lógica para Salvar Agendamento/Mensagem
+            const saveButton = document.getElementById('saveSchedule');
+            const messageText = document.getElementById('messageText');
+            if (saveButton && messageText && notifModal) {
+                saveButton.addEventListener('click', () => {
+                    const message = messageText.value.trim();
+                    if (message) {
+                        const notifItem = document.createElement("div");
+                        notifItem.className = "notif-item text-black"; // Adiciona text-black aqui
+                        notifItem.innerHTML = `<img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Você:</strong> ${message}</p>`;
+                        notifModal.prepend(notifItem);
+                        messageText.value = "";
+                        alert("Mensagem enviada e adicionada às notificações!");
+                    } else {
+                        alert('Digite uma mensagem antes de salvar.');
+                    }
+                });
+            }
+
+            // Lógica do Gráfico de Pizza (Original)
+            const ctxPie = document.getElementById('myPieChart');
+            if (ctxPie) {
+                new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Cursos Finalizados', 'Em Andamento', 'Não Iniciados'],
+                        datasets: [{ data: [50, 30, 20], backgroundColor: ['#8a52f1', '#ff9800', '#4caf50'], borderWidth: 0 }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } }
+                    },
+                });
+            }
+
+            // Lógica do Novo Gráfico de Barras Agrupadas
+            const ctxBar = document.getElementById('groupedBarChart');
+            if (ctxBar) {
+                new Chart(ctxBar, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Ana', 'Maria', 'João', 'Pedro', 'Jorge'], // Eixo X: Nomes dos funcionários
+                        datasets: [{
+                            label: 'Cursos Concluídos',
+                            data: [5, 3, 6, 4, 5], // Exemplo: Nº de cursos concluídos por funcionário
+                            backgroundColor: 'rgb(138, 82, 241)', // Roxo
+                        }, {
+                            label: 'Cursos em Andamento',
+                            data: [2, 4, 1, 3, 2], // Exemplo: Nº de cursos em andamento por funcionário
+                            backgroundColor: 'rgb(255, 152, 0)', // Laranja
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    color: '#fff' 
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#ccc' },
+                                grid: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#ccc',
+                                    precision: 0 
+                                },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            // Exibe o nome do usuário vindo do localStorage
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            if (userData && userData.nome && welcomeMessage) {
+                welcomeMessage.textContent = `Olá, ${userData.nome}`;
+            }
+
         });
-
-        // Lógica para Salvar Agendamento/Mensagem
-        const saveButton = document.getElementById('saveSchedule');
-        const messageText = document.getElementById('messageText');
-        if (saveButton && messageText && notifModal) {
-            saveButton.addEventListener('click', () => {
-                const message = messageText.value.trim();
-                if (message) {
-                    const notifItem = document.createElement("div");
-                    notifItem.className = "notif-item text-black"; // Adiciona text-black aqui
-                    notifItem.innerHTML = `<img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Você:</strong> ${message}</p>`;
-                    notifModal.prepend(notifItem);
-                    messageText.value = "";
-                    alert("Mensagem enviada e adicionada às notificações!");
-                } else {
-                    alert('Digite uma mensagem antes de salvar.');
-                }
-            });
-        }
-
-        // Lógica do Gráfico de Pizza
-        const ctx = document.getElementById('myPieChart');
-        if (ctx) {
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Cursos Finalizados', 'Em Andamento', 'Não Iniciados'],
-                    datasets: [{ data: [50, 30, 20], backgroundColor: ['#8a52f1', '#ff9800', '#4caf50'], borderWidth: 0 }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } }
-                },
-            });
-        }
-
-        // Exibe o nome do usuário vindo do localStorage
-        const userData = JSON.parse(localStorage.getItem('userData'));
-        const welcomeMessage = document.getElementById('welcomeMessage');
-        if (userData && userData.nome && welcomeMessage) {
-            welcomeMessage.textContent = `Olá, ${userData.nome}`;
-        }
-
     </script>
-
-    <script src="/js/script.js"></script>
-
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-        
 </body>
 
 </html>

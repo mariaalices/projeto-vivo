@@ -93,6 +93,31 @@
             height: 40px;
             border-radius: 50%;
         }
+
+         /* --- ESTILOS DO MODAL EXTRA --- */
+        #notifModal {
+            max-height: 300px;
+            overflow-y: auto;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 300px;
+            background: #fff;
+            color: #000;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #notifIcon {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -112,7 +137,7 @@
             <div class="flex items-center gap-4 relative">
                 <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
                     class="w-7 h-7 cursor-pointer" />
-                <!-- Modal de Notificações -->
+                 <!-- Modal de Notificações Adicionado -->
                 <div id="notifModal" class="hidden">
                     <div class="notif-item">
                         <img src="./imagens/Boneco VIVO.png" alt="user">
@@ -130,10 +155,6 @@
                         </div>
                     </div>
                 </div>
-                <div id="notifModal"
-                    class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-                </div>
-
                 <span id="welcomeMessage" class="text-purple-200">Olá, Gestor</span>
                 <a href="index.html">
                     <button
@@ -249,7 +270,7 @@
             });
 
             // --- LÓGICA DAS NOTIFICAÇÕES ---
-            document.addEventListener('DOMContentLoaded', () => {
+           
                 const notifIcon = document.getElementById('notifIcon');
                 const notifModal = document.getElementById('notifModal');
 
@@ -267,7 +288,7 @@
                         }
                     });
                 }
-            });
+            
             // --- NOME DE USUÁRIO DINÂMICO ---
             const userData = JSON.parse(localStorage.getItem('userData'));
             const welcomeMessage = document.getElementById('welcomeMessage');

@@ -7,8 +7,367 @@
   <title>Desempenho</title>
   <link rel="icon" href="./imagens/logo-vivo.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* (mantive todo o CSS original sem conflitos) */
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #1e0f3a;
+      color: #ddd;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 40;
+    }
+
+    .sidebar:hover {
+      width: 220px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li:hover {
+      background: #635571;
+    }
+
+    .sidebar ul li img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+      color: black;
+      font-weight: 600;
+    }
+
+    .sidebar:hover ul li span {
+      display: inline;
+      opacity: 1;
+    }
+
+    /* Conteúdo principal */
+    main {
+      margin-left: 80px;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      /* h1 à esquerda, user-actions à direita */
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 0 2rem;
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #b798f9;
+      flex-wrap: nowrap;
+    }
+
+    header h1 {
+      color: #b798f9;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .user-actions img {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+
+    .user-actions button {
+      background-color: #7c4dff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-actions button:hover {
+      background-color: #5e32cc;
+    }
+
+    /* Notificações */
+    #notifModal {
+      max-height: 300px;
+      overflow-y: auto;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 320px;
+      background: white;
+      color: black;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgb(0 0 0 / 0.3);
+      z-index: 60;
+      display: none;
+    }
+
+    #notifModal.active {
+      display: block;
+    }
+
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    /* Containers */
+    h2 {
+      font-weight: 800;
+      font-size: 16rem;
+      margin-bottom: 2.5rem;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 1px 1px 5px #4f329e;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      /* maior espaçamento entre seções */
+    }
+
+    .container,
+    .resumo-container,
+    .profile-box,
+    .chart-container {
+      background-color: #251845;
+      border-radius: 12px;
+      padding: 30px 45px;
+      color: #ddd;
+      box-shadow: 0 0 12px #4f329e;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      font-size: 15px;
+      line-height: 1.4;
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .resumo-container {
+      background-color: #2b1b52;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 700px;
+    }
+
+    .resumo-container .message {
+      flex-grow: 1;
+      font-size: 15px;
+      color: #dddcea;
+      line-height: 1.4;
+      margin-right: 20px;
+    }
+
+    .resumo-container img {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .button {
+      background-color: #9c8fd7;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 26px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .button:hover {
+      background-color: #b2a9e0;
+    }
+
+    /* Perfil Novo Usuário e Buddy Perfil */
+    .profile-box {
+      background: #251845;
+      border-radius: 12px;
+      padding: 30px 30px;
+      max-width: 700px;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      color: #ddd;
+      box-shadow: 0 0 14px #4f329e;
+      font-size: 15px;
+      line-height: 1.5;
+      margin: 0 auto;
+    }
+
+    .profile-image {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: url('./imagens/avatar.png') no-repeat center;
+      background-size: cover;
+      box-shadow: 0 0 10px #8b56ec inset;
+    }
+
+    .profile-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .profile-info strong {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 18px;
+      color: #f0e7ff;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .profile-info span {
+      display: block;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      color: #a59bd8;
+    }
+
+    .description-label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .description-text {
+      font-weight: 400;
+      font-size: 15px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .buddy-button {
+      margin-left: auto;
+      /* empurra o botão para a direita */
+    }
+
+    /* Gráfico Avaliação de Desempenho */
+    .chart-container {
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px #4f329e;
+      color: #ddd;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+
+    svg {
+      width: 100%;
+      height: 300px;
+      overflow: visible;
+    }
+
+    text.axis-label {
+      fill: #ccc;
+      font-size: 12px;
+      user-select: none;
+    }
+
+    /* Estilo da estrela */
+    .star {
+      fill: #8b56ec;
+      stroke: #532e8e;
+      stroke-width: 1;
+      cursor: pointer;
+      transition: fill 0.3s;
+    }
+
+    .star:hover {
+      fill: #b39ddb;
+    }
+
+    /* Linhas que conectam os pontos */
+    .line {
+      stroke: #7e57c2;
+      stroke-width: 1;
+      stroke-dasharray: 2 2;
+    }
+
+    /* Labels do eixo Y */
+    .y-labels,
+    .x-labels {
+      font-size: 13px;
+      fill: #bbb;
+      user-select: none;
+    }
   </style>
 </head>
 
@@ -19,19 +378,19 @@
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Home</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_home.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Apadrinhamento</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_apadrinhamento.html">Apadrinhamento</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="trilhastec_gestor.html">Desempenho</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Desempenho</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="">Meu Perfil</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
       </li>
     </ul>
   </div>
@@ -39,15 +398,11 @@
   <!-- Conteúdo principal -->
   <main>
     <header>
-      <h1>Desempenho</h1>
+      <h1>Especificaçõe</h1>
       <div class="user-actions relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" title="Notificações" />
-        <span>Olá, Novo Usuário</span>
-        <a href="index.html">
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">
-            Desconectar
-          </button>
-        </a>
+        <span>Olá, Felipe</span>
+        <button onclick="window.location.href='login.html'">Desconectar</button>
 
         <div id="notifModal" aria-label="Notificações">
           <div class="notif-item">
@@ -63,7 +418,6 @@
       </div>
     </header>
 
-    <!-- Resumo -->
     <section aria-labelledby="resumo-title">
       <h2 id="resumo-title">Resumo do onboarding</h2>
       <div class="resumo-container" role="region" aria-label="Resumo do onboarding">
@@ -75,14 +429,10 @@
       </div>
     </section>
 
-    <!-- Perfil novo usuário -->
     <section aria-labelledby="perfil-novo-usuario">
       <h2 id="perfil-novo-usuario">Perfil do Novo Usuário</h2>
       <div class="profile-box" role="region" aria-label="Perfil do novo usuário">
-        <div class="profile-image flex items-center justify-center" aria-label="Foto de perfil do novo usuário">
-          <img src="./imagens/pessoa1.jpg" alt=""
-            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px #8b56ec inset;">
-        </div>
+        <div class="profile-image" aria-label="Foto de perfil do novo usuário"><img style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa1.jpg" alt=""></div>
         <div class="profile-info">
           <strong>Gustavo Almeida Coxtos</strong>
           <span>Estagiario TI - Dev. Backend</span>
@@ -95,7 +445,6 @@
       </div>
     </section>
 
-    <!-- Avaliação -->
     <section aria-labelledby="avaliacao-desempenho">
       <h2 id="avaliacao-desempenho">Avaliação de Desempenho</h2>
       <div class="chart-container" role="region" aria-label="Gráfico de avaliação de desempenho">
@@ -105,14 +454,10 @@
       </div>
     </section>
 
-    <!-- Buddy -->
     <section aria-labelledby="perfil-responsavel">
       <h2 id="perfil-responsavel">Perfil do buddy responsável</h2>
       <div class="profile-box" role="region" aria-label="Perfil do buddy responsável">
-        <div class="profile-image flex items-center justify-center" aria-label="Foto de perfil do novo usuário">
-          <img src="./imagens/pessoa3.jpg" alt=""
-            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px #8b56ec inset;">
-        </div>
+        <div class="profile-image" aria-label="Foto de perfil do buddy"><img style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa3.jpg" alt=""></div>
         <div class="profile-info">
           <strong>Ana Clara</strong>
           <span>Júnior TI - Dev. Front-end</span>
@@ -121,25 +466,25 @@
             Disponível para apoiar o onboarding, orientar atividades e resolver dúvidas
             do novo colaborador.
           </div>
-          <button class="button buddy-button" type="button"><a href="apadrinhamento_gestor.html">Trocar Buddy</a></button>
+          <button class="button buddy-button" type="button">Trocar Buddy</button>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Botão flutuante -->
-  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-    src="https://chatling.ai/js/embed.js"></script>
+  <button title="Ajuda"
+    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
 
-  <!-- Notificações -->
   <script>
     const notifIcon = document.getElementById('notifIcon');
     const notifModal = document.getElementById('notifModal');
+
     notifIcon.addEventListener('click', (e) => {
       e.stopPropagation();
       notifModal.classList.toggle('active');
     });
+
     document.addEventListener('click', (e) => {
       if (!notifModal.contains(e.target) && e.target !== notifIcon) {
         notifModal.classList.remove('active');
@@ -147,7 +492,6 @@
     });
   </script>
 
-  <!-- Gráfico -->
   <script>
     const svg = document.getElementById("chart");
     const positionsY = { "Adiantado": 50, "Regular": 150, "Atrasado": 250 };
@@ -208,4 +552,5 @@
     });
   </script>
 </body>
+
 </html>

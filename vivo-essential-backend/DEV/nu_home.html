@@ -129,15 +129,7 @@
   <main class="flex-1 p-4 md:ml-20 md:mt-0 mt-16">
     <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
       <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-      <div class="flex items-center space-x-4 relative">
-        <!-- Ícone de Notificação -->
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-          class="w-7 h-6 rounded-full cursor-pointer">
-        <span class="text-purple-200">Olá, João</span>
-        <a href="index.html">
-          <button
-            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">Desconectar</button>
-        </a>
+       
 
 
         <!-- CSS -->
@@ -183,6 +175,31 @@
             }
           });
         </script>
+        
+        <!-- MODAL DE NOTIFICAÇÕES -->
+        <!-- Substitua o bloco atual pelo abaixo, logo após a sidebar e antes do <main> -->
+        
+        <div class="fixed top-4 right-6 z-50 flex items-center gap-4 rounded-xl px-4 py-2">
+          <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer relative">
+          <div id="notifModal"
+            class="hidden absolute right-0 top-full mt-2 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
+            <div class="divide-y divide-gray-200">
+              <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
+                <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu
+                  1:1 com ele =)</p>
+              </div>
+              <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
+                <p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
+                </p>
+              </div>
+            </div>
+          </div>
+          <span id="welcomeMessage" class="text-purple-200 whitespace-nowrap">Olá, Novo Usuario</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+          </a>
+        </div>
     </header>
 
     <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">

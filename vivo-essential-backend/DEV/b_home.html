@@ -9,8 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Estilos da Sidebar e da Página */
-        body { margin: 0; font-family: Arial, sans-serif; background: #1c0033; }
-        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #1c0033;
+        }
+
         .sidebar {
             position: fixed;
             top: 0;
@@ -65,10 +69,28 @@
             color: black;
         }
 
-        #notifModal { max-height: 300px; overflow-y: auto; }
-        .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
-        .notif-item:last-child { border-bottom: none; }
-        .notif-item img { width: 40px; height: 40px; border-radius: 50%; }
+        #notifModal {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .notif-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .notif-item:last-child {
+            border-bottom: none;
+        }
+
+        .notif-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
     </style>
 </head>
 
@@ -86,7 +108,8 @@
             </li>
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_trilhastec_buddy.html">Trilha técnica</a></span>
+                <span class="ml-3 text-black hidden sidebar-text"><a href="b_trilhastec_buddy.html">Trilha
+                        técnica</a></span>
             </li>
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
@@ -100,11 +123,13 @@
             <h1 class="text-2xl font-bold text-purple-200 mb-4 md:mb-0">Página Inicial</h1>
             <div class="flex items-center gap-4 relative">
                 <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                <div id="notifModal" class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50">
-                    </div>
+                <div id="notifModal"
+                    class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                </div>
                 <span id="welcomeMessage" class="text-purple-200">Olá, Maria</span>
                 <a href="index.html">
-                    <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                    <button
+                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
                 </a>
             </div>
         </header>
@@ -119,9 +144,11 @@
                     <button class="text-4xl">😊</button>
                     <button class="text-4xl">😍</button>
                 </div>
-                <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2" placeholder="Escreva um motivo..."></textarea>
+                <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+                    placeholder="Escreva um motivo..."></textarea>
                 <div class="flex justify-center">
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar Avaliação</button>
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar
+                        Avaliação</button>
                 </div>
             </section>
 
@@ -131,76 +158,86 @@
                 <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
                     <!-- Cada passo -->
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
                             2</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
                             3</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             4</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             5</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             6</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             7</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             8</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
-            
+
                     <div class="flex flex-col items-center min-w-[60px]">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
                             9</div>
                         <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <button class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
+                    <button
+                        class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
                 </div>
             </section>
-                <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
-                <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center gap-6">
-                    <div class="flex-shrink-0 flex flex-col items-center w-48 text-center">
-                        <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-24 h-24 rounded-full object-cover mb-3" />
-                        <h3 class="text-white font-semibold">Bruno Oliveira Testes</h3>
-                        <p class="text-slate-400 text-sm">Estagiário TI</p>
-                    </div>
-                    <div class="flex-1 text-slate-300 leading-relaxed text-center md:text-left">
-                        <h3 class="text-white font-semibold mb-2">Um pouco sobre seu afilhado:</h3>
-                        <p>In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-                    </div>
+            <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
+            <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0 flex flex-col items-center w-48 text-center">
+                    <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-24 h-24 rounded-full object-cover mb-3" />
+                    <h3 class="text-white font-semibold">Bruno Oliveira Testes</h3>
+                    <p class="text-slate-400 text-sm">Estagiário TI</p>
                 </div>
+                <div class="flex-1 text-slate-300 leading-relaxed text-center md:text-left">
+                    <h3 class="text-white font-semibold mb-2">Um pouco sobre seu afilhado:</h3>
+                    <p>In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent taciti
+                        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                </div>
+            </div>
             </section>
         </div>
     </main>
@@ -230,11 +267,12 @@
             }
         });
     </script>
-    
+
     <script src="/js/script.js"></script>
 
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+        src="https://chatling.ai/js/embed.js"></script>
 </body>cd
 
 </html>

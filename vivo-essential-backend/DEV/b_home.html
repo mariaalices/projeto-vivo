@@ -91,6 +91,12 @@
             height: 40px;
             border-radius: 50%;
         }
+
+        .emoji-btn.selecionado {
+            background-color: #6d28d9;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+        }
     </style>
 </head>
 
@@ -135,20 +141,29 @@
         </header>
 
         <div class="max-w-4xl w-full mx-auto space-y-10">
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Afiliado:</h2>
-                <div class="flex justify-center space-x-6 mb-4 flex-wrap">
-                    <button class="text-4xl">😠</button>
-                    <button class="text-4xl">😕</button>
-                    <button class="text-4xl">😐</button>
-                    <button class="text-4xl">😊</button>
-                    <button class="text-4xl">😍</button>
+            <section id="secao-avaliacao-buddy"
+                class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
+                <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie seu humor:</h2>
+                <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="1">😠</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="2">😕</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="3">😐</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="4">😊</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="5">😍</button>
                 </div>
-                <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
-                    placeholder="Escreva um motivo..."></textarea>
+                <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+                    placeholder="Escreva um motivo... (Opcional)"></textarea>
                 <div class="flex justify-center">
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar
-                        Avaliação</button>
+                    <button id="btn-enviar-avaliacao"
+                        class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+                        disabled>
+                        Enviar Avaliação
+                    </button>
                 </div>
             </section>
 
@@ -269,6 +284,76 @@
     </script>
 
     <script src="/js/script.js"></script>
+
+
+    <script>
+        // Espera o documento carregar completamente antes de rodar o script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
+            // Os dados enviados ficarão guardados neste array.
+            let bancoDeDadosSimulado = [];
+
+            // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
+            const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+            const emojiBtns = document.querySelectorAll('.emoji-btn');
+            const motivoTextarea = document.getElementById('motivo-avaliacao');
+            const btnEnviar = document.getElementById('btn-enviar-avaliacao');
+
+            let avaliacaoSelecionada = null;
+
+            // --- LÓGICA PARA SELECIONAR EMOJI ---
+            emojiBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 1. Remove a seleção de todos os outros botões
+                    emojiBtns.forEach(outroBtn => {
+                        outroBtn.classList.remove('selecionado');
+                    });
+
+                    // 2. Adiciona a classe 'selecionado' apenas no botão clicado
+                    btn.classList.add('selecionado');
+
+                    // 3. Guarda o valor do emoji selecionado
+                    avaliacaoSelecionada = btn.dataset.value;
+
+                    // 4. Habilita o botão de enviar
+                    btnEnviar.disabled = false;
+                });
+            });
+
+            // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
+            btnEnviar.addEventListener('click', () => {
+                // Pega o texto do motivo (se houver)
+                const motivo = motivoTextarea.value.trim();
+
+                // Cria um objeto com os dados da avaliação
+                const novaAvaliacao = {
+                    nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
+                    motivo: motivo,
+                    data: new Date().toISOString() // Adiciona a data do envio
+                };
+
+                // "Envia" para o nosso banco de dados simulado
+                bancoDeDadosSimulado.push(novaAvaliacao);
+
+                // Exibe no console do navegador para provar que foi "salvo"
+                console.log('Avaliação enviada com sucesso!');
+                console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
+
+                // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
+                const mensagemSucessoHTML = `
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-green-400 mb-2">Obrigado!</h2>
+                            <p class="text-slate-300">Sua avaliação foi enviada com sucesso.</p>
+                        </div>
+                    `;
+
+                // Substitui todo o conteúdo da seção pela mensagem de sucesso
+                secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+            });
+
+        });
+    </script>
 
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
     <script async data-id="3149227724" id="chtl-script" type="text/javascript"

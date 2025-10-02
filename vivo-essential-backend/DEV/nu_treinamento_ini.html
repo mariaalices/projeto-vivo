@@ -19,7 +19,6 @@
     }
 
     /* Sidebar */
-    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -81,27 +80,6 @@
     }
   </style>
   <!-- Sidebar -->
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_home.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_treinamento_ini.html">Meus Cursos</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_trilhastec_newuser.html">Trilha Técnica</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_perfil_newuser.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
 
   <div
     class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
@@ -127,62 +105,43 @@
   </div>
 
   <!-- Conteúdo principal -->
-  <main class="flex-1 md:ml-24 px-6 py-10">
+  <main class="flex-1 md:ml-24 px-6 py-10 flex flex-col justify-center space-y-12">
 
     <!-- Cabeçalho -->
-    <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-      <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0 md:ml-20 p-4">
+        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+        <div class="flex items-center space-x-4 relative">
+            <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
+                class="w-7 h-6 rounded-full cursor-pointer">
+            <span class="text-purple-200">Olá, João</span>
+            <a href="index.html">
+                <button
+                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+            </a>
 
-      <!-- Container com posicionamento relativo -->
-      <div class="flex items-center gap-4 relative">
-        <!-- Ícone de Notificação -->
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-
-        <!-- Modal de Notificações -->
-        <div id="notifModal"
-          class="hidden absolute top-full right-0 mt-3 w-80 h-300 bg-white text-black rounded-2xl shadow-xl z-50 max-h-72 overflow-y-auto divide-y divide-gray-200">
-
-          <!-- Notificação 1 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
-          </div>
-
-          <!-- Notificação 2 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
-            </p>
-          </div>
-
-          <!-- Notificação 3 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
-          </div>
-
-          <!-- Notificação 4 -->
-          <div class="flex items-start gap-3 p-3">
-            <img src="./imagens/avatar.png" alt="Avatar" class="w-10 h-10 rounded-full object-cover">
-            <p class="text-sm leading-snug">
-              <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar?
-              =)
-            </p>
-          </div>
+            <div id="notifModal"
+                class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
+                <div class="notif-item">
+                    <img src="./imagens/perfil.png" alt="Avatar">
+                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
+                        ele =)</p>
+                </div>
+                <div class="notif-item">
+                    <img src="./imagens/perfil.png" alt="Avatar">
+                    <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+                </div>
+                <div class="notif-item">
+                    <img src="./imagens/system-integration.png" alt="Avatar">
+                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
+                        ele =)</p>
+                </div>
+                <div class="notif-item">
+                    <img src="./imagens/perfil.png" alt="Avatar">
+                    <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado...
+                        posso te ajudar? =)</p>
+                </div>
+            </div>
         </div>
-
-        <span class="text-purple-200">Olá, João</span>
-        <a href="index.html">
-          <button
-            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-        </a>
-      </div>
     </header>
 
     <!-- Modal de Notificações -->
@@ -207,7 +166,6 @@
           ajudar?
           =)</p>
       </div>
-    </div>
     </div>
 
     <!-- CSS -->
@@ -260,174 +218,156 @@
       });
     </script>
 
-    <head>
-      <title>Jornada Onboarding</title>
-      <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+    <!-- Etapa 2 -->
+    <section class="max-w-6xl mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
+        <a href="nu_sua_vibe.html"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
+          Continuar
+        </a>
+      </div>
 
-    <body class="bg-gradient-to-b from-[#2b0d4a] to-[#1a0632] text-white min-h-screen flex flex-col">
+      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+        <!-- Título + Progresso -->
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
+            <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div class="w-[10%] h-full bg-purple-500"></div>
+            </div>
+            <span class="text-sm text-white">10%</span>
+          </div>
+        </div>
 
+        <!-- Carrossel -->
+        <div class="relative">
+          <!-- Botão esquerda -->
+          <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+            onclick="scrollLeft('carrossel1')">&lt;</button>
 
-      <!-- Conteúdo principal -->
-      <main class="flex-1 md:ml-24 px-6 py-10 space-y-12">
+          <div id="carrossel1" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
+            <!-- Card -->
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-blue-300 font-bold  text-gray-400 text-left">500 coins</div>
+              <img src="./imagens/onboarding.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm  text-white mb-3">Curso: Jornada de Onboarding</p>
+              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
+            </div>
 
-        <!-- Etapa 2 -->
-        <section class="max-w-6xl mx-auto">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
-            <a href="nu_sua_vibe.html"
-              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
-              Continuar
-            </a>
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
+              <img src="./imagens/seguranca.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Normas de Segurança</p>
+              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
+            </div>
+
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">1000 coins</div>
+              <img src="./imagens/qa.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Jornada iniciante QA (Iniciante)</p>
+              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+            </div>
+
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
+              <img src="./imagens/politica.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Política de Privacidade</p>
+              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+            </div>
           </div>
 
-          <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-            <!-- Título + Progresso -->
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
-                <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-                  <div class="w-[10%] h-full bg-purple-500"></div>
-                </div>
-                <span class="text-sm text-white">10%</span>
-              </div>
+          <!-- Botão direita -->
+          <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+            onclick="scrollRight('carrossel1')">&gt;</button>
+        </div>
+
+        <!-- Bolinhas -->
+        <div class="flex justify-center mt-4 gap-2">
+          <span class="w-2 h-2 bg-white rounded-full"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conhecimentos Gerais -->
+    <section class="max-w-6xl mx-auto">
+      <h2 class="text-xl font-semibold mb-4 text-white">Conhecimentos Gerais</h2>
+
+      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+        <!-- Título + Progresso -->
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-bold text-white">Treinamentos Opcionais</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
+            <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div class="w-[5%] h-full bg-purple-500"></div>
+            </div>
+            <span class="text-sm text-white">5%</span>
+          </div>
+        </div>
+
+        <!-- Carrossel -->
+        <div class="relative">
+          <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+            onclick="scrollLeft('carrossel2')">&lt;</button>
+
+          <div id="carrossel2" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+              <img src="./imagens/database.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Banco de Dados (Intermediario)</p>
+              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
             </div>
 
-            <!-- Carrossel -->
-            <div class="relative">
-              <!-- Botão esquerda -->
-              <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollLeft('carrossel1')">&lt;</button>
-
-              <div id="carrossel1" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
-                <!-- Card -->
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-blue-300 font-bold  text-gray-400 text-left">500 coins</div>
-                  <img src="./imagens/onboarding.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm  text-white mb-3">Curso: Jornada de Onboarding</p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-                  <img src="./imagens/seguranca.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Normas de Segurança</p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">1000 coins</div>
-                  <img src="./imagens/qa.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Jornada iniciante QA (Iniciante)</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-                  <img src="./imagens/politica.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Política de Privacidade</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-                </div>
-              </div>
-
-              <!-- Botão direita -->
-              <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollRight('carrossel1')">&gt;</button>
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+              <img src="./imagens/ux.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: User Experience (Avançado)</p>
+              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
             </div>
 
-            <!-- Bolinhas -->
-            <div class="flex justify-center mt-4 gap-2">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+              <img src="./imagens/ia.jpeg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Inteligência Artificial (Básico)</p>
+              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+            </div>
+
+            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+              <img src="./imagens/Bm.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+              <p class="font-bold text-sm mb-3 text-white">Curso: Business Management</p>
+              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
             </div>
           </div>
-        </section>
 
-        <!-- Conhecimentos Gerais -->
-        <section class="max-w-6xl mx-auto">
-          <h2 class="text-xl font-semibold mb-4 text-white">Conhecimentos Gerais</h2>
+          <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+            onclick="scrollRight('carrossel2')">&gt;</button>
+        </div>
 
-          <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-            <!-- Título + Progresso -->
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-lg font-bold text-white">Treinamentos Opcionais</h3>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
-                <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-                  <div class="w-[5%] h-full bg-purple-500"></div>
-                </div>
-                <span class="text-sm text-white">5%</span>
-              </div>
-            </div>
+        <!-- Bolinhas -->
+        <div class="flex justify-center mt-4 gap-2">
+          <span class="w-2 h-2 bg-white rounded-full"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+        </div>
+      </div>
+    </section>
+    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+      src="https://chatling.ai/js/embed.js"></script>
+  </main>
 
-            <!-- Carrossel -->
-            <div class="relative">
-              <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollLeft('carrossel2')">&lt;</button>
-
-              <div id="carrossel2" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img src="./imagens/database.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Banco de Dados (Intermediario)</p>
-                  <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img src="./imagens/ux.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: User Experience (Avançado)</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img src="./imagens/ia.jpeg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Inteligência Artificial (Básico)</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-                </div>
-
-                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-                  <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-                  <img src="./imagens/Bm.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-                  <p class="font-bold text-sm mb-3 text-white">Curso: Business Management</p>
-                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-                </div>
-              </div>
-
-              <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollRight('carrossel2')">&gt;</button>
-            </div>
-
-            <!-- Bolinhas -->
-            <div class="flex justify-center mt-4 gap-2">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-            </div>
-          </div>
-        </section>
-        <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-        <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-          src="https://chatling.ai/js/embed.js"></script>
-      </main>
-
-      <script>
-        function scrollLeft(id) {
-          document.getElementById(id).scrollBy({ left: -250, behavior: 'smooth' });
-        }
-        function scrollRight(id) {
-          document.getElementById(id).scrollBy({ left: 250, behavior: 'smooth' });
-        }
-      </script>
-      <script src="/js/script.js"></script>
-    </body>
-
-</html>
-
-
+  <script>
+    function scrollLeft(id) {
+      document.getElementById(id).scrollBy({ left: -250, behavior: 'smooth' });
+    }
+    function scrollRight(id) {
+      document.getElementById(id).scrollBy({ left: 250, behavior: 'smooth' });
+    }
+  </script>
+  <script src="/js/script.js"></script>
 </body>
-
-</html>

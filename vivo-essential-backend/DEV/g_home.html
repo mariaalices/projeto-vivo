@@ -12,89 +12,113 @@
 
 <body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
   <style>
-            
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 70px;
+      background: rgb(233 213 255);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      z-index: 40;
+    }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+    .sidebar:hover {
+      width: 220px;
+    }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+    .sidebar ul li:hover {
+      background: #635571;
+    }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+    .sidebar ul li img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+    .sidebar ul li span {
+      display: none;
+      margin-left: 10px;
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
-    .notif-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-bottom: 1px solid #ccc; }
-    .notif-item:last-child { border-bottom: none; }
-    .notif-item img { width: 40px; height: 40px; border-radius: 50%; }
-    #notifModal { max-height: 300px; overflow-y: auto; }
+    .sidebar:hover ul li span {
+      opacity: 1;
+      display: inline;
+      color: black;
+    }
+
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .notif-item:last-child {
+      border-bottom: none;
+    }
+
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    #notifModal {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .emoji-btn.selecionado {
+      background-color: #6d28d9;
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+    }
   </style>
 
   <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_home.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_apadrinhamento.html">Apadrinhamento</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Trilha
-                        técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
-            </li>
-        </ul>
-    </div>
+    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
+    <ul class="flex flex-col">
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_home.html">Home</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_apadrinhamento.html">Apadrinhamento</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Trilha
+            técnica</a></span>
+      </li>
+      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
+        <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
+      </li>
+    </ul>
+  </div>
 
   <main class="flex-1 ml-20 md:ml-24 px-6 py-10">
 
@@ -102,23 +126,51 @@
       <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
       <div class="flex items-center gap-4 relative">
         <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-        <div id="notifModal" class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
+        <div id="notifModal"
+          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
           <div class="divide-y divide-gray-200">
-            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)</p></div>
-            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p></div>
+            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
+              <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)</p>
+            </div>
+            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
+              <p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+                conversar?</p>
+            </div>
           </div>
         </div>
         <span id="welcomeMessage" class="text-purple-200">Olá, Felipe</span>
         <a href="index.html">
-          <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
         </a>
       </div>
     </header>
 
+    <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
+      <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie seu humor:</h2>
+      <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
+        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
+      </div>
+      <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+        placeholder="Escreva um motivo... (Opcional)"></textarea>
+      <div class="flex justify-center">
+        <button id="btn-enviar-avaliacao"
+          class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+          disabled>
+          Enviar Avaliação
+        </button>
+      </div>
+    </section>
+
     <div class="max-w-6xl mx-auto px-4 space-y-10">
       <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
         <h2 class="text-xl font-semibold mb-6 text-white">Novos colaboradores e seu buddy</h2>
-        
+
         <div class="flex justify-between items-center py-4 border-b border-white/20">
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa1.jpg" class="w-12 h-12 rounded-xl object-cover" />
@@ -129,7 +181,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/Pessoa-2mobile.webp" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
         <div class="flex justify-between items-center py-4 border-b border-white/20">
@@ -142,7 +196,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
         <div class="flex justify-between items-center py-4 border-b border-white/20">
@@ -155,7 +211,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa4.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
         <div class="flex justify-between items-center py-4 border-b border-white/20">
@@ -168,7 +226,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
         <div class="flex justify-between items-center py-4 border-b border-white/20">
@@ -181,7 +241,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa3.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
         <div class="flex justify-between items-center py-4 border-b border-white/20">
@@ -194,7 +256,9 @@
           </div>
           <div class="flex items-center gap-3">
             <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html" class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar Perfil</a>
+            <a href="visao_geral_gestor.html"
+              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
+              Perfil</a>
           </div>
         </div>
       </section>
@@ -203,10 +267,13 @@
         <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
           <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg"></div>
+            <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
+            </div>
             <div class="text-purple-200 flex flex-col justify-center">
-              <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na plataforma.</p>
-              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba mais</button>
+              <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na
+                plataforma.</p>
+              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba
+                mais</button>
             </div>
           </div>
         </div>
@@ -221,10 +288,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td class="py-2 border-b border-purple-400/20">Você</td><td class="py-2 border-b border-purple-400/20">500</td></tr>
-              <tr><td class="py-2 border-b border-purple-400/20">Maria</td><td class="py-2 border-b border-purple-400/20">400</td></tr>
-              <tr><td class="py-2 border-b border-purple-400/20">Carlos</td><td class="py-2 border-b border-purple-400/20">350</td></tr>
-              <tr><td class="py-2">Paula</td><td class="py-2">200</td></tr>
+              <tr>
+                <td class="py-2 border-b border-purple-400/20">Você</td>
+                <td class="py-2 border-b border-purple-400/20">500</td>
+              </tr>
+              <tr>
+                <td class="py-2 border-b border-purple-400/20">Maria</td>
+                <td class="py-2 border-b border-purple-400/20">400</td>
+              </tr>
+              <tr>
+                <td class="py-2 border-b border-purple-400/20">Carlos</td>
+                <td class="py-2 border-b border-purple-400/20">350</td>
+              </tr>
+              <tr>
+                <td class="py-2">Paula</td>
+                <td class="py-2">200</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -233,10 +312,10 @@
       <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
         <h2 class="text-xl font-semibold mb-6 text-white">Controle de Desempenho por Curso (Horas)</h2>
         <div class="w-full h-[400px]">
-            <canvas id="stdDevControlChart"></canvas>
+          <canvas id="stdDevControlChart"></canvas>
         </div>
       </section>
-      </div>
+    </div>
   </main>
 
   <script>
@@ -268,122 +347,192 @@
       if (ctx) {
         // Eixo X agora representa os cursos
         const courseLabels = ['Curso 1: Onboarding', 'Curso 2: Segurança', 'Curso 3: Políticas', 'Curso 4: Ferramentas', 'Curso 5: Processos'];
-        
+
         // Limites e média
         const lowerControlLimit = 1;
         const upperControlLimit = 5;
         const average = 3.2;
 
         new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: courseLabels,
-                datasets: [
-                    // ===== LINHAS DE CONTROLE =====
-                    {
-                        label: 'Média',
-                        data: Array(courseLabels.length).fill(average),
-                        borderColor: 'rgba(59, 130, 246, 0.8)', // Azul
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        pointRadius: 0,
-                        fill: false
-                    },
-                    {
-                        label: 'Limite Superior (LSC)',
-                        data: Array(courseLabels.length).fill(upperControlLimit),
-                        borderColor: 'rgba(139, 92, 246, 0.8)', // Roxo
-                        borderWidth: 2,
-                        pointRadius: 0,
-                        fill: false
-                    },
-                    {
-                        label: 'Limite Inferior (LIC)',
-                        data: Array(courseLabels.length).fill(lowerControlLimit),
-                        borderColor: 'rgba(34, 197, 94, 0.8)', // Verde
-                        borderWidth: 2,
-                        pointRadius: 0,
-                        fill: false
-                    },
-                    // ===== DADOS DOS FUNCIONÁRIOS (CADA UM É UMA LINHA) =====
-                    {
-                        label: 'Gustavo (Consistente)',
-                        data: [3.1, 3.5, 2.9, 3.3, 3.0],
-                        borderColor: '#f87171', // Red-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                    {
-                        label: 'Brenda (Lento)',
-                        data: [4.5, 4.8, 4.9, 5.3, 4.7],
-                        borderColor: '#fb923c', // Orange-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                    {
-                        label: 'Paula (Rápida)',
-                        data: [1.5, 1.1, 0.9, 1.3, 1.0],
-                        borderColor: '#60a5fa', // Blue-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                    {
-                        label: 'Roberto (Melhorando)',
-                        data: [4.9, 4.0, 3.5, 2.8, 2.5],
-                        borderColor: '#34d399', // Emerald-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                     {
-                        label: 'Gertrudes (Piorando)',
-                        data: [1.8, 2.5, 3.3, 4.0, 4.8],
-                        borderColor: '#facc15', // Yellow-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                    {
-                        label: 'Thalita (Inconstante)',
-                        data: [4.0, 1.5, 4.5, 1.8, 3.9],
-                        borderColor: '#a78bfa', // Violet-400
-                        tension: 0.1,
-                        pointRadius: 5,
-                        pointHoverRadius: 7
-                    },
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: '#e2e8f0' // slate-200
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 6,
-                        ticks: { color: '#94a3b8' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                    },
-                    x: {
-                        ticks: { color: '#94a3b8' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                    }
+          type: 'line',
+          data: {
+            labels: courseLabels,
+            datasets: [
+              // ===== LINHAS DE CONTROLE =====
+              {
+                label: 'Média',
+                data: Array(courseLabels.length).fill(average),
+                borderColor: 'rgba(59, 130, 246, 0.8)', // Azul
+                borderWidth: 2,
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: false
+              },
+              {
+                label: 'Limite Superior (LSC)',
+                data: Array(courseLabels.length).fill(upperControlLimit),
+                borderColor: 'rgba(139, 92, 246, 0.8)', // Roxo
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: false
+              },
+              {
+                label: 'Limite Inferior (LIC)',
+                data: Array(courseLabels.length).fill(lowerControlLimit),
+                borderColor: 'rgba(34, 197, 94, 0.8)', // Verde
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: false
+              },
+              // ===== DADOS DOS FUNCIONÁRIOS (CADA UM É UMA LINHA) =====
+              {
+                label: 'Gustavo (Consistente)',
+                data: [3.1, 3.5, 2.9, 3.3, 3.0],
+                borderColor: '#f87171', // Red-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+              {
+                label: 'Brenda (Lento)',
+                data: [4.5, 4.8, 4.9, 5.3, 4.7],
+                borderColor: '#fb923c', // Orange-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+              {
+                label: 'Paula (Rápida)',
+                data: [1.5, 1.1, 0.9, 1.3, 1.0],
+                borderColor: '#60a5fa', // Blue-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+              {
+                label: 'Roberto (Melhorando)',
+                data: [4.9, 4.0, 3.5, 2.8, 2.5],
+                borderColor: '#34d399', // Emerald-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+              {
+                label: 'Gertrudes (Piorando)',
+                data: [1.8, 2.5, 3.3, 4.0, 4.8],
+                borderColor: '#facc15', // Yellow-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+              {
+                label: 'Thalita (Inconstante)',
+                data: [4.0, 1.5, 4.5, 1.8, 3.9],
+                borderColor: '#a78bfa', // Violet-400
+                tension: 0.1,
+                pointRadius: 5,
+                pointHoverRadius: 7
+              },
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: {
+                  color: '#e2e8f0' // slate-200
                 }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 6,
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.1)' }
+              },
+              x: {
+                ticks: { color: '#94a3b8' },
+                grid: { color: 'rgba(255, 255, 255, 0.1)' }
+              }
             }
+          }
         });
       }
     });
   </script>
 
+  <script>
+    // Espera o documento carregar completamente antes de rodar o script
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
+      // Os dados enviados ficarão guardados neste array.
+      let bancoDeDadosSimulado = [];
+
+      // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
+      const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+      const emojiBtns = document.querySelectorAll('.emoji-btn');
+      const motivoTextarea = document.getElementById('motivo-avaliacao');
+      const btnEnviar = document.getElementById('btn-enviar-avaliacao');
+
+      let avaliacaoSelecionada = null;
+
+      // --- LÓGICA PARA SELECIONAR EMOJI ---
+      emojiBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // 1. Remove a seleção de todos os outros botões
+          emojiBtns.forEach(outroBtn => {
+            outroBtn.classList.remove('selecionado');
+          });
+
+          // 2. Adiciona a classe 'selecionado' apenas no botão clicado
+          btn.classList.add('selecionado');
+
+          // 3. Guarda o valor do emoji selecionado
+          avaliacaoSelecionada = btn.dataset.value;
+
+          // 4. Habilita o botão de enviar
+          btnEnviar.disabled = false;
+        });
+      });
+
+      // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
+      btnEnviar.addEventListener('click', () => {
+        // Pega o texto do motivo (se houver)
+        const motivo = motivoTextarea.value.trim();
+
+        // Cria um objeto com os dados da avaliação
+        const novaAvaliacao = {
+          nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
+          motivo: motivo,
+          data: new Date().toISOString() // Adiciona a data do envio
+        };
+
+        // "Envia" para o nosso banco de dados simulado
+        bancoDeDadosSimulado.push(novaAvaliacao);
+
+        // Exibe no console do navegador para provar que foi "salvo"
+        console.log('Avaliação enviada com sucesso!');
+        console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
+
+        // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
+        const mensagemSucessoHTML = `
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-green-400 mb-2">Obrigado!</h2>
+                            <p class="text-slate-300">Sua avaliação foi enviada com sucesso.</p>
+                        </div>
+                    `;
+
+        // Substitui todo o conteúdo da seção pela mensagem de sucesso
+        secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+      });
+
+    });
+  </script>
+
 </body>
+
 </html>

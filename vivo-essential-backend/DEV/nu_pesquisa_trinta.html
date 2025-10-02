@@ -256,7 +256,7 @@
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_home.html">Home</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_newuser.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
@@ -325,43 +325,45 @@
     <!-- Tela Pesquisa -->
     <section id="telaPesquisa">
       <h2>Pesquisa de Satisfação</h2>
-
-      <div class="question">
-        <p>Pergunta 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
+    
+      <div class="flex flex-col items-center">
+        <div class="question w-full max-w-xl">
+          <p class="text-center">Pergunta 1 - Qual seu nível de satisfação geral com a plataforma?</p>
+          <div class="buttons justify-center">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
+        </div>
+    
+        <div class="question w-full max-w-xl">
+          <p class="text-center">Pergunta 2 - A plataforma te ajuda a atingir seus objetivos?</p>
+          <div class="buttons justify-center">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
+        </div>
+    
+        <div class="question w-full max-w-xl">
+          <p class="text-center">Pergunta 3 - O que você mais gosta na plataforma?</p>
+          <div class="buttons justify-center">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
+        </div>
+    
+        <div class="question w-full max-w-xl">
+          <p class="text-center">Pergunta 4 - O que podemos melhorar em nossa etapa de onboarding?</p>
+          <div class="buttons justify-center">
+            <button onclick="selectOption(this)">Ruim</button>
+            <button onclick="selectOption(this)">Bom</button>
+            <button onclick="selectOption(this)">Ótimo</button>
+          </div>
         </div>
       </div>
-
-      <div class="question">
-        <p>Pergunta 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>Pergunta 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
-      <div class="question">
-        <p>Pergunta 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p>
-        <div class="buttons">
-          <button onclick="selectOption(this)">Ruim</button>
-          <button onclick="selectOption(this)">Bom</button>
-          <button onclick="selectOption(this)">Ótimo</button>
-        </div>
-      </div>
-
+    
       <div class="flex gap-4 mt-6">
         <!-- Botão 1 -->
         <button
@@ -369,12 +371,17 @@
           onclick="enviarRespostas()">
           Enviar
         </button>
-
+    
         <!-- Botão 2 -->
         <a href="nu_trilhastec_etnove.html"
           class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition text-center">
           Ir para a próxima etapa
         </a>
+        
+      </div>
+    </section>
+
+       
       </div>
 
       </div>

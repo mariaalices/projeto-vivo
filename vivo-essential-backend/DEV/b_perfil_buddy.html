@@ -140,123 +140,125 @@
         </ul>
     </div>
 
-    <main class="flex-1 p-4 md:ml-20 flex flex-col items-center gap-10">
-        <header class="w-full max-w-4xl flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
-            <div class="flex items-center space-x-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
-                <div id="notifModal"
-                    class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Notificação de um usuário</strong>
-                            <p>Reunião às 15:00h</p>
+    <main class="flex-1 md:ml-20 p-6">
+        <div class="w-full max-w-6xl mx-auto space-y-10">
+            <header class="w-full flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
+                <div class="flex items-center space-x-4 relative">
+                    <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
+                    <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
+                    <div id="notifModal"
+                        class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                        <div class="notif-item">
+                            <img src="./imagens/Boneco VIVO.png" alt="user">
+                            <div>
+                                <strong>Notificação de um usuário</strong>
+                                <p>Reunião às 15:00h</p>
+                            </div>
+                        </div>
+                        <div class="notif-item">
+                            <img src="./imagens/Boneco VIVO.png" alt="user">
+                            <div>
+                                <strong>Sistema</strong>
+                                <p>Seu acesso foi atualizado</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Sistema</strong>
-                            <p>Seu acesso foi atualizado</p>
-                        </div>
-                    </div>
+                    <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Maria</span>
+                    <a href="index.html">
+                        <button
+                            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
+                    </a>
                 </div>
-                <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Maria</span>
-                <a href="index.html">
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-                </a>
-            </div>
-        </header>
+            </header>
 
-        <section
-            class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6">
-            <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
-                <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
-            </div>
-            <div class="profile-info flex-1 text-[#d8ceff]">
-                <h1 class="text-xl font-semibold mb-2">Maria Santos</h1>
-                <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
-                <p class="mb-1"><strong>Email:</strong> maria.santos@vivo.com.br</p>
-                <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
-                <p class="mb-1"><strong>Telefone:</strong> 11 93145-0485</p>
-                <p><strong>Função/Área: </strong>Analista de TI</p>
-            </div>
-            <button
-                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar
-                perfil</button>
-        </section>
+            <section
+                class="w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6">
+                <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
+                    <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
+                </div>
+                <div class="profile-info flex-1 text-[#d8ceff]">
+                    <h1 class="text-xl font-semibold mb-2">Maria Santos</h1>
+                    <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
+                    <p class="mb-1"><strong>Email:</strong> maria.santos@vivo.com.br</p>
+                    <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
+                    <p class="mb-1"><strong>Telefone:</strong> 11 93145-0485</p>
+                    <p><strong>Função/Área: </strong>Analista de TI</p>
+                </div>
+                <button
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar
+                    perfil</button>
+            </section>
 
-        <!-- Visão Geral -->
-        <section class="mb-8 max-w-4xl w-full mx-auto">
-            <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
-                    <div class="text-3xl font-extrabold text-white">2</div>
-                    <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
-                </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
-                    <div class="text-3xl font-extrabold text-white">3</div>
-                    <div class="text-sm text-gray-300 mt-1">Afiliados</div>
-                </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
-                    <div class="text-3xl font-extrabold text-white">2 dias</div>
-                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
-                        <img src="./imagens/medalha.png" class="w-4 inline-block">Jornadas Positivas
+            <!-- Visão Geral -->
+            <section class="w-full">
+                <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-3xl font-extrabold text-white">2</div>
+                        <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
+                    </div>
+                    <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-3xl font-extrabold text-white">3</div>
+                        <div class="text-sm text-gray-300 mt-1">Afiliados</div>
+                    </div>
+                    <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-3xl font-extrabold text-white">2 dias</div>
+                        <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+                            <img src="./imagens/medalha.png" class="w-4 inline-block">Jornadas Positivas
+                        </div>
+                    </div>
+                    <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-3xl font-extrabold text-white">800</div>
+                        <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+                            <img src="./imagens/star.png" class="w-4 inline-block">Vivo Coins
+                        </div>
                     </div>
                 </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
-                    <div class="text-3xl font-extrabold text-white">800</div>
-                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
-                        <img src="./imagens/star.png" class="w-4 inline-block">Vivo Coins
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Medalhas e Conquistas -->
-        <section class="mb-10 max-w-4xl w-full mx-auto">
-            <div class="bg-[#3a197a] rounded-xl p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
-                    <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
+            <!-- Medalhas e Conquistas -->
+            <section class="w-full">
+                <div class="bg-[#3a197a] rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
+                        <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center">
+                                <img src="./imagens/medalha.png" alt="Conquistador" class="w-8">
+                            </div>
+                            <span class="text-white text-xs mt-2">Colaborador</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                                <img src="./imagens/star.png" alt="Maratonista" class="w-8">
+                            </div>
+                            <span class="text-white text-xs mt-2">Preocupado</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                                <img src="./imagens/lampada.png" alt="Curioso" class="w-8">
+                            </div>
+                            <span class="text-white text-xs mt-2">Curioso</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex gap-6">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center">
-                            <img src="./imagens/medalha.png" alt="Conquistador" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Colaborador</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
-                            <img src="./imagens/star.png" alt="Maratonista" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Preocupado</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
-                            <img src="./imagens/lampada.png" alt="Curioso" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Curioso</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="max-w-4xl w-full">
-            <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
-            <div class="flex gap-6 border-b border-purple-800 mb-6">
-                <div class="tab active cursor-pointer pb-2 border-b-2 border-purple-400 text-white"
-                    data-tab="em-andamento">Em andamento</div>
-                <div class="tab cursor-pointer pb-2 border-b-2 border-transparent text-purple-300"
-                    data-tab="concluidos">Concluídos</div>
-            </div>
-            <div id="em-andamento-list" class="space-y-4"></div>
-            <div id="concluidos-list" class="hidden space-y-4"></div>
-        </section>
+            <section class="w-full">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
+                <div class="flex gap-6 border-b border-purple-800 mb-6">
+                    <div class="tab active cursor-pointer pb-2 border-b-2 border-purple-400 text-white"
+                        data-tab="em-andamento">Em andamento</div>
+                    <div class="tab cursor-pointer pb-2 border-b-2 border-transparent text-purple-300"
+                        data-tab="concluidos">Concluídos</div>
+                </div>
+                <div id="em-andamento-list" class="space-y-4"></div>
+                <div id="concluidos-list" class="hidden space-y-4"></div>
+            </section>
+        </div>
     </main>
 
     <script>

@@ -192,22 +192,22 @@
         <!-- Visão Geral -->
         <section class="mb-8 max-w-4xl w-full mx-auto">
             <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
-            <div class="flex gap-6 flex-wrap">
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
                     <div class="text-3xl font-extrabold text-white">2</div>
                     <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
                 </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
                     <div class="text-3xl font-extrabold text-white">3</div>
                     <div class="text-sm text-gray-300 mt-1">Afiliados</div>
                 </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
                     <div class="text-3xl font-extrabold text-white">2 dias</div>
                     <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
                         <img src="./imagens/medalha.png" class="w-4 inline-block">Jornadas Positivas
                     </div>
                 </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
+                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl p-6 text-center flex flex-col justify-center">
                     <div class="text-3xl font-extrabold text-white">800</div>
                     <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
                         <img src="./imagens/star.png" class="w-4 inline-block">Vivo Coins
@@ -312,12 +312,30 @@
                 concluidosList.appendChild(criarCardCurso(curso100, true));
             }
 
+            // Adiciona cursos concluídos de exemplo
+            const cursosConcluidosExemplo = [
+                { id: 2, titulo: "Onboarding de Segurança", descricao: "Protocolos e boas práticas de segurança da informação na VIVO.", progresso: 100 },
+                { id: 3, titulo: "Comunicação Efetiva", descricao: "Aprenda a se comunicar de forma clara e objetiva com sua equipe.", progresso: 100 }
+            ];
+
+            cursosConcluidosExemplo.forEach(curso => {
+                concluidosList.appendChild(criarCardCurso(curso, true));
+            });
+
             emAndamentoList.appendChild(criarCardCurso(cursoInicial)); // Inicializa com o curso
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active', 'text-white', 'border-purple-400'));
+                    // Remove a classe ativa de todas as abas e define o estilo inativo
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'text-white', 'border-purple-400');
+                        t.classList.add('text-purple-300', 'border-transparent');
+                    });
+
+                    // Adiciona a classe ativa e o estilo ativo na aba clicada
                     tab.classList.add('active', 'text-white', 'border-purple-400');
+                    tab.classList.remove('text-purple-300', 'border-transparent');
+                    
                     if (tab.dataset.tab === 'em-andamento') {
                         emAndamentoList.classList.remove('hidden');
                         concluidosList.classList.add('hidden');

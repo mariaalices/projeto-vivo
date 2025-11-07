@@ -38,7 +38,7 @@
             left: 80px;
             right: 0;
             height: 80px;
-            background: #2A1C5B;
+            background: #2a1c5b;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,7 +56,7 @@
         }
 
         .benefits-form {
-            background: #2A1C5B;
+            background: #2a1c5b;
             border-radius: 12px;
             padding: 24px 28px;
             width: 100%;
@@ -73,7 +73,7 @@
         .benefits-form legend {
             font-weight: 700;
             font-size: 16px;
-            color: #9D8AE5;
+            color: #9d8ae5;
             margin-bottom: 18px;
         }
 
@@ -82,12 +82,12 @@
             margin-bottom: 6px;
             font-size: 14px;
             font-weight: 600;
-            color: #A188E7;
+            color: #a188e7;
         }
 
         .small-label {
             font-size: 12px;
-            color: #C7BBE6;
+            color: #c7bbe6;
         }
 
         input[type="text"],
@@ -511,6 +511,9 @@
                     <button type="submit" class="save-benefits-btn">Salvar Benefícios</button>
                 </fieldset>
             </form>
+            <div id="form-success-message" class="hidden text-center text-lg text-green-400 font-semibold py-10">
+                Formulário enviado para o RH, siga com o fluxo.
+            </div>
         </section>
     </main>
 
@@ -545,6 +548,7 @@
             const radioConjugeNao = document.querySelector('input[name="conjuge"][value="nao"]');
             const conjugeDados = document.getElementById("conjuge-dados");
             const form = document.querySelector('.benefits-form');
+            const successMsg = document.getElementById('form-success-message');
 
             function toggleConjugeCampos() {
                 if (!conjugeDados || !radioConjugeSim) return;
@@ -569,7 +573,10 @@
             if (form) {
                 form.addEventListener("submit", (e) => {
                     e.preventDefault();
-                    alert("Benefícios salvos com sucesso!");
+                    form.classList.add('hidden');
+                    if (successMsg) {
+                        successMsg.classList.remove('hidden');
+                    }
                 });
             }
         });

@@ -182,15 +182,34 @@
         <div class="fixed top-4 right-6 z-50 flex items-center gap-4 rounded-xl px-4 py-2">
           <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer relative">
           <div id="notifModal"
-            class="hidden absolute right-0 top-full mt-2 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-            <div class="divide-y divide-gray-200">
-              <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
-                <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu
-                  1:1 com ele =)</p>
+            class="hidden absolute right-0 top-full mt-2 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden p-4">
+            <!-- Cabeçalho do Modal -->
+            <div class="border-b pb-2 mb-3">
+              <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
+            </div>
+            
+            <!-- Notificações Padrão -->
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+              <div>
+                <p><strong>Sistema:</strong> Bem-vindo à Vivo! Comece sua jornada</p>
+                <small class="text-gray-500">Há 10 minutos</small>
               </div>
-              <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
-                <p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
-                </p>
+            </div>
+            
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/pessoa3.jpg" alt="Avatar" class="w-8 h-8 rounded-full">
+              <div>
+                <p><strong>Maria Santos:</strong> Sou sua buddy, qualquer dúvida me chame!</p>
+                <small class="text-gray-500">Há 30 minutos</small>
+              </div>
+            </div>
+            
+            <div class="notif-item flex items-start gap-3">
+              <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+              <div>
+                <p><strong>RH:</strong> Complete seu perfil para melhor experiência</p>
+                <small class="text-gray-500">Há 1 hora</small>
               </div>
             </div>
           </div>

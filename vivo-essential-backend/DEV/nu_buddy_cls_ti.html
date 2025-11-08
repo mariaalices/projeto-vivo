@@ -1,319 +1,416 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Onboarding - Buddy e TI</title>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Estilos da Sidebar e da Página */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1c0033;
-        }
+      /* Estilos da Sidebar e da Página */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #1c0033;
+      }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-        /* Estilo do item de notificação */
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      /* Estilo do item de notificação */
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-        .notif-item:last-child {
-            border-bottom: none;
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        /* Modal com scroll se muitas notificações */
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 300px;
-            background: #fff;
-            color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
+      /* Modal com scroll se muitas notificações */
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
 
-        /* Oculto por padrão */
-        .hidden {
-            display: none;
-        }
+      /* Oculto por padrão */
+      .hidden {
+        display: none;
+      }
 
-        /* Ícone de notificação */
-        #notifIcon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
+      /* Ícone de notificação */
+      #notifIcon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white"
+  >
     <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_newuser.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_treinamento_ini.html">Meus Cursos</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_trilhastec_newuser.html">Trilha Técnica</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_perfil_newuser.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_newuser.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_treinamento_ini.html">Meus Cursos</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_trilhastec_newuser.html">Trilha Técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_perfil_newuser.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
+    </div>
 
     <main class="flex-1 md:ml-24 px-6 py-10">
-        <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-            <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+      <header
+        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
+      >
+        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
 
-            <div class="flex items-center gap-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
+        <div class="flex items-center gap-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
 
-                <!-- Modal de Notificações -->
-                <div id="notifModal" class="hidden">
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Notificação de um usuário</strong>
-                            <p>Reunião às 15:00h</p>
-                        </div>
-                    </div>
-
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Sistema</strong>
-                            <p>Seu acesso foi atualizado</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="notifModal"
-                    class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-                </div>
-                <span id="welcomeMessage" class="text-purple-200">Olá, João</span>
-                <a href="index.html">
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-                </a>
+          <!-- Modal de Notificações -->
+          <div id="notifModal" class="hidden">
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Notificação de um usuário</strong>
+                <p>Reunião às 15:00h</p>
+              </div>
             </div>
-        </header>
 
-        <div class="max-w-5xl mx-auto space-y-12">
-            <section>
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-white">Etapa 5 - Buddy e CLS</h2>
-                    <a href="nu_acessoareas.html"
-                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">Continuar</a>
-                </div>
-                <h3 class="text-white font-semibold mb-2">Seu buddy:</h3>
-                <div
-                    class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <div class="flex-shrink-0 flex flex-col items-center w-48">
-                        <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-24 h-24 rounded-full object-cover" />
-                        <h2 class="text-white font-semibold text-center mt-3">Carlos Gomes Salvatori</h2>
-                        <p class="text-slate-400 text-sm text-center">Jr. QA</p>
-                    </div>
-                    <div class="flex-1 text-slate-300 leading-relaxed text-center md:text-justify">
-                        <h3 class="text-white font-semibold mb-2">Um pouco sobre mim:</h3>
-                        <p>Com minha notável visão de futuro como homem de negócios, construí meu legado 
-                            com base na ética e na inovação constante. Sempre liderei pelo exemplo, valorizando 
-                            minha equipe e promovendo o crescimento de todos os que me cercam.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div>
-                    <h2 class="text-lg text-white font-semibold">Etapa 6 - To na TI</h2>
-                    <p class="text-sm mt-1 text-slate-300">Apresentação da estrutura/áreas e papeis Vivo:</p>
-                </div>
-                <div class="bg-slate-800/80 rounded-xl overflow-hidden shadow-lg mt-4">
-                    <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/cZnkvlyh7uM"
-                        title="Apresentação TI" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <p class="text-sm mt-6 text-slate-300">Conheça as principais plataformas da TI:</p>
-
-                <div class="relative mt-4">
-                    <button onclick="scrollCarousel(-1)"
-                        class="absolute left-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10">&lt;</button>
-                    <div id="carousel" class="flex gap-8 overflow-x-hidden scroll-smooth px-12">
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">Oracle SQL</p><a
-                                href="https://www.oracle.com/br/database/sqldeveloper/"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/postman.webp" alt="Postman" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">Postman</p><a href="https://www.postman.com/"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/vivodev.jpg" alt="Vivo Pro" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">Vivo Pro</p><a
-                                href="https://vivo.com.br/para-voce?gclsrc=aw.ds&gad_source=1&gad_campaignid=1712627678&gbraid=0AAAAADSS1s32rf3jRzAHoym2LS2iYzOPh&gclid=Cj0KCQjw3OjGBhDYARIsADd-uX5KxHZvfTTCcv9UlT0iBeEcgbGV07qGdXkvSkGb6mb2NOnJwsjSsawaAm60EALw_wcB"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/plawright.png" alt="Playwright" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">Playwright</p><a href="https://playwright.dev/"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/Swagger-logo (1).png" alt="Swagger" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">Swagger</p><a href="https://swagger.io/"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/aws.png" alt="AWS" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">AWS</p><a href="https://aws.amazon.com/pt/"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/salesdorce.png" alt="SalesForce" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">SalesForce</p><a
-                                href="https://www.salesforce.com/br/?ir=1"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                        <div class="flex flex-col items-center flex-shrink-0 w-24">
-                            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"><img
-                                    src="./imagens/githubb.jpg" alt="Github" class="w-12 h-12"></div>
-                            <p class="mt-2 text-sm text-center">GitHub</p><a href="https://github.com/?locale=pt-br"
-                                class="text-xs text-purple-300 hover:underline">ver mais</a>
-                        </div>
-                    </div>
-                    <button onclick="scrollCarousel(1)"
-                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10">&gt;</button>
-                </div>
-            </section>
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Sistema</strong>
+                <p>Seu acesso foi atualizado</p>
+              </div>
+            </div>
+          </div>
+          <div
+            id="notifModal"
+            class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden"
+          ></div>
+          <span id="welcomeMessage" class="text-purple-200">Olá, João</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
         </div>
+      </header>
+
+      <div class="max-w-5xl mx-auto space-y-12">
+        <section>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold text-white">Etapa 5 - Buddy e CLS</h2>
+            <a
+              href="nu_acessoareas.html"
+              class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
+              >Continuar</a
+            >
+          </div>
+          <h3 class="text-white font-semibold mb-2">Seu buddy:</h3>
+          <div
+            class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center md:items-start gap-6"
+          >
+            <div class="flex-shrink-0 flex flex-col items-center w-48">
+              <img
+                src="./imagens/pessoa1.jpg"
+                alt="Avatar"
+                class="w-24 h-24 rounded-full object-cover"
+              />
+              <h2 class="text-white font-semibold text-center mt-3">Carlos Gomes Salvatori</h2>
+              <p class="text-slate-400 text-sm text-center">Jr. QA</p>
+            </div>
+            <div class="flex-1 text-slate-300 leading-relaxed text-center md:text-justify">
+              <h3 class="text-white font-semibold mb-2">Um pouco sobre mim:</h3>
+              <p>
+                Com minha notável visão de futuro como homem de negócios, construí meu legado com
+                base na ética e na inovação constante. Sempre liderei pelo exemplo, valorizando
+                minha equipe e promovendo o crescimento de todos os que me cercam.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <h2 class="text-lg text-white font-semibold">Etapa 6 - To na TI</h2>
+            <p class="text-sm mt-1 text-slate-300">
+              Apresentação da estrutura/áreas e papeis Vivo:
+            </p>
+          </div>
+          <div class="bg-slate-800/80 rounded-xl overflow-hidden shadow-lg mt-4">
+            <iframe
+              class="w-full aspect-video"
+              src="https://www.youtube.com/embed/cZnkvlyh7uM"
+              title="Apresentação TI"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="text-sm mt-6 text-slate-300">Conheça as principais plataformas da TI:</p>
+
+          <div class="relative mt-4">
+            <button
+              onclick="scrollCarousel(-1)"
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10"
+            >
+              &lt;
+            </button>
+            <div id="carousel" class="flex gap-8 overflow-x-hidden scroll-smooth px-12">
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/oracle.png" alt="Oracle SQL" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">Oracle SQL</p>
+                <a
+                  href="https://www.oracle.com/br/database/sqldeveloper/"
+                  class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/postman.webp" alt="Postman" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">Postman</p>
+                <a href="https://www.postman.com/" class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/vivodev.jpg" alt="Vivo Pro" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">Vivo Pro</p>
+                <a
+                  href="https://vivo.com.br/para-voce?gclsrc=aw.ds&gad_source=1&gad_campaignid=1712627678&gbraid=0AAAAADSS1s32rf3jRzAHoym2LS2iYzOPh&gclid=Cj0KCQjw3OjGBhDYARIsADd-uX5KxHZvfTTCcv9UlT0iBeEcgbGV07qGdXkvSkGb6mb2NOnJwsjSsawaAm60EALw_wcB"
+                  class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/plawright.png" alt="Playwright" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">Playwright</p>
+                <a href="https://playwright.dev/" class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/Swagger-logo (1).png" alt="Swagger" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">Swagger</p>
+                <a href="https://swagger.io/" class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/aws.png" alt="AWS" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">AWS</p>
+                <a href="https://aws.amazon.com/pt/" class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/salesdorce.png" alt="SalesForce" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">SalesForce</p>
+                <a
+                  href="https://www.salesforce.com/br/?ir=1"
+                  class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+              <div class="flex flex-col items-center flex-shrink-0 w-24">
+                <div
+                  class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <img src="./imagens/githubb.jpg" alt="Github" class="w-12 h-12" />
+                </div>
+                <p class="mt-2 text-sm text-center">GitHub</p>
+                <a
+                  href="https://github.com/?locale=pt-br"
+                  class="text-xs text-purple-300 hover:underline"
+                  >ver mais</a
+                >
+              </div>
+            </div>
+            <button
+              onclick="scrollCarousel(1)"
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-slate-800/70 hover:bg-slate-700 text-white p-2 rounded-full z-10"
+            >
+              &gt;
+            </button>
+          </div>
+        </section>
+      </div>
     </main>
 
     <script>
-        // Scripts da Página (Notificações, Carrossel)
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica das Notificações
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
+      // Scripts da Página (Notificações, Carrossel)
+      document.addEventListener('DOMContentLoaded', () => {
+        // Lógica das Notificações
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+              notifModal.classList.add('hidden');
             }
-
-            // Exibe o nome do usuário vindo do localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome && welcomeMessage) {
-                welcomeMessage.textContent = `Olá, ${userData.nome}`;
-            }
-        });
-
-        // Função do Carrossel
-        function scrollCarousel(direction) {
-            const carousel = document.getElementById("carousel");
-            const scrollAmount = carousel.clientWidth / 2; // Rola metade da área visível
-            carousel.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+          });
         }
+
+        // Exibe o nome do usuário vindo do localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome && welcomeMessage) {
+          welcomeMessage.textContent = `Olá, ${userData.nome}`;
+        }
+      });
+
+      // Função do Carrossel
+      function scrollCarousel(direction) {
+        const carousel = document.getElementById('carousel');
+        const scrollAmount = carousel.clientWidth / 2; // Rola metade da área visível
+        carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+      }
     </script>
 
     <script src="/js/script.js"></script>
 
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-</body>
-
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="3149227724"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+  </body>
 </html>

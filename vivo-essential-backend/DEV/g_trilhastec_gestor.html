@@ -140,31 +140,41 @@
 
         <!-- Modal Notificações -->
         <div id="notifModal"
-          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 divide-y divide-gray-200">
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 p-4">
+          <!-- Cabeçalho do Modal -->
+          <div class="border-b pb-2 mb-3">
+            <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+          
+          <!-- Notificações Padrão -->
+          <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Sistema:</strong> Usuário João está com dificuldades em Python, agende um 1:1</p>
+              <small class="text-gray-500">Há 45 minutos</small>
+            </div>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+          
+          <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+            <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Maria Santos:</strong> Finalizada trilha de Cloud Computing</p>
+              <small class="text-gray-500">Há 2 horas</small>
+            </div>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar? =)</p>
+          
+          <div class="notif-item flex items-start gap-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Sistema:</strong> Nova trilha de DevOps disponível para revisão</p>
+              <small class="text-gray-500">Há 4 horas</small>
+            </div>
           </div>
         </div>
 
         <span class="text-purple-200">Olá, Felipe</span>
 
-        <button onclick="window.location.href='login.html'"
+        <button onclick="window.location.href='telainicial.html'"
           class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Desconectar</button>
       </div>
     </header>
@@ -251,6 +261,35 @@
                   <p class="font-bold text-sm text-white mb-3">Curso: Política de Privacidade</p>
                   <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
                 </div>
+
+                <!-- Novos cursos adicionais -->
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">750 coins</div>
+                  <img src="./imagens/aws.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: AWS Cloud Fundamentals</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
+
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">600 coins</div>
+                  <img src="./imagens/database.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: Database Management</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
+
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">850 coins</div>
+                  <img src="./imagens/githubb.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: Git & GitHub Advanced</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
+
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">950 coins</div>
+                  <img src="./imagens/ia.jpeg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: Inteligência Artificial</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
               </div>
 
               <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
@@ -262,6 +301,7 @@
               <span class="w-2 h-2 bg-white rounded-full"></span>
               <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
               <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
             </div>
           </div>
         </section>
@@ -269,9 +309,15 @@
     </div>
   </main>
 
-  <!-- Botão flutuante -->
-  <button
-    class="fixed bottom-8 right-8 bg-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl shadow-lg hover:bg-purple-700 transition">?</button>
+  <!-- Chatling IA -->
+  <script>
+    window.chtlConfig = { chatbotId: '3149227724' };
+  </script>
+  <script
+    data-name="chatling-embed-script"
+    src="https://chatling.ai/js/embed.js"
+    defer>
+  </script>
 
   <!-- JS -->
   <script>
@@ -287,6 +333,17 @@
         notifModal.classList.add('hidden');
       }
     });
+
+    // Funções do carrossel
+    function scrollLeft(carrosselId) {
+      const carrossel = document.getElementById(carrosselId);
+      carrossel.scrollBy({ left: -280, behavior: 'smooth' });
+    }
+
+    function scrollRight(carrosselId) {
+      const carrossel = document.getElementById(carrosselId);
+      carrossel.scrollBy({ left: 280, behavior: 'smooth' });
+    }
   </script>
 
 </body>

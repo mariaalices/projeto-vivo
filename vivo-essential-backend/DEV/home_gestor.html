@@ -1,538 +1,996 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página Inicial - Gestor</title>
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Inicial - Gestor</title>
-  <link rel="icon" href="./imagens/Boneco VIVO.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+  >
+    <style>
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-  <style>
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 70px;
-      background: rgb(233 213 255);
-      overflow: hidden;
-      transition: width 0.3s ease;
-      z-index: 40;
-    }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-    .sidebar:hover {
-      width: 220px;
-    }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-    .sidebar ul li {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-    .sidebar ul li:hover {
-      background: #635571;
-    }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-    .sidebar ul li img {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-    .sidebar ul li span {
-      display: none;
-      margin-left: 10px;
-      opacity: 0;
-      white-space: nowrap;
-      transition: opacity 0.3s;
-    }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-    .sidebar:hover ul li span {
-      opacity: 1;
-      display: inline;
-      color: black;
-    }
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-    .notif-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-    }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-    .notif-item:last-child {
-      border-bottom: none;
-    }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-    .notif-item img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+      }
 
-    #notifModal {
-      max-height: 300px;
-      overflow-y: auto;
-    }
+      .emoji-btn.selecionado {
+        background-color: #6d28d9;
+        transform: scale(1.2);
+        box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+      }
+    </style>
 
-    .emoji-btn.selecionado {
-      background-color: #6d28d9;
-      transform: scale(1.2);
-      box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
-    }
-  </style>
-
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="g_apadrinhamento.html">Apadrinhamento</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Trilha
-            técnica</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
-
-  <main class="flex-1 ml-20 md:ml-24 px-6 py-10">
-
-    <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
-      <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
-      <div class="flex items-center gap-4 relative">
-        <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-        <div id="notifModal"
-          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-          <div class="divide-y divide-gray-200">
-            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
-                seu 1:1 com ele =)</p>
-            </div>
-            <div class="notif-item"><img src="./imagens/avatar.png" alt="Avatar">
-              <p class="text-sm"><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
-                conversar?</p>
-            </div>
-          </div>
-        </div>
-        <span id="welcomeMessage" class="text-purple-200">Olá, Felipe</span>
-        <a href="index.html">
-          <button
-            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-        </a>
-      </div>
-    </header>
-
-    <section id="secao-avaliacao-buddy" class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
-      <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie seu humor:</h2>
-      <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="1">😠</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="2">😕</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="3">😐</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="4">😊</button>
-        <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200" data-value="5">😍</button>
-      </div>
-      <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
-        placeholder="Escreva um motivo... (Opcional)"></textarea>
-      <div class="flex justify-center">
-        <button id="btn-enviar-avaliacao"
-          class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
-          disabled>
-          Enviar Avaliação
-        </button>
-      </div>
-    </section>
-
-    <div class="max-w-6xl mx-auto px-4 space-y-10">
-      <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
-        <h2 class="text-xl font-semibold mb-6 text-white">Novos colaboradores e seu buddy</h2>
-
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa1.jpg" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Gustavo Almeida Coxtos</strong>
-              <span class="block text-xs text-gray-400">Estagiária TI - QA</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/Pessoa-2mobile.webp" class="w-11 h-11 rounded-full object-cover" />
-            <a href="g_visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Brenda Almeida Gomes</strong>
-              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Paula Fernandes</strong>
-              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa4.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa4.jpg" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Roberto Carlos Costas</strong>
-              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Full Stack Senior</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/Pessoa-2mobile.webp" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Gertrudes Guimaraes</strong>
-              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Backend Junior</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa3.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-        <div class="flex justify-between items-center py-4 border-b border-white/20">
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
-            <div>
-              <strong class="text-sm text-white">Thalitao Almeida Mari</strong>
-              <span class="block text-xs text-gray-400">Novo Funcionário - Dev. Frontend Junior</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
-            <a href="visao_geral_gestor.html"
-              class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md">Visitar
-              Perfil</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-          <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div><img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
-            </div>
-            <div class="text-purple-200 flex flex-col justify-center">
-              <p class="mb-4">VIVO Coin é uma moeda digital que recompensa você por treinar, participar e interagir na
-                plataforma.</p>
-              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">Saiba
-                mais</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
-          <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
-          <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
-            <thead>
-              <tr>
-                <th class="pb-2 border-b border-purple-400/50">Usuário</th>
-                <th class="pb-2 border-b border-purple-400/50">Pontos</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="py-2 border-b border-purple-400/20">Você</td>
-                <td class="py-2 border-b border-purple-400/20">500</td>
-              </tr>
-              <tr>
-                <td class="py-2 border-b border-purple-400/20">Maria</td>
-                <td class="py-2 border-b border-purple-400/20">400</td>
-              </tr>
-              <tr>
-                <td class="py-2 border-b border-purple-400/20">Carlos</td>
-                <td class="py-2 border-b border-purple-400/20">350</td>
-              </tr>
-              <tr>
-                <td class="py-2">Paula</td>
-                <td class="py-2">200</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
-        <h2 class="text-xl font-semibold mb-6 text-white">Controle de Desempenho por Curso (Horas)</h2>
-        <div class="w-full h-[400px]">
-          <canvas id="stdDevControlChart"></canvas>
-        </div>
-      </section>
+    <div
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_gestor.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_apadrinhamento.html">Apadrinhamento</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_trilhastec_gestor.html">Trilha técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_perfil_gestor.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
-  </main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Script das Notificações
-      const notifIcon = document.getElementById('notifIcon');
-      const notifModal = document.getElementById('notifModal');
-      if (notifIcon && notifModal) {
-        notifIcon.addEventListener('click', (event) => {
-          event.stopPropagation();
-          notifModal.classList.toggle('hidden');
-        });
-        document.addEventListener('click', (e) => {
-          if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-            notifModal.classList.add('hidden');
-          }
-        });
-      }
+    <main class="flex-1 ml-20 md:ml-24 px-6 py-10">
+      <header
+        class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10"
+      >
+        <h1 class="text-2xl font-bold text-purple-200">Página Inicial</h1>
+        <div class="flex items-center gap-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
+          <div
+            id="notifModal"
+            class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden p-4"
+          >
+            <!-- Cabeçalho do Modal -->
+            <div class="border-b pb-2 mb-3">
+              <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
+            </div>
 
-      // Exibindo o nome do usuário
-      const userData = JSON.parse(localStorage.getItem('userData'));
-      const welcomeMessage = document.getElementById('welcomeMessage');
-      if (userData && userData.nome && welcomeMessage) {
-        welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
-      }
+            <!-- Notificações Padrão -->
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full" />
+              <div>
+                <p>
+                  <strong>Sistema:</strong> Usuário João está terminando o curso, agende seu 1:1 com
+                  ele!
+                </p>
+                <small class="text-gray-500">Há 1 hora</small>
+              </div>
+            </div>
 
-      // Lógica do Gráfico de Controle Multi-Linhas
-      const ctx = document.getElementById('stdDevControlChart');
-      if (ctx) {
-        // Eixo X agora representa os cursos
-        const courseLabels = ['Curso 1: Onboarding', 'Curso 2: Segurança', 'Curso 3: Políticas', 'Curso 4: Ferramentas', 'Curso 5: Processos'];
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/pessoa3.jpg" alt="Avatar" class="w-8 h-8 rounded-full" />
+              <div>
+                <p><strong>Maria Santos:</strong> Finalizada avaliação de desempenho</p>
+                <small class="text-gray-500">Há 3 horas</small>
+              </div>
+            </div>
 
-        // Limites e média
-        const lowerControlLimit = 1;
-        const upperControlLimit = 5;
-        const average = 3.2;
+            <div class="notif-item flex items-start gap-3">
+              <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full" />
+              <div>
+                <p><strong>RH:</strong> Nova atribuição de afilhado disponível</p>
+                <small class="text-gray-500">Ontem</small>
+              </div>
+            </div>
+          </div>
+          <span id="welcomeMessage" class="text-purple-200">Olá, Felipe</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
+        </div>
+      </header>
 
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: courseLabels,
-            datasets: [
-              // ===== LINHAS DE CONTROLE =====
-              {
-                label: 'Média',
-                data: Array(courseLabels.length).fill(average),
-                borderColor: 'rgba(59, 130, 246, 0.8)', // Azul
-                borderWidth: 2,
-                borderDash: [5, 5],
-                pointRadius: 0,
-                fill: false
-              },
-              {
-                label: 'Limite Superior (LSC)',
-                data: Array(courseLabels.length).fill(upperControlLimit),
-                borderColor: 'rgba(139, 92, 246, 0.8)', // Roxo
-                borderWidth: 2,
-                pointRadius: 0,
-                fill: false
-              },
-              {
-                label: 'Limite Inferior (LIC)',
-                data: Array(courseLabels.length).fill(lowerControlLimit),
-                borderColor: 'rgba(34, 197, 94, 0.8)', // Verde
-                borderWidth: 2,
-                pointRadius: 0,
-                fill: false
-              },
-              // ===== DADOS DOS FUNCIONÁRIOS (CADA UM É UMA LINHA) =====
-              {
-                label: 'Gustavo (Consistente)',
-                data: [3.1, 3.5, 2.9, 3.3, 3.0],
-                borderColor: '#f87171', // Red-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-              {
-                label: 'Brenda (Lento)',
-                data: [4.5, 4.8, 4.9, 5.3, 4.7],
-                borderColor: '#fb923c', // Orange-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-              {
-                label: 'Paula (Rápida)',
-                data: [1.5, 1.1, 0.9, 1.3, 1.0],
-                borderColor: '#60a5fa', // Blue-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-              {
-                label: 'Roberto (Melhorando)',
-                data: [4.9, 4.0, 3.5, 2.8, 2.5],
-                borderColor: '#34d399', // Emerald-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-              {
-                label: 'Gertrudes (Piorando)',
-                data: [1.8, 2.5, 3.3, 4.0, 4.8],
-                borderColor: '#facc15', // Yellow-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-              {
-                label: 'Thalita (Inconstante)',
-                data: [4.0, 1.5, 4.5, 1.8, 3.9],
-                borderColor: '#a78bfa', // Violet-400
-                tension: 0.1,
-                pointRadius: 5,
-                pointHoverRadius: 7
-              },
-            ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                position: 'top',
-                labels: {
-                  color: '#e2e8f0' // slate-200
-                }
-              }
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 6,
-                ticks: { color: '#94a3b8' },
-                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-              },
-              x: {
-                ticks: { color: '#94a3b8' },
-                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-              }
-            }
-          }
-        });
-      }
-    });
-  </script>
+      <section
+        id="secao-avaliacao-buddy"
+        class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto"
+      >
+        <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie seu humor:</h2>
+        <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+          <button
+            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+            data-value="1"
+          >
+            😠
+          </button>
+          <button
+            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+            data-value="2"
+          >
+            😕
+          </button>
+          <button
+            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+            data-value="3"
+          >
+            😐
+          </button>
+          <button
+            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+            data-value="4"
+          >
+            😊
+          </button>
+          <button
+            class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+            data-value="5"
+          >
+            😍
+          </button>
+        </div>
+        <textarea
+          id="motivo-avaliacao"
+          class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4"
+          rows="2"
+          placeholder="Escreva um motivo... (Opcional)"
+        ></textarea>
+        <div class="flex justify-center">
+          <button
+            id="btn-enviar-avaliacao"
+            class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+            disabled
+          >
+            Enviar Avaliação
+          </button>
+        </div>
+      </section>
 
-  <script>
-    // Espera o documento carregar completamente antes de rodar o script
-    document.addEventListener('DOMContentLoaded', () => {
+      <div class="max-w-6xl mx-auto px-4 space-y-10">
+        <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-white">Novos colaboradores e seu buddy</h2>
+            <div class="flex items-center gap-2">
+              <button
+                onclick="toggleVisualizacao()"
+                id="toggleBtn"
+                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm"
+              >
+                📊 Ver Detalhado
+              </button>
+            </div>
+          </div>
 
-      // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
-      // Os dados enviados ficarão guardados neste array.
-      let bancoDeDadosSimulado = [];
+          <div id="visualizacaoSimples">
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa1.jpg" class="w-12 h-12 rounded-xl object-cover" />
+                <div>
+                  <strong class="text-sm text-white">Gustavo Almeida Coxtos</strong>
+                  <span class="block text-xs text-gray-400">Estagiária TI - QA</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img
+                  src="./imagens/Pessoa-2mobile.webp"
+                  class="w-11 h-11 rounded-full object-cover"
+                />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Gustavo Almeida Coxtos')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="g_visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
+                <div>
+                  <strong class="text-sm text-white">Brenda Almeida Gomes</strong>
+                  <span class="block text-xs text-gray-400"
+                    >Novo Funcionário - Dev. Backend Junior</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Brenda Almeida Gomes')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img
+                  src="./imagens/Pessoa-2mobile.webp"
+                  class="w-12 h-12 rounded-xl object-cover"
+                />
+                <div>
+                  <strong class="text-sm text-white">Paula Fernandes</strong>
+                  <span class="block text-xs text-gray-400"
+                    >Novo Funcionário - Dev. Frontend Junior</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa4.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Paula Fernandes')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa4.jpg" class="w-12 h-12 rounded-xl object-cover" />
+                <div>
+                  <strong class="text-sm text-white">Roberto Carlos Costas</strong>
+                  <span class="block text-xs text-gray-400"
+                    >Novo Funcionário - Dev. Full Stack Senior</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Roberto Carlos Costas')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img
+                  src="./imagens/Pessoa-2mobile.webp"
+                  class="w-12 h-12 rounded-xl object-cover"
+                />
+                <div>
+                  <strong class="text-sm text-white">Gertrudes Guimaraes</strong>
+                  <span class="block text-xs text-gray-400"
+                    >Novo Funcionário - Dev. Backend Junior</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa3.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Gertrudes Guimaraes')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center py-4 border-b border-white/20">
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa3.jpg" class="w-12 h-12 rounded-xl object-cover" />
+                <div>
+                  <strong class="text-sm text-white">Thalitao Almeida Mari</strong>
+                  <span class="block text-xs text-gray-400"
+                    >Novo Funcionário - Dev. Frontend Junior</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <img src="./imagens/pessoa1.jpg" class="w-11 h-11 rounded-full object-cover" />
+                <div class="flex items-center gap-2">
+                  <button
+                    onclick="trocarBuddy('Thalitao Almeida Mari')"
+                    class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                  >
+                    Trocar Buddy
+                  </button>
+                  <a
+                    href="visao_geral_gestor.html"
+                    class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md"
+                    >Visitar Perfil</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
 
-      // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
-      const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
-      const emojiBtns = document.querySelectorAll('.emoji-btn');
-      const motivoTextarea = document.getElementById('motivo-avaliacao');
-      const btnEnviar = document.getElementById('btn-enviar-avaliacao');
+          <!-- Visualização Detalhada -->
+          <div id="visualizacaoDetalhada" class="hidden space-y-4">
+            <!-- Gustavo -->
+            <div class="bg-slate-700 bg-opacity-50 rounded-xl p-4">
+              <div class="flex items-start gap-4">
+                <img src="./imagens/pessoa1.jpg" class="w-16 h-16 rounded-xl object-cover" />
+                <div class="flex-1">
+                  <div class="flex justify-between items-start mb-2">
+                    <div>
+                      <strong class="text-lg text-white">Gustavo Almeida Coxtos</strong>
+                      <span class="block text-sm text-gray-400"
+                        >Estagiária TI - QA • Admitido em 15/01/2024</span
+                      >
+                    </div>
+                    <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs"
+                      >Ativo</span
+                    >
+                  </div>
 
-      let avaliacaoSelecionada = null;
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Progresso Onboarding</p>
+                      <div class="flex items-center gap-2">
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                          <div class="bg-green-500 h-2 rounded-full w-[85%]"></div>
+                        </div>
+                        <span class="text-sm text-white">85%</span>
+                      </div>
+                    </div>
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Buddy Atual</p>
+                      <div class="flex items-center gap-2">
+                        <img src="./imagens/Pessoa-2mobile.webp" class="w-6 h-6 rounded-full" />
+                        <span class="text-sm text-white">Ana Silva</span>
+                      </div>
+                    </div>
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Última Avaliação</p>
+                      <span class="text-sm text-white">😊 Muito bem • 18/01/2024</span>
+                    </div>
+                  </div>
 
-      // --- LÓGICA PARA SELECIONAR EMOJI ---
-      emojiBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // 1. Remove a seleção de todos os outros botões
-          emojiBtns.forEach(outroBtn => {
-            outroBtn.classList.remove('selecionado');
+                  <div class="flex items-center gap-2">
+                    <button
+                      onclick="trocarBuddy('Gustavo Almeida Coxtos')"
+                      class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                    >
+                      Trocar Buddy
+                    </button>
+                    <a
+                      href="g_visao_geral_gestor.html"
+                      class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md text-sm"
+                    >
+                      Ver Perfil Completo
+                    </a>
+                    <button
+                      class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-full text-white text-sm transition"
+                    >
+                      📧 Enviar Mensagem
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brenda -->
+            <div class="bg-slate-700 bg-opacity-50 rounded-xl p-4">
+              <div class="flex items-start gap-4">
+                <img src="./imagens/pessoa3.jpg" class="w-16 h-16 rounded-xl object-cover" />
+                <div class="flex-1">
+                  <div class="flex justify-between items-start mb-2">
+                    <div>
+                      <strong class="text-lg text-white">Brenda Almeida Gomes</strong>
+                      <span class="block text-sm text-gray-400"
+                        >Dev. Backend Junior • Admitida em 10/01/2024</span
+                      >
+                    </div>
+                    <span class="bg-yellow-500 text-black px-2 py-1 rounded-full text-xs"
+                      >Atenção</span
+                    >
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Progresso Onboarding</p>
+                      <div class="flex items-center gap-2">
+                        <div class="w-full bg-gray-700 rounded-full h-2">
+                          <div class="bg-yellow-500 h-2 rounded-full w-[45%]"></div>
+                        </div>
+                        <span class="text-sm text-white">45%</span>
+                      </div>
+                    </div>
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Buddy Atual</p>
+                      <div class="flex items-center gap-2">
+                        <img src="./imagens/pessoa1.jpg" class="w-6 h-6 rounded-full" />
+                        <span class="text-sm text-white">Carlos Santos</span>
+                      </div>
+                    </div>
+                    <div class="bg-slate-600 p-3 rounded-lg">
+                      <p class="text-xs text-gray-400">Última Avaliação</p>
+                      <span class="text-sm text-white">😐 Regular • 15/01/2024</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <button
+                      onclick="trocarBuddy('Brenda Almeida Gomes')"
+                      class="bg-orange-500 hover:bg-orange-600 px-3 py-1 rounded-full text-white text-sm font-semibold transition"
+                    >
+                      Trocar Buddy
+                    </button>
+                    <a
+                      href="visao_geral_gestor.html"
+                      class="bg-gradient-to-r from-[#7209b7] to-[#560bad] px-4 py-2 rounded-full text-white font-bold shadow-md text-sm"
+                    >
+                      Ver Perfil Completo
+                    </a>
+                    <button
+                      class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-full text-white text-sm transition"
+                    >
+                      📧 Enviar Mensagem
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Resumo dos demais funcionários para não tornar a página muito longa -->
+            <div class="text-center py-4">
+              <button
+                onclick="expandirTodosFuncionarios()"
+                class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg text-white transition"
+              >
+                Ver todos os funcionários em detalhes (6 total)
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+            <h3 class="text-purple-300 font-semibold text-xl mb-6">VIVO Coin</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <img
+                  src="./imagens/image 103.png"
+                  alt="Imagem ilustrativa"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+              </div>
+              <div class="text-purple-200 flex flex-col justify-center">
+                <p class="mb-4">
+                  VIVO Coin é uma moeda digital que recompensa você por treinar, participar e
+                  interagir na plataforma.
+                </p>
+                <button
+                  class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit"
+                >
+                  Saiba mais
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 overflow-x-auto">
+            <h3 class="text-purple-300 font-semibold mb-4">Ranking semanal Vivo coins</h3>
+            <table class="w-full text-left text-purple-200 min-w-[300px] border-collapse">
+              <thead>
+                <tr>
+                  <th class="pb-2 border-b border-purple-400/50">Usuário</th>
+                  <th class="pb-2 border-b border-purple-400/50">Pontos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 border-b border-purple-400/20">Você</td>
+                  <td class="py-2 border-b border-purple-400/20">500</td>
+                </tr>
+                <tr>
+                  <td class="py-2 border-b border-purple-400/20">Maria</td>
+                  <td class="py-2 border-b border-purple-400/20">400</td>
+                </tr>
+                <tr>
+                  <td class="py-2 border-b border-purple-400/20">Carlos</td>
+                  <td class="py-2 border-b border-purple-400/20">350</td>
+                </tr>
+                <tr>
+                  <td class="py-2">Paula</td>
+                  <td class="py-2">200</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="bg-slate-800 bg-opacity-70 rounded-2xl p-6 shadow-lg">
+          <h2 class="text-xl font-semibold mb-6 text-white">
+            Controle de Desempenho por Curso (Horas)
+          </h2>
+          <div class="w-full h-[400px]">
+            <canvas id="stdDevControlChart"></canvas>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Script das Notificações
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            notifModal.classList.toggle('hidden');
           });
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+              notifModal.classList.add('hidden');
+            }
+          });
+        }
 
-          // 2. Adiciona a classe 'selecionado' apenas no botão clicado
-          btn.classList.add('selecionado');
+        // Exibindo o nome do usuário
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome && welcomeMessage) {
+          welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+        }
 
-          // 3. Guarda o valor do emoji selecionado
-          avaliacaoSelecionada = btn.dataset.value;
+        // Lógica do Gráfico de Controle Multi-Linhas
+        const ctx = document.getElementById('stdDevControlChart');
+        if (ctx) {
+          // Eixo X agora representa os cursos
+          const courseLabels = [
+            'Curso 1: Onboarding',
+            'Curso 2: Segurança',
+            'Curso 3: Políticas',
+            'Curso 4: Ferramentas',
+            'Curso 5: Processos',
+          ];
 
-          // 4. Habilita o botão de enviar
-          btnEnviar.disabled = false;
-        });
+          // Limites e média
+          const lowerControlLimit = 1;
+          const upperControlLimit = 5;
+          const average = 3.2;
+
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: courseLabels,
+              datasets: [
+                // ===== LINHAS DE CONTROLE =====
+                {
+                  label: 'Média',
+                  data: Array(courseLabels.length).fill(average),
+                  borderColor: 'rgba(59, 130, 246, 0.8)', // Azul
+                  borderWidth: 2,
+                  borderDash: [5, 5],
+                  pointRadius: 0,
+                  fill: false,
+                },
+                {
+                  label: 'Limite Superior (LSC)',
+                  data: Array(courseLabels.length).fill(upperControlLimit),
+                  borderColor: 'rgba(139, 92, 246, 0.8)', // Roxo
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false,
+                },
+                {
+                  label: 'Limite Inferior (LIC)',
+                  data: Array(courseLabels.length).fill(lowerControlLimit),
+                  borderColor: 'rgba(34, 197, 94, 0.8)', // Verde
+                  borderWidth: 2,
+                  pointRadius: 0,
+                  fill: false,
+                },
+                // ===== DADOS DOS FUNCIONÁRIOS (CADA UM É UMA LINHA) =====
+                {
+                  label: 'Gustavo (Consistente)',
+                  data: [3.1, 3.5, 2.9, 3.3, 3.0],
+                  borderColor: '#f87171', // Red-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+                {
+                  label: 'Brenda (Lento)',
+                  data: [4.5, 4.8, 4.9, 5.3, 4.7],
+                  borderColor: '#fb923c', // Orange-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+                {
+                  label: 'Paula (Rápida)',
+                  data: [1.5, 1.1, 0.9, 1.3, 1.0],
+                  borderColor: '#60a5fa', // Blue-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+                {
+                  label: 'Roberto (Melhorando)',
+                  data: [4.9, 4.0, 3.5, 2.8, 2.5],
+                  borderColor: '#34d399', // Emerald-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+                {
+                  label: 'Gertrudes (Piorando)',
+                  data: [1.8, 2.5, 3.3, 4.0, 4.8],
+                  borderColor: '#facc15', // Yellow-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+                {
+                  label: 'Thalita (Inconstante)',
+                  data: [4.0, 1.5, 4.5, 1.8, 3.9],
+                  borderColor: '#a78bfa', // Violet-400
+                  tension: 0.1,
+                  pointRadius: 5,
+                  pointHoverRadius: 7,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#e2e8f0', // slate-200
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 6,
+                  ticks: { color: '#94a3b8' },
+                  grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                },
+                x: {
+                  ticks: { color: '#94a3b8' },
+                  grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                },
+              },
+            },
+          });
+        }
       });
+    </script>
 
-      // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
-      btnEnviar.addEventListener('click', () => {
-        // Pega o texto do motivo (se houver)
-        const motivo = motivoTextarea.value.trim();
+    <script>
+      // Espera o documento carregar completamente antes de rodar o script
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
+        // Os dados enviados ficarão guardados neste array.
+        let bancoDeDadosSimulado = [];
 
-        // Cria um objeto com os dados da avaliação
-        const novaAvaliacao = {
-          nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
-          motivo: motivo,
-          data: new Date().toISOString() // Adiciona a data do envio
-        };
+        // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
+        const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+        const emojiBtns = document.querySelectorAll('.emoji-btn');
+        const motivoTextarea = document.getElementById('motivo-avaliacao');
+        const btnEnviar = document.getElementById('btn-enviar-avaliacao');
 
-        // "Envia" para o nosso banco de dados simulado
-        bancoDeDadosSimulado.push(novaAvaliacao);
+        let avaliacaoSelecionada = null;
 
-        // Exibe no console do navegador para provar que foi "salvo"
-        console.log('Avaliação enviada com sucesso!');
-        console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
+        // --- LÓGICA PARA SELECIONAR EMOJI ---
+        emojiBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            // 1. Remove a seleção de todos os outros botões
+            emojiBtns.forEach((outroBtn) => {
+              outroBtn.classList.remove('selecionado');
+            });
 
-        // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
-        const mensagemSucessoHTML = `
+            // 2. Adiciona a classe 'selecionado' apenas no botão clicado
+            btn.classList.add('selecionado');
+
+            // 3. Guarda o valor do emoji selecionado
+            avaliacaoSelecionada = btn.dataset.value;
+
+            // 4. Habilita o botão de enviar
+            btnEnviar.disabled = false;
+          });
+        });
+
+        // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
+        btnEnviar.addEventListener('click', () => {
+          // Pega o texto do motivo (se houver)
+          const motivo = motivoTextarea.value.trim();
+
+          // Cria um objeto com os dados da avaliação
+          const novaAvaliacao = {
+            nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
+            motivo: motivo,
+            data: new Date().toISOString(), // Adiciona a data do envio
+          };
+
+          // "Envia" para o nosso banco de dados simulado
+          bancoDeDadosSimulado.push(novaAvaliacao);
+
+          // Exibe no console do navegador para provar que foi "salvo"
+          console.log('Avaliação enviada com sucesso!');
+          console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
+
+          // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
+          const mensagemSucessoHTML = `
                         <div class="text-center">
                             <h2 class="text-2xl font-bold text-green-400 mb-2">Obrigado!</h2>
                             <p class="text-slate-300">Sua avaliação foi enviada com sucesso.</p>
                         </div>
                     `;
 
-        // Substitui todo o conteúdo da seção pela mensagem de sucesso
-        secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+          // Substitui todo o conteúdo da seção pela mensagem de sucesso
+          secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+        });
       });
+    </script>
 
-    });
-  </script>
+    <!-- Modal para trocar buddy -->
+    <div
+      id="trocarBuddyModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+    >
+      <div class="bg-slate-800 rounded-2xl p-6 max-w-md w-full mx-4">
+        <h3 class="text-xl font-bold text-white mb-4">Trocar Buddy</h3>
+        <p class="text-gray-300 mb-4">
+          Selecione o novo buddy para
+          <span id="funcionarioNome" class="font-semibold text-purple-300"></span>:
+        </p>
 
-</body>
+        <div class="space-y-3 mb-6">
+          <div
+            class="flex items-center gap-3 p-3 bg-slate-700 rounded-lg cursor-pointer hover:bg-slate-600 transition"
+            onclick="selecionarBuddy('Ana Silva', './imagens/pessoa1.jpg')"
+          >
+            <img src="./imagens/pessoa1.jpg" class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <strong class="text-white text-sm">Ana Silva</strong>
+              <span class="block text-xs text-gray-400">Senior Dev - Experiência em mentoria</span>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 bg-slate-700 rounded-lg cursor-pointer hover:bg-slate-600 transition"
+            onclick="selecionarBuddy('Carlos Santos', './imagens/pessoa4.jpg')"
+          >
+            <img src="./imagens/pessoa4.jpg" class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <strong class="text-white text-sm">Carlos Santos</strong>
+              <span class="block text-xs text-gray-400"
+                >Tech Lead - Especialista em onboarding</span
+              >
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 bg-slate-700 rounded-lg cursor-pointer hover:bg-slate-600 transition"
+            onclick="selecionarBuddy('Mariana Costa', './imagens/Pessoa-2mobile.webp')"
+          >
+            <img src="./imagens/Pessoa-2mobile.webp" class="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <strong class="text-white text-sm">Mariana Costa</strong>
+              <span class="block text-xs text-gray-400">QA Senior - Foco em qualidade</span>
+            </div>
+          </div>
+        </div>
 
+        <div class="flex justify-end gap-3">
+          <button
+            onclick="fecharModalBuddy()"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+          >
+            Cancelar
+          </button>
+          <button
+            id="confirmarTrocaBuddy"
+            onclick="confirmarTrocaBuddy()"
+            disabled
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let funcionarioSelecionado = '';
+      let novoBuddySelecionado = null;
+
+      function trocarBuddy(nomeFuncionario) {
+        funcionarioSelecionado = nomeFuncionario;
+        document.getElementById('funcionarioNome').textContent = nomeFuncionario;
+        document.getElementById('trocarBuddyModal').classList.remove('hidden');
+
+        // Limpar seleção anterior
+        document.querySelectorAll('.bg-slate-600').forEach((el) => {
+          el.classList.remove('bg-slate-600');
+          el.classList.add('bg-slate-700');
+        });
+        novoBuddySelecionado = null;
+        document.getElementById('confirmarTrocaBuddy').disabled = true;
+      }
+
+      function selecionarBuddy(nome, foto) {
+        // Remover seleção anterior
+        document.querySelectorAll('.bg-slate-600').forEach((el) => {
+          el.classList.remove('bg-slate-600');
+          el.classList.add('bg-slate-700');
+        });
+
+        // Selecionar novo buddy
+        event.currentTarget.classList.remove('bg-slate-700');
+        event.currentTarget.classList.add('bg-slate-600');
+
+        novoBuddySelecionado = { nome, foto };
+        document.getElementById('confirmarTrocaBuddy').disabled = false;
+      }
+
+      function confirmarTrocaBuddy() {
+        if (novoBuddySelecionado) {
+          // Simular troca de buddy - em uma aplicação real, isso seria uma chamada para o backend
+          console.log(
+            `Trocando buddy de ${funcionarioSelecionado} para ${novoBuddySelecionado.nome}`
+          );
+
+          // Exibir mensagem de sucesso
+          alert(
+            `Buddy de ${funcionarioSelecionado} foi alterado para ${novoBuddySelecionado.nome} com sucesso!`
+          );
+
+          // Fechar modal
+          fecharModalBuddy();
+
+          // Aqui você poderia atualizar a interface para refletir a mudança
+          // location.reload(); // Recarregar página para ver mudanças
+        }
+      }
+
+      function fecharModalBuddy() {
+        document.getElementById('trocarBuddyModal').classList.add('hidden');
+      }
+
+      // Fechar modal ao clicar fora dele
+      document.getElementById('trocarBuddyModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+          fecharModalBuddy();
+        }
+      });
+    </script>
+
+    <!-- Chatling IA -->
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script data-name="chatling-embed-script" src="https://chatling.ai/js/embed.js" defer></script>
+  </body>
 </html>

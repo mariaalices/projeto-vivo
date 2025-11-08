@@ -1,373 +1,501 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Onboarding</title>
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Onboarding</title>
-  <link rel="icon" href="./imagens/Boneco VIVO.png">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #1c0033;
-      color: rgb(30, 41, 59);
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 70px;
-      background: rgb(233 213 255);
-      overflow: hidden;
-      transition: width 0.3s ease;
-      z-index: 40;
-    }
-
-    .sidebar:hover {
-      width: 220px;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .sidebar ul li {
-      display: flex;
-      align-items: center;
-      padding: 15px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .sidebar ul li:hover {
-      background: #635571;
-    }
-
-    .sidebar ul li img {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-    }
-
-    .sidebar ul li span {
-      display: none;
-      margin-left: 10px;
-      opacity: 0;
-      white-space: nowrap;
-      transition: opacity 0.3s;
-    }
-
-    .sidebar:hover ul li span {
-      opacity: 1;
-      display: inline;
-      color: black;
-    }
-
-    /* Conteúdo principal */
-    .content {
-      margin-left: 80px;
-      padding: 20px;
-    }
-  </style>
-  <!-- Sidebar -->
-
-  <div
-    class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-    <ul class="flex flex-col">
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="home_newuser.html">Home</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_treinamento_ini.html">Meus Cursos</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_trilhastec_newuser.html">Meu
-            Desenvolvimento</a></span>
-      </li>
-      <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-        <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="nu_perfil_newuser.html">Meu Perfil</a></span>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Conteúdo principal -->
-  <main class="flex-1 md:ml-24 px-6 py-10 flex flex-col justify-center space-y-12">
-
-    <!-- Cabeçalho -->
-    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0 md:ml-20 p-4">
-        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
-        <div class="flex items-center space-x-4 relative">
-            <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-                class="w-7 h-6 rounded-full cursor-pointer">
-            <span class="text-purple-200">Olá, João</span>
-            <a href="index.html">
-                <button
-                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-            </a>
-
-            <div id="notifModal"
-                class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
-                        ele =)</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/system-integration.png" alt="Avatar">
-                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
-                        ele =)</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado...
-                        posso te ajudar? =)</p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Modal de Notificações -->
-    <div id="notifModal" class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-        </p>
-      </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-      </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-        </p>
-      </div>
-      <div class="notif-item">
-        <img src="./imagens/avatar.png" alt="Avatar">
-        <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-          ajudar?
-          =)</p>
-      </div>
-    </div>
-
-    <!-- CSS -->
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+  >
     <style>
-      .notif-item {
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #1c0033;
+        color: rgb(30, 41, 59);
+      }
+
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
+
+      .sidebar:hover {
+        width: 220px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar ul li {
         display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
       }
 
-      .notif-item:last-child {
-        border-bottom: none;
+      .sidebar ul li:hover {
+        background: #635571;
       }
 
-      .notif-item img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
       }
 
-      #notifModal {
-        max-height: 300px;
-        overflow-y: auto;
-        transition: all 0.2s ease;
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
+
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
+
+      /* Conteúdo principal */
+      .content {
+        margin-left: 80px;
+        padding: 20px;
       }
     </style>
+    <!-- Sidebar -->
 
-    <!-- JS -->
-    <!-- Script para modal de notificações -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.getElementById('notifModal');
-        if (notifIcon && notifModal) {
-          notifIcon.addEventListener('click', function (e) {
-            notifModal.classList.toggle('hidden');
-            e.stopPropagation();
-          });
-          document.addEventListener('click', function (e) {
-            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-              notifModal.classList.add('hidden');
-            }
-          });
-          notifModal.addEventListener('click', function (e) {
-            e.stopPropagation();
-          });
+    <div
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_newuser.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_treinamento_ini.html">Meus Cursos</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_trilhastec_newuser.html">Meu Desenvolvimento</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_perfil_newuser.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main class="flex-1 md:ml-24 px-6 py-10 flex flex-col justify-center space-y-12">
+      <!-- Cabeçalho -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0 md:ml-20 p-4"
+      >
+        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+        <div class="flex items-center space-x-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 rounded-full cursor-pointer"
+          />
+          <span class="text-purple-200">Olá, João</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
+
+          <div
+            id="notifModal"
+            class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50"
+          >
+            <div class="notif-item">
+              <img src="./imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="./imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+                conversar?
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="./imagens/system-integration.png" alt="Avatar" />
+              <p>
+                <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+                seu 1:1 com ele =)
+              </p>
+            </div>
+            <div class="notif-item">
+              <img src="./imagens/perfil.png" alt="Avatar" />
+              <p>
+                <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
+                atrasado... posso te ajudar? =)
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Modal de Notificações -->
+      <div
+        id="notifModal"
+        class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50"
+      >
+        <div class="notif-item">
+          <img src="./imagens/avatar.png" alt="Avatar" />
+          <p>
+            <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu
+            1:1 com ele =)
+          </p>
+        </div>
+        <div class="notif-item">
+          <img src="./imagens/avatar.png" alt="Avatar" />
+          <p>
+            <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?
+          </p>
+        </div>
+        <div class="notif-item">
+          <img src="./imagens/avatar.png" alt="Avatar" />
+          <p>
+            <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu
+            1:1 com ele =)
+          </p>
+        </div>
+        <div class="notif-item">
+          <img src="./imagens/avatar.png" alt="Avatar" />
+          <p>
+            <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
+            atrasado... posso te ajudar? =)
+          </p>
+        </div>
+      </div>
+
+      <!-- CSS -->
+      <style>
+        .notif-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 10px;
+          border-bottom: 1px solid #ccc;
         }
-      });
+
+        .notif-item:last-child {
+          border-bottom: none;
+        }
+
+        .notif-item img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        #notifModal {
+          max-height: 300px;
+          overflow-y: auto;
+          transition: all 0.2s ease;
+        }
+      </style>
+
+      <!-- JS -->
+      <!-- Script para modal de notificações -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const notifIcon = document.getElementById('notifIcon');
+          const notifModal = document.getElementById('notifModal');
+          if (notifIcon && notifModal) {
+            notifIcon.addEventListener('click', function (e) {
+              notifModal.classList.toggle('hidden');
+              e.stopPropagation();
+            });
+            document.addEventListener('click', function (e) {
+              if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+                notifModal.classList.add('hidden');
+              }
+            });
+            notifModal.addEventListener('click', function (e) {
+              e.stopPropagation();
+            });
+          }
+        });
+      </script>
+
+      <!-- Etapa 2 -->
+      <section class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
+          <a
+            href="nu_sua_vibe.html"
+            class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
+          >
+            Continuar
+          </a>
+        </div>
+
+        <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+          <!-- Título + Progresso -->
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-white"
+                >Situação: <span class="font-semibold">Em progresso</span></span
+              >
+              <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
+                <div class="w-[10%] h-full bg-purple-500"></div>
+              </div>
+              <span class="text-sm text-white">10%</span>
+            </div>
+          </div>
+
+          <!-- Carrossel -->
+          <div class="relative">
+            <!-- Botão esquerda -->
+            <button
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+              onclick="scrollLeft('carrossel1')"
+            >
+              &lt;
+            </button>
+
+            <div
+              id="carrossel1"
+              class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10"
+            >
+              <!-- Card -->
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-blue-300 font-bold text-gray-400 text-left">500 coins</div>
+                <img
+                  src="./imagens/onboarding.jpg"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm text-white mb-3">Curso: Jornada de Onboarding</p>
+                <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
+                  Finalizado
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
+                <img
+                  src="./imagens/seguranca.png"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">Curso: Normas de Segurança</p>
+                <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
+                  Finalizado
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">1000 coins</div>
+                <img
+                  src="./imagens/qa.webp"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">
+                  Curso: Jornada iniciante QA (Iniciante)
+                </p>
+                <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
+                  Iniciar
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
+                <img
+                  src="./imagens/politica.png"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">Curso: Política de Privacidade</p>
+                <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
+                  Iniciar
+                </button>
+              </div>
+            </div>
+
+            <!-- Botão direita -->
+            <button
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+              onclick="scrollRight('carrossel1')"
+            >
+              &gt;
+            </button>
+          </div>
+
+          <!-- Bolinhas -->
+          <div class="flex justify-center mt-4 gap-2">
+            <span class="w-2 h-2 bg-white rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conhecimentos Gerais -->
+      <section class="max-w-6xl mx-auto">
+        <h2 class="text-xl font-semibold mb-4 text-white">Conhecimentos Gerais</h2>
+
+        <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
+          <!-- Título + Progresso -->
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg font-bold text-white">Treinamentos Opcionais</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-white"
+                >Situação: <span class="font-semibold">Em progresso</span></span
+              >
+              <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
+                <div class="w-[5%] h-full bg-purple-500"></div>
+              </div>
+              <span class="text-sm text-white">5%</span>
+            </div>
+          </div>
+
+          <!-- Carrossel -->
+          <div class="relative">
+            <button
+              class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+              onclick="scrollLeft('carrossel2')"
+            >
+              &lt;
+            </button>
+
+            <div
+              id="carrossel2"
+              class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10"
+            >
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+                <img
+                  src="./imagens/database.jpg"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">
+                  Curso: Banco de Dados (Intermediario)
+                </p>
+                <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">
+                  Finalizado
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+                <img
+                  src="./imagens/ux.jpg"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">Curso: User Experience (Avançado)</p>
+                <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
+                  Iniciar
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+                <img
+                  src="./imagens/ia.jpeg"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">
+                  Curso: Inteligência Artificial (Básico)
+                </p>
+                <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
+                  Iniciar
+                </button>
+              </div>
+
+              <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
+                <img
+                  src="./imagens/Bm.webp"
+                  alt="Curso"
+                  class="rounded-md my-3 w-full h-28 object-cover"
+                />
+                <p class="font-bold text-sm mb-3 text-white">Curso: Business Management</p>
+                <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">
+                  Iniciar
+                </button>
+              </div>
+            </div>
+
+            <button
+              class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
+              onclick="scrollRight('carrossel2')"
+            >
+              &gt;
+            </button>
+          </div>
+
+          <!-- Bolinhas -->
+          <div class="flex justify-center mt-4 gap-2">
+            <span class="w-2 h-2 bg-white rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+          </div>
+        </div>
+      </section>
+      <script>
+        window.chtlConfig = { chatbotId: '3149227724' };
+      </script>
+      <script
+        async
+        data-id="3149227724"
+        id="chtl-script"
+        type="text/javascript"
+        src="https://chatling.ai/js/embed.js"
+      ></script>
+    </main>
+
+    <script>
+      function scrollLeft(id) {
+        document.getElementById(id).scrollBy({ left: -250, behavior: 'smooth' });
+      }
+      function scrollRight(id) {
+        document.getElementById(id).scrollBy({ left: 250, behavior: 'smooth' });
+      }
     </script>
-
-    <!-- Etapa 2 -->
-    <section class="max-w-6xl mx-auto">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-xl font-semibold text-white">Etapa 2 - Treinamentos Iniciais</h2>
-        <a href="nu_sua_vibe.html"
-          class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
-          Continuar
-        </a>
-      </div>
-
-      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-        <!-- Título + Progresso -->
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-lg text-white font-bold">Treinamentos Obrigatórios</h3>
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
-            <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-              <div class="w-[10%] h-full bg-purple-500"></div>
-            </div>
-            <span class="text-sm text-white">10%</span>
-          </div>
-        </div>
-
-        <!-- Carrossel -->
-        <div class="relative">
-          <!-- Botão esquerda -->
-          <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-            onclick="scrollLeft('carrossel1')">&lt;</button>
-
-          <div id="carrossel1" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
-            <!-- Card -->
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-blue-300 font-bold  text-gray-400 text-left">500 coins</div>
-              <img src="./imagens/onboarding.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm  text-white mb-3">Curso: Jornada de Onboarding</p>
-              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-              <img src="./imagens/seguranca.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Normas de Segurança</p>
-              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">1000 coins</div>
-              <img src="./imagens/qa.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Jornada iniciante QA (Iniciante)</p>
-              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">250 coins</div>
-              <img src="./imagens/politica.png" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Política de Privacidade</p>
-              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-            </div>
-          </div>
-
-          <!-- Botão direita -->
-          <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-            onclick="scrollRight('carrossel1')">&gt;</button>
-        </div>
-
-        <!-- Bolinhas -->
-        <div class="flex justify-center mt-4 gap-2">
-          <span class="w-2 h-2 bg-white rounded-full"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Conhecimentos Gerais -->
-    <section class="max-w-6xl mx-auto">
-      <h2 class="text-xl font-semibold mb-4 text-white">Conhecimentos Gerais</h2>
-
-      <div class="bg-black/40 p-6 rounded-2xl shadow-xl">
-        <!-- Título + Progresso -->
-        <div class="flex justify-between items-center mb-6">
-          <h3 class="text-lg font-bold text-white">Treinamentos Opcionais</h3>
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-white">Situação: <span class="font-semibold">Em progresso</span></span>
-            <div class="w-28 h-2 bg-gray-700 rounded-full overflow-hidden">
-              <div class="w-[5%] h-full bg-purple-500"></div>
-            </div>
-            <span class="text-sm text-white">5%</span>
-          </div>
-        </div>
-
-        <!-- Carrossel -->
-        <div class="relative">
-          <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-            onclick="scrollLeft('carrossel2')">&lt;</button>
-
-          <div id="carrossel2" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10">
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-              <img src="./imagens/database.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Banco de Dados (Intermediario)</p>
-              <button class="bg-green-400 text-black font-semibold px-3 py-1 rounded w-full">Finalizado</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-              <img src="./imagens/ux.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: User Experience (Avançado)</p>
-              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-              <img src="./imagens/ia.jpeg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Inteligência Artificial (Básico)</p>
-              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-            </div>
-
-            <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
-              <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
-              <img src="./imagens/Bm.webp" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
-              <p class="font-bold text-sm mb-3 text-white">Curso: Business Management</p>
-              <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
-            </div>
-          </div>
-
-          <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-            onclick="scrollRight('carrossel2')">&gt;</button>
-        </div>
-
-        <!-- Bolinhas -->
-        <div class="flex justify-center mt-4 gap-2">
-          <span class="w-2 h-2 bg-white rounded-full"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-          <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-        </div>
-      </div>
-    </section>
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-      src="https://chatling.ai/js/embed.js"></script>
-  </main>
-
-  <script>
-    function scrollLeft(id) {
-      document.getElementById(id).scrollBy({ left: -250, behavior: 'smooth' });
-    }
-    function scrollRight(id) {
-      document.getElementById(id).scrollBy({ left: 250, behavior: 'smooth' });
-    }
-  </script>
-  <script src="/js/script.js"></script>
-</body>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

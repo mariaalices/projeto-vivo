@@ -141,25 +141,35 @@
 
         <!-- Modal Notificações -->
         <div id="notifModal"
-          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 divide-y divide-gray-200">
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+          class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 p-4">
+          <!-- Cabeçalho do Modal -->
+          <div class="border-b pb-2 mb-3">
+            <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
+          
+          <!-- Notificações Padrão -->
+          <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Sistema:</strong> Nova trilha de JavaScript disponível</p>
+              <small class="text-gray-500">Há 15 minutos</small>
+            </div>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com ele =)
-            </p>
+          
+          <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+            <img src="./imagens/pessoa3.jpg" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Maria Santos:</strong> Como está indo com Python? Precisa de ajuda?</p>
+              <small class="text-gray-500">Há 1 hora</small>
+            </div>
           </div>
-          <div class="notif-item">
-            <img src="./imagens/avatar.png" alt="Avatar">
-            <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado... posso te
-              ajudar? =)</p>
+          
+          <div class="notif-item flex items-start gap-3">
+            <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+            <div>
+              <p><strong>Sistema:</strong> Parabéns! Você completou 50% da trilha</p>
+              <small class="text-gray-500">Há 2 horas</small>
+            </div>
           </div>
         </div>
 

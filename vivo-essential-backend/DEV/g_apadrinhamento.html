@@ -1,271 +1,315 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Apadrinhamento</title>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Estilos da Sidebar e da Página */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1e0f3a;
-        }
+      /* Estilos da Sidebar e da Página */
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #1e0f3a;
+      }
 
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+      }
 
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-        }
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        .notif-item:last-child {
-            border-bottom: none;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      /* --- ESTILOS DO MODAL EXTRA --- */
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
 
-        /* --- ESTILOS DO MODAL EXTRA --- */
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 300px;
-            background: #fff;
-            color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
+      .hidden {
+        display: none;
+      }
 
-        .hidden {
-            display: none;
-        }
-
-        #notifIcon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
+      #notifIcon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white"
+  >
     <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a
-                        href="g_apadrinhamento.html">Apadrinhamento</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Trilha
-                        técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
-            </li>
-        </ul>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_gestor.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_apadrinhamento.html">Apadrinhamento</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_trilhastec_gestor.html">Trilha técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_perfil_gestor.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
 
     <main class="flex-1 md:ml-20 p-6 flex flex-col items-center">
-        <header class="w-full max-w-5xl flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-purple-300">Apadrinhamento</h1>
-            <div class="flex items-center gap-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-                    class="w-7 h-7 cursor-pointer" />
-                <!-- Modal de Notificações Adicionado -->
-                <div id="notifModal" class="hidden">
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Notificação de um usuário</strong>
-                            <p>Reunião às 15:00h</p>
-                        </div>
-                    </div>
-
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Sistema</strong>
-                            <p>Seu acesso foi atualizado</p>
-                        </div>
-                    </div>
-                </div>
-                <span id="welcomeMessage" class="text-purple-200">Olá, Felipe</span>
-                <a href="index.html">
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-                </a>
+      <header class="w-full max-w-5xl flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold text-purple-300">Apadrinhamento</h1>
+        <div class="flex items-center gap-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-7 cursor-pointer"
+          />
+          <!-- Modal de Notificações Adicionado -->
+          <div id="notifModal" class="hidden">
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Notificação de um usuário</strong>
+                <p>Reunião às 15:00h</p>
+              </div>
             </div>
-        </header>
 
-        <div class="w-full max-w-5xl grid lg:grid-cols-2 gap-8">
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h2 class="text-xl font-semibold text-purple-300 mb-4">Novo apadrinhamento</h2>
-                <form id="formApadrinhamento" class="space-y-4">
-                    <div>
-                        <label for="nomeNovoUsuario" class="block text-sm font-medium text-slate-300">Nome do novo
-                            usuário:</label>
-                        <input type="text" id="nomeNovoUsuario"
-                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
-                            required />
-                    </div>
-                    <div>
-                        <label for="buddy" class="block text-sm font-medium text-slate-300">Buddy (responsável):</label>
-                        <input type="text" id="buddy"
-                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
-                            required />
-                    </div>
-                    <div>
-                        <label for="descricao" class="block text-sm font-medium text-slate-300">Descrição
-                            (Opcional):</label>
-                        <textarea id="descricao"
-                            class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
-                            rows="3"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg">Salvar
-                        Apadrinhamento</button>
-                </form>
-            </section>
-
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h2 class="text-xl font-semibold text-purple-300 mb-4">Últimos apadrinhamentos</h2>
-                <div id="listaApadrinhamentos" class="space-y-4">
-                </div>
-            </section>
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Sistema</strong>
+                <p>Seu acesso foi atualizado</p>
+              </div>
+            </div>
+          </div>
+          <span id="welcomeMessage" class="text-purple-200">Olá, Felipe</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
         </div>
+      </header>
+
+      <div class="w-full max-w-5xl grid lg:grid-cols-2 gap-8">
+        <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+          <h2 class="text-xl font-semibold text-purple-300 mb-4">Novo apadrinhamento</h2>
+          <form id="formApadrinhamento" class="space-y-4">
+            <div>
+              <label for="nomeNovoUsuario" class="block text-sm font-medium text-slate-300"
+                >Nome do novo usuário:</label
+              >
+              <input
+                type="text"
+                id="nomeNovoUsuario"
+                class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                required
+              />
+            </div>
+            <div>
+              <label for="buddy" class="block text-sm font-medium text-slate-300"
+                >Buddy (responsável):</label
+              >
+              <input
+                type="text"
+                id="buddy"
+                class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                required
+              />
+            </div>
+            <div>
+              <label for="descricao" class="block text-sm font-medium text-slate-300"
+                >Descrição (Opcional):</label
+              >
+              <textarea
+                id="descricao"
+                class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm text-white p-2"
+                rows="3"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
+            >
+              Salvar Apadrinhamento
+            </button>
+          </form>
+        </section>
+
+        <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
+          <h2 class="text-xl font-semibold text-purple-300 mb-4">Últimos apadrinhamentos</h2>
+          <div id="listaApadrinhamentos" class="space-y-4"></div>
+        </section>
+      </div>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-                const apadrinhamentosData = [
-                    { nome: "Isaac Oliveira Teixeira", cargo: "Estagiário TI - QA", novo: true, avatar: "https://randomuser.me/api/portraits/men/11.jpg" },
-                    { nome: "Roberto Andrade Castro", cargo: "Nível Funcionários - Dev, Ger, RH e SOC", novo: false, avatar: "https://randomuser.me/api/portraits/men/49.jpg" }
-                ];
-                const listaContainer = document.getElementById('listaApadrinhamentos');
-                const notifModal = document.getElementById('notifModal');
+      document.addEventListener('DOMContentLoaded', () => {
+        const apadrinhamentosData = [
+          {
+            nome: 'Isaac Oliveira Teixeira',
+            cargo: 'Estagiário TI - QA',
+            novo: true,
+            avatar: 'https://randomuser.me/api/portraits/men/11.jpg',
+          },
+          {
+            nome: 'Roberto Andrade Castro',
+            cargo: 'Nível Funcionários - Dev, Ger, RH e SOC',
+            novo: false,
+            avatar: 'https://randomuser.me/api/portraits/men/49.jpg',
+          },
+        ];
+        const listaContainer = document.getElementById('listaApadrinhamentos');
+        const notifModal = document.getElementById('notifModal');
 
-                function renderItem(item) {
-                    const itemHTML = `
+        function renderItem(item) {
+          const itemHTML = `
             <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
                 <div class="flex items-center gap-4">
-                    <img src="${item.avatar}" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 ${item.novo ? 'border-pink-500' : 'border-purple-500'}">
+                    <img src="${
+                      item.avatar
+                    }" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 ${
+            item.novo ? 'border-pink-500' : 'border-purple-500'
+          }">
                     <div>
                         <strong class="text-white">${item.nome}</strong>
                         <small class="block text-slate-400">${item.cargo}</small>
                     </div>
                 </div>
-                <button class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg" data-nome="${item.nome}">Visitar Perfil</button>
+                <button class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg" data-nome="${
+                  item.nome
+                }">Visitar Perfil</button>
             </div>`;
-                    listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
-                }
+          listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
+        }
 
-                apadrinhamentosData.forEach(renderItem);
+        apadrinhamentosData.forEach(renderItem);
 
-                const form = document.getElementById('formApadrinhamento');
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const nome = document.getElementById('nomeNovoUsuario').value.trim();
-                    const buddy = document.getElementById('buddy').value.trim();
-                    const descricao = document.getElementById('descricao').value.trim();
+        const form = document.getElementById('formApadrinhamento');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nome = document.getElementById('nomeNovoUsuario').value.trim();
+          const buddy = document.getElementById('buddy').value.trim();
+          const descricao = document.getElementById('descricao').value.trim();
 
-                    if (!nome || !buddy) {
-                        alert("Preencha pelo menos Nome e Buddy!");
-                        return;
-                    }
+          if (!nome || !buddy) {
+            alert('Preencha pelo menos Nome e Buddy!');
+            return;
+          }
 
-                    const novoApadrinhamento = {
-                        nome,
-                        cargo: `Buddy: ${buddy} | ${descricao || "Sem descrição"}`,
-                        novo: true,
-                        avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png"
-                    };
+          const novoApadrinhamento = {
+            nome,
+            cargo: `Buddy: ${buddy} | ${descricao || 'Sem descrição'}`,
+            novo: true,
+            avatar: 'https://cdn-icons-png.flaticon.com/512/747/747376.png',
+          };
 
-                    // Adiciona o novo apadrinhamento na lista
-                    renderItem(novoApadrinhamento);
+          // Adiciona o novo apadrinhamento na lista
+          renderItem(novoApadrinhamento);
 
-                    // Adiciona uma notificação no modal
-                    const notificationHTML = `
+          // Adiciona uma notificação no modal
+          const notificationHTML = `
             <div class="notif-item">
                 <img src="./imagens/Boneco VIVO.png" alt="user">
                 <div>
@@ -273,56 +317,62 @@
                     <p>Novo usuário atribuído: ${nome}</p>
                 </div>
             </div>`;
-                    notifModal.insertAdjacentHTML('beforeend', notificationHTML);
+          notifModal.insertAdjacentHTML('beforeend', notificationHTML);
 
-                    // Mantém o formulário aberto e reseta os campos
-                    form.reset();
-                    addVisitarPerfilListeners();
-                });
+          // Mantém o formulário aberto e reseta os campos
+          form.reset();
+          addVisitarPerfilListeners();
+        });
 
-                function addVisitarPerfilListeners() {
-                    const buttons = document.querySelectorAll('button[data-nome]');
-                    buttons.forEach(btn => {
-                        btn.onclick = () => {
-                            window.location.href = 'visao_geral_gestor.html';
-                        };
-                    });
-                }
-                addVisitarPerfilListeners();
+        function addVisitarPerfilListeners() {
+          const buttons = document.querySelectorAll('button[data-nome]');
+          buttons.forEach((btn) => {
+            btn.onclick = () => {
+              window.location.href = 'visao_geral_gestor.html';
+            };
+          });
+        }
+        addVisitarPerfilListeners();
 
-                listaContainer.addEventListener('click', function (e) {
-                    if (e.target && e.target.matches('button[data-nome]')) {
-                        window.location.href = 'visao_geral_gestor.html';
-                    }
-                });
+        listaContainer.addEventListener('click', function (e) {
+          if (e.target && e.target.matches('button[data-nome]')) {
+            window.location.href = 'visao_geral_gestor.html';
+          }
+        });
 
-                const notifIcon = document.getElementById('notifIcon');
-                if (notifIcon && notifModal) {
-                    notifIcon.addEventListener('click', (event) => {
-                        event.stopPropagation();
-                        notifModal.classList.toggle('hidden');
-                    });
+        const notifIcon = document.getElementById('notifIcon');
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
 
-                    document.addEventListener('click', (e) => {
-                        if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                            notifModal.classList.add('hidden');
-                        }
-                    });
-                }
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+              notifModal.classList.add('hidden');
+            }
+          });
+        }
 
-                const userData = JSON.parse(localStorage.getItem('userData'));
-                const welcomeMessage = document.getElementById('welcomeMessage');
-                if (userData && userData.nome && welcomeMessage) {
-                    welcomeMessage.textContent = `Olá, ${userData.nome}`;
-                }
-            });
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome && welcomeMessage) {
+          welcomeMessage.textContent = `Olá, ${userData.nome}`;
+        }
+      });
     </script>
 
     <script src="/js/script.js"></script>
 
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-</body>
-
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="3149227724"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+  </body>
 </html>

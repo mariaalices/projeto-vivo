@@ -1,352 +1,570 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Meu Perfil</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1c0033;
-        }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #1c0033;
+      }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-        /* --- CSS do modal de notificações (adicionado) --- */
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      /* --- CSS do modal de notificações (adicionado) --- */
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-        .notif-item:last-child {
-            border-bottom: none;
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 300px;
-            background: #fff;
-            color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .hidden {
+        display: none;
+      }
 
-        #notifIcon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
+      #notifIcon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white">
-
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen text-white"
+  >
     <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="home_gestor.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a
-                        href="g_apadrinhamento.html">Apadrinhamento</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_trilhastec_gestor.html">Trilha
-                        técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="g_perfil_gestor.html">Meu Perfil</a></span>
-            </li>
-        </ul>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_gestor.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_apadrinhamento.html">Apadrinhamento</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_trilhastec_gestor.html">Trilha técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="g_perfil_gestor.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
 
     <main class="flex-1 p-4 md:ml-20 flex flex-col items-center gap-10">
+      <!-- Header -->
+      <header class="w-full max-w-4xl flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
+        <div class="flex items-center space-x-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
+          <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
+          <div
+            id="notifModal"
+            class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50 p-4"
+          >
+            <!-- Cabeçalho do Modal -->
+            <div class="border-b pb-2 mb-3">
+              <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
+            </div>
 
-        <!-- Header -->
-        <header class="w-full max-w-4xl flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-purple-200">Perfil</h1>
-            <div class="flex items-center space-x-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
-                <div id="notifModal"
-                    class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Notificação de um usuário</strong>
-                            <p>Reunião às 15:00h</p>
-                        </div>
-                    </div>
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Sistema</strong>
-                            <p>Seu acesso foi atualizado</p>
-                        </div>
-                    </div>
-                </div>
-                <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Felipe</span>
-                <a href="index.html">
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">
-                        Desconectar
-                    </button>
-                </a>
+            <!-- Notificações Padrão -->
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/Boneco VIVO.png" alt="user" class="w-8 h-8 rounded-full" />
+              <div>
+                <p><strong>Sistema:</strong> Reunião de feedback agendada para às 15:00h</p>
+                <small class="text-gray-500">Há 30 minutos</small>
+              </div>
             </div>
-        </header>
 
-        <!-- Perfil do usuário -->
-        <section
-            class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6">
-            <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
-                <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
+            <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+              <img src="./imagens/pessoa4.jpg" alt="user" class="w-8 h-8 rounded-full" />
+              <div>
+                <p><strong>Carlos Silva:</strong> Solicitou feedback sobre desempenho</p>
+                <small class="text-gray-500">Há 1 hora</small>
+              </div>
             </div>
-            <div class="profile-info flex-1 text-[#d8ceff]">
-                <h1 class="text-xl font-semibold mb-2">Felipe Araújo</h1>
-                <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
-                <p class="mb-1"><strong>Email:</strong> felipe.araujo@vivo.com.br</p>
-                <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
-                <p class="mb-1"><strong>Telefone:</strong> 11 98765-4321</p>
-                <p><strong>Função/Área:</strong> Gestor de TI</p>
+
+            <div class="notif-item flex items-start gap-3">
+              <img src="./imagens/avatar.png" alt="user" class="w-8 h-8 rounded-full" />
+              <div>
+                <p><strong>Sistema:</strong> Seu perfil foi atualizado com sucesso</p>
+                <small class="text-gray-500">Há 2 horas</small>
+              </div>
             </div>
+          </div>
+          <span id="welcomeMessage" class="text-purple-200 hidden sm:inline">Olá, Felipe</span>
+          <a href="telainicial.html">
             <button
-                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition">Editar
-                perfil</button>
-        </section>
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
+        </div>
+      </header>
 
-        <!-- Visão Geral -->
-        <section class="mb-8 max-w-4xl w-full mx-auto">
-            <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
-            <div class="flex gap-6 flex-wrap">
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
-                    <div class="text-3xl font-extrabold text-white">2</div>
-                    <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
-                </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
-                    <div class="text-3xl font-extrabold text-white">10</div>
-                    <div class="text-sm text-gray-300 mt-1">Novos usuários</div>
-                </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
-                    <div class="text-3xl font-extrabold text-white">12 dias</div>
-                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
-                        <img src="./imagens/medalha.png" class="w-4 inline-block">Ofensiva
-                    </div>
-                </div>
-                <div class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center">
-                    <div class="text-3xl font-extrabold text-white">1.500</div>
-                    <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
-                        <img src="./imagens/star.png" class="w-4 inline-block">Vivo Coins
-                    </div>
-                </div>
+      <!-- Perfil do usuário -->
+      <section
+        class="max-w-4xl w-full bg-[#2f1f60] p-6 rounded-2xl shadow-[0_0_15px_#5737fe88] flex flex-col md:flex-row items-center gap-6"
+      >
+        <div class="w-20 h-20 rounded-full border-2 border-[#7a6deb] bg-[#4a3d8a] flex-shrink-0">
+          <img src="./imagens/pessoa1.jpg" class="w-full h-full object-cover rounded-full" />
+        </div>
+        <div class="profile-info flex-1 text-[#d8ceff]">
+          <h1 class="text-xl font-semibold mb-2">Felipe Araújo</h1>
+          <hr class="border-t border-[#6f6bbe] opacity-60 mb-3" />
+          <p class="mb-1"><strong>Email:</strong> felipe.araujo@vivo.com.br</p>
+          <p class="mb-1"><strong>Membro desde:</strong> 20/05/2020</p>
+          <p class="mb-1"><strong>Telefone:</strong> 11 98765-4321</p>
+          <p><strong>Função/Área:</strong> Gestor de TI</p>
+        </div>
+        <button
+          onclick="abrirEditarPerfil()"
+          class="bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg py-2 px-6 transition"
+        >
+          Editar perfil
+        </button>
+      </section>
+
+      <!-- Visão Geral -->
+      <section class="mb-8 max-w-4xl w-full mx-auto">
+        <h2 class="text-white text-xl font-bold mb-4">Visão Geral</h2>
+        <div class="flex gap-6 flex-wrap">
+          <div
+            class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center"
+          >
+            <div class="text-3xl font-extrabold text-white">2</div>
+            <div class="text-sm text-gray-300 mt-1">Cursos em andamento</div>
+          </div>
+          <div
+            class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center"
+          >
+            <div class="text-3xl font-extrabold text-white">10</div>
+            <div class="text-sm text-gray-300 mt-1">Novos usuários</div>
+          </div>
+          <div
+            class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center"
+          >
+            <div class="text-3xl font-extrabold text-white">12 dias</div>
+            <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+              <img src="./imagens/medalha.png" class="w-4 inline-block" />Ofensiva
             </div>
-        </section>
-
-        <!-- Medalhas e Conquistas -->
-        <section class="mb-10 max-w-4xl w-full mx-auto">
-            <div class="bg-[#3a197a] rounded-xl p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
-                    <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
-                </div>
-                <div class="flex gap-6">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center">
-                            <img src="./imagens/medalha.png" alt="Conquistador" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Colaborador</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
-                            <img src="./imagens/star.png" alt="Maratonista" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Ambicioso</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
-                            <img src="./imagens/lampada.png" alt="Curioso" class="w-8">
-                        </div>
-                        <span class="text-white text-xs mt-2">Curioso</span>
-                    </div>
-                </div>
+          </div>
+          <div
+            class="bg-[#2b1852] border border-gray-600/40 rounded-xl px-8 py-6 min-w-[120px] text-center"
+          >
+            <div class="text-3xl font-extrabold text-white">1.500</div>
+            <div class="text-sm text-gray-300 mt-1 flex items-center justify-center gap-1">
+              <img src="./imagens/star.png" class="w-4 inline-block" />Vivo Coins
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Meus Cursos -->
-        <section class="max-w-4xl w-full">
-            <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
-            <div class="flex gap-6 border-b border-purple-800 mb-6">
-                <div class="tab active cursor-pointer pb-2 border-b-2 border-purple-400 text-white"
-                    data-tab="em-andamento">Em andamento</div>
-                <div class="tab cursor-pointer pb-2 border-b-2 border-transparent text-purple-300"
-                    data-tab="concluidos">Concluídos</div>
+      <!-- Medalhas e Conquistas -->
+      <section class="mb-10 max-w-4xl w-full mx-auto">
+        <div class="bg-[#3a197a] rounded-xl p-6">
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-white text-base font-bold">Medalhas e Conquistas</span>
+            <a href="#" class="text-purple-300 text-sm">Visualizar todas →</a>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex flex-col items-center">
+              <div
+                class="w-16 h-16 rounded-full border-2 border-purple-400 flex items-center justify-center"
+              >
+                <img src="./imagens/medalha.png" alt="Conquistador" class="w-8" />
+              </div>
+              <span class="text-white text-xs mt-2">Colaborador</span>
             </div>
-            <div id="em-andamento-list" class="space-y-4"></div>
-            <div id="concluidos-list" class="hidden space-y-4"></div>
-        </section>
+            <div class="flex flex-col items-center">
+              <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                <img src="./imagens/star.png" alt="Maratonista" class="w-8" />
+              </div>
+              <span class="text-white text-xs mt-2">Ambicioso</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="w-16 h-16 rounded-full bg-[#251845] flex items-center justify-center">
+                <img src="./imagens/lampada.png" alt="Curioso" class="w-8" />
+              </div>
+              <span class="text-white text-xs mt-2">Curioso</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- Meus Cursos -->
+      <section class="max-w-4xl w-full">
+        <h2 class="text-2xl font-bold text-purple-300 mb-4">Meus Cursos</h2>
+        <div class="flex gap-6 border-b border-purple-800 mb-6">
+          <div
+            class="tab active cursor-pointer pb-2 border-b-2 border-purple-400 text-white"
+            data-tab="em-andamento"
+          >
+            Em andamento
+          </div>
+          <div
+            class="tab cursor-pointer pb-2 border-b-2 border-transparent text-purple-300"
+            data-tab="concluidos"
+          >
+            Concluídos
+          </div>
+        </div>
+        <div id="em-andamento-list" class="space-y-4"></div>
+        <div id="concluidos-list" class="hidden space-y-4"></div>
+      </section>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', e => {
-                    e.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', e => {
-                    if (!notifModal.contains(e.target) && e.target !== notifIcon) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
+      document.addEventListener('DOMContentLoaded', () => {
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && e.target !== notifIcon) {
+              notifModal.classList.add('hidden');
             }
+          });
+        }
 
-            // Cursos
-            const cursoInicial = { id: 1, titulo: "Direcionamento VIVO", descricao: "Como melhorar seu direcionamento para o novo usuario VIVO", progresso: 85 };
-            const tabs = document.querySelectorAll('.tab');
-            const emAndamentoList = document.getElementById('em-andamento-list');
-            const concluidosList = document.getElementById('concluidos-list');
+        // Cursos
+        const cursoInicial = {
+          id: 1,
+          titulo: 'Direcionamento VIVO',
+          descricao: 'Como melhorar seu direcionamento para o novo usuario VIVO',
+          progresso: 85,
+        };
+        const tabs = document.querySelectorAll('.tab');
+        const emAndamentoList = document.getElementById('em-andamento-list');
+        const concluidosList = document.getElementById('concluidos-list');
 
-            function criarCardCurso(curso, concluido = false) {
-                const card = document.createElement('div');
-                card.className = 'bg-slate-800/70 p-4 rounded-lg space-y-2';
-                card.dataset.id = curso.id;
-                card.innerHTML = `
+        function criarCardCurso(curso, concluido = false) {
+          const card = document.createElement('div');
+          card.className = 'bg-slate-800/70 p-4 rounded-lg space-y-2';
+          card.dataset.id = curso.id;
+          card.innerHTML = `
                     <div class="flex justify-between items-center">
                         <h3 class="font-bold text-lg">${curso.titulo}</h3>
                         <a href="#" class="bg-purple-600 text-sm px-4 py-1 rounded-full">Acessar</a>
                     </div>
                     <p class="text-sm text-slate-300">${curso.descricao}</p>
-                    <div class="w-full bg-slate-700 rounded-full h-2.5"><div class="bg-purple-500 h-2.5 rounded-full" style="width: ${curso.progresso}%"></div></div>
+                    <div class="w-full bg-slate-700 rounded-full h-2.5"><div class="bg-purple-500 h-2.5 rounded-full" style="width: ${
+                      curso.progresso
+                    }%"></div></div>
                     <p class="text-xs text-slate-400">${curso.progresso}% concluído</p>
-                    ${!concluido ? '<div class="flex justify-end"><button class="btn-complete text-sm bg-green-600 px-3 py-1 rounded-md">Marcar como Concluído</button></div>' : ''}
-                `;
-                if (!concluido) {
-                    card.querySelector('.btn-complete').addEventListener('click', () => {
-                        adicionarConcluido(curso);
-                        card.remove();
-                    });
-                }
-                return card;
-            }
-
-            function adicionarConcluido(curso) {
-                if ([...concluidosList.children].some(c => c.dataset.id == curso.id)) return;
-                const curso100 = { ...curso, progresso: 100 };
-                concluidosList.appendChild(criarCardCurso(curso100, true));
-            }
-
-            emAndamentoList.appendChild(criarCardCurso(cursoInicial));
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active', 'text-white', 'border-purple-400'));
-                    tab.classList.add('active', 'text-white', 'border-purple-400');
-                    if (tab.dataset.tab === 'em-andamento') {
-                        emAndamentoList.classList.remove('hidden');
-                        concluidosList.classList.add('hidden');
-                    } else {
-                        emAndamentoList.classList.add('hidden');
-                        concluidosList.classList.remove('hidden');
+                    ${
+                      !concluido
+                        ? '<div class="flex justify-end"><button class="btn-complete text-sm bg-green-600 px-3 py-1 rounded-md">Marcar como Concluído</button></div>'
+                        : ''
                     }
-                });
+                `;
+          if (!concluido) {
+            card.querySelector('.btn-complete').addEventListener('click', () => {
+              adicionarConcluido(curso);
+              card.remove();
             });
+          }
+          return card;
+        }
 
-            // Nome do usuário
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome) {
-                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+        function adicionarConcluido(curso) {
+          if ([...concluidosList.children].some((c) => c.dataset.id == curso.id)) return;
+          const curso100 = { ...curso, progresso: 100 };
+          concluidosList.appendChild(criarCardCurso(curso100, true));
+        }
+
+        emAndamentoList.appendChild(criarCardCurso(cursoInicial));
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.classList.remove('active', 'text-white', 'border-purple-400'));
+            tab.classList.add('active', 'text-white', 'border-purple-400');
+            if (tab.dataset.tab === 'em-andamento') {
+              emAndamentoList.classList.remove('hidden');
+              concluidosList.classList.add('hidden');
+            } else {
+              emAndamentoList.classList.add('hidden');
+              concluidosList.classList.remove('hidden');
             }
+          });
         });
+
+        // Nome do usuário
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome) {
+          welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+        }
+      });
+    </script>
+
+    <!-- Modal de Edição de Perfil -->
+    <div
+      id="editarPerfilModal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+    >
+      <div class="bg-slate-800 rounded-2xl p-6 max-w-md w-full mx-4">
+        <h3 class="text-xl font-bold text-white mb-4">Editar Perfil</h3>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Nome Completo</label>
+            <input
+              type="text"
+              id="editNome"
+              value="Felipe Araújo"
+              class="w-full p-3 bg-slate-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Email</label>
+            <input
+              type="email"
+              id="editEmail"
+              value="felipe.araujo@vivo.com.br"
+              class="w-full p-3 bg-slate-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Telefone</label>
+            <input
+              type="tel"
+              id="editTelefone"
+              value="11 98765-4321"
+              class="w-full p-3 bg-slate-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Função/Área</label>
+            <select
+              id="editFuncao"
+              class="w-full p-3 bg-slate-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+            >
+              <option value="Gestor de TI" selected>Gestor de TI</option>
+              <option value="Gestor de RH">Gestor de RH</option>
+              <option value="Gestor de Produto">Gestor de Produto</option>
+              <option value="Gestor de Operações">Gestor de Operações</option>
+              <option value="Gerente Geral">Gerente Geral</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2"
+              >Nova Senha (opcional)</label
+            >
+            <input
+              type="password"
+              id="editSenha"
+              placeholder="Deixe vazio para manter a senha atual"
+              class="w-full p-3 bg-slate-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+          <button
+            onclick="fecharEditarPerfil()"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition"
+          >
+            Cancelar
+          </button>
+          <button
+            onclick="salvarPerfil()"
+            class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition"
+          >
+            Salvar Alterações
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Funções para editar perfil
+      function abrirEditarPerfil() {
+        document.getElementById('editarPerfilModal').classList.remove('hidden');
+      }
+
+      function fecharEditarPerfil() {
+        document.getElementById('editarPerfilModal').classList.add('hidden');
+      }
+
+      function salvarPerfil() {
+        const nome = document.getElementById('editNome').value;
+        const email = document.getElementById('editEmail').value;
+        const telefone = document.getElementById('editTelefone').value;
+        const funcao = document.getElementById('editFuncao').value;
+        const senha = document.getElementById('editSenha').value;
+
+        // Validação básica
+        if (!nome || !email || !telefone) {
+          alert('Por favor, preencha todos os campos obrigatórios.');
+          return;
+        }
+
+        // Atualizar os dados na tela
+        document.querySelector('.profile-info h1').textContent = nome;
+        document.querySelector(
+          '.profile-info p:nth-child(3)'
+        ).innerHTML = `<strong>Email:</strong> ${email}`;
+        document.querySelector(
+          '.profile-info p:nth-child(5)'
+        ).innerHTML = `<strong>Telefone:</strong> ${telefone}`;
+        document.querySelector(
+          '.profile-info p:nth-child(6)'
+        ).innerHTML = `<strong>Função/Área:</strong> ${funcao}`;
+
+        // Simular salvamento no backend (em uma aplicação real, seria uma chamada API)
+        const perfilData = {
+          nome,
+          email,
+          telefone,
+          funcao,
+          dataAtualizacao: new Date().toLocaleString(),
+        };
+
+        if (senha) {
+          perfilData.senhaAtualizada = true;
+        }
+
+        console.log('Perfil atualizado:', perfilData);
+
+        // Exibir mensagem de sucesso
+        alert('Perfil atualizado com sucesso!');
+
+        // Fechar modal
+        fecharEditarPerfil();
+
+        // Limpar campo de senha
+        document.getElementById('editSenha').value = '';
+      }
+
+      // Fechar modal ao clicar fora dele
+      document.getElementById('editarPerfilModal').addEventListener('click', function (e) {
+        if (e.target === this) {
+          fecharEditarPerfil();
+        }
+      });
     </script>
 
     <script src="/js/script.js"></script>
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-</body>
-
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="3149227724"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+  </body>
 </html>

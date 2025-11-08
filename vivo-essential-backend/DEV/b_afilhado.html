@@ -1,357 +1,412 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Meu Afilhado</title>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Estilos da Sidebar e da Página */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1c0033;
-        }
+      /* Estilos da Sidebar e da Página */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #1c0033;
+      }
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 50;
-        }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 50;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-        /* Estilo do item de notificação */
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      /* Estilo do item de notificação */
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-        .notif-item:last-child {
-            border-bottom: none;
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        /* Modal com scroll se muitas notificações */
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 300px;
-            background: #fff;
-            color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
+      /* Modal com scroll se muitas notificações */
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
 
-        /* Oculto por padrão */
-        .hidden {
-            display: none;
-        }
+      /* Oculto por padrão */
+      .hidden {
+        display: none;
+      }
 
-        /* Ícone de notificação */
-        #notifIcon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
+      /* Ícone de notificação */
+      #notifIcon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col text-white">
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col text-white"
+  >
     <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_home.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Meu Afilhado</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_trilhastec_buddy.html">Trilha
-                        técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_perfil_buddy.html">Meu Perfil</a></span>
-            </li>
-        </ul>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_buddy.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_buddy.html">Meu Afilhado</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="b_trilhastec_buddy.html">Trilha técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="b_perfil_buddy.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
 
     <main class="flex-1 md:ml-20 p-6">
-        <div class="w-full max-w-6xl mx-auto">
-            <header class="flex flex-col md:flex-row justify-between items-center mb-10">
-                <h1 class="text-2xl font-bold text-purple-200">Meu Afilhado</h1>
+      <div class="w-full max-w-6xl mx-auto">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-10">
+          <h1 class="text-2xl font-bold text-purple-200">Meu Afilhado</h1>
 
-                <div class="flex items-center gap-4 relative">
-                    <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-                        class="w-7 h-6 cursor-pointer">
+          <div class="flex items-center gap-4 relative">
+            <img
+              id="notifIcon"
+              src="./imagens/packard-bell.png"
+              alt="Notificações"
+              class="w-7 h-6 cursor-pointer"
+            />
 
-                    <div id="notifModal" class="hidden">
-                        <div class="notif-item">
-                            <img src="./imagens/Boneco VIVO.png" alt="user">
-                            <div>
-                                <strong>Notificação de um usuário</strong>
-                                <p>Reunião às 15:00h</p>
-                            </div>
-                        </div>
+            <div
+              id="notifModal"
+              class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden p-4"
+            >
+              <!-- Cabeçalho do Modal -->
+              <div class="border-b pb-2 mb-3">
+                <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
+              </div>
 
-                        <div class="notif-item">
-                            <img src="./imagens/Boneco VIVO.png" alt="user">
-                            <div>
-                                <strong>Sistema</strong>
-                                <p>Seu acesso foi atualizado</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="notifModal"
-                        class="hidden absolute top-full right-0 mt-3 w-80 bg-white text-black rounded-2xl shadow-xl z-50 overflow-hidden">
-                    </div>
-                    <span id="welcomeMessage" class="text-purple-200">Olá, Maria</span>
-                    <a href="index.html">
-                        <button
-                            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-                    </a>
+              <!-- Notificações Padrão -->
+              <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+                <img src="./imagens/Boneco VIVO.png" alt="user" class="w-8 h-8 rounded-full" />
+                <div>
+                  <p><strong>Sistema:</strong> Seu afilhado concluiu mais uma etapa!</p>
+                  <small class="text-gray-500">Há 30 minutos</small>
                 </div>
-            </header>
+              </div>
 
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8">
-                <h2 class="text-xl font-semibold text-purple-300 mb-4">MEU AFILHADO</h2>
-                <div class="flex items-center gap-5">
-                    <img src="./imagens/perfil.png" alt="avatar" class="w-20 h-20 rounded-full" />
-                    <div>
-                        <h3 class="text-lg font-semibold text-white">Ana Silva</h3>
-                        <p class="font-semibold">Um pouco sobre mim:</p>
-                        <p class="text-sm text-slate-300">In mauris neque, eleifend pretium risus nec, sollicitudin
-                            egestas orci...</p>
-                    </div>
+              <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+                <img src="./imagens/pessoa1.jpg" alt="user" class="w-8 h-8 rounded-full" />
+                <div>
+                  <p><strong>Ana Silva:</strong> Preciso de ajuda com a trilha técnica</p>
+                  <small class="text-gray-500">Há 1 hora</small>
                 </div>
-            </section>
+              </div>
 
-            <section class="grid md:grid-cols-2 gap-8">
-                <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 flex flex-col items-center">
-                    <h3 class="text-lg font-semibold text-purple-300 mb-4">Progresso do Afilhado</h3>
-                    <div class="w-full max-w-[250px] h-[250px]">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
+              <div class="notif-item flex items-start gap-3">
+                <img src="./imagens/avatar.png" alt="user" class="w-8 h-8 rounded-full" />
+                <div>
+                  <p><strong>Sistema:</strong> Lembre-se da reunião de acompanhamento</p>
+                  <small class="text-gray-500">Há 2 horas</small>
                 </div>
-                <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 flex flex-col">
-                    <h3 class="text-lg font-semibold text-purple-300 mb-4">Agendar 1:1 ou Enviar Mensagem</h3>
-                    <textarea id="messageText"
-                        class="w-full flex-grow resize-none p-3 rounded-lg bg-slate-700 border border-slate-600 text-white mb-4"
-                        placeholder="Enviar mensagem..."></textarea>
-                    <button id="saveSchedule"
-                        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition">Salvar
-                        Agendamento / Enviar</button>
-                </div>
-            </section>
-
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 my-8">
-                <h3 class="text-lg font-semibold text-purple-300 mb-4 text-center">Ranking de Cursos Opcionais por
-                    Afilhado</h3>
-                <div class="w-full h-[400px]">
-                    <canvas id="groupedBarChart"></canvas>
-                </div>
-            </section>
-            <div class="w-full flex justify-end mt-6">
-                <button onclick="window.location.href='b_outros_afilhados.html'"
-                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200">
-                    Outros Afilhados
-                </button>
+              </div>
             </div>
+            <span id="welcomeMessage" class="text-purple-200">Olá, Maria</span>
+            <a href="index.html">
+              <button
+                class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+              >
+                Desconectar
+              </button>
+            </a>
+          </div>
+        </header>
+
+        <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8">
+          <h2 class="text-xl font-semibold text-purple-300 mb-4">MEU AFILHADO</h2>
+          <div class="flex items-center gap-5">
+            <img src="./imagens/perfil.png" alt="avatar" class="w-20 h-20 rounded-full" />
+            <div>
+              <h3 class="text-lg font-semibold text-white">Ana Silva</h3>
+              <p class="font-semibold">Um pouco sobre mim:</p>
+              <p class="text-sm text-slate-300">
+                Sou nova na Vivo e estou muito animada para começar esta jornada! Tenho formação em
+                administração e estou sempre buscando aprender coisas novas. Gosto de trabalhar em
+                equipe e estou ansiosa para conhecer melhor a empresa e seus valores.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-8">
+          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 flex flex-col items-center">
+            <h3 class="text-lg font-semibold text-purple-300 mb-4">Progresso do Afilhado</h3>
+            <div class="w-full max-w-[250px] h-[250px]">
+              <canvas id="myPieChart"></canvas>
+            </div>
+          </div>
+          <div class="bg-slate-800 bg-opacity-70 rounded-xl p-6 flex flex-col">
+            <h3 class="text-lg font-semibold text-purple-300 mb-4">
+              Agendar 1:1 ou Enviar Mensagem
+            </h3>
+            <textarea
+              id="messageText"
+              class="w-full flex-grow resize-none p-3 rounded-lg bg-slate-700 border border-slate-600 text-white mb-4"
+              placeholder="Enviar mensagem..."
+            ></textarea>
+            <button
+              id="saveSchedule"
+              class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition"
+            >
+              Salvar Agendamento / Enviar
+            </button>
+          </div>
+        </section>
+
+        <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 my-8">
+          <h3 class="text-lg font-semibold text-purple-300 mb-4 text-center">
+            Ranking de Cursos Opcionais por Afilhado
+          </h3>
+          <div class="w-full h-[400px]">
+            <canvas id="groupedBarChart"></canvas>
+          </div>
+        </section>
+        <div class="w-full flex justify-end mt-6">
+          <button
+            onclick="window.location.href='b_outros_afilhados.html'"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-200"
+          >
+            Outros Afilhados
+          </button>
         </div>
+      </div>
     </main>
 
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+          // Abrir/fechar ao clicar no ícone
+          notifIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
 
-            if (notifIcon && notifModal) {
-                // Abrir/fechar ao clicar no ícone
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-
-                // Fechar ao clicar fora
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
+          // Fechar ao clicar fora
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+              notifModal.classList.add('hidden');
             }
+          });
+        }
 
-            // Lógica para Salvar Agendamento/Mensagem
-             const saveButton = document.getElementById('saveSchedule');
-            const messageText = document.getElementById('messageText');
-            if (saveButton && messageText) {
-                //ALTEREI AQUI ATE });
-                saveButton.addEventListener('click', () => {
-                    const message = messageText.value.trim();
-                    if (message) {
-                        // Salva a mensagem no localStorage para que outra página possa ler
-                        const notificacoes = JSON.parse(localStorage.getItem("notificacoesNovoUsuario")) || [];
-                        notificacoes.unshift({
-                            remetente: "Buddy",
-                            texto: message,
-                            data: new Date().toLocaleString()
-                        });
-                        localStorage.setItem("notificacoesNovoUsuario", JSON.stringify(notificacoes));
+        // Lógica para Salvar Agendamento/Mensagem
+        const saveButton = document.getElementById('saveSchedule');
+        const messageText = document.getElementById('messageText');
+        if (saveButton && messageText) {
+          //ALTEREI AQUI ATE });
+          saveButton.addEventListener('click', () => {
+            const message = messageText.value.trim();
+            if (message) {
+              // Salva a mensagem no localStorage para que outra página possa ler
+              const notificacoes =
+                JSON.parse(localStorage.getItem('notificacoesNovoUsuario')) || [];
+              notificacoes.unshift({
+                remetente: 'Buddy',
+                texto: message,
+                data: new Date().toLocaleString(),
+              });
+              localStorage.setItem('notificacoesNovoUsuario', JSON.stringify(notificacoes));
 
-                        messageText.value = "";
-                        alert("Mensagem enviada para o seu Afilhado!");
-                    } else {
-                        alert('Digite uma mensagem antes de salvar.');
-                    }
-                });
-
+              messageText.value = '';
+              alert('Mensagem enviada para o seu Afilhado!');
+            } else {
+              alert('Digite uma mensagem antes de salvar.');
             }
+          });
+        }
 
-            // Lógica do Gráfico de Pizza (Original)
-            const ctxPie = document.getElementById('myPieChart');
-            if (ctxPie) {
-                new Chart(ctxPie, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Cursos Finalizados', 'Em Andamento', 'Não Iniciados'],
-                        datasets: [{ data: [50, 30, 20], backgroundColor: ['#8a52f1', '#ff9800', '#4caf50'], borderWidth: 0 }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } }
-                    },
-                });
-            }
+        // Lógica do Gráfico de Pizza (Original)
+        const ctxPie = document.getElementById('myPieChart');
+        if (ctxPie) {
+          new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+              labels: ['Cursos Finalizados', 'Em Andamento', 'Não Iniciados'],
+              datasets: [
+                {
+                  data: [50, 30, 20],
+                  backgroundColor: ['#8a52f1', '#ff9800', '#4caf50'],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+            },
+          });
+        }
 
-            // Lógica do Novo Gráfico de Barras Agrupadas
-            const ctxBar = document.getElementById('groupedBarChart');
-            if (ctxBar) {
-                new Chart(ctxBar, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Ana', 'Maria', 'João', 'Pedro', 'Jorge'], // Eixo X: Nomes dos funcionários
-                        datasets: [{
-                            label: 'Cursos Concluídos',
-                            data: [5, 3, 6, 4, 5], // Exemplo: Nº de cursos concluídos por funcionário
-                            backgroundColor: 'rgb(138, 82, 241)', // Roxo
-                        }, {
-                            label: 'Cursos em Andamento',
-                            data: [2, 4, 1, 3, 2], // Exemplo: Nº de cursos em andamento por funcionário
-                            backgroundColor: 'rgb(255, 152, 0)', // Laranja
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    color: '#fff'
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                ticks: { color: '#ccc' },
-                                grid: { display: false }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    color: '#ccc',
-                                    precision: 0
-                                },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                            }
-                        }
-                    }
-                });
-            }
+        // Lógica do Novo Gráfico de Barras Agrupadas
+        const ctxBar = document.getElementById('groupedBarChart');
+        if (ctxBar) {
+          new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+              labels: ['Ana', 'Maria', 'João', 'Pedro', 'Jorge'], // Eixo X: Nomes dos funcionários
+              datasets: [
+                {
+                  label: 'Cursos Concluídos',
+                  data: [5, 3, 6, 4, 5], // Exemplo: Nº de cursos concluídos por funcionário
+                  backgroundColor: 'rgb(138, 82, 241)', // Roxo
+                },
+                {
+                  label: 'Cursos em Andamento',
+                  data: [2, 4, 1, 3, 2], // Exemplo: Nº de cursos em andamento por funcionário
+                  backgroundColor: 'rgb(255, 152, 0)', // Laranja
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: 'top',
+                  labels: {
+                    color: '#fff',
+                  },
+                },
+              },
+              scales: {
+                x: {
+                  ticks: { color: '#ccc' },
+                  grid: { display: false },
+                },
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    color: '#ccc',
+                    precision: 0,
+                  },
+                  grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                },
+              },
+            },
+          });
+        }
 
-
-            // Exibe o nome do usuário vindo do localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome && welcomeMessage) {
-                welcomeMessage.textContent = `Olá, ${userData.nome}`;
-            }
-
-        });
+        // Exibe o nome do usuário vindo do localStorage
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome && welcomeMessage) {
+          welcomeMessage.textContent = `Olá, ${userData.nome}`;
+        }
+      });
     </script>
     <script src="/js/script.js"></script>
 
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-</body>
-
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="3149227724"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+  </body>
 </html>

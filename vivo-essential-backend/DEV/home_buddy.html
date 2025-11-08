@@ -130,7 +130,36 @@
             <div class="flex items-center gap-4 relative">
                 <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
                 <div id="notifModal"
-                    class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50">
+                    class="hidden absolute top-full right-0 mt-2 w-80 bg-white text-black rounded-lg shadow-lg z-50 p-4">
+                    <!-- Cabeçalho do Modal -->
+                    <div class="border-b pb-2 mb-3">
+                        <h3 class="text-lg font-semibold text-gray-800">Notificações</h3>
+                    </div>
+                    
+                    <!-- Notificações Padrão -->
+                    <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+                        <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+                        <div>
+                            <p><strong>Sistema:</strong> Bem-vindo ao portal Buddy!</p>
+                            <small class="text-gray-500">Há 2 horas</small>
+                        </div>
+                    </div>
+                    
+                    <div class="notif-item flex items-start gap-3 mb-3 pb-3 border-b border-gray-200">
+                        <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-8 h-8 rounded-full">
+                        <div>
+                            <p><strong>Ana Silva:</strong> Obrigada pelo acolhimento!</p>
+                            <small class="text-gray-500">Ontem</small>
+                        </div>
+                    </div>
+                    
+                    <div class="notif-item flex items-start gap-3">
+                        <img src="./imagens/avatar.png" alt="Avatar" class="w-8 h-8 rounded-full">
+                        <div>
+                            <p><strong>RH:</strong> Lembre-se do treinamento de segunda-feira</p>
+                            <small class="text-gray-500">2 dias atrás</small>
+                        </div>
+                    </div>
                 </div>
                 <span id="welcomeMessage" class="text-purple-200">Olá, Maria</span>
                 <a href="index.html">
@@ -246,14 +275,55 @@
                     <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-24 h-24 rounded-full object-cover mb-3" />
                     <h3 class="text-white font-semibold">Bruno Oliveira Testes</h3>
                     <p class="text-slate-400 text-sm">Estagiário TI</p>
+                    <button id="editProfileBtn" class="mt-2 bg-purple-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-purple-700 transition">
+                        Editar Perfil
+                    </button>
                 </div>
                 <div class="flex-1 text-slate-300 leading-relaxed text-center md:text-left">
                     <h3 class="text-white font-semibold mb-2">Um pouco sobre seu afilhado:</h3>
-                    <p>In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci. Class aptent taciti
-                        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                    <p>Seu novo colaborador está iniciando sua jornada na Vivo. Você é o responsável por orientá-lo e 
+                        ajudá-lo durante o processo de onboarding e desenvolvimento profissional.</p>
                 </div>
             </div>
             </section>
+        </div>
+        
+        <!-- Modal de Edição de Perfil -->
+        <div id="editProfileModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div class="bg-slate-800 rounded-lg p-6 w-96 mx-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-white text-lg font-semibold">Editar Perfil</h3>
+                    <button id="closeProfileModal" class="text-gray-400 hover:text-white">&times;</button>
+                </div>
+                
+                <form id="profileForm">
+                    <div class="mb-4">
+                        <label class="block text-slate-300 text-sm mb-2">Nome Completo</label>
+                        <input type="text" id="profileName" class="w-full px-3 py-2 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-purple-400 focus:outline-none" 
+                               value="Bruno Oliveira Testes">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-slate-300 text-sm mb-2">Cargo</label>
+                        <input type="text" id="profileRole" class="w-full px-3 py-2 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-purple-400 focus:outline-none" 
+                               value="Estagiário TI">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-slate-300 text-sm mb-2">Sobre mim</label>
+                        <textarea id="profileAbout" class="w-full px-3 py-2 bg-slate-700 text-white rounded-lg border border-slate-600 focus:border-purple-400 focus:outline-none h-20 resize-none">Sou um buddy experiente na Vivo, sempre disposto a ajudar novos colaboradores a se adaptarem à nossa cultura e processos.</textarea>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button type="button" id="cancelProfileEdit" class="flex-1 bg-slate-600 text-white py-2 rounded-lg hover:bg-slate-700 transition">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="flex-1 bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
         
     </main>
@@ -372,6 +442,59 @@
                 // Substitui todo o conteúdo da seção pela mensagem de sucesso
                 secaoAvaliacao.innerHTML = mensagemSucessoHTML;
             });
+
+            // --- Modal de Edição de Perfil ---
+            const editProfileBtn = document.getElementById("editProfileBtn");
+            const editProfileModal = document.getElementById("editProfileModal");
+            const closeProfileModal = document.getElementById("closeProfileModal");
+            const cancelProfileEdit = document.getElementById("cancelProfileEdit");
+            const profileForm = document.getElementById("profileForm");
+
+            if (editProfileBtn && editProfileModal) {
+                // Abrir modal
+                editProfileBtn.addEventListener("click", () => {
+                    editProfileModal.classList.remove("hidden");
+                });
+
+                // Fechar modal (X)
+                closeProfileModal.addEventListener("click", () => {
+                    editProfileModal.classList.add("hidden");
+                });
+
+                // Fechar modal (Cancelar)
+                cancelProfileEdit.addEventListener("click", () => {
+                    editProfileModal.classList.add("hidden");
+                });
+
+                // Fechar modal clicando fora
+                editProfileModal.addEventListener("click", (e) => {
+                    if (e.target === editProfileModal) {
+                        editProfileModal.classList.add("hidden");
+                    }
+                });
+
+                // Enviar formulário
+                profileForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    
+                    const nome = document.getElementById("profileName").value;
+                    const cargo = document.getElementById("profileRole").value;
+                    const sobre = document.getElementById("profileAbout").value;
+
+                    // Atualizar o perfil na tela
+                    document.querySelector(".bg-slate-800 h3").textContent = nome;
+                    document.querySelector(".bg-slate-800 .text-slate-400").textContent = cargo;
+
+                    // Simular salvamento
+                    console.log("Perfil atualizado:", { nome, cargo, sobre });
+                    
+                    // Fechar modal
+                    editProfileModal.classList.add("hidden");
+                    
+                    // Mostrar feedback de sucesso
+                    alert("Perfil atualizado com sucesso!");
+                });
+            }
 
         });
     </script>

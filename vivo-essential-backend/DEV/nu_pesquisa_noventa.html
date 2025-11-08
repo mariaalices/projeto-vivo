@@ -1,232 +1,267 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pesquisa de Satisfação</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
     <style>
-        /* Seu CSS (mantido como está) */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #1c0033;
-        }
+      /* Seu CSS (mantido como está) */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #1c0033;
+      }
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .sidebar ul li:hover {
-            background: #635571;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-        /* Outros estilos... */
+      /* Outros estilos... */
 
-        /* --- CSS do modal de notificações (adicionado) --- */
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+      /* --- CSS do modal de notificações (adicionado) --- */
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-        .notif-item:last-child {
-            border-bottom: none;
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            width: 300px;
-            background: #fff;
-            color: #000;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-        }
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 300px;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .hidden {
+        display: none;
+      }
 
-        #notifIcon {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
+      #notifIcon {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+  >
     <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="home_newuser.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_treinamento_ini.html">Meus
-                        Cursos</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_trilhastec_newuser.html">Trilha
-                        Técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_perfil_newuser.html">Meu Perfil</a></span>
-            </li>
-        </ul>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_newuser.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_treinamento_ini.html">Meus Cursos</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_trilhastec_newuser.html">Trilha Técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_perfil_newuser.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
 
     <main class="flex-1 md:ml-20 p-6">
-        <header class="flex flex-col md:flex-row justify-between items-center mb-8 max-w-6xl mx-auto">
-            <h1 class="text-2xl font-bold text-purple-200 text-center md:text-left">Pesquisa de Satisfação - 90 dias
-            </h1>
-            <div class="flex items-center space-x-4 relative">
-                <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações" class="w-7 h-6 cursor-pointer">
-                <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
-                <div id="notifModal"
-                    class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50">
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Notificação de um usuário</strong>
-                            <p>Reunião às 15:00h</p>
-                        </div>
-                    </div>
-                    <div class="notif-item">
-                        <img src="./imagens/Boneco VIVO.png" alt="user">
-                        <div>
-                            <strong>Sistema</strong>
-                            <p>Seu acesso foi atualizado</p>
-                        </div>
-                    </div>
-                </div>
-                <span id="welcomeMessage" class="text-purple-200">Olá, João</span>
-                <a href="index.html">
-                    <button
-                        class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-                </a>
+      <header class="flex flex-col md:flex-row justify-between items-center mb-8 max-w-6xl mx-auto">
+        <h1 class="text-2xl font-bold text-purple-200 text-center md:text-left">
+          Pesquisa de Satisfação - 90 dias
+        </h1>
+        <div class="flex items-center space-x-4 relative">
+          <img
+            id="notifIcon"
+            src="./imagens/packard-bell.png"
+            alt="Notificações"
+            class="w-7 h-6 cursor-pointer"
+          />
+          <!-- Modal de Notificações (preenchido com exemplos) ALTERAÇÃO AQUI-->
+          <div
+            id="notifModal"
+            class="hidden absolute top-10 right-0 w-80 bg-white text-black rounded-lg shadow-lg z-50"
+          >
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Notificação de um usuário</strong>
+                <p>Reunião às 15:00h</p>
+              </div>
             </div>
-        </header>
-
-        <div class="max-w-3xl mx-auto">
-            <section id="telaInicial" class="bg-slate-800/70 p-8 rounded-xl text-center text-white">
-                <h2 class="text-2xl font-bold text-purple-300 mb-4">Pesquisa de satisfação</h2>
-                <p class="mb-6">E aí novo parceiro, o que está achando de nossa jornada de onboard? Para que terminemos
-                    com chave de ouro, bora fazer uma pesquisa de satisfação?!</p>
-                <button id="btnIniciar"
-                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition">Iniciar
-                    pesquisa de 90 dias</button>
-            </section>
-
-            <section id="telaPesquisa" class="hidden bg-slate-800/70 p-8 rounded-xl text-white">
-                <h2 class="text-2xl font-bold text-purple-300 mb-6 text-center">Pesquisa de Satisfação</h2>
-                <div class="space-y-6">
-                </div>
-                <div class="flex gap-4 mt-8">
-                    <button onclick="enviarRespostas()"
-                        class="w-full bg-green-600 hover:bg-green-700 font-semibold px-6 py-3 rounded-lg transition">Enviar</button>
-                    <a href="nu_finalizatrilha.html"
-                        class="w-full bg-purple-600 hover:bg-purple-700 font-semibold px-6 py-3 rounded-lg transition text-center">Finalizar
-                        Jornada</a>
-                </div>
-            </section>
+            <div class="notif-item">
+              <img src="./imagens/Boneco VIVO.png" alt="user" />
+              <div>
+                <strong>Sistema</strong>
+                <p>Seu acesso foi atualizado</p>
+              </div>
+            </div>
+          </div>
+          <span id="welcomeMessage" class="text-purple-200">Olá, João</span>
+          <a href="index.html">
+            <button
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+            >
+              Desconectar
+            </button>
+          </a>
         </div>
+      </header>
+
+      <div class="max-w-3xl mx-auto">
+        <section id="telaInicial" class="bg-slate-800/70 p-8 rounded-xl text-center text-white">
+          <h2 class="text-2xl font-bold text-purple-300 mb-4">Pesquisa de satisfação</h2>
+          <p class="mb-6">
+            E aí novo parceiro, o que está achando de nossa jornada de onboard? Para que terminemos
+            com chave de ouro, bora fazer uma pesquisa de satisfação?!
+          </p>
+          <button
+            id="btnIniciar"
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition"
+          >
+            Iniciar pesquisa de 90 dias
+          </button>
+        </section>
+
+        <section id="telaPesquisa" class="hidden bg-slate-800/70 p-8 rounded-xl text-white">
+          <h2 class="text-2xl font-bold text-purple-300 mb-6 text-center">
+            Pesquisa de Satisfação
+          </h2>
+          <div class="space-y-6"></div>
+          <div class="flex gap-4 mt-8">
+            <button
+              onclick="enviarRespostas()"
+              class="w-full bg-green-600 hover:bg-green-700 font-semibold px-6 py-3 rounded-lg transition"
+            >
+              Enviar
+            </button>
+            <a
+              href="nu_finalizatrilha.html"
+              class="w-full bg-purple-600 hover:bg-purple-700 font-semibold px-6 py-3 rounded-lg transition text-center"
+              >Finalizar Jornada</a
+            >
+          </div>
+        </section>
+      </div>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- LÓGICA DA PÁGINA (Notificações, Pesquisa, etc.) ---
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (e) => { e.stopPropagation(); notifModal.classList.toggle('hidden'); });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && e.target !== notifIcon) notifModal.classList.add('hidden');
-                });
-            }
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- LÓGICA DA PÁGINA (Notificações, Pesquisa, etc.) ---
+        const notifIcon = document.getElementById('notifIcon');
+        const notifModal = document.getElementById('notifModal');
+        if (notifIcon && notifModal) {
+          notifIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifModal.classList.toggle('hidden');
+          });
+          document.addEventListener('click', (e) => {
+            if (!notifModal.contains(e.target) && e.target !== notifIcon)
+              notifModal.classList.add('hidden');
+          });
+        }
 
-            // --- LÓGICA DA PESQUISA ---
-            const btnIniciar = document.getElementById('btnIniciar');
-            const telaInicial = document.getElementById('telaInicial');
-            const telaPesquisa = document.getElementById('telaPesquisa');
-            const perguntasContainer = telaPesquisa.querySelector('.space-y-6');
+        // --- LÓGICA DA PESQUISA ---
+        const btnIniciar = document.getElementById('btnIniciar');
+        const telaInicial = document.getElementById('telaInicial');
+        const telaPesquisa = document.getElementById('telaPesquisa');
+        const perguntasContainer = telaPesquisa.querySelector('.space-y-6');
 
-            const perguntas = [
-                "Como você avalia a comunicação com seu Buddy?",
-                "O material de treinamento foi claro e útil?",
-                "Você se sentiu bem acolhido(a) pela equipe?",
-                "As ferramentas de trabalho foram disponibilizadas a tempo?"
-            ];
+        const perguntas = [
+          'Como você avalia a comunicação com seu Buddy?',
+          'O material de treinamento foi claro e útil?',
+          'Você se sentiu bem acolhido(a) pela equipe?',
+          'As ferramentas de trabalho foram disponibilizadas a tempo?',
+        ];
 
-            perguntas.forEach((pergunta, index) => {
-                perguntasContainer.innerHTML += `
+        perguntas.forEach((pergunta, index) => {
+          perguntasContainer.innerHTML += `
                     <div class="question text-left">
                         <p class="font-semibold mb-3">${index + 1}. ${pergunta}</p>
                         <div class="buttons flex justify-center gap-4">
@@ -235,41 +270,49 @@
                             <button class="option-btn bg-purple-700 hover:bg-purple-600 px-5 py-2 rounded-md">Ótimo</button>
                         </div>
                     </div>`;
-            });
-
-            btnIniciar.addEventListener('click', () => {
-                telaInicial.classList.add('hidden');
-                telaPesquisa.classList.remove('hidden');
-            });
-
-            telaPesquisa.addEventListener('click', (e) => {
-                if (e.target.classList.contains('option-btn')) {
-                    const parent = e.target.parentElement;
-                    parent.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('bg-green-500'));
-                    e.target.classList.add('bg-green-500');
-                }
-            });
-
-            // --- NOME DE USUÁRIO DINÂMICO ---
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome) {
-                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
-            }
         });
 
-        // Funções globais para os botões
-        function enviarRespostas() {
-            // ... (sua lógica de enviar respostas)
-            alert("Respostas enviadas!");
+        btnIniciar.addEventListener('click', () => {
+          telaInicial.classList.add('hidden');
+          telaPesquisa.classList.remove('hidden');
+        });
+
+        telaPesquisa.addEventListener('click', (e) => {
+          if (e.target.classList.contains('option-btn')) {
+            const parent = e.target.parentElement;
+            parent
+              .querySelectorAll('.option-btn')
+              .forEach((btn) => btn.classList.remove('bg-green-500'));
+            e.target.classList.add('bg-green-500');
+          }
+        });
+
+        // --- NOME DE USUÁRIO DINÂMICO ---
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        if (userData && userData.nome) {
+          welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
         }
+      });
+
+      // Funções globais para os botões
+      function enviarRespostas() {
+        // ... (sua lógica de enviar respostas)
+        alert('Respostas enviadas!');
+      }
     </script>
 
     <script src="/js/script.js"></script>
 
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="31492277-24" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
-</body>
-
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="31492277-24"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
+  </body>
 </html>

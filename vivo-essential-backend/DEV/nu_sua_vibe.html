@@ -1,587 +1,663 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Onboarding</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="./imagens/Boneco VIVO.png">
+    <link rel="icon" href="./imagens/Boneco VIVO.png" />
     <script src="https://kit.fontawesome.com/4c3b22a05f.js" crossorigin="anonymous"></script>
 
     <style>
-        /* Reset básico */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Reset básico */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #2d035a, #0f0f23);
-            color: #fff;
-            min-height: 100vh;
-            padding: 0;
-        }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #2d035a, #0f0f23);
+        color: #fff;
+        min-height: 100vh;
+        padding: 0;
+      }
 
-        .main {
-            margin-left: 80px;
-            padding: 20px;
-            padding-top: 100px;
-        }
+      .main {
+        margin-left: 80px;
+        padding: 20px;
+        padding-top: 100px;
+      }
 
-        .header {
-            position: fixed;
-            top: 0;
-            left: 80px;
-            right: 0;
-            height: 80px;
-            background: #2a1c5b;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 1000;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
-        }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 80px;
+        right: 0;
+        height: 80px;
+        background: #2a1c5b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
 
-        /* ===== Formulário ===== */
-        .form-section h2 {
-            font-weight: 600;
-            font-size: 20px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
+      /* ===== Formulário ===== */
+      .form-section h2 {
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
 
+      .benefits-form {
+        background: #2a1c5b;
+        border-radius: 12px;
+        padding: 24px 28px;
+        width: 100%;
+        box-shadow: 0 2px 10px rgba(28, 14, 79, 0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .benefits-form fieldset {
+        border: none;
+      }
+
+      .benefits-form legend {
+        font-weight: 700;
+        font-size: 16px;
+        color: #9d8ae5;
+        margin-bottom: 18px;
+      }
+
+      .input-label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #a188e7;
+      }
+
+      .small-label {
+        font-size: 12px;
+        color: #c7bbe6;
+      }
+
+      input[type='text'],
+      input[type='email'],
+      input[type='tel'],
+      input[type='date'],
+      select {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: none;
+        background: #3a277b;
+        color: #fff;
+        font-size: 14px;
+        box-shadow: inset 0 0 6px #583ea2;
+        transition: box-shadow 0.3s ease;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        box-shadow: 0 0 10px #8b36f9;
+        background: #4e3d91;
+      }
+
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .input-group {
+        flex: 1;
+        min-width: 140px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .full-width {
+        flex: 1 1 100%;
+      }
+
+      select.full-width-select {
+        width: 100%;
+        margin: 12px 0 18px;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin: 16px 0 24px;
+      }
+
+      .radio-group label {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        color: #ab97e7;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid #5a4bb2;
+        margin: 14px 0 22px;
+      }
+
+      .save-benefits-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #8b36f9, #601395);
+        border: none;
+        padding: 14px 0;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 16px;
+        color: white;
+        transition: background-color 0.3s ease;
+      }
+
+      .save-benefits-btn:hover {
+        background: #7327c6;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 600px) {
         .benefits-form {
-            background: #2a1c5b;
-            border-radius: 12px;
-            padding: 24px 28px;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(28, 14, 79, .5);
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .benefits-form fieldset {
-            border: none;
-        }
-
-        .benefits-form legend {
-            font-weight: 700;
-            font-size: 16px;
-            color: #9d8ae5;
-            margin-bottom: 18px;
-        }
-
-        .input-label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #a188e7;
-        }
-
-        .small-label {
-            font-size: 12px;
-            color: #c7bbe6;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="date"],
-        select {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: none;
-            background: #3a277b;
-            color: #fff;
-            font-size: 14px;
-            box-shadow: inset 0 0 6px #583ea2;
-            transition: box-shadow .3s ease;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            box-shadow: 0 0 10px #8b36f9;
-            background: #4e3d91;
+          padding: 18px 20px;
         }
 
         .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+          flex-direction: column;
         }
 
         .input-group {
-            flex: 1;
-            min-width: 140px;
-            display: flex;
-            flex-direction: column;
+          min-width: 100%;
         }
 
-        .full-width {
-            flex: 1 1 100%;
+        .form-section h2 {
+          font-size: 18px;
         }
+      }
 
-        select.full-width-select {
-            width: 100%;
-            margin: 12px 0 18px;
-        }
+      /* Sidebar */
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70px;
+        background: rgb(233 213 255);
+        overflow: hidden;
+        transition: width 0.3s ease;
+        z-index: 40;
+      }
 
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 16px 0 24px;
-        }
+      .sidebar:hover {
+        width: 220px;
+      }
 
-        .radio-group label {
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            color: #ab97e7;
-        }
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
 
-        .divider {
-            border: none;
-            border-top: 1px solid #5a4bb2;
-            margin: 14px 0 22px;
-        }
+      .sidebar ul li {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
 
-        .save-benefits-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #8b36f9, #601395);
-            border: none;
-            padding: 14px 0;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 16px;
-            color: white;
-            transition: background-color .3s ease;
-        }
+      .sidebar ul li:hover {
+        background: #635571;
+      }
 
-        .save-benefits-btn:hover {
-            background: #7327c6;
-        }
+      .sidebar ul li img {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .sidebar ul li span {
+        display: none;
+        margin-left: 10px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s;
+      }
 
-        @media (max-width:600px) {
-            .benefits-form {
-                padding: 18px 20px;
-            }
+      .sidebar:hover ul li span {
+        opacity: 1;
+        display: inline;
+        color: black;
+      }
 
-            .form-row {
-                flex-direction: column;
-            }
+      .content {
+        margin-left: 80px;
+        padding: 20px;
+      }
 
-            .input-group {
-                min-width: 100%;
-            }
+      /* Notificações */
+      .notif-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-            .form-section h2 {
-                font-size: 18px;
-            }
-        }
+      .notif-item:last-child {
+        border-bottom: none;
+      }
 
-        /* Sidebar */
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 70px;
-            background: rgb(233 213 255);
-            overflow: hidden;
-            transition: width 0.3s ease;
-            z-index: 40;
-        }
+      .notif-item img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 
-        .sidebar:hover {
-            width: 220px;
-        }
+      #notifModal {
+        max-height: 300px;
+        overflow-y: auto;
+        transition: all 0.2s ease;
+      }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+      /* Botão de ajuda flutuante */
+      .help-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #8b36f9, #601395);
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 10000;
+      }
 
-        .sidebar ul li {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .sidebar ul li:hover {
-            background: #635571;
-        }
-
-        .sidebar ul li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-
-        .sidebar ul li span {
-            display: none;
-            margin-left: 10px;
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s;
-        }
-
-        .sidebar:hover ul li span {
-            opacity: 1;
-            display: inline;
-            color: black;
-        }
-
-        .content {
-            margin-left: 80px;
-            padding: 20px;
-        }
-
-        /* Notificações */
-        .notif-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .notif-item:last-child {
-            border-bottom: none;
-        }
-
-        .notif-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
-        #notifModal {
-            max-height: 300px;
-            overflow-y: auto;
-            transition: all .2s ease;
-        }
-
-        /* Botão de ajuda flutuante */
-        .help-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8b36f9, #601395);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            z-index: 10000;
-        }
-
-        .help-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
-        }
+      .help-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col">
-
+  <body
+    class="bg-gradient-to-br from-slate-900 via-purple-950 to-indigo-950 min-h-screen flex flex-col"
+  >
     <!-- Sidebar -->
     <div
-        class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50">
-        <ul class="flex flex-col">
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="home_newuser.html">Home</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_treinamento_ini.html">Meus
-                        Cursos</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_trilhastec_newuser.html">Trilha
-                        Técnica</a></span>
-            </li>
-            <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
-                <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="nu_perfil_newuser.html">Meu Perfil</a></span>
-            </li>
-        </ul>
+      class="sidebar fixed top-0 left-0 h-full w-20 hover:w-56 bg-purple-200 overflow-hidden transition-all duration-300 z-50"
+    >
+      <ul class="flex flex-col">
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="home_newuser.html">Home</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/graduacao.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_treinamento_ini.html">Meus Cursos</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_trilhastec_newuser.html">Trilha Técnica</a></span
+          >
+        </li>
+        <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
+          <img src="./imagens/perfil-de-usuario.png" class="w-6 h-6" alt="" />
+          <span class="ml-3 text-black hidden sidebar-text"
+            ><a href="nu_perfil_newuser.html">Meu Perfil</a></span
+          >
+        </li>
+      </ul>
     </div>
     <!-- Cabeçalho -->
-    <header class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0 md:ml-20 p-4">
-        <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
-        <div class="flex items-center space-x-4 relative">
-            <img id="notifIcon" src="./imagens/packard-bell.png" alt="Notificações"
-                class="w-7 h-6 rounded-full cursor-pointer">
-            <span class="text-purple-200">Olá, João</span>
-            <a href="index.html">
-                <button
-                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn">Desconectar</button>
-            </a>
+    <header
+      class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0 md:ml-20 p-4"
+    >
+      <h1 class="text-2xl font-bold text-purple-200">Onboarding</h1>
+      <div class="flex items-center space-x-4 relative">
+        <img
+          id="notifIcon"
+          src="./imagens/packard-bell.png"
+          alt="Notificações"
+          class="w-7 h-6 rounded-full cursor-pointer"
+        />
+        <span class="text-purple-200">Olá, João</span>
+        <a href="index.html">
+          <button
+            class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition logout-btn"
+          >
+            Desconectar
+          </button>
+        </a>
 
-            <div id="notifModal"
-                class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50">
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
-                        ele =)</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos conversar?</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/system-integration.png" alt="Avatar">
-                    <p><strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende seu 1:1 com
-                        ele =)</p>
-                </div>
-                <div class="notif-item">
-                    <img src="./imagens/perfil.png" alt="Avatar">
-                    <p><strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco atrasado...
-                        posso te ajudar? =)</p>
-                </div>
-            </div>
+        <div
+          id="notifModal"
+          class="hidden absolute top-10 right-0 w-96 bg-white text-black rounded-2xl shadow-lg p-3 z-50"
+        >
+          <div class="notif-item">
+            <img src="./imagens/perfil.png" alt="Avatar" />
+            <p>
+              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+              seu 1:1 com ele =)
+            </p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/perfil.png" alt="Avatar" />
+            <p>
+              <strong>Buddy:</strong> Oie, estou preocupado com certo onboard aqui, podemos
+              conversar?
+            </p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/system-integration.png" alt="Avatar" />
+            <p>
+              <strong>Sistema:</strong> Parece que o usuário XXXXX está terminando o curso, agende
+              seu 1:1 com ele =)
+            </p>
+          </div>
+          <div class="notif-item">
+            <img src="./imagens/perfil.png" alt="Avatar" />
+            <p>
+              <strong>Buddy:</strong> Fala xxxx, bora trocar uma palavra? Vi que está um pouco
+              atrasado... posso te ajudar? =)
+            </p>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Main -->
     <main class="flex-1 p-4 md:ml-20 flex justify-center items-start">
-        <section class="form-section w-full max-w-3xl">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold text-white">Etapa 3 - Sua Vibe</h2>
-                <a href="nu_acessoinicial.html"
-                    class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition">
-                    Continuar
-                </a>
+      <section class="form-section w-full max-w-3xl">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold text-white">Etapa 3 - Sua Vibe</h2>
+          <a
+            href="nu_acessoinicial.html"
+            class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-lg shadow-lg transition"
+          >
+            Continuar
+          </a>
+        </div>
+        <form class="benefits-form" novalidate>
+          <fieldset>
+            <legend>Escolha seus Benefícios:</legend>
+
+            <label for="plano-saude" class="input-label">Plano de Saúde:</label>
+            <input
+              type="text"
+              id="plano-saude"
+              name="plano-saude"
+              placeholder="Digite o plano de saúde"
+            />
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="nome-completo" class="input-label">Nome completo:</label>
+                <input
+                  type="text"
+                  id="nome-completo"
+                  name="nome-completo"
+                  placeholder="Nome completo"
+                />
+              </div>
+              <div class="input-group">
+                <label for="cpf" class="input-label small-label">CPF:</label>
+                <input
+                  type="text"
+                  id="cpf"
+                  name="cpf"
+                  placeholder="000.000.000-00"
+                  maxlength="14"
+                />
+              </div>
             </div>
-            <form class="benefits-form" novalidate>
-                <fieldset>
-                    <legend>Escolha seus Benefícios:</legend>
 
-                    <label for="plano-saude" class="input-label">Plano de Saúde:</label>
-                    <input type="text" id="plano-saude" name="plano-saude" placeholder="Digite o plano de saúde" />
-
-                    <div class="form-row">
-                        <div class="input-group">
-                            <label for="nome-completo" class="input-label">Nome completo:</label>
-                            <input type="text" id="nome-completo" name="nome-completo" placeholder="Nome completo" />
-                        </div>
-                        <div class="input-group">
-                            <label for="cpf" class="input-label small-label">CPF:</label>
-                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" />
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="input-group">
-                            <label for="data-nascimento" class="input-label">Data de nascimento:</label>
-                            <input type="date" id="data-nascimento" name="data-nascimento" />
-                        </div>
-                        <div class="input-group select-group">
-                            <label for="sexo" class="input-label">Sexo:</label>
-                            <select id="sexo" name="sexo">
-                                <option value="">Selecione</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label for="telefone" class="input-label">Telefone:</label>
-                            <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
-                        </div>
-                        <div class="input-group select-group">
-                            <label for="nacionalidade" class="input-label">Nacionalidade:</label>
-                            <select id="nacionalidade" name="nacionalidade">
-                                <option value="">Brasileira</option>
-                                <option value="argentina">Argentina</option>
-                                <option value="chile">Chile</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="input-group full-width">
-                            <label for="email" class="input-label">Email (pessoal):</label>
-                            <input type="email" id="email" name="email" placeholder="seuemail@email.com" />
-                        </div>
-                        <div class="input-group full-width">
-                            <label for="nome-mae" class="input-label">Nome completo da mãe:</label>
-                            <input type="text" id="nome-mae" name="nome-mae" placeholder="Nome completo da mãe" />
-                        </div>
-                    </div>
-
-                    <fieldset class="radio-group">
-                        <legend><strong>Possui Cônjuge?*</strong></legend>
-                        <label><input type="radio" name="conjuge" value="sim" /> SIM</label>
-                        <label><input type="radio" name="conjuge" value="nao" checked /> NÃO</label>
-                    </fieldset>
-
-                    <div id="conjuge-dados" class="hidden">
-                        <div class="form-row">
-                            <div class="input-group full-width">
-                                <label for="conjuge-nome" class="input-label">Nome completo:</label>
-                                <input type="text" id="conjuge-nome" name="conjuge-nome"
-                                    placeholder="Nome completo do cônjuge" />
-                            </div>
-                            <div class="input-group full-width">
-                                <label for="conjuge-cpf" class="input-label small-label">CPF:</label>
-                                <input type="text" id="conjuge-cpf" name="conjuge-cpf" placeholder="000.000.000-00"
-                                    maxlength="14" />
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label for="conjuge-data-nascimento" class="input-label">Data de nascimento:</label>
-                                <input type="date" id="conjuge-data-nascimento" name="conjuge-data-nascimento" />
-                            </div>
-                            <div class="input-group select-group">
-                                <label for="conjuge-sexo" class="input-label">Sexo:</label>
-                                <select id="conjuge-sexo" name="conjuge-sexo">
-                                    <option value="">Selecione</option>
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <label for="conjuge-telefone" class="input-label">Telefone:</label>
-                                <input type="tel" id="conjuge-telefone" name="conjuge-telefone"
-                                    placeholder="(00) 00000-0000" />
-                            </div>
-                            <div class="input-group select-group">
-                                <label for="conjuge-nacionalidade" class="input-label">Nacionalidade:</label>
-                                <select id="conjuge-nacionalidade" name="conjuge-nacionalidade">
-                                    <option value="">Brasileira</option>
-                                    <option value="argentina">Argentina</option>
-                                    <option value="chile">Chile</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <label for="questionario-saude" class="input-label">Questionário de Saúde:</label>
-                    <select id="questionario-saude" name="questionario-saude" class="full-width-select">
-                        <option value="">Já possui um plano de saúde?</option>
-                        <option value="saude1">Sim</option>
-                        <option value="saude2">Não</option>
-                    </select>
-
-                    <hr class="divider" />
-
-                    <label class="input-label">Vale Refeição:</label>
-                    <fieldset class="radio-group">
-                        <label><input type="radio" name="vale-refeicao" value="50vr50va" checked /> 50% VR e 50%
-                            VA</label>
-                        <label><input type="radio" name="vale-refeicao" value="100vr" /> 100% VR</label>
-                        <label><input type="radio" name="vale-refeicao" value="100va" /> 100% VA</label>
-                    </fieldset>
-
-                    <button type="submit" class="save-benefits-btn">Salvar Benefícios</button>
-                </fieldset>
-            </form>
-            <div id="form-success-message" class="hidden text-center text-lg text-green-400 font-semibold py-10">
-                Formulário enviado para o RH, siga com o fluxo.
+            <div class="form-row">
+              <div class="input-group">
+                <label for="data-nascimento" class="input-label">Data de nascimento:</label>
+                <input type="date" id="data-nascimento" name="data-nascimento" />
+              </div>
+              <div class="input-group select-group">
+                <label for="sexo" class="input-label">Sexo:</label>
+                <select id="sexo" name="sexo">
+                  <option value="">Selecione</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="telefone" class="input-label">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" />
+              </div>
+              <div class="input-group select-group">
+                <label for="nacionalidade" class="input-label">Nacionalidade:</label>
+                <select id="nacionalidade" name="nacionalidade">
+                  <option value="">Brasileira</option>
+                  <option value="argentina">Argentina</option>
+                  <option value="chile">Chile</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
             </div>
-        </section>
+
+            <div class="form-row">
+              <div class="input-group full-width">
+                <label for="email" class="input-label">Email (pessoal):</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@email.com" />
+              </div>
+              <div class="input-group full-width">
+                <label for="nome-mae" class="input-label">Nome completo da mãe:</label>
+                <input
+                  type="text"
+                  id="nome-mae"
+                  name="nome-mae"
+                  placeholder="Nome completo da mãe"
+                />
+              </div>
+            </div>
+
+            <fieldset class="radio-group">
+              <legend><strong>Possui Cônjuge?*</strong></legend>
+              <label><input type="radio" name="conjuge" value="sim" /> SIM</label>
+              <label><input type="radio" name="conjuge" value="nao" checked /> NÃO</label>
+            </fieldset>
+
+            <div id="conjuge-dados" class="hidden">
+              <div class="form-row">
+                <div class="input-group full-width">
+                  <label for="conjuge-nome" class="input-label">Nome completo:</label>
+                  <input
+                    type="text"
+                    id="conjuge-nome"
+                    name="conjuge-nome"
+                    placeholder="Nome completo do cônjuge"
+                  />
+                </div>
+                <div class="input-group full-width">
+                  <label for="conjuge-cpf" class="input-label small-label">CPF:</label>
+                  <input
+                    type="text"
+                    id="conjuge-cpf"
+                    name="conjuge-cpf"
+                    placeholder="000.000.000-00"
+                    maxlength="14"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="input-group">
+                  <label for="conjuge-data-nascimento" class="input-label"
+                    >Data de nascimento:</label
+                  >
+                  <input type="date" id="conjuge-data-nascimento" name="conjuge-data-nascimento" />
+                </div>
+                <div class="input-group select-group">
+                  <label for="conjuge-sexo" class="input-label">Sexo:</label>
+                  <select id="conjuge-sexo" name="conjuge-sexo">
+                    <option value="">Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label for="conjuge-telefone" class="input-label">Telefone:</label>
+                  <input
+                    type="tel"
+                    id="conjuge-telefone"
+                    name="conjuge-telefone"
+                    placeholder="(00) 00000-0000"
+                  />
+                </div>
+                <div class="input-group select-group">
+                  <label for="conjuge-nacionalidade" class="input-label">Nacionalidade:</label>
+                  <select id="conjuge-nacionalidade" name="conjuge-nacionalidade">
+                    <option value="">Brasileira</option>
+                    <option value="argentina">Argentina</option>
+                    <option value="chile">Chile</option>
+                    <option value="outro">Outro</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <label for="questionario-saude" class="input-label">Questionário de Saúde:</label>
+            <select id="questionario-saude" name="questionario-saude" class="full-width-select">
+              <option value="">Já possui um plano de saúde?</option>
+              <option value="saude1">Sim</option>
+              <option value="saude2">Não</option>
+            </select>
+
+            <hr class="divider" />
+
+            <label class="input-label">Vale Refeição:</label>
+            <fieldset class="radio-group">
+              <label
+                ><input type="radio" name="vale-refeicao" value="50vr50va" checked /> 50% VR e 50%
+                VA</label
+              >
+              <label><input type="radio" name="vale-refeicao" value="100vr" /> 100% VR</label>
+              <label><input type="radio" name="vale-refeicao" value="100va" /> 100% VA</label>
+            </fieldset>
+
+            <button type="submit" class="save-benefits-btn">Salvar Benefícios</button>
+          </fieldset>
+        </form>
+        <div
+          id="form-success-message"
+          class="hidden text-center text-lg text-green-400 font-semibold py-10"
+        >
+          Formulário enviado para o RH, siga com o fluxo.
+        </div>
+      </section>
     </main>
 
     <!-- Botão de ajuda -->
-    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
-    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
-        src="https://chatling.ai/js/embed.js"></script>
+    <script>
+      window.chtlConfig = { chatbotId: '3149227724' };
+    </script>
+    <script
+      async
+      data-id="3149227724"
+      id="chtl-script"
+      type="text/javascript"
+      src="https://chatling.ai/js/embed.js"
+    ></script>
 
     <script>
-        // Toggle do modal de notificações (com checagem de existência)
-        const notifIcon = document.getElementById('notifIcon');
-        const notifModal = document.getElementById('notifModal');
+      // Toggle do modal de notificações (com checagem de existência)
+      const notifIcon = document.getElementById('notifIcon');
+      const notifModal = document.getElementById('notifModal');
 
-        if (notifIcon && notifModal) {
-            notifIcon.addEventListener('click', (e) => {
-                e.stopPropagation(); // evita fechar imediatamente pelo listener global
-                notifModal.classList.toggle('hidden');
-            });
+      if (notifIcon && notifModal) {
+        notifIcon.addEventListener('click', (e) => {
+          e.stopPropagation(); // evita fechar imediatamente pelo listener global
+          notifModal.classList.toggle('hidden');
+        });
+      }
+
+      // Fecha ao clicar fora (se existirem)
+      document.addEventListener('click', (e) => {
+        if (!notifIcon || !notifModal) return;
+        if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
+          notifModal.classList.add('hidden');
+        }
+      });
+
+      // Código que manipula rádios e formulário — garantido rodar após DOM carregado
+      document.addEventListener('DOMContentLoaded', () => {
+        const radioConjugeSim = document.querySelector('input[name="conjuge"][value="sim"]');
+        const radioConjugeNao = document.querySelector('input[name="conjuge"][value="nao"]');
+        const conjugeDados = document.getElementById('conjuge-dados');
+        const form = document.querySelector('.benefits-form');
+        const successMsg = document.getElementById('form-success-message');
+
+        function toggleConjugeCampos() {
+          if (!conjugeDados || !radioConjugeSim) return;
+          if (radioConjugeSim.checked) {
+            conjugeDados.classList.remove('hidden');
+          } else {
+            conjugeDados.classList.add('hidden');
+          }
         }
 
-        // Fecha ao clicar fora (se existirem)
-        document.addEventListener('click', (e) => {
-            if (!notifIcon || !notifModal) return;
-            if (!notifIcon.contains(e.target) && !notifModal.contains(e.target)) {
-                notifModal.classList.add('hidden');
+        // só adiciona listeners se os elementos existirem
+        if (radioConjugeSim && radioConjugeNao && conjugeDados) {
+          // estado inicial
+          toggleConjugeCampos();
+
+          // adiciona eventos
+          radioConjugeSim.addEventListener('change', toggleConjugeCampos);
+          radioConjugeNao.addEventListener('change', toggleConjugeCampos);
+        }
+
+        // Prevenir envio real (exemplo)
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            if (successMsg) {
+              successMsg.classList.remove('hidden');
             }
-        });
-
-        // Código que manipula rádios e formulário — garantido rodar após DOM carregado
-        document.addEventListener("DOMContentLoaded", () => {
-            const radioConjugeSim = document.querySelector('input[name="conjuge"][value="sim"]');
-            const radioConjugeNao = document.querySelector('input[name="conjuge"][value="nao"]');
-            const conjugeDados = document.getElementById("conjuge-dados");
-            const form = document.querySelector('.benefits-form');
-            const successMsg = document.getElementById('form-success-message');
-
-            function toggleConjugeCampos() {
-                if (!conjugeDados || !radioConjugeSim) return;
-                if (radioConjugeSim.checked) {
-                    conjugeDados.classList.remove("hidden");
-                } else {
-                    conjugeDados.classList.add("hidden");
-                }
-            }
-
-            // só adiciona listeners se os elementos existirem
-            if (radioConjugeSim && radioConjugeNao && conjugeDados) {
-                // estado inicial
-                toggleConjugeCampos();
-
-                // adiciona eventos
-                radioConjugeSim.addEventListener("change", toggleConjugeCampos);
-                radioConjugeNao.addEventListener("change", toggleConjugeCampos);
-            }
-
-            // Prevenir envio real (exemplo)
-            if (form) {
-                form.addEventListener("submit", (e) => {
-                    e.preventDefault();
-                    form.classList.add('hidden');
-                    if (successMsg) {
-                        successMsg.classList.remove('hidden');
-                    }
-                });
-            }
-        });
+          });
+        }
+      });
     </script>
     <script src="/js/script.js"></script>
-</body>
-
+  </body>
 </html>

@@ -61,10 +61,9 @@ export class AppController {
   }
 
   // Servir arquivos CSS
-  @Get('css/*')
-  getCssFile(@Res() res: Response) {
-    const filePath = res.req.url.replace('/css/', '');
-    const fullPath = join(__dirname, '..', '..', 'DEV', 'css', filePath);
+  @Get('css/*path')
+  getCssFile(@Param('path') path: string, @Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'css', path);
 
     if (fs.existsSync(fullPath)) {
       return res.sendFile(fullPath);
@@ -74,10 +73,9 @@ export class AppController {
   }
 
   // Servir arquivos JS
-  @Get('js/*')
-  getJsFile(@Res() res: Response) {
-    const filePath = res.req.url.replace('/js/', '');
-    const fullPath = join(__dirname, '..', '..', 'DEV', 'js', filePath);
+  @Get('js/*path')
+  getJsFile(@Param('path') path: string, @Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'js', path);
 
     if (fs.existsSync(fullPath)) {
       return res.sendFile(fullPath);
@@ -87,10 +85,9 @@ export class AppController {
   }
 
   // Servir imagens
-  @Get('imagens/*')
-  getImageFile(@Res() res: Response) {
-    const filePath = res.req.url.replace('/imagens/', '');
-    const fullPath = join(__dirname, '..', '..', 'DEV', 'imagens', filePath);
+  @Get('imagens/*path')
+  getImageFile(@Param('path') path: string, @Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'imagens', path);
 
     if (fs.existsSync(fullPath)) {
       return res.sendFile(fullPath);

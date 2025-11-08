@@ -255,33 +255,54 @@
             </div>
             </section>
         </div>
+        
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica das Notificações
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
+      <script> //TUDO ALTERADO DO COMEÇO DESSE SCRPIT ATE O FINAL -- THAIS
+        document.addEventListener("DOMContentLoaded", () => {
+            const notifIcon = document.getElementById("notifIcon");
+            const notifModal = document.getElementById("notifModal");
+
+            if (!notifIcon || !notifModal) return; // segurança
+
+            // --- Abre/fecha modal ---
+            notifIcon.addEventListener("click", (event) => {
+                event.stopPropagation();
+                notifModal.classList.toggle("hidden");
+            });
+
+            // Fecha o modal ao clicar fora
+            document.addEventListener("click", (e) => {
+                if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                    notifModal.classList.add("hidden");
+                }
+            });
+
+            // --- Exibe o nome do usuário ---
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            if (userData && userData.nome) {
+                welcomeMessage.textContent = `Olá, ${userData.nome.split(" ")[0]}`;
             }
 
-            // Exibe o nome do usuário vindo do localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome) {
-                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+            // --- Carrega notificações do Buddy ---
+            const novaNotif = localStorage.getItem("notificacaoParaBuddy");
+            if (novaNotif) {
+                const dados = JSON.parse(novaNotif);
+                const novaDiv = document.createElement("div");
+                novaDiv.classList.add("notif-item");
+                novaDiv.innerHTML = `
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>${dados.remetente}:</strong> ${dados.mensagem}<br><small>${dados.data}</small></p>
+        `;
+                notifModal.appendChild(novaDiv);
+                localStorage.removeItem("notificacaoParaBuddy");
             }
+
+            // --- Garante que o modal fique sobre tudo ---
+            notifModal.style.zIndex = "9999";
         });
-    </script>
+    </script> 
 
     <script src="/js/script.js"></script>
 

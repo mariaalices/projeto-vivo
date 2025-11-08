@@ -432,7 +432,9 @@
     <section aria-labelledby="perfil-novo-usuario">
       <h2 id="perfil-novo-usuario">Perfil do Novo Usuário</h2>
       <div class="profile-box" role="region" aria-label="Perfil do novo usuário">
-        <div class="profile-image" aria-label="Foto de perfil do novo usuário"><img style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa1.jpg" alt=""></div>
+        <div class="profile-image" aria-label="Foto de perfil do novo usuário"><img
+            style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa1.jpg" alt="">
+        </div>
         <div class="profile-info">
           <strong>Gustavo Almeida Coxtos</strong>
           <span>Estagiario TI - Dev. Backend</span>
@@ -457,7 +459,9 @@
     <section aria-labelledby="perfil-responsavel">
       <h2 id="perfil-responsavel">Perfil do buddy responsável</h2>
       <div class="profile-box" role="region" aria-label="Perfil do buddy responsável">
-        <div class="profile-image" aria-label="Foto de perfil do buddy"><img style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa3.jpg" alt=""></div>
+        <div class="profile-image" aria-label="Foto de perfil do buddy"><img
+            style="width:100%; height:100%; object-fit:cover; border-radius:50%;" src="./imagens/pessoa3.jpg" alt="">
+        </div>
         <div class="profile-info">
           <strong>Ana Clara</strong>
           <span>Júnior TI - Dev. Front-end</span>
@@ -490,6 +494,21 @@
         notifModal.classList.remove('active');
       }
     });
+
+    // 🔹 NOVA FUNÇÃO: Carrega notificações salvas no localStorage
+    const novaNotif = localStorage.getItem("notificacaoParaBuddy");
+    if (novaNotif) {
+      const dados = JSON.parse(novaNotif);
+      const novaDiv = document.createElement("div");
+      novaDiv.classList.add("notif-item");
+      novaDiv.innerHTML = `
+        <img src="./imagens/avatar.png" alt="Avatar" />
+        <p><strong>${dados.remetente}:</strong> ${dados.mensagem}</p>
+        <small style="font-size: 11px; color: gray;">${dados.data}</small>
+      `;
+      notifModal.prepend(novaDiv);
+      localStorage.removeItem("notificacaoParaBuddy");
+    }
   </script>
 
   <script>
@@ -551,6 +570,27 @@
       svg.appendChild(text);
     });
   </script>
+
+
+  <script>
+    const solicitarBtn = document.querySelector(".resumo-container .button");
+
+    solicitarBtn.addEventListener("click", () => {
+      // Mensagem enviada
+      alert("Notificação enviada com sucesso!");
+
+      // Cria um objeto de notificação
+      const notificacao = {
+        remetente: "Gestor Felipe",
+        mensagem: "Vamos conversar? Quero entender melhor esse atraso do seu novo funcionário.",
+        data: new Date().toLocaleString()
+      };
+
+      // Salva no localStorage (como se fosse o 'servidor')
+      localStorage.setItem("notificacaoParaBuddy", JSON.stringify(notificacao));
+    });
+  </script>
 </body>
 
 </html>
+ 

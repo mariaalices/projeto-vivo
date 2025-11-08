@@ -218,99 +218,104 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- DADOS E RENDERIZAÇÃO DA LISTA ---
-            const apadrinhamentosData = [
-                { nome: "Isaac Oliveira Teixeira", cargo: "Estagiário TI - QA", novo: true, avatar: "https://randomuser.me/api/portraits/men/11.jpg" },
-                { nome: "Roberto Andrade Castro", cargo: "Nível Funcionários - Dev, Ger, RH e SOC", novo: false, avatar: "https://randomuser.me/api/portraits/men/49.jpg" }
-            ];
-            const listaContainer = document.getElementById('listaApadrinhamentos');
+                const apadrinhamentosData = [
+                    { nome: "Isaac Oliveira Teixeira", cargo: "Estagiário TI - QA", novo: true, avatar: "https://randomuser.me/api/portraits/men/11.jpg" },
+                    { nome: "Roberto Andrade Castro", cargo: "Nível Funcionários - Dev, Ger, RH e SOC", novo: false, avatar: "https://randomuser.me/api/portraits/men/49.jpg" }
+                ];
+                const listaContainer = document.getElementById('listaApadrinhamentos');
+                const notifModal = document.getElementById('notifModal');
 
-            function renderItem(item) {
-                const itemHTML = `
-                    <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
-                        <div class="flex items-center gap-4">
-                            <img src="${item.avatar}" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 ${item.novo ? 'border-pink-500' : 'border-purple-500'}">
-                            <div>
-                                <strong class="text-white">${item.nome}</strong>
-                                <small class="block text-slate-400">${item.cargo}</small>
-                            </div>
-                        </div>
-                        <button class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg" data-nome="${item.nome}">Visitar Perfil</button>
-                    </div>`;
-                listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
-            }
-
-            apadrinhamentosData.forEach(renderItem);
-
-            // --- LÓGICA DO FORMULÁRIO ---
-            const form = document.getElementById('formApadrinhamento');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nome = document.getElementById('nomeNovoUsuario').value.trim();
-                const buddy = document.getElementById('buddy').value.trim();
-                const descricao = document.getElementById('descricao').value.trim();
-
-                if (!nome || !buddy) {
-                    alert("Preencha pelo menos Nome e Buddy!");
-                    return;
+                function renderItem(item) {
+                    const itemHTML = `
+            <div class="flex items-center justify-between p-3 bg-slate-900/50 rounded-lg">
+                <div class="flex items-center gap-4">
+                    <img src="${item.avatar}" alt="Avatar" class="w-12 h-12 rounded-full object-cover border-2 ${item.novo ? 'border-pink-500' : 'border-purple-500'}">
+                    <div>
+                        <strong class="text-white">${item.nome}</strong>
+                        <small class="block text-slate-400">${item.cargo}</small>
+                    </div>
+                </div>
+                <button class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold px-4 py-2 rounded-lg" data-nome="${item.nome}">Visitar Perfil</button>
+            </div>`;
+                    listaContainer.insertAdjacentHTML('afterbegin', itemHTML);
                 }
 
-                const novoApadrinhamento = {
-                    nome,
-                    cargo: `Buddy: ${buddy} | ${descricao || "Sem descrição"}`,
-                    novo: true,
-                    avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png"
-                };
-                renderItem(novoApadrinhamento);
-                form.reset();
-                addVisitarPerfilListeners();
-            });
+                apadrinhamentosData.forEach(renderItem);
 
-            // --- LÓGICA DO BOTÃO VISITAR PERFIL ---
-            function addVisitarPerfilListeners() {
-                const buttons = document.querySelectorAll('button[data-nome]');
-                buttons.forEach(btn => {
-                    btn.onclick = () => {
-                        window.location.href = 'visao_geral_gestor.html';
+                const form = document.getElementById('formApadrinhamento');
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const nome = document.getElementById('nomeNovoUsuario').value.trim();
+                    const buddy = document.getElementById('buddy').value.trim();
+                    const descricao = document.getElementById('descricao').value.trim();
+
+                    if (!nome || !buddy) {
+                        alert("Preencha pelo menos Nome e Buddy!");
+                        return;
+                    }
+
+                    const novoApadrinhamento = {
+                        nome,
+                        cargo: `Buddy: ${buddy} | ${descricao || "Sem descrição"}`,
+                        novo: true,
+                        avatar: "https://cdn-icons-png.flaticon.com/512/747/747376.png"
                     };
-                });
-            }
-            addVisitarPerfilListeners();
 
-            // --- EVENT DELEGATION PARA VISITAR PERFIL ---
-            listaContainer.addEventListener('click', function (e) {
-                if (e.target && e.target.matches('button[data-nome]')) {
-                    window.location.href = 'visao_geral_gestor.html';
+                    // Adiciona o novo apadrinhamento na lista
+                    renderItem(novoApadrinhamento);
+
+                    // Adiciona uma notificação no modal
+                    const notificationHTML = `
+            <div class="notif-item">
+                <img src="./imagens/Boneco VIVO.png" alt="user">
+                <div>
+                    <strong>Buddy</strong>
+                    <p>Novo usuário atribuído: ${nome}</p>
+                </div>
+            </div>`;
+                    notifModal.insertAdjacentHTML('beforeend', notificationHTML);
+
+                    // Mantém o formulário aberto e reseta os campos
+                    form.reset();
+                    addVisitarPerfilListeners();
+                });
+
+                function addVisitarPerfilListeners() {
+                    const buttons = document.querySelectorAll('button[data-nome]');
+                    buttons.forEach(btn => {
+                        btn.onclick = () => {
+                            window.location.href = 'visao_geral_gestor.html';
+                        };
+                    });
                 }
-            });
+                addVisitarPerfilListeners();
 
-            // --- LÓGICA DAS NOTIFICAÇÕES ---
-
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-
-            if (notifIcon && notifModal) {
-                // Abrir/fechar ao clicar no ícone
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-
-                // Fechar ao clicar fora
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
+                listaContainer.addEventListener('click', function (e) {
+                    if (e.target && e.target.matches('button[data-nome]')) {
+                        window.location.href = 'visao_geral_gestor.html';
                     }
                 });
-            }
 
-            // --- NOME DE USUÁRIO DINÂMICO ---
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome && welcomeMessage) {
-                welcomeMessage.textContent = `Olá, ${userData.nome}`;
-            }
-        });
+                const notifIcon = document.getElementById('notifIcon');
+                if (notifIcon && notifModal) {
+                    notifIcon.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        notifModal.classList.toggle('hidden');
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                            notifModal.classList.add('hidden');
+                        }
+                    });
+                }
+
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                const welcomeMessage = document.getElementById('welcomeMessage');
+                if (userData && userData.nome && welcomeMessage) {
+                    welcomeMessage.textContent = `Olá, ${userData.nome}`;
+                }
+            });
     </script>
 
     <script src="/js/script.js"></script>

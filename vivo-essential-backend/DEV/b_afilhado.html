@@ -249,22 +249,29 @@
             }
 
             // Lógica para Salvar Agendamento/Mensagem
-            const saveButton = document.getElementById('saveSchedule');
+             const saveButton = document.getElementById('saveSchedule');
             const messageText = document.getElementById('messageText');
-            if (saveButton && messageText && notifModal) {
+            if (saveButton && messageText) {
+                //ALTEREI AQUI ATE });
                 saveButton.addEventListener('click', () => {
                     const message = messageText.value.trim();
                     if (message) {
-                        const notifItem = document.createElement("div");
-                        notifItem.className = "notif-item text-black"; // Adiciona text-black aqui
-                        notifItem.innerHTML = `<img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Você:</strong> ${message}</p>`;
-                        notifModal.prepend(notifItem);
+                        // Salva a mensagem no localStorage para que outra página possa ler
+                        const notificacoes = JSON.parse(localStorage.getItem("notificacoesNovoUsuario")) || [];
+                        notificacoes.unshift({
+                            remetente: "Buddy",
+                            texto: message,
+                            data: new Date().toLocaleString()
+                        });
+                        localStorage.setItem("notificacoesNovoUsuario", JSON.stringify(notificacoes));
+
                         messageText.value = "";
-                        alert("Mensagem enviada e adicionada às notificações!");
+                        alert("Mensagem enviada para o seu Afilhado!");
                     } else {
                         alert('Digite uma mensagem antes de salvar.');
                     }
                 });
+
             }
 
             // Lógica do Gráfico de Pizza (Original)

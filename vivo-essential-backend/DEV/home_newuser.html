@@ -535,7 +535,30 @@
       }
     });
   </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const notifModal = document.getElementById('notifModal');
+    if (!notifModal) return;
 
+    // Pega as notificações salvas pelo Buddy
+    const notificacoes = JSON.parse(localStorage.getItem("notificacoesNovoUsuario")) || [];
+    const container = notifModal.querySelector('.divide-y');
+
+    // Limpa notificações antigas que já estão no HTML (opcional)
+    // container.innerHTML = '';
+
+    // Adiciona cada notificação salva dinamicamente
+    notificacoes.forEach(n => {
+      const item = document.createElement('div');
+      item.className = "notif-item";
+      item.innerHTML = `
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p class="text-sm"><strong>${n.remetente}:</strong> ${n.texto}</p>
+        `;
+      container.prepend(item);
+    });
+  });
+</script>
   <script src="/js/script.js"></script>
 
   <script> window.chtlConfig = { chatbotId: "3149227724" } </script>

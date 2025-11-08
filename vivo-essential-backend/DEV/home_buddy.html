@@ -91,6 +91,12 @@
             height: 40px;
             border-radius: 50%;
         }
+
+        .emoji-btn.selecionado {
+            background-color: #6d28d9;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.5);
+        }
     </style>
 </head>
 
@@ -100,7 +106,7 @@
         <ul class="flex flex-col">
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_home.html">Home</a></span>
+                <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Home</a></span>
             </li>
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
@@ -134,21 +140,30 @@
             </div>
         </header>
 
-        <div class="max-w-4xl w-full mx-auto space-y-10">
-            <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6">
-                <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie sua relação com o Afiliado:</h2>
-                <div class="flex justify-center space-x-6 mb-4 flex-wrap">
-                    <button class="text-4xl">😠</button>
-                    <button class="text-4xl">😕</button>
-                    <button class="text-4xl">😐</button>
-                    <button class="text-4xl">😊</button>
-                    <button class="text-4xl">😍</button>
+        <div class="max-w-6xl w-full mx-auto space-y-10">
+            <section id="secao-avaliacao-buddy"
+                class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-3xl mx-auto">
+                <h2 class="text-lg font-semibold text-purple-300 mb-4">Avalie seu humor:</h2>
+                <div class="flex justify-center space-x-2 sm:space-x-6 mb-4 flex-wrap">
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="1">😠</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="2">😕</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="3">😐</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="4">😊</button>
+                    <button class="emoji-btn text-4xl p-2 rounded-full transition-all duration-200"
+                        data-value="5">😍</button>
                 </div>
-                <textarea class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
-                    placeholder="Escreva um motivo..."></textarea>
+                <textarea id="motivo-avaliacao" class="w-full rounded-lg bg-slate-700 text-white p-3 mb-4" rows="2"
+                    placeholder="Escreva um motivo... (Opcional)"></textarea>
                 <div class="flex justify-center">
-                    <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition">Enviar
-                        Avaliação</button>
+                    <button id="btn-enviar-avaliacao"
+                        class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition disabled:bg-purple-900 disabled:opacity-60 disabled:cursor-not-allowed"
+                        disabled>
+                        Enviar Avaliação
+                    </button>
                 </div>
             </section>
 
@@ -173,57 +188,57 @@
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
+                    <!-- Etapa Atual -->
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold ring-2 ring-violet-300 shadow-lg shadow-violet-500/50">
                             4</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">Areas</span>
+                        <span class="text-xs text-violet-200 mt-2 text-center">Areas</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
+                    <!-- Etapas Futuras -->
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">
                             5</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+                        <span class="text-xs text-slate-400 mt-2 text-center">Buddy+CLS</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">
                             6</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">To na TI</span>
+                        <span class="text-xs text-slate-400 mt-2 text-center">To na TI</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">
                             7</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">Senhas</span>
+                        <span class="text-xs text-slate-400 mt-2 text-center">Senhas</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">
                             8</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">Pesquisa</span>
+                        <span class="text-xs text-slate-400 mt-2 text-center">Pesquisa</span>
                     </div>
                     <span class="hidden md:inline text-purple-400">&#8594;</span>
 
                     <div class="flex flex-col items-center min-w-[60px]">
                         <div
-                            class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
+                            class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-slate-400 font-bold">
                             9</div>
-                        <span class="text-xs text-purple-200 mt-2 text-center">Preparaçao</span>
+                        <span class="text-xs text-slate-400 mt-2 text-center">Preparaçao</span>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <button
-                        class="bg-purple-600 text-white px-8 py-2 rounded-lg hover:bg-purple-700 transition">Continuar</button>
-                </div>
+                    </div>
             </section>
             <h2 class="text-white font-semibold mb-4">Perfil do afiliado:</h2>
             <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex flex-col md:flex-row items-center gap-6">
@@ -240,35 +255,126 @@
             </div>
             </section>
         </div>
+        
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Lógica das Notificações
-            const notifIcon = document.getElementById('notifIcon');
-            const notifModal = document.getElementById('notifModal');
-            if (notifIcon && notifModal) {
-                notifIcon.addEventListener('click', (event) => {
-                    event.stopPropagation();
-                    notifModal.classList.toggle('hidden');
-                });
-                document.addEventListener('click', (e) => {
-                    if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
-                        notifModal.classList.add('hidden');
-                    }
-                });
+      <script> //TUDO ALTERADO DO COMEÇO DESSE SCRPIT ATE O FINAL -- THAIS
+        document.addEventListener("DOMContentLoaded", () => {
+            const notifIcon = document.getElementById("notifIcon");
+            const notifModal = document.getElementById("notifModal");
+
+            if (!notifIcon || !notifModal) return; // segurança
+
+            // --- Abre/fecha modal ---
+            notifIcon.addEventListener("click", (event) => {
+                event.stopPropagation();
+                notifModal.classList.toggle("hidden");
+            });
+
+            // Fecha o modal ao clicar fora
+            document.addEventListener("click", (e) => {
+                if (!notifModal.contains(e.target) && !notifIcon.contains(e.target)) {
+                    notifModal.classList.add("hidden");
+                }
+            });
+
+            // --- Exibe o nome do usuário ---
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            if (userData && userData.nome) {
+                welcomeMessage.textContent = `Olá, ${userData.nome.split(" ")[0]}`;
             }
 
-            // Exibe o nome do usuário vindo do localStorage
-            const userData = JSON.parse(localStorage.getItem('userData'));
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            if (userData && userData.nome) {
-                welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
+            // --- Carrega notificações do Buddy ---
+            const novaNotif = localStorage.getItem("notificacaoParaBuddy");
+            if (novaNotif) {
+                const dados = JSON.parse(novaNotif);
+                const novaDiv = document.createElement("div");
+                novaDiv.classList.add("notif-item");
+                novaDiv.innerHTML = `
+            <img src="./imagens/avatar.png" alt="Avatar">
+            <p><strong>${dados.remetente}:</strong> ${dados.mensagem}<br><small>${dados.data}</small></p>
+        `;
+                notifModal.appendChild(novaDiv);
+                localStorage.removeItem("notificacaoParaBuddy");
             }
+
+            // --- Garante que o modal fique sobre tudo ---
+            notifModal.style.zIndex = "9999";
         });
-    </script>
+    </script> 
 
     <script src="/js/script.js"></script>
+
+
+    <script>
+        // Espera o documento carregar completamente antes de rodar o script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- SIMULAÇÃO DE BANCO DE DADOS NA PÁGINA ---
+            // Os dados enviados ficarão guardados neste array.
+            let bancoDeDadosSimulado = [];
+
+            // --- SELEÇÃO DOS ELEMENTOS DO HTML ---
+            const secaoAvaliacao = document.getElementById('secao-avaliacao-buddy');
+            const emojiBtns = document.querySelectorAll('.emoji-btn');
+            const motivoTextarea = document.getElementById('motivo-avaliacao');
+            const btnEnviar = document.getElementById('btn-enviar-avaliacao');
+
+            let avaliacaoSelecionada = null;
+
+            // --- LÓGICA PARA SELECIONAR EMOJI ---
+            emojiBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 1. Remove a seleção de todos os outros botões
+                    emojiBtns.forEach(outroBtn => {
+                        outroBtn.classList.remove('selecionado');
+                    });
+
+                    // 2. Adiciona a classe 'selecionado' apenas no botão clicado
+                    btn.classList.add('selecionado');
+
+                    // 3. Guarda o valor do emoji selecionado
+                    avaliacaoSelecionada = btn.dataset.value;
+
+                    // 4. Habilita o botão de enviar
+                    btnEnviar.disabled = false;
+                });
+            });
+
+            // --- LÓGICA PARA ENVIAR A AVALIAÇÃO ---
+            btnEnviar.addEventListener('click', () => {
+                // Pega o texto do motivo (se houver)
+                const motivo = motivoTextarea.value.trim();
+
+                // Cria um objeto com os dados da avaliação
+                const novaAvaliacao = {
+                    nota: parseInt(avaliacaoSelecionada), // Converte a nota para número
+                    motivo: motivo,
+                    data: new Date().toISOString() // Adiciona a data do envio
+                };
+
+                // "Envia" para o nosso banco de dados simulado
+                bancoDeDadosSimulado.push(novaAvaliacao);
+
+                // Exibe no console do navegador para provar que foi "salvo"
+                console.log('Avaliação enviada com sucesso!');
+                console.log('Estado atual do banco de dados simulado:', bancoDeDadosSimulado);
+
+                // --- MOSTRA A MENSAGEM DE SUCESSO E ESCONDE O FORMULÁRIO ---
+                const mensagemSucessoHTML = `
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-green-400 mb-2">Obrigado!</h2>
+                            <p class="text-slate-300">Sua avaliação foi enviada com sucesso.</p>
+                        </div>
+                    `;
+
+                // Substitui todo o conteúdo da seção pela mensagem de sucesso
+                secaoAvaliacao.innerHTML = mensagemSucessoHTML;
+            });
+
+        });
+    </script>
 
     <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
     <script async data-id="3149227724" id="chtl-script" type="text/javascript"

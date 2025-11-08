@@ -99,6 +99,18 @@
       overflow-y: auto;
       transition: all 0.2s ease;
     }
+
+    /* Esconde a barra de rolagem do carrossel */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
   </style>
 </head>
 
@@ -109,7 +121,7 @@
     <ul class="flex flex-col">
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/botao-de-inicio.png" class="w-6 h-6" alt="">
-        <span class="ml-3 text-black hidden sidebar-text"><a href="b_home.html">Home</a></span>
+        <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Home</a></span>
       </li>
       <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
         <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
@@ -127,7 +139,7 @@
   </div>
 
   <!-- Conteúdo principal -->
-  <main class="flex-1 md:ml-24 px-6 py-10">
+  <main class="flex-1 md:ml-20 p-6">
 
     <!-- Cabeçalho -->
     <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
@@ -186,20 +198,21 @@
           <div class="bg-slate-800 bg-opacity-70 p-6 rounded-lg flex items-start gap-6">
             <div class="p-4 rounded-lg flex flex-col items-center w-48">
               <div class="w-24 h-24 rounded-full bg-[#d9d9d9] flex items-center justify-center overflow-hidden">
-                <img src="./imagens/pessoa1.jpg" alt="Avatar" class="w-full h-full object-cover" />
+                <img src="./imagens/Pessoa-2mobile.webp" alt="Avatar" class="w-full h-full object-cover" />
               </div>
-              <h2 class="text-white font-semibold text-center mt-3">Joao Filho Santos</h2>
+              <h2 class="text-white font-semibold text-center mt-3">Maria Alice</h2>
               <p class="text-[#a1a1a1] text-sm text-center">Buddy</p>
             </div>
             <div class="flex-1 p-4 text-[#dcdcdc] leading-relaxed text-justify">
               <h3 class="text-white font-semibold mb-2">Um pouco do que trabalharemos:</h3>
               <p>
-                In mauris neque, eleifend pretium risus nec, sollicitudin egestas orci.
-                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Fusce congue ultricies dui sit amet maximus.
-                Vestibulum tempus, nulla quis lobortis vehicula, ex libero euismod ligula,
-                sit amet aliquet nulla purus pellentesque velit. Nam dapibus lacus sed tellus
-                malesuada iaculis. Curabitur tincidunt commodo quam at dictum.
+                Aqui na Vivo, o desenvolvedor web tem a chance de atuar em várias frentes digitais que fazem diferença no dia
+                a dia da empresa. Ele pode trabalhar na construção e manutenção de sistemas internos, plataformas que os clientes usam,
+                além de apoiar em integrações e automações que facilitam os processos. O papel é transformar ideias em soluções digitais
+                seguras, modernas e fáceis de usar.
+                
+                Além disso, é uma área que oferece bastante espaço para aprendizado e crescimento, já que lidamos com
+                tecnologias atuais e projetos desafiadores.
               </p>
             </div>
           </div>
@@ -223,10 +236,10 @@
 
             <!-- Carrossel -->
             <div class="relative flex justify-center w-full">
-              <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollLeft('carrossel1')">&lt;</button>
+              <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full z-10"
+                onclick="scrollCarousel('carrossel1', -1)">&lt;</button>
 
-              <div id="carrossel1" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar px-10 justify-center">
+              <div id="carrossel1" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar">
                 <!-- Card -->
                 <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
                   <div class="text-xs text-gray-400 font-bold text-left">500 coins</div>
@@ -255,17 +268,31 @@
                   <p class="font-bold text-sm text-white mb-3">Curso: Política de Privacidade</p>
                   <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
                 </div>
+
+                <!-- Novo Card 1 -->
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">750 coins</div>
+                  <img src="./imagens/ux.jpg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: Fundamentos de UX/UI</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
+
+                <!-- Novo Card 2 -->
+                <div class="bg-purple-200/20 rounded-xl shadow p-4 flex-shrink-0 w-56 text-center">
+                  <div class="text-xs text-gray-400 font-bold text-left">1200 coins</div>
+                  <img src="./imagens/ia.jpeg" alt="Curso" class="rounded-md my-3 w-full h-28 object-cover">
+                  <p class="font-bold text-sm text-white mb-3">Curso: IA para Desenvolvedores</p>
+                  <button class="bg-gray-200 text-black font-semibold px-3 py-1 rounded w-full">Iniciar</button>
+                </div>
               </div>
 
-              <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full"
-                onclick="scrollRight('carrossel1')">&gt;</button>
+              <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 p-2 rounded-full z-10"
+                onclick="scrollCarousel('carrossel1', 1)">&gt;</button>
             </div>
 
-            <!-- Bolinhas -->
-            <div class="flex justify-center mt-4 gap-2 w-full">
-              <span class="w-2 h-2 bg-white rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
-              <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <!-- Bolinhas (agora dinâmicas) -->
+            <div id="pagination-dots" class="flex justify-center mt-4 gap-2 w-full">
+              <!-- Os pontinhos serão gerados pelo JavaScript -->
             </div>
           </div>
         </section>
@@ -291,8 +318,61 @@
         notifModal.classList.add('hidden');
       }
     });
-  </script>
 
+    function setupCarousel(carouselId, dotsContainerId) {
+        const carousel = document.getElementById(carouselId);
+        const dotsContainer = document.getElementById(dotsContainerId);
+        if (!carousel || !dotsContainer) return;
+
+        const cards = carousel.children;
+        const totalCards = cards.length;
+        const cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(carousel).gap);
+        const visibleCards = Math.floor(carousel.offsetWidth / cardWidth);
+        const numPages = totalCards - visibleCards + 1;
+
+        // Gerar os pontinhos
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < numPages; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('w-2', 'h-2', 'rounded-full', 'cursor-pointer', 'bg-gray-500');
+            dot.addEventListener('click', () => {
+                carousel.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+            });
+            dotsContainer.appendChild(dot);
+        }
+
+        const updateDots = () => {
+            const currentIndex = Math.round(carousel.scrollLeft / cardWidth);
+            Array.from(dotsContainer.children).forEach((dot, index) => {
+                dot.classList.toggle('bg-white', index === currentIndex);
+                dot.classList.toggle('bg-gray-500', index !== currentIndex);
+            });
+        };
+
+        carousel.addEventListener('scroll', updateDots);
+        updateDots(); // Estado inicial
+    }
+
+    function scrollCarousel(carouselId, direction) {
+      const carousel = document.getElementById(carouselId);
+      if (carousel) {
+        const cardWidth = carousel.children[0].offsetWidth + parseInt(window.getComputedStyle(carousel).gap);
+        const scrollAmount = cardWidth * direction;
+        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    // Inicializa o carrossel quando o conteúdo for carregado
+    document.addEventListener('DOMContentLoaded', () => {
+        setupCarousel('carrossel1', 'pagination-dots');
+    });
+
+  </script>
+  <script src="/js/script.js"></script>
+
+  <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+  <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+      src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

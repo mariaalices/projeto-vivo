@@ -129,7 +129,7 @@
             </li>
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/graduacao.png" class="w-6 h-6" alt="">
-                <span class="ml-3 text-black hidden sidebar-text"><a href="b_afilhado.html">Meu Afilhado</a></span>
+                <span class="ml-3 text-black hidden sidebar-text"><a href="home_buddy.html">Meu Afilhado</a></span>
             </li>
             <li class="flex items-center p-4 hover:bg-purple-400 cursor-pointer">
                 <img src="./imagens/grafico-de-barras.png" class="w-6 h-6" alt="">
@@ -143,9 +143,9 @@
         </ul>
     </div>
 
-    <main class="flex-1 p-4 md:ml-20 flex justify-center">
-        <div class="w-full max-w-5xl">
-            <header class="flex flex-col md:flex-row justify-between items-center max-w-6xl mx-auto px-4 mb-10">
+    <main class="flex-1 md:ml-20 p-6">
+        <div class="w-full max-w-6xl mx-auto">
+            <header class="flex flex-col md:flex-row justify-between items-center mb-10">
                 <h1 class="text-2xl font-bold text-purple-200">Meu Afilhado</h1>
 
                 <div class="flex items-center gap-4 relative">
@@ -249,22 +249,29 @@
             }
 
             // Lógica para Salvar Agendamento/Mensagem
-            const saveButton = document.getElementById('saveSchedule');
+             const saveButton = document.getElementById('saveSchedule');
             const messageText = document.getElementById('messageText');
-            if (saveButton && messageText && notifModal) {
+            if (saveButton && messageText) {
+                //ALTEREI AQUI ATE });
                 saveButton.addEventListener('click', () => {
                     const message = messageText.value.trim();
                     if (message) {
-                        const notifItem = document.createElement("div");
-                        notifItem.className = "notif-item text-black"; // Adiciona text-black aqui
-                        notifItem.innerHTML = `<img src="./imagens/avatar.png" alt="Avatar"><p class="text-sm"><strong>Você:</strong> ${message}</p>`;
-                        notifModal.prepend(notifItem);
+                        // Salva a mensagem no localStorage para que outra página possa ler
+                        const notificacoes = JSON.parse(localStorage.getItem("notificacoesNovoUsuario")) || [];
+                        notificacoes.unshift({
+                            remetente: "Buddy",
+                            texto: message,
+                            data: new Date().toLocaleString()
+                        });
+                        localStorage.setItem("notificacoesNovoUsuario", JSON.stringify(notificacoes));
+
                         messageText.value = "";
-                        alert("Mensagem enviada e adicionada às notificações!");
+                        alert("Mensagem enviada para o seu Afilhado!");
                     } else {
                         alert('Digite uma mensagem antes de salvar.');
                     }
                 });
+
             }
 
             // Lógica do Gráfico de Pizza (Original)
@@ -340,6 +347,11 @@
 
         });
     </script>
+    <script src="/js/script.js"></script>
+
+    <script> window.chtlConfig = { chatbotId: "3149227724" } </script>
+    <script async data-id="3149227724" id="chtl-script" type="text/javascript"
+        src="https://chatling.ai/js/embed.js"></script>
 </body>
 
 </html>

@@ -244,14 +244,52 @@
     <!-- Jornada onboarding -->
     <section class="bg-slate-800 bg-opacity-70 rounded-xl p-6 mb-8 max-w-4xl mx-auto">
       <h2 class="text-lg font-semibold text-purple-300 mb-4">Sua Jornada Onboarding</h2>
-      <div class="flex flex-wrap justify-center items-center space-x-2 space-y-4 md:space-y-0 md:space-x-4 mb-6">
+      <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
         <!-- Cada passo -->
         <div class="flex flex-col items-center min-w-[60px]">
-          <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">2
-          </div>
-          <span class="text-xs text-purple-200 mt-2 text-center">Treinamentos</span>
+          <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
+            ✓</div>
+          <span class="text-xs text-green-200 mt-2 text-center">Boas-vindas</span>
         </div>
         <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+        <!-- Etapa Atual -->
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center text-white font-bold ring-2 ring-violet-300 shadow-lg shadow-violet-500/50">
+            2</div>
+          <span class="text-xs text-violet-200 mt-2 text-center">Treinamentos</span>
+        </div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+        <!-- Etapas Futuras -->
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+            3</div>
+          <span class="text-xs text-purple-200 mt-2 text-center">Sua Vibe</span>
+        </div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+            4</div>
+          <span class="text-xs text-purple-200 mt-2 text-center">Áreas</span>
+        </div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+            5</div>
+          <span class="text-xs text-purple-200 mt-2 text-center">Buddy+CLS</span>
+        </div>
+        <span class="hidden md:inline text-purple-400">&#8594;</span>
+
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center text-white font-bold">
+            6</div>
+          <span class="text-xs text-purple-200 mt-2 text-center">Finalização</span>
+        </div>
+      </div>
+    </section>
         <script>
           // Espera o documento carregar completamente antes de rodar o script
           document.addEventListener('DOMContentLoaded', () => {
@@ -390,7 +428,7 @@
 
             <!-- Imagem à esquerda -->
             <div>
-              <img src="./imagens/image 103.png" alt="Imagem ilustrativa" class="w-full h-auto rounded-lg shadow-lg">
+              <img src="./imagens/medalha.png" alt="VIVO Coin" class="w-full h-auto rounded-lg shadow-lg">
             </div>
 
             <!-- Texto à direita -->
@@ -401,7 +439,7 @@
                 pontos e
                 troque por benefícios exclusivos.
               </p>
-              <button class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
+              <button onclick="mostrarInfoVivoCoin()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition w-fit">
                 Saiba mais
               </button>
             </div>
@@ -552,6 +590,25 @@
       if (userData && userData.nome && welcomeMessage) {
         welcomeMessage.textContent = `Olá, ${userData.nome.split(' ')[0]}`;
       }
+
+      // Função para mostrar informações do VIVO Coin
+      window.mostrarInfoVivoCoin = function() {
+        alert(`🪙 VIVO Coin - Sistema de Recompensas
+
+✅ Como ganhar coins:
+• Complete treinamentos (+100-500 coins)
+• Participe de atividades (+50-200 coins)  
+• Interaja na plataforma (+10-50 coins)
+• Conclua avaliações (+25-100 coins)
+
+🎁 Como usar os coins:
+• Troque por benefícios exclusivos
+• Descontos no refeitório
+• Dias de home office extras
+• Cursos premium gratuitos
+
+📊 Ranking semanal disponível na plataforma!`);
+      };
     });
   </script>
 <script>

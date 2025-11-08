@@ -1,9 +1,9 @@
-// 1. Importe 'Post' e 'Body' para lidar com a nova rota
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res, Param } from '@nestjs/common';
 import { AppService } from './app.service';
+import { join } from 'path';
+import { Response } from 'express';
+import * as fs from 'fs';
 
-// 2. (Opcional, mas recomendado) Crie uma classe para definir o formato dos dados que chegam.
-// Isso garante que seu código seja mais seguro e fácil de entender.
 class AvaliacaoDto {
   usuario_id: number;
   humor: number;
@@ -13,13 +13,143 @@ class AvaliacaoDto {
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {
-    console.log('CONTROLLER ATUALIZADO E CARREGADO! Horário: ' + new Date().toLocaleTimeString());
+    console.log(
+      'CONTROLLER ATUALIZADO E CARREGADO! Horário: ' +
+        new Date().toLocaleTimeString(),
+    );
   }
-  
-  // Este método antigo continua aqui, sem problemas.
+
+  // Servir a página principal
   @Get()
+  getIndexPage(@Res() res: Response) {
+    // Adicionar headers para compatibilidade com todos os browsers
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    // Path correto: de backend/dist/ para vivo-essential-backend/DEV/
+    const indexPath = join(__dirname, '..', '..', 'DEV', 'index.html');
+
+    console.log('__dirname:', __dirname);
+    console.log('Tentando servir arquivo em:', indexPath);
+    console.log('Arquivo existe?', fs.existsSync(indexPath));
+
+    if (fs.existsSync(indexPath)) {
+      console.log('✅ Arquivo encontrado! Servindo:', indexPath);
+      return res.sendFile(indexPath);
+    } else {
+      return res.send(`
+        <h1>Vivo Essential Backend - Time Flow Makers 🚀</h1>
+        <h2>Debug de Caminhos:</h2>
+        <p><strong>__dirname:</strong> ${__dirname}</p>
+        <p><strong>Tentando servir:</strong> ${indexPath}</p>
+        <p><strong>Arquivo existe?</strong> ${fs.existsSync(indexPath)}</p>
+        <hr>
+        <p><strong>Estrutura esperada:</strong></p>
+        <pre>vivo-essential-backend/
+├── backend/src/     ← __dirname está aqui
+└── DEV/index.html   ← arquivo deve estar aqui</pre>
+      `);
+    }
+  }
+
+  // API para teste
+  @Get('api')
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  // Servir arquivos CSS
+  @Get('css/*')
+  getCssFile(@Res() res: Response) {
+    const filePath = res.req.url.replace('/css/', '');
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'css', filePath);
+
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('CSS file not found');
+    }
+  }
+
+  // Servir arquivos JS
+  @Get('js/*')
+  getJsFile(@Res() res: Response) {
+    const filePath = res.req.url.replace('/js/', '');
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'js', filePath);
+
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('JS file not found');
+    }
+  }
+
+  // Servir imagens
+  @Get('imagens/*')
+  getImageFile(@Res() res: Response) {
+    const filePath = res.req.url.replace('/imagens/', '');
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'imagens', filePath);
+
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('Image file not found');
+    }
+  }
+
+  // Servir páginas home específicas
+  @Get('home_newuser.html')
+  getHomeNewuser(@Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'home_newuser.html');
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('Home newuser page not found');
+    }
+  }
+
+  @Get('home_buddy.html')
+  getHomeBuddy(@Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'home_buddy.html');
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('Home buddy page not found');
+    }
+  }
+
+  @Get('home_gestor.html')
+  getHomeGestor(@Res() res: Response) {
+    const fullPath = join(__dirname, '..', '..', 'DEV', 'home_gestor.html');
+    if (fs.existsSync(fullPath)) {
+      return res.sendFile(fullPath);
+    } else {
+      return res.status(404).send('Home gestor page not found');
+    }
+  }
+
+  // Rota genérica para servir qualquer página HTML da plataforma
+  @Get(':filename')
+  getHtmlPage(@Param('filename') filename: string, @Res() res: Response) {
+    // Só aceitar arquivos .html por segurança
+    if (!filename.endsWith('.html')) {
+      return res.status(404).send('Page not found');
+    }
+
+    const fullPath = join(__dirname, '..', '..', 'DEV', filename);
+
+    console.log(`🔍 Tentando servir página: ${filename}`);
+    console.log(`📁 Caminho completo: ${fullPath}`);
+
+    if (fs.existsSync(fullPath)) {
+      console.log(`✅ Página encontrada! Servindo: ${fullPath}`);
+      return res.sendFile(fullPath);
+    } else {
+      console.log(`❌ Página não encontrada: ${fullPath}`);
+      return res.status(404).send(`Page not found: ${filename}`);
+    }
   }
 
   // ==================================================================

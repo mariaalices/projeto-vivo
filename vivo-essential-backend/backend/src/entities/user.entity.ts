@@ -13,12 +13,12 @@ export enum UserProfileType {
 
 @Entity({ name: 'VE_USUARIOS' })
 export class UserEntity {
-  @PrimaryGeneratedColumn({ name: 'ID_USUARIO', type: 'number' })
+  @PrimaryGeneratedColumn({ name: 'ID_USUARIO' })
   idUsuario: number;
 
   @Column({
     name: 'EMAIL',
-    type: 'varchar2',
+    type: 'varchar',
     length: 255,
     unique: true,
     nullable: false,
@@ -27,7 +27,7 @@ export class UserEntity {
 
   @Column({
     name: 'SENHA_HASH',
-    type: 'varchar2',
+    type: 'varchar',
     length: 255,
     nullable: false,
     select: false,
@@ -36,7 +36,7 @@ export class UserEntity {
 
   @Column({
     name: 'NOME_COMPLETO',
-    type: 'varchar2',
+    type: 'varchar',
     length: 300,
     nullable: false,
   })
@@ -44,25 +44,21 @@ export class UserEntity {
 
   @Column({
     name: 'TIPO_PERFIL',
-    type: 'varchar2',
+    type: 'varchar',
     length: 50,
-    enum: UserProfileType,
     nullable: false,
   })
   tipoPerfil: UserProfileType;
 
   @CreateDateColumn({
     name: 'DATA_CADASTRO',
-    type: 'date',
-    default: () => 'SYSDATE',
     nullable: false,
   })
   dataCadastro: Date;
 
   @Column({
     name: 'STATUS_ATIVO',
-    type: 'number',
-    width: 1,
+    type: 'integer',
     default: 1,
     nullable: false,
   })

@@ -79,6 +79,9 @@ export class AuthService {
     access_token: string;
     user: any;
   } {
+    console.log(`[AuthService] Executando login para usuário: ${user.email}`);
+    console.log(`[AuthService] Tipo de perfil do usuário: ${user.tipoPerfil}`);
+
     const payload: JwtPayload = {
       email: user.email,
       sub: user.idUsuario,
@@ -86,7 +89,7 @@ export class AuthService {
       nomeCompleto: user.nomeCompleto,
     };
 
-    return {
+    const result = {
       access_token: this.jwtService.sign(payload),
       user: {
         idUsuario: user.idUsuario,
@@ -95,6 +98,12 @@ export class AuthService {
         tipoPerfil: user.tipoPerfil,
       },
     };
+
+    console.log(
+      `[AuthService] Resultado do login:`,
+      JSON.stringify(result, null, 2),
+    );
+    return result;
   }
 
   /*

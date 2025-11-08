@@ -132,7 +132,7 @@ npm run test
 
 - **Bruna Gomes**
 - **Carlos Eduardo**
-- **MAria Alice**
+- **Maria Alice**
 - **Rickson Hirata**
 - **Thais Costa**
 

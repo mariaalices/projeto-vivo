@@ -130,8 +130,11 @@ npm run test
 
 ## 👨‍💻 Equipe - Time Flow Makers
 
-- **Rickson** - Tech Lead & Full Stack Developer
-- **Maria Alice** - Product Owner & Frontend Developer
+- **Bruna Gomes**
+- **Carlos Eduardo**
+- **MAria Alice**
+- **Rickson Hirata**
+- **Thais Costa**
 
 ## 🏢 Para a VIVO
 
